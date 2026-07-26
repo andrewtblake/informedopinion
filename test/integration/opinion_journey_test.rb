@@ -11,7 +11,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     )
     @fact = @topic.fact_questions.create!(
       prompt: "Which answer is supported?",
-      options: [ "The supported answer", "The distractor" ],
+      options: [ "The supported answer", "A distractor", "Another distractor", "A final distractor" ],
       correct_option: 0,
       explanation: "The primary source supports the first answer.",
       source_name: "Primary source",

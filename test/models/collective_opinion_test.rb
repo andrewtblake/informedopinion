@@ -12,7 +12,7 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     @facts = 2.times.map do |index|
       @topic.fact_questions.create!(
         prompt: "Fact #{index}?",
-        options: [ "Correct", "Incorrect" ],
+        options: [ "Correct", "Incorrect", "Unsupported", "Unknown" ],
         correct_option: 0,
         explanation: "Evidence.",
         source_name: "Source",

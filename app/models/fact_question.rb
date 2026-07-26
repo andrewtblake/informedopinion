@@ -5,7 +5,7 @@ class FactQuestion < ApplicationRecord
   has_many :fact_responses, dependent: :destroy
 
   validates :prompt, :explanation, :source_name, :source_url, presence: true
-  validates :options, length: { in: 2..6 }
+  validates :options, length: { is: 4 }
   validates :correct_option, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 0

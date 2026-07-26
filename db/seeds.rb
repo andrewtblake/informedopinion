@@ -57,6 +57,9 @@ topics.each do |attributes|
 
   facts.each_with_index do |fact, index|
     question = topic.fact_questions.find_or_initialize_by(display_order: index + 1)
+    previous_assessment = [ question.prompt, question.options, question.correct_option ]
+    new_assessment = [ fact[:prompt], fact[:options], fact[:correct_option] ]
+    question.fact_responses.delete_all if question.persisted? && previous_assessment != new_assessment
     question.update!(fact)
   end
 

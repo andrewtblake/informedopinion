@@ -18,7 +18,7 @@ class OpinionProgressTest < ActiveSupport::TestCase
     2.times do |index|
       @opinion.fact_questions.create!(
         prompt: "Fact #{index}?",
-        options: [ "Yes", "No" ],
+        options: [ "Yes", "No", "Sometimes", "Unknown" ],
         correct_option: 0,
         explanation: "Because.",
         source_name: "Source",
