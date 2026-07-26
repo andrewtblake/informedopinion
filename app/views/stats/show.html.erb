@@ -3,8 +3,9 @@
 <section class="topics-section stats-section">
   <div class="container">
     <h1 class="sr-only">My stats</h1>
+    <p class="eyebrow stats-page-title">Your opinions</p>
 
-    <div class="stats-topic-grid">
+    <div class="stats-topic-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));">
       <% @opinion_questions.each do |question| %>
         <% opinion = @opinions[question.id] %>
         <% progress = @progress_by_question.fetch(question) %>
@@ -17,7 +18,7 @@
           <h2 class="topic-headline"><%= question.title %></h2>
           <p class="topic-statement"><%= question.statement %></p>
 
-          <div class="collective-summary collective-summary-primary personal-opinion-summary">
+          <div class="collective-summary collective-summary-primary personal-opinion-summary" style="background: #f1f4f2;">
             <div class="collective-heading">
               <span>Your weighted opinion</span>
               <strong><%= opinion ? opinion.label : "Not registered yet" %></strong>
@@ -26,16 +27,46 @@
             <svg
               class="personal-choice-dial"
               viewBox="0 0 400 225"
+              style="display: block; width: 100%; max-width: 330px; height: auto; margin: 0 auto;"
               role="img"
               aria-label="<%= opinion ? "Your opinion: #{opinion.label}; weight #{progress.weight}%" : "No opinion registered; weight 0%" %>"
             >
               <defs>
                 <marker id="arrowhead-<%= question.id %>" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L6,3 z" class="personal-arrow-head"></path>
+                  <path d="M0,0 L0,6 L6,3 z" class="personal-arrow-head" fill="var(--accent)"></path>
                 </marker>
               </defs>
 
-              <path d="M55 170 A145 145 0 0 1 345 170" class="personal-dial-arc"></path>
+              <% [
+                [ 35, 25, 167, 158 ],
+                [ 70, 50, 134, 146 ],
+                [ 105, 75, 101, 134 ]
+              ].each do |radius, percentage, label_x, label_y| %>
+                <path
+                  d="M<%= 200 - radius %> 170 A<%= radius %> <%= radius %> 0 0 1 <%= 200 + radius %> 170"
+                  class="personal-weight-guide"
+                  fill="none"
+                  stroke="#d8e0dc"
+                  stroke-width="1"
+                  stroke-dasharray="3 4"
+                ></path>
+                <text
+                  x="<%= label_x %>"
+                  y="<%= label_y %>"
+                  class="personal-weight-guide-label"
+                  fill="#879793"
+                  font-size="7"
+                ><%= percentage %>%</text>
+              <% end %>
+
+              <path
+                d="M55 170 A145 145 0 0 1 345 170"
+                class="personal-dial-arc"
+                fill="none"
+                stroke="#cfd9d4"
+                stroke-width="7"
+                stroke-linecap="round"
+              ></path>
 
               <% label_positions = [
                 [ 300, 165, 95, 42, "right" ],
@@ -47,7 +78,11 @@
               <% question.response_options.each_with_index do |label, position| %>
                 <% x, y, width, height, alignment = label_positions[position] %>
                 <foreignObject x="<%= x %>" y="<%= y %>" width="<%= width %>" height="<%= height %>">
-                  <div class="personal-dial-choice personal-dial-choice-<%= alignment %> <%= "is-selected" if opinion&.position == position %>">
+                  <div
+                    xmlns="http://www.w3.org/1999/xhtml"
+                    class="personal-dial-choice personal-dial-choice-<%= alignment %> <%= "is-selected" if opinion&.position == position %>"
+                    style="font-size: 9px; line-height: 1.15;"
+                  >
                     <%= label %>
                   </div>
                 </foreignObject>
@@ -60,11 +95,14 @@
                   x2="<%= arrow_x %>"
                   y2="<%= arrow_y %>"
                   class="personal-weight-arrow"
+                  stroke="var(--accent)"
+                  stroke-width="5"
+                  stroke-linecap="round"
                   marker-end="url(#arrowhead-<%= question.id %>)"
                 ></line>
               <% end %>
-              <circle cx="200" cy="170" r="8" class="personal-dial-hub"></circle>
-              <circle cx="200" cy="170" r="3" class="personal-dial-hub-centre"></circle>
+              <circle cx="200" cy="170" r="7" class="personal-dial-hub" fill="white" stroke="#102a2b" stroke-width="2"></circle>
+              <circle cx="200" cy="170" r="2.5" class="personal-dial-hub-centre" fill="#102a2b"></circle>
             </svg>
 
             <p class="personal-result-numbers">

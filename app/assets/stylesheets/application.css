@@ -294,20 +294,23 @@ h1, h2, h3 {
 .source-link { color: var(--teal-dark); font-weight: 800; }
 
 .stats-section { min-height: calc(100vh - 76px); padding: 55px 0 100px; background: #e9eee9; }
+.stats-page-title { margin-bottom: 24px; color: var(--muted); }
 .stats-topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
 .personal-topic-card { width: 100%; min-height: 710px; }
 .personal-topic-card .topic-headline { margin: 28px 0 8px; font-size: 30px; line-height: 1.1; letter-spacing: -.03em; }
 .personal-topic-card .topic-statement { min-height: 84px; }
-.personal-opinion-summary { margin-bottom: 22px; }
+.personal-opinion-summary { margin: 16px 0 22px; background: #f1f4f2; }
 .personal-opinion-summary .collective-heading strong { min-height: 23px; }
-.personal-choice-dial { width: 100%; height: auto; display: block; overflow: visible; }
-.personal-dial-arc { fill: none; stroke: #d6dfda; stroke-width: 10; stroke-linecap: round; }
-.personal-dial-choice { height: 100%; display: flex; align-items: center; color: var(--muted); font: 700 10px/1.15 Inter, "Avenir Next", "Segoe UI", sans-serif; }
+.personal-choice-dial { width: 100%; max-width: 330px; height: auto; margin: 0 auto; display: block; overflow: visible; }
+.personal-dial-arc { fill: none; stroke: #cfd9d4; stroke-width: 7; stroke-linecap: round; }
+.personal-weight-guide { fill: none; stroke: #d8e0dc; stroke-width: 1; stroke-dasharray: 3 4; }
+.personal-weight-guide-label { fill: #879793; font: 700 7px Inter, "Avenir Next", "Segoe UI", sans-serif; }
+.personal-dial-choice { height: 100%; display: flex; align-items: center; color: var(--muted); font: 700 9px/1.15 Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .personal-dial-choice-center { justify-content: center; text-align: center; }
 .personal-dial-choice-left { justify-content: flex-start; text-align: left; }
 .personal-dial-choice-right { justify-content: flex-end; text-align: right; }
 .personal-dial-choice.is-selected { color: var(--accent); font-weight: 900; }
-.personal-weight-arrow { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+.personal-weight-arrow { stroke: var(--accent); stroke-width: 5; stroke-linecap: round; }
 .personal-arrow-head { fill: var(--accent); }
 .personal-dial-hub { fill: white; stroke: var(--ink); stroke-width: 2; }
 .personal-dial-hub-centre { fill: var(--ink); }

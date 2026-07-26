@@ -49,8 +49,16 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "h1", text: "My stats"
+    assert_select ".stats-page-title", text: "Your opinions"
     assert_select ".stats-overview", count: 0
+    assert_select ".stats-topic-grid[style*='repeat(2']"
     assert_select ".personal-topic-card", text: /Stats test.*Agree.*50% weight.*1 correct.*1 answered.*1 unseen/m
+    assert_select ".personal-choice-dial[style*='max-width: 330px']"
+    assert_select ".personal-dial-arc[fill='none'][stroke='#cfd9d4']"
+    assert_select ".personal-weight-guide", count: 3
+    %w[25% 50% 75%].each do |label|
+      assert_select ".personal-weight-guide-label", text: label
+    end
     assert_select ".personal-choice-dial line[x2='249.5'][y2='120.5']"
     assert_select "form[action='#{opinion_question_quiz_path(@topic)}'] button.stats-card-button", text: "Resume quiz"
     assert_select "form[action='#{opinion_question_path(@topic)}'] button.stats-card-button", text: "Revise opinion"
