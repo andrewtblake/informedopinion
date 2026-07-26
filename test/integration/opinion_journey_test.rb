@@ -59,7 +59,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
   test "visitor can browse a topic but must sign in to register a response" do
     get root_path
     assert_response :success
-    assert_select ".collective-summary", text: /Collective informed opinion/
+    assert_select ".collective-summary", text: /Knowledge-weighted result/
 
     get opinion_question_path(@topic)
     assert_response :success

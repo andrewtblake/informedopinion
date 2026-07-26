@@ -1,43 +1,37 @@
-<% content_for :title, "Informed Opinion — know the weight of your view" %>
+<% content_for :title, "Current informed opinion — Informed Opinion" %>
 
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <p class="eyebrow">Think it. Test it. Weigh it.</p>
-      <h1>How much does your opinion <em>know?</em></h1>
-      <p class="hero-lede">Register what you believe, then answer sourced fact questions. Your opinion gains weight as you demonstrate what you know.</p>
-      <div class="hero-actions">
-        <%= link_to(user_signed_in? ? "#topics" : new_user_registration_path, class: "button button-primary") do %>
-          <%= user_signed_in? ? "Explore the questions" : "Weigh your first opinion" %>
-          <span aria-hidden="true">→</span>
-        <% end %>
-        <a href="#how-it-works" class="text-link">See how it works</a>
-      </div>
+<section class="results-hero">
+  <div class="container results-hero-grid">
+    <div>
+      <p class="eyebrow">Knowledge-weighted public opinion</p>
+      <h1>What informed opinion looks like <em>today.</em></h1>
+      <p class="hero-lede">These are not ordinary polls. Every person’s view is weighted by the relevant factual knowledge they have demonstrated.</p>
     </div>
-    <div class="hero-visual" aria-label="An opinion gaining weight through answered facts">
-      <div class="orbit orbit-one"></div>
-      <div class="orbit orbit-two"></div>
-      <div class="weight-card">
-        <span class="weight-label">Opinion weight</span>
-        <strong>73%</strong>
-        <div class="mini-meter"><span style="width: 73%"></span></div>
-        <span class="weight-note">22 of 30 facts known</span>
+    <div class="public-result-summary">
+      <div>
+        <strong><%= @topics_with_results %><span>/3</span></strong>
+        <p>topics with an informed result</p>
       </div>
-      <span class="fact-chip chip-one">Evidence</span>
-      <span class="fact-chip chip-two">Context</span>
-      <span class="fact-chip chip-three">Sources</span>
+      <div>
+        <strong><%= @collective_respondents %></strong>
+        <p>registered topic opinions</p>
+      </div>
+      <div>
+        <strong><%= @informed_respondents %></strong>
+        <p>opinions carrying weight</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="topics-section" id="topics">
+<section class="topics-section results-section" id="current-opinion">
   <div class="container">
     <div class="section-heading">
       <div>
-        <p class="eyebrow">Three questions to begin</p>
-        <h2>Choose a view to examine</h2>
+        <p class="eyebrow">The public result</p>
+        <h2>Current informed opinion</h2>
       </div>
-      <p>Each topic has 30 sourced facts. Collective results give more influence to opinions backed by demonstrated knowledge.</p>
+      <p>Each bar is a share of all demonstrated knowledge contributed to that question—not a share of people counted equally.</p>
     </div>
 
     <div class="topic-grid">
@@ -45,21 +39,20 @@
         <% opinion = @user_opinions&.fetch(question.id, nil) %>
         <% progress = @progress_by_question&.fetch(question, nil) %>
         <% collective = @collective_by_question.fetch(question) %>
-        <%= link_to opinion_question_path(question), class: "topic-card topic-#{question.accent}" do %>
+        <article class="topic-card topic-<%= question.accent %>">
           <div class="topic-card-top">
-            <span class="topic-number">0<%= index + 1 %></span>
-            <span class="topic-arrow" aria-hidden="true">↗</span>
+            <span class="topic-number">0<%= index + 1 %> · <%= question.title %></span>
+            <%= link_to "Examine →", opinion_question_path(question), class: "topic-examine" %>
           </div>
-          <div class="topic-symbol" aria-hidden="true"><%= ["◎", "◇", "✦"][index] %></div>
-          <h3><%= question.title %></h3>
-          <p><%= question.statement %></p>
-          <div class="collective-summary">
+          <h3><%= question.statement %></h3>
+
+          <div class="collective-summary collective-summary-primary">
             <div class="collective-heading">
-              <span>Collective informed opinion</span>
+              <span>Knowledge-weighted result</span>
               <% if collective.leading_response %>
                 <strong><%= collective.leading_response[:label] %></strong>
               <% else %>
-                <strong>Awaiting informed answers</strong>
+                <strong>No informed result yet</strong>
               <% end %>
             </div>
             <div class="collective-bars">
@@ -73,40 +66,42 @@
             </div>
             <small>
               <%= pluralize(collective.respondents, "registered opinion") %>
-              · <%= collective.informed_respondents %> with weight
+              · <%= collective.informed_respondents %> carrying weight
             </small>
           </div>
+
           <% if opinion %>
             <div class="card-progress">
               <div class="card-progress-label">
-                <span><%= opinion.label %></span>
-                <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+                <span>Your view: <%= opinion.label %></span>
+                <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
               </div>
               <div class="meter"><span style="width: <%= progress.weight %>%"></span></div>
-              <small><%= progress.answered %> of <%= progress.total %> facts answered</small>
+              <%= link_to "Continue your knowledge check →", opinion_question_quiz_path(question), class: "card-cta" %>
             </div>
           <% else %>
-            <span class="card-cta"><%= user_signed_in? ? "Register your view" : "Explore this question" %> →</span>
+            <%= link_to opinion_question_path(question), class: "card-cta" do %>
+              Add your informed opinion <span aria-hidden="true">→</span>
+            <% end %>
           <% end %>
-        <% end %>
+        </article>
       <% end %>
     </div>
   </div>
 </section>
 
-<section class="how-section" id="how-it-works">
-  <div class="container">
-    <div class="section-heading compact-heading">
-      <div>
-        <p class="eyebrow">A simple, honest measure</p>
-        <h2>How your weight evolves</h2>
-      </div>
+<section class="participate-section" id="participate">
+  <div class="container participate-grid">
+    <div>
+      <p class="eyebrow">Improve the public result</p>
+      <h2>Your opinion belongs here—at the weight your knowledge earns it.</h2>
     </div>
-    <div class="steps-grid">
-      <article><span>1</span><h3>Take a position</h3><p>Choose the response that best represents what you currently believe.</p></article>
-      <article><span>2</span><h3>Test your knowledge</h3><p>Answer one multiple-choice fact at a time, without pressure to finish.</p></article>
-      <article><span>3</span><h3>See the evidence</h3><p>Get an explanation and primary source immediately after every response.</p></article>
-      <article><span>4</span><h3>Revise freely</h3><p>Change your view at any point. Your demonstrated knowledge remains visible.</p></article>
+    <div class="participate-copy">
+      <p>Choose your present view, then answer sourced factual questions one at a time. Each correct latest answer increases that view’s contribution to the public distribution. You can revise your view whenever the evidence moves you.</p>
+      <%= link_to(user_signed_in? ? "#current-opinion" : new_user_registration_path, class: "button button-participate") do %>
+        <%= user_signed_in? ? "Choose a question" : "Contribute your opinion" %>
+        <span aria-hidden="true">→</span>
+      <% end %>
     </div>
   </div>
 </section>
