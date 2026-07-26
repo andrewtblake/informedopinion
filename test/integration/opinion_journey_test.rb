@@ -37,6 +37,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     get root_path
     assert_select ".topic-card.has-opinion .card-cta-primary[href='#{opinion_question_quiz_path(@topic)}']",
       text: /Continue your knowledge check/
+    assert_select ".topic-card.has-opinion .collective-summary-link[href='#{opinion_question_quiz_path(@topic)}'] .collective-summary"
     assert_operator response.body.index("Continue your knowledge check"), :<, response.body.index("Your view:")
 
     get opinion_question_quiz_path(@topic)
