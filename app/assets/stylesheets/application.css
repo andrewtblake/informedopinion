@@ -278,6 +278,8 @@ h1, h2, h3 {
 .answer-comparison p { margin: 0; padding: 15px; border: 1px solid #edd0cc; border-radius: 12px; }
 .answer-comparison p:last-child { border-color: #afe0d5; }
 .answer-comparison span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 10px; font-weight: 800; text-transform: uppercase; }
+.answer-comparison-correct { grid-template-columns: 1fr; }
+.answer-comparison-correct p { border-color: #afe0d5; background: #f6fbf8; }
 .explanation { margin: 20px 0 28px; }
 .explanation-panel { margin-bottom: 14px; padding: 18px 20px; border-radius: 13px; background: #f2f4f1; }
 .explanation-panel h2 { margin-bottom: 8px; font-size: 16px; }

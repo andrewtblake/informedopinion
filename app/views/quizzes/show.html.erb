@@ -25,7 +25,14 @@
           <h1><%= @feedback.correct? ? "Correct" : "Incorrect" %></h1>
         </div>
         <p class="feedback-question"><%= @fact_question.prompt %></p>
-        <% unless @feedback.correct? %>
+        <% if @feedback.correct? %>
+          <div class="answer-comparison answer-comparison-correct">
+            <p>
+              <span>Your correct answer</span>
+              <%= @fact_question.options[@feedback.selected_option] %>
+            </p>
+          </div>
+        <% else %>
           <div class="answer-comparison">
             <p><span>Your answer</span><%= @fact_question.options[@feedback.selected_option] %></p>
             <p><span>Correct answer</span><%= @fact_question.correct_answer %></p>

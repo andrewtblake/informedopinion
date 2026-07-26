@@ -51,6 +51,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select ".feedback-correct"
     assert_select ".feedback-status h1", text: "Correct"
     assert_select ".feedback-status", text: /You knew this one/, count: 0
+    assert_select ".answer-comparison-correct", text: /Your correct answer.*The supported answer/m
     assert_select ".explanation-panel", text: /primary source supports/
     assert_select ".weight-change", count: 0
     assert_select ".quiz-weight", text: /100%/
