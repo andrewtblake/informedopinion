@@ -293,30 +293,31 @@ h1, h2, h3 {
 .explanation-panel p { margin: 0; color: var(--muted); }
 .source-link { color: var(--teal-dark); font-weight: 800; }
 
-.stats-hero-grid { min-height: 440px; padding: 76px 0; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 70px; }
-.stats-results-hero .hero-lede { max-width: 720px; }
-.stats-overview { display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 18px; background: rgba(255,255,255,.05); }
-.stats-overview div { padding: 21px 16px; border-right: 1px solid rgba(255,255,255,.12); }
-.stats-overview div:last-child { border-right: 0; }
-.stats-overview strong { display: block; color: var(--lime); font: 800 28px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.04em; }
-.stats-overview span { display: block; margin-top: 4px; color: #afc0bd; font-size: 10px; line-height: 1.3; }
-.stats-topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-.personal-topic-card { min-height: 730px; }
+.stats-section { min-height: calc(100vh - 76px); padding: 55px 0 100px; background: #e9eee9; }
+.stats-topic-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
+.personal-topic-card { width: 100%; min-height: 710px; }
+.personal-topic-card .topic-headline { margin: 28px 0 8px; font-size: 30px; line-height: 1.1; letter-spacing: -.03em; }
 .personal-topic-card .topic-statement { min-height: 84px; }
 .personal-opinion-summary { margin-bottom: 22px; }
 .personal-opinion-summary .collective-heading strong { min-height: 23px; }
-.personal-opinion-dial { margin-bottom: 4px; }
-.personal-weight-readout { margin-bottom: 9px; display: flex; align-items: baseline; justify-content: space-between; }
-.personal-weight-readout strong { color: var(--accent); font: 800 27px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.04em; }
-.personal-weight-readout span { color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.personal-weight-meter { height: 9px; }
-.personal-weight-meter span { background: var(--accent); }
-.stats-counts { margin-top: 10px; display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 11px; }
-.stats-counts strong { color: var(--ink); }
+.personal-choice-dial { width: 100%; height: auto; display: block; overflow: visible; }
+.personal-dial-arc { fill: none; stroke: #d6dfda; stroke-width: 10; stroke-linecap: round; }
+.personal-dial-choice { height: 100%; display: flex; align-items: center; color: var(--muted); font: 700 10px/1.15 Inter, "Avenir Next", "Segoe UI", sans-serif; }
+.personal-dial-choice-center { justify-content: center; text-align: center; }
+.personal-dial-choice-left { justify-content: flex-start; text-align: left; }
+.personal-dial-choice-right { justify-content: flex-end; text-align: right; }
+.personal-dial-choice.is-selected { color: var(--accent); font-weight: 900; }
+.personal-weight-arrow { stroke: var(--accent); stroke-width: 6; stroke-linecap: round; }
+.personal-arrow-head { fill: var(--accent); }
+.personal-dial-hub { fill: white; stroke: var(--ink); stroke-width: 2; }
+.personal-dial-hub-centre { fill: var(--ink); }
+.personal-result-numbers { margin: -2px 0 0; display: flex; align-items: baseline; justify-content: space-between; gap: 15px; color: var(--muted); font-size: 10px; }
+.personal-result-numbers strong { color: var(--accent); font-size: 12px; }
 .personal-card-actions { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.stats-card-button { min-width: 0; min-height: 48px; padding: 0 14px; border-color: var(--accent); color: var(--accent); background: white; box-shadow: none; font-size: 13px; text-align: center; }
-.stats-card-button:hover { color: white; background: var(--accent); box-shadow: none; }
-.stats-card-button-wide { grid-column: 1 / -1; }
+.personal-card-actions form { margin: 0; }
+.stats-card-action-wide { grid-column: 1 / -1; }
+.stats-card-button { width: 100%; min-width: 0; min-height: 48px; padding: 0 14px; border-color: var(--accent); color: white; background: var(--accent); box-shadow: none; font-size: 13px; text-align: center; }
+.stats-card-button:hover { color: white; background: color-mix(in srgb, var(--accent) 82%, var(--ink)); box-shadow: none; }
 
 .auth-page { min-height: calc(100vh - 76px); display: grid; grid-template-columns: 1fr 1fr; }
 .auth-panel { padding: clamp(45px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; }
@@ -369,8 +370,6 @@ h1, h2, h3 {
   .auth-page { grid-template-columns: 1fr; }
   .auth-intro { min-height: 480px; }
   .participate-grid { grid-template-columns: 1fr; gap: 35px; }
-  .stats-hero-grid { grid-template-columns: 1fr; gap: 35px; }
-  .stats-topic-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -405,11 +404,14 @@ h1, h2, h3 {
   .auth-intro h1 { font-size: 41px; }
   .field-row { grid-template-columns: 1fr; }
   .simple-auth-card { padding: 30px 23px; }
-  .stats-hero-grid { min-height: 0; padding: 58px 0; }
-  .stats-overview { grid-template-columns: 1fr 1fr; }
-  .stats-overview div:nth-child(2) { border-right: 0; }
-  .stats-overview div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.12); }
+  .stats-section .container { width: min(100% - 12px, 1160px); }
+  .stats-topic-grid { gap: 8px; }
+  .personal-topic-card { min-height: 590px; padding: 12px; }
+  .personal-topic-card .topic-headline { margin-top: 18px; font-size: 20px; }
+  .personal-topic-card .topic-statement { min-height: 0; font-size: 11px; }
+  .personal-opinion-summary { padding: 10px; }
+  .personal-result-numbers { align-items: flex-start; flex-direction: column; gap: 2px; }
   .personal-card-actions { grid-template-columns: 1fr; }
-  .stats-card-button-wide { grid-column: auto; }
+  .stats-card-action-wide { grid-column: auto; }
   .footer-inner { align-items: flex-start; flex-direction: column; gap: 13px; }
 }

@@ -1,52 +1,20 @@
 <% content_for :title, "My stats — Informed Opinion" %>
 
-<section class="results-hero stats-results-hero">
-  <div class="container stats-hero-grid">
-    <div>
-      <p class="eyebrow">Your participation</p>
-      <h1>What your informed opinion looks like <em>today.</em></h1>
-      <p class="hero-lede">Your selected position sets the direction. The relevant knowledge you have demonstrated determines how much weight it carries.</p>
-    </div>
-    <div class="stats-overview" aria-label="Participation summary">
-      <div>
-        <strong><%= @opinions.length %></strong>
-        <span>opinions registered</span>
-      </div>
-      <div>
-        <strong><%= @answered %></strong>
-        <span>facts answered</span>
-      </div>
-      <div>
-        <strong><%= @correct %></strong>
-        <span>currently correct</span>
-      </div>
-      <div>
-        <strong><%= @accuracy %>%</strong>
-        <span>accuracy attempted</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="topics-section results-section stats-section">
+<section class="topics-section stats-section">
   <div class="container">
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Your results</p>
-        <h2>Personal informed opinion</h2>
-      </div>
-      <p>The needle shows your current view. The percentage and coloured bar show how much weight that view has earned from correct latest answers.</p>
-    </div>
+    <h1 class="sr-only">My stats</h1>
 
     <div class="stats-topic-grid">
       <% @opinion_questions.each do |question| %>
         <% opinion = @opinions[question.id] %>
         <% progress = @progress_by_question.fetch(question) %>
+        <% arrow_x, arrow_y = opinion ? opinion_arrow_endpoint(opinion, progress.weight) : StatsHelper::DIAL_CENTER %>
+
         <article class="topic-card personal-topic-card topic-<%= question.accent %>">
           <div class="topic-card-top">
             <%= link_to "Examine →", opinion_question_path(question), class: "topic-examine" %>
           </div>
-          <h3 class="topic-headline"><%= question.title %></h3>
+          <h2 class="topic-headline"><%= question.title %></h2>
           <p class="topic-statement"><%= question.statement %></p>
 
           <div class="collective-summary collective-summary-primary personal-opinion-summary">
@@ -55,45 +23,74 @@
               <strong><%= opinion ? opinion.label : "Not registered yet" %></strong>
             </div>
 
-            <div
-              class="opinion-dial personal-opinion-dial"
-              style="--dial-angle: <%= opinion ? opinion.dial_angle : 360 %>deg"
+            <svg
+              class="personal-choice-dial"
+              viewBox="0 0 400 225"
               role="img"
               aria-label="<%= opinion ? "Your opinion: #{opinion.label}; weight #{progress.weight}%" : "No opinion registered; weight 0%" %>"
             >
-              <span class="dial-label dial-label-no">No</span>
-              <span class="dial-label dial-label-neutral">Neutral</span>
-              <span class="dial-label dial-label-yes">Yes</span>
-              <span class="dial-arc" aria-hidden="true"></span>
-              <span class="dial-needle" aria-hidden="true"></span>
-              <span class="dial-hub" aria-hidden="true"></span>
-            </div>
+              <defs>
+                <marker id="arrowhead-<%= question.id %>" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L0,6 L6,3 z" class="personal-arrow-head"></path>
+                </marker>
+              </defs>
 
-            <div class="personal-weight-readout">
-              <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
-              <span>opinion weight</span>
-            </div>
-            <div class="meter personal-weight-meter" aria-label="<%= progress.weight %>% opinion weight">
-              <span style="width: <%= progress.weight %>%"></span>
-            </div>
-            <div class="stats-counts">
-              <span><strong><%= progress.answered %></strong> answered</span>
-              <span><strong><%= progress.correct %></strong> correct</span>
-              <span><strong><%= progress.remaining %></strong> unseen</span>
-            </div>
+              <path d="M55 170 A145 145 0 0 1 345 170" class="personal-dial-arc"></path>
+
+              <% label_positions = [
+                [ 300, 165, 95, 42, "right" ],
+                [ 282, 67, 110, 44, "center" ],
+                [ 145, 4, 110, 44, "center" ],
+                [ 8, 67, 110, 44, "center" ],
+                [ 5, 165, 95, 42, "left" ]
+              ] %>
+              <% question.response_options.each_with_index do |label, position| %>
+                <% x, y, width, height, alignment = label_positions[position] %>
+                <foreignObject x="<%= x %>" y="<%= y %>" width="<%= width %>" height="<%= height %>">
+                  <div class="personal-dial-choice personal-dial-choice-<%= alignment %> <%= "is-selected" if opinion&.position == position %>">
+                    <%= label %>
+                  </div>
+                </foreignObject>
+              <% end %>
+
+              <% if opinion && progress.weight.positive? %>
+                <line
+                  x1="200"
+                  y1="170"
+                  x2="<%= arrow_x %>"
+                  y2="<%= arrow_y %>"
+                  class="personal-weight-arrow"
+                  marker-end="url(#arrowhead-<%= question.id %>)"
+                ></line>
+              <% end %>
+              <circle cx="200" cy="170" r="8" class="personal-dial-hub"></circle>
+              <circle cx="200" cy="170" r="3" class="personal-dial-hub-centre"></circle>
+            </svg>
+
+            <p class="personal-result-numbers">
+              <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
+              <span><%= progress.correct %> correct · <%= progress.answered %> answered · <%= progress.remaining %> unseen</span>
+            </p>
           </div>
 
           <div class="personal-card-actions">
             <% if opinion %>
-              <%= link_to opinion_question_quiz_path(question), class: "button stats-card-button" do %>
-                <%= progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz" %>
-                <span aria-hidden="true">→</span>
-              <% end %>
-              <%= link_to "Revise opinion", opinion_question_path(question), class: "button stats-card-button" %>
+              <%= button_to(
+                progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz",
+                opinion_question_quiz_path(question),
+                method: :get,
+                class: "button stats-card-button"
+              ) %>
+              <%= button_to "Revise opinion",
+                opinion_question_path(question),
+                method: :get,
+                class: "button stats-card-button" %>
             <% else %>
-              <%= link_to opinion_question_path(question), class: "button stats-card-button stats-card-button-wide" do %>
-                Register your opinion <span aria-hidden="true">→</span>
-              <% end %>
+              <%= button_to "Register your opinion",
+                opinion_question_path(question),
+                method: :get,
+                class: "button stats-card-button stats-card-button-wide",
+                form_class: "stats-card-action-wide" %>
             <% end %>
           </div>
         </article>
