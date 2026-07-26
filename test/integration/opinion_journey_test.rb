@@ -34,6 +34,11 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
       params: { user_opinion: { position: 1 } }
     assert_redirected_to opinion_question_quiz_path(@topic)
 
+    get root_path
+    assert_select ".topic-card.has-opinion .card-cta-primary[href='#{opinion_question_quiz_path(@topic)}']",
+      text: /Continue your knowledge check/
+    assert_operator response.body.index("Continue your knowledge check"), :<, response.body.index("Your view:")
+
     get opinion_question_quiz_path(@topic)
     assert_response :success
     assert_select "h1", text: @fact.prompt
