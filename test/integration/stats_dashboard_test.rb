@@ -48,10 +48,12 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     get stats_path
 
     assert_response :success
-    assert_select "h1", text: "My stats"
+    assert_select "h1", text: /What your informed opinion looks like/
     assert_select ".stats-overview", text: /1.*opinions registered.*1.*facts answered.*1.*currently correct.*100%.*accuracy attempted/m
-    assert_select ".stats-topic-card", text: /Stats test.*50%.*Agree.*1 answered.*1 correct.*1 unseen/m
-    assert_select "a[href='#{opinion_question_quiz_path(@topic)}']", text: /Resume quiz/
+    assert_select ".personal-topic-card", text: /Stats test.*Agree.*50%.*1 answered.*1 correct.*1 unseen/m
+    assert_select ".personal-opinion-dial[style*='405deg']"
+    assert_select "a.stats-card-button[href='#{opinion_question_quiz_path(@topic)}']", text: /Resume quiz/
+    assert_select "a.stats-card-button[href='#{opinion_question_path(@topic)}']", text: "Revise opinion"
     assert_select "a[href='#{stats_path}']", text: "My stats"
   end
 end

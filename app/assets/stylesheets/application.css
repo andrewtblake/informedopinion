@@ -293,39 +293,30 @@ h1, h2, h3 {
 .explanation-panel p { margin: 0; color: var(--muted); }
 .source-link { color: var(--teal-dark); font-weight: 800; }
 
-.stats-page { min-height: calc(100vh - 76px); padding: 70px 0 105px; background: #e9eee9; }
-.stats-hero { padding: 45px; display: grid; grid-template-columns: 1fr 1.15fr; align-items: end; gap: 65px; border-radius: 28px; color: white; background: var(--ink); }
-.stats-hero .eyebrow { color: var(--lime); }
-.stats-hero h1 { margin-bottom: 13px; font-size: clamp(43px, 6vw, 68px); letter-spacing: -.055em; }
-.stats-hero > div:first-child > p:last-child { max-width: 510px; margin: 0; color: #bdcdca; }
+.stats-hero-grid { min-height: 440px; padding: 76px 0; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 70px; }
+.stats-results-hero .hero-lede { max-width: 720px; }
 .stats-overview { display: grid; grid-template-columns: repeat(4, 1fr); overflow: hidden; border: 1px solid rgba(255,255,255,.13); border-radius: 18px; background: rgba(255,255,255,.05); }
 .stats-overview div { padding: 21px 16px; border-right: 1px solid rgba(255,255,255,.12); }
 .stats-overview div:last-child { border-right: 0; }
 .stats-overview strong { display: block; color: var(--lime); font: 800 28px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.04em; }
 .stats-overview span { display: block; margin-top: 4px; color: #afc0bd; font-size: 10px; line-height: 1.3; }
-.stats-heading { margin: 68px 0 32px; display: flex; align-items: end; justify-content: space-between; gap: 50px; }
-.stats-heading h2 { margin: 0; font-size: clamp(32px, 4vw, 46px); letter-spacing: -.04em; }
-.stats-heading > p { max-width: 430px; margin: 0; color: var(--muted); font-size: 14px; }
 .stats-topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-.stats-topic-card { --accent: var(--teal); padding: 30px; border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 22px; background: white; box-shadow: 0 12px 35px rgba(16, 42, 43, .06); }
-.stats-topic-card > header { display: flex; align-items: start; justify-content: space-between; gap: 24px; }
-.stats-topic-label { margin-bottom: 6px; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-.stats-topic-card h3 { margin: 0; font-size: 28px; letter-spacing: -.035em; }
-.stats-weight { flex: 0 0 auto; text-align: right; }
-.stats-weight strong { display: block; color: var(--accent); font: 800 30px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.04em; }
-.stats-weight span { display: block; color: var(--muted); font-size: 10px; }
-.stats-current-view { margin: 28px 0; padding: 15px 17px; border-radius: 12px; background: color-mix(in srgb, var(--accent) 8%, #f3f5f2); }
-.stats-current-view span { display: block; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.stats-current-view strong { display: block; margin-top: 3px; color: var(--accent); }
-.stats-no-view strong { color: var(--muted); }
-.stats-progress .meter { height: 9px; }
-.stats-progress .meter span { background: var(--accent); }
+.personal-topic-card { min-height: 730px; }
+.personal-topic-card .topic-statement { min-height: 84px; }
+.personal-opinion-summary { margin-bottom: 22px; }
+.personal-opinion-summary .collective-heading strong { min-height: 23px; }
+.personal-opinion-dial { margin-bottom: 4px; }
+.personal-weight-readout { margin-bottom: 9px; display: flex; align-items: baseline; justify-content: space-between; }
+.personal-weight-readout strong { color: var(--accent); font: 800 27px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.04em; }
+.personal-weight-readout span { color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+.personal-weight-meter { height: 9px; }
+.personal-weight-meter span { background: var(--accent); }
 .stats-counts { margin-top: 10px; display: flex; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 11px; }
 .stats-counts strong { color: var(--ink); }
-.stats-topic-card > footer { margin-top: 28px; display: flex; align-items: center; gap: 20px; }
-.stats-resume { min-height: 44px; background: var(--accent); box-shadow: none; }
-.stats-resume:hover { background: color-mix(in srgb, var(--accent) 82%, var(--ink)); box-shadow: none; }
-.stats-revise { color: var(--muted); font-size: 12px; font-weight: 700; text-underline-offset: 3px; }
+.personal-card-actions { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.stats-card-button { min-width: 0; min-height: 48px; padding: 0 14px; border-color: var(--accent); color: var(--accent); background: white; box-shadow: none; font-size: 13px; text-align: center; }
+.stats-card-button:hover { color: white; background: var(--accent); box-shadow: none; }
+.stats-card-button-wide { grid-column: 1 / -1; }
 
 .auth-page { min-height: calc(100vh - 76px); display: grid; grid-template-columns: 1fr 1fr; }
 .auth-panel { padding: clamp(45px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; }
@@ -378,7 +369,7 @@ h1, h2, h3 {
   .auth-page { grid-template-columns: 1fr; }
   .auth-intro { min-height: 480px; }
   .participate-grid { grid-template-columns: 1fr; gap: 35px; }
-  .stats-hero { grid-template-columns: 1fr; gap: 35px; }
+  .stats-hero-grid { grid-template-columns: 1fr; gap: 35px; }
   .stats-topic-grid { grid-template-columns: 1fr; }
 }
 
@@ -414,14 +405,11 @@ h1, h2, h3 {
   .auth-intro h1 { font-size: 41px; }
   .field-row { grid-template-columns: 1fr; }
   .simple-auth-card { padding: 30px 23px; }
-  .stats-page { padding: 35px 0 70px; }
-  .stats-hero { padding: 30px 24px; border-radius: 21px; }
+  .stats-hero-grid { min-height: 0; padding: 58px 0; }
   .stats-overview { grid-template-columns: 1fr 1fr; }
   .stats-overview div:nth-child(2) { border-right: 0; }
   .stats-overview div:nth-child(-n+2) { border-bottom: 1px solid rgba(255,255,255,.12); }
-  .stats-heading { align-items: start; flex-direction: column; gap: 18px; }
-  .stats-topic-card { padding: 24px; }
-  .stats-topic-card > footer { align-items: stretch; flex-direction: column; gap: 13px; }
-  .stats-revise { text-align: center; }
+  .personal-card-actions { grid-template-columns: 1fr; }
+  .stats-card-button-wide { grid-column: auto; }
   .footer-inner { align-items: flex-start; flex-direction: column; gap: 13px; }
 }

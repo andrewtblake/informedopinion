@@ -1,65 +1,81 @@
 <% content_for :title, "My stats — Informed Opinion" %>
 
-<section class="stats-page">
-  <div class="container">
-    <header class="stats-hero">
+<section class="results-hero stats-results-hero">
+  <div class="container stats-hero-grid">
+    <div>
+      <p class="eyebrow">Your participation</p>
+      <h1>What your informed opinion looks like <em>today.</em></h1>
+      <p class="hero-lede">Your selected position sets the direction. The relevant knowledge you have demonstrated determines how much weight it carries.</p>
+    </div>
+    <div class="stats-overview" aria-label="Participation summary">
       <div>
-        <p class="eyebrow">Your participation</p>
-        <h1>My stats</h1>
-        <p>See what you currently think, how much relevant knowledge you have demonstrated, and where to continue.</p>
+        <strong><%= @opinions.length %></strong>
+        <span>opinions registered</span>
       </div>
-      <div class="stats-overview" aria-label="Participation summary">
-        <div>
-          <strong><%= @opinions.length %></strong>
-          <span>opinions registered</span>
-        </div>
-        <div>
-          <strong><%= @answered %></strong>
-          <span>facts answered</span>
-        </div>
-        <div>
-          <strong><%= @correct %></strong>
-          <span>currently correct</span>
-        </div>
-        <div>
-          <strong><%= @accuracy %>%</strong>
-          <span>accuracy attempted</span>
-        </div>
+      <div>
+        <strong><%= @answered %></strong>
+        <span>facts answered</span>
       </div>
-    </header>
+      <div>
+        <strong><%= @correct %></strong>
+        <span>currently correct</span>
+      </div>
+      <div>
+        <strong><%= @accuracy %>%</strong>
+        <span>accuracy attempted</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="stats-heading">
+<section class="topics-section results-section stats-section">
+  <div class="container">
+    <div class="section-heading">
       <div>
-        <p class="eyebrow">By opinion question</p>
-        <h2>Your knowledge weights</h2>
+        <p class="eyebrow">Your results</p>
+        <h2>Personal informed opinion</h2>
       </div>
-      <p>Only your latest answer to each fact counts. Returning to a quiz lets you improve—or reassess—your current knowledge.</p>
+      <p>The needle shows your current view. The percentage and coloured bar show how much weight that view has earned from correct latest answers.</p>
     </div>
 
     <div class="stats-topic-grid">
       <% @opinion_questions.each do |question| %>
         <% opinion = @opinions[question.id] %>
         <% progress = @progress_by_question.fetch(question) %>
-        <article class="stats-topic-card topic-<%= question.accent %>">
-          <header>
-            <div>
-              <p class="stats-topic-label">Opinion question</p>
-              <h3><%= question.title %></h3>
+        <article class="topic-card personal-topic-card topic-<%= question.accent %>">
+          <div class="topic-card-top">
+            <%= link_to "Examine →", opinion_question_path(question), class: "topic-examine" %>
+          </div>
+          <h3 class="topic-headline"><%= question.title %></h3>
+          <p class="topic-statement"><%= question.statement %></p>
+
+          <div class="collective-summary collective-summary-primary personal-opinion-summary">
+            <div class="collective-heading">
+              <span>Your weighted opinion</span>
+              <strong><%= opinion ? opinion.label : "Not registered yet" %></strong>
             </div>
-            <div class="stats-weight">
+
+            <div
+              class="opinion-dial personal-opinion-dial"
+              style="--dial-angle: <%= opinion ? opinion.dial_angle : 360 %>deg"
+              role="img"
+              aria-label="<%= opinion ? "Your opinion: #{opinion.label}; weight #{progress.weight}%" : "No opinion registered; weight 0%" %>"
+            >
+              <span class="dial-label dial-label-no">No</span>
+              <span class="dial-label dial-label-neutral">Neutral</span>
+              <span class="dial-label dial-label-yes">Yes</span>
+              <span class="dial-arc" aria-hidden="true"></span>
+              <span class="dial-needle" aria-hidden="true"></span>
+              <span class="dial-hub" aria-hidden="true"></span>
+            </div>
+
+            <div class="personal-weight-readout">
               <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
               <span>opinion weight</span>
             </div>
-          </header>
-
-          <% if opinion %>
-            <p class="stats-current-view"><span>Your view</span><strong><%= opinion.label %></strong></p>
-          <% else %>
-            <p class="stats-current-view stats-no-view"><span>Your view</span><strong>Not registered yet</strong></p>
-          <% end %>
-
-          <div class="stats-progress">
-            <div class="meter"><span style="width: <%= progress.weight %>%"></span></div>
+            <div class="meter personal-weight-meter" aria-label="<%= progress.weight %>% opinion weight">
+              <span style="width: <%= progress.weight %>%"></span>
+            </div>
             <div class="stats-counts">
               <span><strong><%= progress.answered %></strong> answered</span>
               <span><strong><%= progress.correct %></strong> correct</span>
@@ -67,19 +83,19 @@
             </div>
           </div>
 
-          <footer>
+          <div class="personal-card-actions">
             <% if opinion %>
-              <%= link_to opinion_question_quiz_path(question), class: "button button-primary stats-resume" do %>
+              <%= link_to opinion_question_quiz_path(question), class: "button stats-card-button" do %>
                 <%= progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz" %>
                 <span aria-hidden="true">→</span>
               <% end %>
-              <%= link_to "Revise opinion", opinion_question_path(question), class: "stats-revise" %>
+              <%= link_to "Revise opinion", opinion_question_path(question), class: "button stats-card-button" %>
             <% else %>
-              <%= link_to opinion_question_path(question), class: "button button-primary stats-resume" do %>
+              <%= link_to opinion_question_path(question), class: "button stats-card-button stats-card-button-wide" do %>
                 Register your opinion <span aria-hidden="true">→</span>
               <% end %>
             <% end %>
-          </footer>
+          </div>
         </article>
       <% end %>
     </div>

@@ -12,4 +12,8 @@ class UserOpinion < ApplicationRecord
   def stance
     2 - position
   end
+
+  def dial_angle
+    360 + (stance * 45)
+  end
 end
