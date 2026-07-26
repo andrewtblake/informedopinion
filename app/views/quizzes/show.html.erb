@@ -62,10 +62,10 @@
           <%= hidden_field_tag :fact_question_id, @fact_question.id %>
           <fieldset>
             <legend class="sr-only">Choose one answer</legend>
-            <% @fact_question.options.each_with_index do |option, index| %>
+            <% @answer_choices.each_with_index do |(option, original_index), display_index| %>
               <label class="answer-option">
-                <%= radio_button_tag :selected_option, index, false, required: true %>
-                <span class="answer-letter"><%= ("A".ord + index).chr %></span>
+                <%= radio_button_tag :selected_option, original_index, false, required: true %>
+                <span class="answer-letter"><%= ("A".ord + display_index).chr %></span>
                 <span><%= option %></span>
               </label>
             <% end %>

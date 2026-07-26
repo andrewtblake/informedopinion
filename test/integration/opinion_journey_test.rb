@@ -38,6 +38,9 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", text: @fact.prompt
     assert_select ".quiz-weight", text: /0%/
+    assert_select "input[name='selected_option']", count: 4
+    assert_equal %w[0 1 2 3],
+      css_select("input[name='selected_option']").map { |input| input["value"] }.sort
 
     post opinion_question_fact_responses_path(@topic),
       params: { fact_question_id: @fact.id, selected_option: 0 }

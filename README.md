@@ -11,6 +11,7 @@ This MVP includes:
 - three opinion questions: climate change, U.S. firearm background checks and
   UK membership of the European Union
 - 30 sourced multiple-choice facts for each opinion question
+- four plausible choices per fact, shuffled at display time
 - one-question-at-a-time quizzes with immediate explanations and evidence links
 - adaptive ordering that prioritises unseen questions and initially favours
   evidence closer to the user's stated position
@@ -87,3 +88,9 @@ and European Commission.
 `evidence_direction` is ordering metadata, not part of scoring. It describes
 whether knowing the correct fact is likely to support agreement, disagreement
 or neither. Correctness alone determines weight.
+
+The curated banks deliberately distribute correct answers evenly across their
+four stored positions. A seed-content test enforces four unique choices and
+balanced A–D positions for every topic. The quiz then shuffles those choices
+before display while posting their stable underlying identities, preventing a
+fixed-position answer strategy.

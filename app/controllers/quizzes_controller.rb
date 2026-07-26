@@ -13,6 +13,7 @@ class QuizzesController < ApplicationController
     @progress = OpinionProgress.new(current_user, @opinion_question)
     @feedback = feedback_response
     @fact_question = @feedback&.fact_question || next_question
+    @answer_choices = shuffled_answer_choices unless @feedback
   end
 
   private
@@ -36,5 +37,11 @@ class QuizzesController < ApplicationController
       opinion_question: @opinion_question,
       user_opinion: @user_opinion
     ).call
+  end
+
+  def shuffled_answer_choices
+    @fact_question.options.each_with_index.map do |option, original_index|
+      [ option, original_index ]
+    end.shuffle
   end
 end
