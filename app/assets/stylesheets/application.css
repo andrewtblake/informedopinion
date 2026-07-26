@@ -166,9 +166,9 @@ h1, h2, h3 {
 .collective-summary-primary .collective-row > span { font-size: 10px; }
 .opinion-dial { position: relative; width: 220px; height: 130px; margin: 6px auto 16px; }
 .dial-label { position: absolute; z-index: 2; color: var(--muted); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
-.dial-label-no { top: 31px; left: 5px; }
+.dial-label-no { top: 79px; left: 5px; }
 .dial-label-neutral { top: 0; left: 50%; transform: translateX(-50%); }
-.dial-label-yes { top: 31px; right: 5px; }
+.dial-label-yes { top: 79px; right: 5px; }
 .dial-arc {
   position: absolute; top: 16px; left: 35px; width: 150px; height: 150px;
   box-sizing: border-box; border: 9px solid #d9e1dc; border-radius: 50%;

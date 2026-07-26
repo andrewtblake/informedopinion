@@ -46,7 +46,7 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 33.3, result.distribution[3][:share]
     assert_equal 0.0, result.distribution[4][:share]
     assert_equal 0.5, result.weighted_score
-    assert_equal 382.5, result.dial_angle
+    assert_equal 405.0, result.dial_angle
   end
 
   test "reports no collective result when every opinion has zero weight" do
@@ -59,6 +59,17 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_nil result.weighted_score
     assert_equal 360, result.dial_angle
     assert result.distribution.all? { |bucket| bucket[:share].zero? }
+  end
+
+  test "uses the full semicircle for the opinion endpoints" do
+    user = create_user("endpoint")
+    user.user_opinions.create!(opinion_question: @topic, position: 4)
+    @facts.each { |fact| answer(user, fact, 0) }
+
+    result = CollectiveOpinion.new(@topic)
+
+    assert_equal(-1.0, result.weighted_score)
+    assert_equal 270.0, result.dial_angle
   end
 
   private
