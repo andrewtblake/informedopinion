@@ -271,23 +271,18 @@ h1, h2, h3 {
 .feedback-status { display: flex; align-items: center; gap: 18px; }
 .status-icon { width: 57px; height: 57px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; color: white; background: var(--accent); font: 700 30px Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .feedback-incorrect .status-icon { background: #d66c5d; }
-.feedback-status .eyebrow { margin-bottom: 5px; color: var(--accent); }
-.feedback-incorrect .feedback-status .eyebrow { color: #b84d40; }
-.feedback-status h1 { margin: 0; font-size: clamp(27px, 4vw, 37px); }
+.feedback-status h1 { margin: 0; color: var(--accent); font-size: clamp(25px, 4vw, 34px); line-height: 1; }
+.feedback-incorrect .feedback-status h1 { color: #b84d40; }
 .feedback-question { margin: 28px 0 20px; padding: 18px 20px; border-radius: 13px; background: #f2f4f1; font-weight: 600; }
 .answer-comparison { margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .answer-comparison p { margin: 0; padding: 15px; border: 1px solid #edd0cc; border-radius: 12px; }
 .answer-comparison p:last-child { border-color: #afe0d5; }
 .answer-comparison span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 10px; font-weight: 800; text-transform: uppercase; }
-.explanation { margin: 28px 0; }
-.explanation h2 { margin-bottom: 10px; font-size: 19px; }
-.explanation p { color: var(--muted); }
+.explanation { margin: 20px 0 28px; }
+.explanation-panel { margin-bottom: 14px; padding: 18px 20px; border-radius: 13px; background: #f2f4f1; }
+.explanation-panel h2 { margin-bottom: 8px; font-size: 16px; }
+.explanation-panel p { margin: 0; color: var(--muted); }
 .source-link { color: var(--teal-dark); font-weight: 800; }
-.weight-change { margin-bottom: 25px; padding: 19px; display: grid; grid-template-columns: auto 30px auto 1fr; align-items: center; gap: 13px; border-radius: 14px; background: var(--ink); color: white; }
-.weight-change div span { display: block; color: #a9bcba; font-size: 10px; text-transform: uppercase; }
-.weight-change div strong { font: 800 22px Inter, "Avenir Next", "Segoe UI", sans-serif; }
-.change-arrow { color: var(--lime); text-align: center; }
-.weight-change p { margin: 0 0 0 8px; color: #b9c8c6; font-size: 11px; }
 
 .auth-page { min-height: calc(100vh - 76px); display: grid; grid-template-columns: 1fr 1fr; }
 .auth-panel { padding: clamp(45px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; }
@@ -367,8 +362,6 @@ h1, h2, h3 {
   .quiz-header { align-items: start; }
   .quiz-card { border-radius: 20px; }
   .answer-comparison { grid-template-columns: 1fr; }
-  .weight-change { grid-template-columns: auto 25px auto; }
-  .weight-change p { grid-column: 1 / -1; margin: 4px 0 0; }
   .opinion-reminder { align-items: flex-start; flex-wrap: wrap; }
   .opinion-reminder a { margin-left: 0; }
   .auth-panel { padding: 50px 24px; }

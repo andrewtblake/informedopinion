@@ -22,10 +22,7 @@
       <article class="quiz-card feedback-card <%= @feedback.correct? ? "feedback-correct" : "feedback-incorrect" %>">
         <div class="feedback-status">
           <span class="status-icon" aria-hidden="true"><%= @feedback.correct? ? "✓" : "×" %></span>
-          <div>
-            <p class="eyebrow"><%= @feedback.correct? ? "Correct" : "Not quite" %></p>
-            <h1><%= @feedback.correct? ? "You knew this one." : "The evidence says otherwise." %></h1>
-          </div>
+          <h1><%= @feedback.correct? ? "Correct" : "Incorrect" %></h1>
         </div>
         <p class="feedback-question"><%= @fact_question.prompt %></p>
         <% unless @feedback.correct? %>
@@ -35,17 +32,13 @@
           </div>
         <% end %>
         <div class="explanation">
-          <h2>Why this is the answer</h2>
-          <p><%= @fact_question.explanation %></p>
+          <div class="explanation-panel">
+            <h2>Why this is the answer</h2>
+            <p><%= @fact_question.explanation %></p>
+          </div>
           <%= link_to @fact_question.source_url, target: "_blank", rel: "noopener", class: "source-link" do %>
             Read the source: <%= @fact_question.source_name %> <span aria-hidden="true">↗</span>
           <% end %>
-        </div>
-        <div class="weight-change">
-          <div><span>Before</span><strong><%= number_with_precision(@feedback.weight_before, precision: 1) %>%</strong></div>
-          <span class="change-arrow">→</span>
-          <div><span>Now</span><strong><%= number_with_precision(@feedback.weight_after, precision: 1) %>%</strong></div>
-          <p>Your weight is correct answers as a share of all <%= @progress.total %> facts.</p>
         </div>
         <%= link_to opinion_question_quiz_path(@opinion_question), class: "button button-primary button-wide" do %>
           Next question <span aria-hidden="true">→</span>

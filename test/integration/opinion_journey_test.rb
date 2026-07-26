@@ -49,6 +49,10 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
 
     follow_redirect!
     assert_select ".feedback-correct"
+    assert_select ".feedback-status h1", text: "Correct"
+    assert_select ".feedback-status", text: /You knew this one/, count: 0
+    assert_select ".explanation-panel", text: /primary source supports/
+    assert_select ".weight-change", count: 0
     assert_select ".quiz-weight", text: /100%/
     assert_select "a[href='https://example.com/evidence']"
 
@@ -57,6 +61,22 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_redirected_to opinion_question_path(@topic)
     assert_equal 3, @user.user_opinions.find_by!(opinion_question: @topic).position
     assert_equal 100.0, OpinionProgress.new(@user, @topic).weight
+  end
+
+  test "incorrect feedback uses the same compact hierarchy" do
+    sign_in @user, scope: :user
+    @user.user_opinions.create!(opinion_question: @topic, position: 1)
+
+    post opinion_question_fact_responses_path(@topic),
+      params: { fact_question_id: @fact.id, selected_option: 2 }
+    follow_redirect!
+
+    assert_select ".feedback-incorrect"
+    assert_select ".feedback-status h1", text: "Incorrect"
+    assert_select ".feedback-status", text: /evidence says otherwise/, count: 0
+    assert_select ".answer-comparison", text: /Your answer.*Correct answer/m
+    assert_select ".explanation-panel", text: /primary source supports/
+    assert_select ".weight-change", count: 0
   end
 
   test "visitor can browse a topic but must sign in to register a response" do
