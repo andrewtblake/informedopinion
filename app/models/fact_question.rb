@@ -1,5 +1,5 @@
 class FactQuestion < ApplicationRecord
-  DIRECTIONS = [-1, 0, 1].freeze
+  DIRECTIONS = [ -1, 0, 1 ].freeze
 
   belongs_to :opinion_question
   has_many :fact_responses, dependent: :destroy

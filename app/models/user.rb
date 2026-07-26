@@ -9,6 +9,6 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }
 
   def name
-    [first_name, last_name].join(" ")
+    [ first_name, last_name ].join(" ")
   end
 end

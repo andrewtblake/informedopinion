@@ -3,7 +3,7 @@ require "test_helper"
 class FactQuestionTest < ActiveSupport::TestCase
   test "correct option must point to an available answer" do
     question = FactQuestion.new(
-      options: ["One", "Two"],
+      options: [ "One", "Two" ],
       correct_option: 2
     )
 

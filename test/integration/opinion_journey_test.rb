@@ -6,12 +6,12 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
       slug: "evidence-test",
       title: "Evidence test",
       statement: "Evidence matters.",
-      response_options: ["Strongly agree", "Agree", "Neutral", "Disagree", "Strongly disagree"],
+      response_options: [ "Strongly agree", "Agree", "Neutral", "Disagree", "Strongly disagree" ],
       display_order: 1
     )
     @fact = @topic.fact_questions.create!(
       prompt: "Which answer is supported?",
-      options: ["The supported answer", "The distractor"],
+      options: [ "The supported answer", "The distractor" ],
       correct_option: 0,
       explanation: "The primary source supports the first answer.",
       source_name: "Primary source",

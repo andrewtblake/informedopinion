@@ -28,8 +28,8 @@ class NextFactQuestion
       .reorder(
         Arel.sql(
           ActiveRecord::Base.sanitize_sql_array(
-            ["CASE WHEN evidence_direction = ? THEN 0 " \
-             "WHEN evidence_direction = 0 THEN 1 ELSE 2 END, RANDOM()", direction]
+            [ "CASE WHEN evidence_direction = ? THEN 0 " \
+             "WHEN evidence_direction = 0 THEN 1 ELSE 2 END, RANDOM()", direction ]
           )
         )
       )

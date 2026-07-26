@@ -2,8 +2,8 @@
 # check=error=true
 
 # This Dockerfile is designed for production, not development. Use with Kamal or build'n'run by hand:
-# docker build -t io_rails8_ruby4 .
-# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name io_rails8_ruby4 io_rails8_ruby4
+# docker build -t informed-opinion .
+# docker run -d -p 80:80 -e RAILS_MASTER_KEY=<value from config/master.key> --name informed-opinion informed-opinion
 
 # For a containerized dev environment, see Dev Containers: https://guides.rubyonrails.org/getting_started_with_devcontainer.html
 

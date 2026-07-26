@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap");
-
 :root {
   --ink: #102a2b;
   --muted: #607273;
@@ -21,7 +19,7 @@ body {
   margin: 0;
   color: var(--ink);
   background: var(--paper);
-  font-family: "DM Sans", sans-serif;
+  font-family: Inter, "Avenir Next", "Segoe UI", sans-serif;
   font-size: 16px;
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
@@ -30,7 +28,7 @@ a { color: inherit; }
 button, input { font: inherit; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 {
-  font-family: "Manrope", sans-serif;
+  font-family: Inter, "Avenir Next", "Segoe UI", sans-serif;
   line-height: 1.12;
 }
 .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
@@ -48,11 +46,11 @@ h1, h2, h3 {
   backdrop-filter: blur(14px);
 }
 .header-inner { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { display: inline-flex; align-items: center; gap: 12px; font: 800 18px "Manrope", sans-serif; text-decoration: none; }
+.brand { display: inline-flex; align-items: center; gap: 12px; font: 800 18px Inter, "Avenir Next", "Segoe UI", sans-serif; text-decoration: none; }
 .brand-mark {
   width: 39px; height: 39px; display: inline-grid; place-items: center;
   border-radius: 12px; color: var(--lime); background: var(--ink);
-  font: 800 17px "Manrope", sans-serif; letter-spacing: -.08em;
+  font: 800 17px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.08em;
 }
 .brand-mark-small { width: 28px; height: 28px; border-radius: 9px; font-size: 12px; }
 .site-nav { display: flex; align-items: center; gap: 22px; }
@@ -85,7 +83,7 @@ h1, h2, h3 {
   border-radius: 50%; background: rgba(218, 250, 130, .09); filter: blur(4px);
 }
 .hero-grid { min-height: 610px; padding-block: 94px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 80px; }
-.eyebrow { margin-bottom: 16px; color: var(--teal-dark); font: 800 12px "Manrope", sans-serif; letter-spacing: .14em; text-transform: uppercase; }
+.eyebrow { margin-bottom: 16px; color: var(--teal-dark); font: 800 12px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: .14em; text-transform: uppercase; }
 .hero .eyebrow { color: var(--lime); }
 .hero h1 { max-width: 680px; margin-bottom: 26px; font-size: clamp(46px, 6vw, 76px); letter-spacing: -.055em; }
 .hero h1 em { color: var(--lime); font-style: normal; }
@@ -106,7 +104,7 @@ h1, h2, h3 {
 }
 .weight-card::before { content: ""; position: absolute; width: 38px; height: 5px; top: 12px; left: calc(50% - 19px); border-radius: 5px; background: #d7dedb; }
 .weight-label, .weight-note { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
-.weight-card strong { display: block; margin: 9px 0; font: 800 55px "Manrope", sans-serif; letter-spacing: -.06em; }
+.weight-card strong { display: block; margin: 9px 0; font: 800 55px Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.06em; }
 .mini-meter, .meter { height: 7px; overflow: hidden; border-radius: 20px; background: #e1e8e5; }
 .mini-meter { margin-bottom: 11px; }
 .mini-meter span, .meter span { height: 100%; display: block; border-radius: inherit; background: var(--teal); }
@@ -158,7 +156,7 @@ h1, h2, h3 {
 .topic-page .back-link { margin-bottom: 28px; }
 .topic-hero-card { padding: clamp(30px, 6vw, 64px); border: 1px solid var(--line); border-radius: 30px; background: white; box-shadow: var(--shadow); }
 .topic-hero-card h1 { margin-bottom: 27px; font-size: clamp(31px, 5vw, 46px); letter-spacing: -.045em; }
-.topic-hero-card blockquote { margin: 0 0 38px; padding-left: 24px; border-left: 5px solid var(--accent); font: 600 clamp(19px, 3vw, 25px)/1.5 "Manrope", sans-serif; }
+.topic-hero-card blockquote { margin: 0 0 38px; padding-left: 24px; border-left: 5px solid var(--accent); font: 600 clamp(19px, 3vw, 25px)/1.5 Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .signin-gate { padding: 25px; border-radius: 16px; background: #edf2ee; }
 .signin-gate > div { display: flex; align-items: center; gap: 20px; }
 .opinion-form fieldset, .answer-form fieldset { margin: 0; padding: 0; border: 0; }
@@ -185,7 +183,7 @@ h1, h2, h3 {
   width: 120px; height: 120px; display: grid; place-content: center; text-align: center; border-radius: 50%;
   background: radial-gradient(circle at center, white 58%, transparent 59%), conic-gradient(var(--accent) calc(var(--weight) * 1%), #e1e7e4 0);
 }
-.weight-ring strong { font: 800 25px "Manrope"; }
+.weight-ring strong { font: 800 25px Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .weight-ring span { color: var(--muted); font-size: 11px; }
 
 .quiz-page { --accent: var(--teal); min-height: calc(100vh - 76px); padding: 44px 0 85px; background: #e9eee9; }
@@ -195,7 +193,7 @@ h1, h2, h3 {
 .quiz-header .eyebrow { margin-bottom: 0; color: var(--accent); }
 .quiz-weight { text-align: right; }
 .quiz-weight span { display: block; color: var(--muted); font-size: 12px; font-weight: 700; }
-.quiz-weight strong { font: 800 33px "Manrope"; }
+.quiz-weight strong { font: 800 33px Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .quiz-progress { margin: 22px 0 28px; }
 .quiz-progress > div { height: 8px; overflow: hidden; border-radius: 10px; background: #d3ddd7; }
 .quiz-progress > div span { height: 100%; display: block; border-radius: inherit; background: var(--accent); }
@@ -213,7 +211,7 @@ h1, h2, h3 {
 .opinion-reminder strong { color: var(--ink); }
 .opinion-reminder a { margin-left: auto; color: var(--accent); font-weight: 800; }
 .feedback-status { display: flex; align-items: center; gap: 18px; }
-.status-icon { width: 57px; height: 57px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; color: white; background: var(--accent); font: 700 30px "Manrope"; }
+.status-icon { width: 57px; height: 57px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 50%; color: white; background: var(--accent); font: 700 30px Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .feedback-incorrect .status-icon { background: #d66c5d; }
 .feedback-status .eyebrow { margin-bottom: 5px; color: var(--accent); }
 .feedback-incorrect .feedback-status .eyebrow { color: #b84d40; }
@@ -229,7 +227,7 @@ h1, h2, h3 {
 .source-link { color: var(--teal-dark); font-weight: 800; }
 .weight-change { margin-bottom: 25px; padding: 19px; display: grid; grid-template-columns: auto 30px auto 1fr; align-items: center; gap: 13px; border-radius: 14px; background: var(--ink); color: white; }
 .weight-change div span { display: block; color: #a9bcba; font-size: 10px; text-transform: uppercase; }
-.weight-change div strong { font: 800 22px "Manrope"; }
+.weight-change div strong { font: 800 22px Inter, "Avenir Next", "Segoe UI", sans-serif; }
 .change-arrow { color: var(--lime); text-align: center; }
 .weight-change p { margin: 0 0 0 8px; color: #b9c8c6; font-size: 11px; }
 
@@ -243,7 +241,7 @@ h1, h2, h3 {
 .auth-quote span { color: var(--lime); font: 700 40px Georgia; line-height: .5; }
 .auth-quote p { margin: 8px 0 0; color: #d6e0de; }
 .auth-stat { flex-direction: row; align-items: end; gap: 15px; }
-.auth-stat strong { font: 800 64px "Manrope"; color: var(--lime); }
+.auth-stat strong { font: 800 64px Inter, "Avenir Next", "Segoe UI", sans-serif; color: var(--lime); }
 .auth-stat span { max-width: 190px; padding-bottom: 11px; color: #b9c8c5; }
 .auth-form-panel { background: white; }
 .auth-form-wrap { width: min(460px, 100%); margin: auto; }

@@ -12,13 +12,13 @@ class OpinionProgressTest < ActiveSupport::TestCase
       slug: "test-topic",
       title: "Test topic",
       statement: "A test proposition.",
-      response_options: ["A", "B", "C", "D", "E"],
+      response_options: [ "A", "B", "C", "D", "E" ],
       display_order: 1
     )
     2.times do |index|
       @opinion.fact_questions.create!(
         prompt: "Fact #{index}?",
-        options: ["Yes", "No"],
+        options: [ "Yes", "No" ],
         correct_option: 0,
         explanation: "Because.",
         source_name: "Source",
