@@ -28,7 +28,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
   end
 
   test "user registers an opinion, answers a fact, and revises the opinion" do
-    sign_in @user
+    sign_in @user, scope: :user
 
     post opinion_question_user_opinion_path(@topic),
       params: { user_opinion: { position: 1 } }
@@ -57,6 +57,10 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
   end
 
   test "visitor can browse a topic but must sign in to register a response" do
+    get root_path
+    assert_response :success
+    assert_select ".collective-summary", text: /Collective informed opinion/
+
     get opinion_question_path(@topic)
     assert_response :success
     assert_select "a", text: "Create account"

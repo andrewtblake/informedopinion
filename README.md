@@ -15,6 +15,7 @@ This MVP includes:
 - adaptive ordering that prioritises unseen questions and initially favours
   evidence closer to the user's stated position
 - a live opinion weight and the option to revise an opinion at any time
+- homepage distributions that sum the knowledge-weighted opinions of all users
 - responsive interfaces for the public home page, opinion capture, quizzes and
   authentication
 
@@ -65,6 +66,10 @@ opinion → quiz → feedback → revision journey.
 - `OpinionProgress` calculates the number answered, number correct and weight.
 - `NextFactQuestion` prioritises unseen evidence while allowing completed
   quizzes to be reviewed in a new random order.
+- `CollectiveOpinion` adds each user's topic weight to their latest opinion
+  bucket and expresses each bucket as a share of all contributed weight. A 70%
+  informed user therefore contributes `0.7`; a 0% user remains in the raw
+  respondent count but does not move the informed result.
 
 The schema permits a fact-question join model to be introduced later if one
 fact needs to contribute to several opinion questions, as anticipated by the

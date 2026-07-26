@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     @opinion_questions = OpinionQuestion.in_display_order.includes(:fact_questions)
+    @collective_by_question = @opinion_questions.index_with { |question| CollectiveOpinion.new(question) }
     return unless user_signed_in?
 
     @user_opinions = current_user.user_opinions.index_by(&:opinion_question_id)
