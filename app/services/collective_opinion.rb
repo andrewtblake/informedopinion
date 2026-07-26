@@ -49,7 +49,7 @@ class CollectiveOpinion
   end
 
   def dial_angle
-    360 + (45 * (weighted_score || 0))
+    360 + (90 * (weighted_score || 0))
   end
 
   private

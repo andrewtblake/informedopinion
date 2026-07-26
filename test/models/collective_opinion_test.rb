@@ -46,7 +46,7 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 33.3, result.distribution[3][:share]
     assert_equal 0.0, result.distribution[4][:share]
     assert_equal 0.5, result.weighted_score
-    assert_equal 382.5, result.dial_angle
+    assert_equal 405.0, result.dial_angle
   end
 
   test "reports no collective result when every opinion has zero weight" do
@@ -69,7 +69,13 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     result = CollectiveOpinion.new(@topic)
 
     assert_equal(-1.0, result.weighted_score)
-    assert_equal 315.0, result.dial_angle
+    assert_equal 270.0, result.dial_angle
+
+    user.user_opinions.find_by!(opinion_question: @topic).update!(position: 0)
+    result = CollectiveOpinion.new(@topic)
+
+    assert_equal 1.0, result.weighted_score
+    assert_equal 450.0, result.dial_angle
   end
 
   private
