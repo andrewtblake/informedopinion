@@ -8,8 +8,8 @@ correctly.
 This MVP includes:
 
 - Devise registration, sessions and password recovery
-- three opinion questions: climate change, U.S. firearm background checks and
-  UK membership of the European Union
+- four opinion questions: climate change, U.S. firearm background checks,
+  UK membership of the European Union and a UK wealth tax
 - 30 sourced multiple-choice facts for each opinion question
 - four plausible choices per fact, shuffled at display time
 - one-question-at-a-time quizzes with immediate explanations and evidence links
@@ -40,7 +40,7 @@ bin/rails db:seed
 bin/rails server
 ```
 
-Open <http://localhost:3000>, create an account, and choose any of the three
+Open <http://localhost:3000>, create an account, and choose any of the four
 questions. Seeding is idempotent: rerunning it updates the curated content
 without deleting user responses.
 

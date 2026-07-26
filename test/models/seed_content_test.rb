@@ -2,12 +2,14 @@ require "test_helper"
 require Rails.root.join("db/seeds/climate")
 require Rails.root.join("db/seeds/gun_control")
 require Rails.root.join("db/seeds/brexit")
+require Rails.root.join("db/seeds/wealth_tax")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
     climate: CLIMATE_FACTS,
     gun_control: GUN_CONTROL_FACTS,
-    brexit: BREXIT_FACTS
+    brexit: BREXIT_FACTS,
+    wealth_tax: WEALTH_TAX_FACTS
   }.freeze
 
   test "every topic contains thirty four-choice fact questions" do
@@ -32,6 +34,13 @@ class SeedContentTest < ActiveSupport::TestCase
     TOPICS.each do |topic, facts|
       assert facts.all? { |fact| fact[:options].uniq.length == 4 },
         "#{topic} questions should not repeat a choice"
+    end
+  end
+
+  test "every fact provides a named HTTPS evidence link" do
+    TOPICS.each do |topic, facts|
+      assert facts.all? { |fact| fact[:source_name].present? && fact[:source_url].start_with?("https://") },
+        "#{topic} questions should link to named source material"
     end
   end
 end

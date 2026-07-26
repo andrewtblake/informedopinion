@@ -1,6 +1,7 @@
 require_relative "seeds/climate"
 require_relative "seeds/gun_control"
 require_relative "seeds/brexit"
+require_relative "seeds/wealth_tax"
 
 topics = [
   {
@@ -47,6 +48,21 @@ topics = [
     display_order: 3,
     accent: "violet",
     facts: BREXIT_FACTS
+  },
+  {
+    slug: "uk-wealth-tax",
+    title: "Wealth tax",
+    statement: "The UK should impose an annual tax of 1% on each UK-resident individual's worldwide net wealth above £10 million, including property, pensions, financial assets and private-business interests, after deducting debts.",
+    response_options: [
+      "Strongly agree",
+      "Somewhat agree",
+      "Neither agree nor disagree",
+      "Somewhat disagree",
+      "Strongly disagree"
+    ],
+    display_order: 4,
+    accent: "rose",
+    facts: WEALTH_TAX_FACTS
   }
 ]
 
