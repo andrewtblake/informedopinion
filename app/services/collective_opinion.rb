@@ -1,4 +1,6 @@
 class CollectiveOpinion
+  POSITION_SCORES = [ 1.0, 0.5, 0.0, -0.5, -1.0 ].freeze
+
   attr_reader :opinion_question
 
   def initialize(opinion_question)
@@ -34,6 +36,20 @@ class CollectiveOpinion
     return if weighted_total.zero?
 
     distribution.max_by { |bucket| bucket[:weighted_total] }
+  end
+
+  def weighted_score
+    return if weighted_total.zero?
+
+    weighted_sum = distribution.each_with_index.sum do |bucket, position|
+      bucket[:weighted_total] * POSITION_SCORES.fetch(position)
+    end
+
+    (weighted_sum / weighted_total).round(3)
+  end
+
+  def dial_angle
+    360 + (45 * (weighted_score || 0))
   end
 
   private

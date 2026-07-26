@@ -7,20 +7,6 @@
       <h1>What informed opinion looks like <em>today.</em></h1>
       <p class="hero-lede">These are not ordinary polls. Every person’s view is weighted by the relevant factual knowledge they have demonstrated.</p>
     </div>
-    <div class="public-result-summary">
-      <div>
-        <strong><%= @topics_with_results %><span>/3</span></strong>
-        <p>topics with an informed result</p>
-      </div>
-      <div>
-        <strong><%= @collective_respondents %></strong>
-        <p>registered topic opinions</p>
-      </div>
-      <div>
-        <strong><%= @informed_respondents %></strong>
-        <p>opinions carrying weight</p>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -41,10 +27,11 @@
         <% collective = @collective_by_question.fetch(question) %>
         <article class="topic-card topic-<%= question.accent %>">
           <div class="topic-card-top">
-            <span class="topic-number">0<%= index + 1 %> · <%= question.title %></span>
+            <span class="topic-number">0<%= index + 1 %></span>
             <%= link_to "Examine →", opinion_question_path(question), class: "topic-examine" %>
           </div>
-          <h3><%= question.statement %></h3>
+          <h3 class="topic-headline"><%= question.title %></h3>
+          <p class="topic-statement"><%= question.statement %></p>
 
           <div class="collective-summary collective-summary-primary">
             <div class="collective-heading">
@@ -54,6 +41,19 @@
               <% else %>
                 <strong>No informed result yet</strong>
               <% end %>
+            </div>
+            <div
+              class="opinion-dial"
+              style="--dial-angle: <%= collective.dial_angle %>deg"
+              role="img"
+              aria-label="<%= collective.leading_response ? "Weighted result: #{collective.leading_response[:label]}" : "No informed result yet; dial shown at neutral" %>"
+            >
+              <span class="dial-label dial-label-no">No</span>
+              <span class="dial-label dial-label-neutral">Neutral</span>
+              <span class="dial-label dial-label-yes">Yes</span>
+              <span class="dial-arc" aria-hidden="true"></span>
+              <span class="dial-needle" aria-hidden="true"></span>
+              <span class="dial-hub" aria-hidden="true"></span>
             </div>
             <div class="collective-bars">
               <% collective.distribution.each do |bucket| %>

@@ -5,7 +5,7 @@ require_relative "seeds/brexit"
 topics = [
   {
     slug: "climate-change",
-    title: "Climate change",
+    title: "Global warming",
     statement: "Human activities—especially burning fossil fuels and deforestation—have been the main cause of the rise in global average temperature since 1950.",
     response_options: [
       "Definitely true",
@@ -20,7 +20,7 @@ topics = [
   },
   {
     slug: "us-gun-background-checks",
-    title: "U.S. gun background checks",
+    title: "Gun control",
     statement: "The United States should require a background check before every firearm sale, including sales by private individuals.",
     response_options: [
       "Strongly agree",
@@ -35,7 +35,7 @@ topics = [
   },
   {
     slug: "uk-eu-membership",
-    title: "The UK and the European Union",
+    title: "Brexit",
     statement: "The United Kingdom should be a member of the European Union.",
     response_options: [
       "Strongly agree",

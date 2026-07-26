@@ -45,6 +45,8 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 66.7, result.distribution[0][:share]
     assert_equal 33.3, result.distribution[3][:share]
     assert_equal 0.0, result.distribution[4][:share]
+    assert_equal 0.5, result.weighted_score
+    assert_equal 382.5, result.dial_angle
   end
 
   test "reports no collective result when every opinion has zero weight" do
@@ -54,6 +56,8 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
 
     assert_equal 1, result.respondents
     assert_nil result.leading_response
+    assert_nil result.weighted_score
+    assert_equal 360, result.dial_angle
     assert result.distribution.all? { |bucket| bucket[:share].zero? }
   end
 
