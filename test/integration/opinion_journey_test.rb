@@ -92,6 +92,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select ".collective-summary", text: /Knowledge-weighted result/
     assert_select ".opinion-dial[style*='--dial-angle']"
     assert_select ".public-result-summary", count: 0
+    assert_select ".topic-number", count: 0
 
     get opinion_question_path(@topic)
     assert_response :success

@@ -9,6 +9,7 @@
   --lime: #dafa82;
   --amber: #f4a83d;
   --violet: #8b70d8;
+  --rose: #d76583;
   --shadow: 0 22px 60px rgba(16, 42, 43, .11);
   --radius: 24px;
 }
@@ -129,7 +130,7 @@ h1, h2, h3 {
 .section-heading { margin-bottom: 42px; display: flex; align-items: end; justify-content: space-between; gap: 60px; }
 .section-heading h2 { margin-bottom: 0; font-size: clamp(34px, 4vw, 48px); letter-spacing: -.04em; }
 .section-heading > p { max-width: 420px; margin-bottom: 4px; color: var(--muted); }
-.topic-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
 .topic-card {
   --accent: var(--teal);
   position: relative; min-height: 690px; padding: 28px; display: flex; flex-direction: column;
@@ -140,8 +141,9 @@ h1, h2, h3 {
 .topic-card:hover { transform: translateY(-7px); border-color: var(--accent); box-shadow: 0 22px 45px rgba(16, 42, 43, .1); }
 .topic-amber { --accent: var(--amber); }
 .topic-violet { --accent: var(--violet); }
+.topic-rose { --accent: var(--rose); }
 .topic-card-top { display: flex; justify-content: space-between; color: var(--muted); font-weight: 700; }
-.topic-examine { position: relative; z-index: 2; color: var(--accent); font-size: 12px; text-decoration: none; }
+.topic-examine { position: relative; z-index: 2; margin-left: auto; color: var(--accent); font-size: 12px; text-decoration: none; }
 .topic-arrow { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; }
 .topic-symbol { width: 72px; height: 72px; margin: 42px 0 30px; display: grid; place-items: center; border-radius: 22px; background: color-mix(in srgb, var(--accent) 18%, white); color: var(--accent); font-size: 35px; }
 .topic-card h3 { margin-bottom: 15px; font-size: 25px; letter-spacing: -.03em; }
