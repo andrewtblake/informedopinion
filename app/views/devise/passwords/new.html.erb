@@ -1,0 +1,18 @@
+<% content_for :title, "Reset password — Informed Opinion" %>
+
+<section class="simple-auth-page">
+  <div class="simple-auth-card">
+    <p class="eyebrow">Password help</p>
+    <h1>Reset your password</h1>
+    <p>Enter your account email and we’ll send reset instructions.</p>
+    <%= render "devise/shared/errors", resource: resource %>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: "stacked-form" }) do |f| %>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+      </div>
+      <%= f.submit "Send reset instructions", class: "button button-primary button-wide" %>
+    <% end %>
+    <%= link_to "← Back to sign in", new_user_session_path, class: "back-link" %>
+  </div>
+</section>

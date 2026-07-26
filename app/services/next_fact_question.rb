@@ -6,7 +6,7 @@ class NextFactQuestion
   end
 
   def call
-    unanswered.sample || answered.sample
+    unanswered.first || answered.first
   end
 
   private
@@ -14,11 +14,11 @@ class NextFactQuestion
   attr_reader :user, :opinion_question, :user_opinion
 
   def unanswered
-    ordered_questions.where.not(id: response_question_ids).to_a
+    ordered_questions.where.not(id: response_question_ids)
   end
 
   def answered
-    ordered_questions.where(id: response_question_ids).to_a
+    ordered_questions.where(id: response_question_ids)
   end
 
   def ordered_questions

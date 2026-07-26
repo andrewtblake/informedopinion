@@ -1,0 +1,85 @@
+<% content_for :title, "#{@opinion_question.title} knowledge check — Informed Opinion" %>
+
+<section class="quiz-page topic-<%= @opinion_question.accent %>">
+  <div class="container quiz-container">
+    <div class="quiz-header">
+      <div>
+        <%= link_to "← Leave quiz", root_path(anchor: "topics"), class: "back-link" %>
+        <p class="eyebrow"><%= @opinion_question.title %> · knowledge check</p>
+      </div>
+      <div class="quiz-weight">
+        <span>Opinion weight</span>
+        <strong><%= number_with_precision(@progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+      </div>
+    </div>
+
+    <div class="quiz-progress" aria-label="<%= @progress.answered %> of <%= @progress.total %> questions answered">
+      <div><span style="width: <%= @progress.answered.fdiv(@progress.total) * 100 %>%"></span></div>
+      <p><strong><%= @progress.answered %></strong> answered <span>·</span> <strong><%= @progress.correct %></strong> correct <span>·</span> <%= @progress.remaining %> unseen</p>
+    </div>
+
+    <% if @feedback %>
+      <article class="quiz-card feedback-card <%= @feedback.correct? ? "feedback-correct" : "feedback-incorrect" %>">
+        <div class="feedback-status">
+          <span class="status-icon" aria-hidden="true"><%= @feedback.correct? ? "✓" : "×" %></span>
+          <div>
+            <p class="eyebrow"><%= @feedback.correct? ? "Correct" : "Not quite" %></p>
+            <h1><%= @feedback.correct? ? "You knew this one." : "The evidence says otherwise." %></h1>
+          </div>
+        </div>
+        <p class="feedback-question"><%= @fact_question.prompt %></p>
+        <% unless @feedback.correct? %>
+          <div class="answer-comparison">
+            <p><span>Your answer</span><%= @fact_question.options[@feedback.selected_option] %></p>
+            <p><span>Correct answer</span><%= @fact_question.correct_answer %></p>
+          </div>
+        <% end %>
+        <div class="explanation">
+          <h2>Why this is the answer</h2>
+          <p><%= @fact_question.explanation %></p>
+          <%= link_to @fact_question.source_url, target: "_blank", rel: "noopener", class: "source-link" do %>
+            Read the source: <%= @fact_question.source_name %> <span aria-hidden="true">↗</span>
+          <% end %>
+        </div>
+        <div class="weight-change">
+          <div><span>Before</span><strong><%= number_with_precision(@feedback.weight_before, precision: 1) %>%</strong></div>
+          <span class="change-arrow">→</span>
+          <div><span>Now</span><strong><%= number_with_precision(@feedback.weight_after, precision: 1) %>%</strong></div>
+          <p>Your weight is correct answers as a share of all <%= @progress.total %> facts.</p>
+        </div>
+        <%= link_to opinion_question_quiz_path(@opinion_question), class: "button button-primary button-wide" do %>
+          Next question <span aria-hidden="true">→</span>
+        <% end %>
+      </article>
+    <% elsif @fact_question %>
+      <article class="quiz-card question-card">
+        <div class="question-meta">
+          <span>Fact question</span>
+          <% if @progress.complete? %><span class="retake-badge">Review round</span><% end %>
+        </div>
+        <h1><%= @fact_question.prompt %></h1>
+        <%= form_with url: opinion_question_fact_responses_path(@opinion_question), class: "answer-form" do |form| %>
+          <%= hidden_field_tag :fact_question_id, @fact_question.id %>
+          <fieldset>
+            <legend class="sr-only">Choose one answer</legend>
+            <% @fact_question.options.each_with_index do |option, index| %>
+              <label class="answer-option">
+                <%= radio_button_tag :selected_option, index, false, required: true %>
+                <span class="answer-letter"><%= ("A".ord + index).chr %></span>
+                <span><%= option %></span>
+              </label>
+            <% end %>
+          </fieldset>
+          <%= form.submit "Check my answer", class: "button button-primary button-wide" %>
+        <% end %>
+        <p class="quiz-hint">You’ll see the correct answer, an explanation and its source next.</p>
+      </article>
+    <% end %>
+
+    <aside class="opinion-reminder">
+      <span>Your opinion</span>
+      <strong><%= @user_opinion.label %></strong>
+      <%= link_to "Revise", opinion_question_path(@opinion_question) %>
+    </aside>
+  </div>
+</section>

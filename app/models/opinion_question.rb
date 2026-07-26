@@ -12,4 +12,8 @@ class OpinionQuestion < ApplicationRecord
   def response_label(position)
     response_options.fetch(position)
   end
+
+  def to_param
+    slug
+  end
 end

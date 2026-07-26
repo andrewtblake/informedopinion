@@ -1,0 +1,63 @@
+<% content_for :title, "#{@opinion_question.title} — Informed Opinion" %>
+
+<section class="topic-page topic-<%= @opinion_question.accent %>">
+  <div class="container narrow-container">
+    <%= link_to "← All questions", root_path(anchor: "topics"), class: "back-link" %>
+
+    <div class="topic-hero-card">
+      <p class="eyebrow"><%= @opinion_question.title %></p>
+      <h1>Which response best reflects your view?</h1>
+      <blockquote><%= @opinion_question.statement %></blockquote>
+
+      <% unless user_signed_in? %>
+        <div class="signin-gate">
+          <p>Create a free account to register your response and keep your knowledge score.</p>
+          <div>
+            <%= link_to "Create account", new_user_registration_path, class: "button button-primary" %>
+            <%= link_to "I already have an account", new_user_session_path, class: "text-link" %>
+          </div>
+        </div>
+      <% else %>
+        <%= form_with model: @user_opinion || UserOpinion.new,
+          url: @user_opinion ? opinion_question_user_opinion_path(@opinion_question) : opinion_question_user_opinion_path(@opinion_question),
+          method: @user_opinion ? :patch : :post,
+          class: "opinion-form" do |form| %>
+          <fieldset>
+            <legend class="sr-only">Choose your opinion</legend>
+            <div class="opinion-options">
+              <% @opinion_question.response_options.each_with_index do |option, index| %>
+                <label class="opinion-option">
+                  <%= form.radio_button :position, index, checked: @user_opinion&.position == index, required: true %>
+                  <span class="radio-dot"></span>
+                  <span><%= option %></span>
+                </label>
+              <% end %>
+            </div>
+          </fieldset>
+          <div class="opinion-submit">
+            <%= form.submit @user_opinion ? "Revise my opinion" : "Register my opinion", class: "button button-primary" %>
+            <% if @user_opinion %>
+              <%= link_to "Continue knowledge check →", opinion_question_quiz_path(@opinion_question), class: "text-link" %>
+            <% else %>
+              <small>Your starting weight will be 0% until you answer facts.</small>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if @user_opinion %>
+      <div class="current-weight">
+        <div>
+          <p class="eyebrow">Your current position</p>
+          <h2><%= @user_opinion.label %></h2>
+          <p><%= @progress.correct %> correct from <%= @progress.total %> available facts</p>
+        </div>
+        <div class="weight-ring" style="--weight: <%= @progress.weight %>">
+          <strong><%= number_with_precision(@progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+          <span>weight</span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Io Rails8 Ruby4" %></title>
+    <title><%= content_for(:title) || "Informed Opinion" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Io Rails8 Ruby4">
+    <meta name="application-name" content="Informed Opinion">
+    <meta name="theme-color" content="#102a2b">
+    <meta name="description" content="Discover how well the evidence supports the opinions you hold.">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -24,6 +26,38 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header class="site-header">
+      <div class="container header-inner">
+        <%= link_to root_path, class: "brand", aria: { label: "Informed Opinion home" } do %>
+          <span class="brand-mark" aria-hidden="true">io</span>
+          <span>Informed Opinion</span>
+        <% end %>
+        <nav class="site-nav" aria-label="Account">
+          <% if user_signed_in? %>
+            <span class="nav-greeting">Hello, <%= current_user.first_name %></span>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link nav-button" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+            <%= link_to "Create account", new_user_registration_path, class: "button button-small" %>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+
+    <% if notice.present? || alert.present? %>
+      <div class="container flash-wrap" aria-live="polite">
+        <% if notice.present? %><div class="flash flash-notice"><%= notice %></div><% end %>
+        <% if alert.present? %><div class="flash flash-alert"><%= alert %></div><% end %>
+      </div>
+    <% end %>
+
+    <main><%= yield %></main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p><span class="brand-mark brand-mark-small">io</span> Evidence gives an opinion weight.</p>
+        <p>Built with transparent scoring and linked sources.</p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,0 +1,50 @@
+<% content_for :title, "Create your account — Informed Opinion" %>
+
+<section class="auth-page">
+  <div class="auth-panel auth-intro">
+    <div>
+      <p class="eyebrow">Your views, better understood</p>
+      <h1>Start building an informed opinion.</h1>
+      <p>Keep your responses, see your knowledge grow and revise your position whenever the evidence moves you.</p>
+    </div>
+    <div class="auth-quote">
+      <span>“</span>
+      <p>The measure is not how strongly you feel. It’s how much relevant knowledge you can demonstrate.</p>
+    </div>
+  </div>
+  <div class="auth-panel auth-form-panel">
+    <div class="auth-form-wrap">
+      <p class="eyebrow">Create account</p>
+      <h2>Join Informed Opinion</h2>
+      <p class="auth-subtitle">Already registered? <%= link_to "Sign in", new_user_session_path %></p>
+      <%= render "devise/shared/errors", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "stacked-form" }) do |f| %>
+        <div class="field-row">
+          <div class="field">
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", required: true %>
+          </div>
+          <div class="field">
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, autocomplete: "family-name", required: true %>
+          </div>
+        </div>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, autocomplete: "email", required: true, placeholder: "you@example.com" %>
+        </div>
+        <div class="field">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "new-password", required: true, minlength: 8 %>
+          <small>At least 8 characters</small>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation, "Confirm password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+        </div>
+        <%= f.submit "Create my account", class: "button button-primary button-wide" %>
+      <% end %>
+      <p class="form-fineprint">Your answers are used only to calculate your topic-specific knowledge weight.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,88 @@
+<% content_for :title, "Informed Opinion — know the weight of your view" %>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Think it. Test it. Weigh it.</p>
+      <h1>How much does your opinion <em>know?</em></h1>
+      <p class="hero-lede">Register what you believe, then answer sourced fact questions. Your opinion gains weight as you demonstrate what you know.</p>
+      <div class="hero-actions">
+        <%= link_to(user_signed_in? ? "#topics" : new_user_registration_path, class: "button button-primary") do %>
+          <%= user_signed_in? ? "Explore the questions" : "Weigh your first opinion" %>
+          <span aria-hidden="true">→</span>
+        <% end %>
+        <a href="#how-it-works" class="text-link">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-label="An opinion gaining weight through answered facts">
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+      <div class="weight-card">
+        <span class="weight-label">Opinion weight</span>
+        <strong>73%</strong>
+        <div class="mini-meter"><span style="width: 73%"></span></div>
+        <span class="weight-note">22 of 30 facts known</span>
+      </div>
+      <span class="fact-chip chip-one">Evidence</span>
+      <span class="fact-chip chip-two">Context</span>
+      <span class="fact-chip chip-three">Sources</span>
+    </div>
+  </div>
+</section>
+
+<section class="topics-section" id="topics">
+  <div class="container">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Three questions to begin</p>
+        <h2>Choose a view to examine</h2>
+      </div>
+      <p>Each topic has 30 relevant, sourced facts. Knowledge stays attached to that topic alone.</p>
+    </div>
+
+    <div class="topic-grid">
+      <% @opinion_questions.each_with_index do |question, index| %>
+        <% opinion = @user_opinions&.fetch(question.id, nil) %>
+        <% progress = @progress_by_question&.fetch(question, nil) %>
+        <%= link_to opinion_question_path(question), class: "topic-card topic-#{question.accent}" do %>
+          <div class="topic-card-top">
+            <span class="topic-number">0<%= index + 1 %></span>
+            <span class="topic-arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="topic-symbol" aria-hidden="true"><%= ["◎", "◇", "✦"][index] %></div>
+          <h3><%= question.title %></h3>
+          <p><%= question.statement %></p>
+          <% if opinion %>
+            <div class="card-progress">
+              <div class="card-progress-label">
+                <span><%= opinion.label %></span>
+                <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+              </div>
+              <div class="meter"><span style="width: <%= progress.weight %>%"></span></div>
+              <small><%= progress.answered %> of <%= progress.total %> facts answered</small>
+            </div>
+          <% else %>
+            <span class="card-cta"><%= user_signed_in? ? "Register your view" : "Explore this question" %> →</span>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<section class="how-section" id="how-it-works">
+  <div class="container">
+    <div class="section-heading compact-heading">
+      <div>
+        <p class="eyebrow">A simple, honest measure</p>
+        <h2>How your weight evolves</h2>
+      </div>
+    </div>
+    <div class="steps-grid">
+      <article><span>1</span><h3>Take a position</h3><p>Choose the response that best represents what you currently believe.</p></article>
+      <article><span>2</span><h3>Test your knowledge</h3><p>Answer one multiple-choice fact at a time, without pressure to finish.</p></article>
+      <article><span>3</span><h3>See the evidence</h3><p>Get an explanation and primary source immediately after every response.</p></article>
+      <article><span>4</span><h3>Revise freely</h3><p>Change your view at any point. Your demonstrated knowledge remains visible.</p></article>
+    </div>
+  </div>
+</section>

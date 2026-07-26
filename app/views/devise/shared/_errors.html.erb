@@ -1,0 +1,10 @@
+<% if resource.errors.any? %>
+  <div class="form-errors" role="alert">
+    <strong><%= pluralize(resource.errors.count, "thing") %> needs attention:</strong>
+    <ul>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

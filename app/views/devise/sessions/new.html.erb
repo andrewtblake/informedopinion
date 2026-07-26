@@ -1,0 +1,39 @@
+<% content_for :title, "Sign in — Informed Opinion" %>
+
+<section class="auth-page">
+  <div class="auth-panel auth-intro">
+    <div>
+      <p class="eyebrow">Welcome back</p>
+      <h1>Keep testing what you think you know.</h1>
+      <p>Your latest answer to each fact determines the current weight of your opinion.</p>
+    </div>
+    <div class="auth-stat"><strong>90</strong><span>sourced facts across three questions</span></div>
+  </div>
+  <div class="auth-panel auth-form-panel">
+    <div class="auth-form-wrap">
+      <p class="eyebrow">Sign in</p>
+      <h2>Continue your progress</h2>
+      <p class="auth-subtitle">New here? <%= link_to "Create an account", new_user_registration_path %></p>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "stacked-form" }) do |f| %>
+        <div class="field">
+          <%= f.label :email %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+        </div>
+        <div class="field">
+          <div class="label-line">
+            <%= f.label :password %>
+            <%= link_to "Forgot password?", new_password_path(resource_name) %>
+          </div>
+          <%= f.password_field :password, autocomplete: "current-password", required: true %>
+        </div>
+        <% if devise_mapping.rememberable? %>
+          <label class="check-field">
+            <%= f.check_box :remember_me %>
+            <span>Keep me signed in</span>
+          </label>
+        <% end %>
+        <%= f.submit "Sign in", class: "button button-primary button-wide" %>
+      <% end %>
+    </div>
+  </div>
+</section>
