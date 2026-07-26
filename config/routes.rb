@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "home#index"
+  resource :stats, only: :show
 
   resources :opinion_questions, only: %i[index show], param: :slug, path: "topics" do
     resource :user_opinion, only: %i[create update], path: "opinion"

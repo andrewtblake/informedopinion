@@ -35,6 +35,7 @@
         <nav class="site-nav" aria-label="Account">
           <% if user_signed_in? %>
             <span class="nav-greeting">Hello, <%= current_user.first_name %></span>
+            <%= link_to "My stats", stats_path, class: "nav-link" %>
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link nav-button" %>
           <% else %>
             <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>

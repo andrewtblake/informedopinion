@@ -1,0 +1,87 @@
+<% content_for :title, "My stats — Informed Opinion" %>
+
+<section class="stats-page">
+  <div class="container">
+    <header class="stats-hero">
+      <div>
+        <p class="eyebrow">Your participation</p>
+        <h1>My stats</h1>
+        <p>See what you currently think, how much relevant knowledge you have demonstrated, and where to continue.</p>
+      </div>
+      <div class="stats-overview" aria-label="Participation summary">
+        <div>
+          <strong><%= @opinions.length %></strong>
+          <span>opinions registered</span>
+        </div>
+        <div>
+          <strong><%= @answered %></strong>
+          <span>facts answered</span>
+        </div>
+        <div>
+          <strong><%= @correct %></strong>
+          <span>currently correct</span>
+        </div>
+        <div>
+          <strong><%= @accuracy %>%</strong>
+          <span>accuracy attempted</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="stats-heading">
+      <div>
+        <p class="eyebrow">By opinion question</p>
+        <h2>Your knowledge weights</h2>
+      </div>
+      <p>Only your latest answer to each fact counts. Returning to a quiz lets you improve—or reassess—your current knowledge.</p>
+    </div>
+
+    <div class="stats-topic-grid">
+      <% @opinion_questions.each do |question| %>
+        <% opinion = @opinions[question.id] %>
+        <% progress = @progress_by_question.fetch(question) %>
+        <article class="stats-topic-card topic-<%= question.accent %>">
+          <header>
+            <div>
+              <p class="stats-topic-label">Opinion question</p>
+              <h3><%= question.title %></h3>
+            </div>
+            <div class="stats-weight">
+              <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+              <span>opinion weight</span>
+            </div>
+          </header>
+
+          <% if opinion %>
+            <p class="stats-current-view"><span>Your view</span><strong><%= opinion.label %></strong></p>
+          <% else %>
+            <p class="stats-current-view stats-no-view"><span>Your view</span><strong>Not registered yet</strong></p>
+          <% end %>
+
+          <div class="stats-progress">
+            <div class="meter"><span style="width: <%= progress.weight %>%"></span></div>
+            <div class="stats-counts">
+              <span><strong><%= progress.answered %></strong> answered</span>
+              <span><strong><%= progress.correct %></strong> correct</span>
+              <span><strong><%= progress.remaining %></strong> unseen</span>
+            </div>
+          </div>
+
+          <footer>
+            <% if opinion %>
+              <%= link_to opinion_question_quiz_path(question), class: "button button-primary stats-resume" do %>
+                <%= progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz" %>
+                <span aria-hidden="true">→</span>
+              <% end %>
+              <%= link_to "Revise opinion", opinion_question_path(question), class: "stats-revise" %>
+            <% else %>
+              <%= link_to opinion_question_path(question), class: "button button-primary stats-resume" do %>
+                Register your opinion <span aria-hidden="true">→</span>
+              <% end %>
+            <% end %>
+          </footer>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>
