@@ -2,6 +2,7 @@ require_relative "seeds/climate"
 require_relative "seeds/gun_control"
 require_relative "seeds/brexit"
 require_relative "seeds/wealth_tax"
+require_relative "seeds/flat_earth"
 
 category_names = [
   "Economics",
@@ -81,6 +82,23 @@ topics = [
     category: "Economics",
     tags: [ "Taxation", "Wealth inequality", "United Kingdom", "Public finance" ],
     facts: WEALTH_TAX_FACTS
+  },
+  {
+    slug: "flat-earth",
+    title: "The Earth is flat",
+    statement: "The Earth is flat.",
+    response_options: [
+      "Definitely true",
+      "Probably true",
+      "Unsure",
+      "Probably false",
+      "Definitely false"
+    ],
+    display_order: 5,
+    accent: "slate",
+    category: "Science & environment",
+    tags: [ "Earth science", "Astronomy", "Scientific evidence", "Geodesy" ],
+    facts: FLAT_EARTH_FACTS
   }
 ]
 

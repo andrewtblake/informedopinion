@@ -3,13 +3,15 @@ require Rails.root.join("db/seeds/climate")
 require Rails.root.join("db/seeds/gun_control")
 require Rails.root.join("db/seeds/brexit")
 require Rails.root.join("db/seeds/wealth_tax")
+require Rails.root.join("db/seeds/flat_earth")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
     climate: CLIMATE_FACTS,
     gun_control: GUN_CONTROL_FACTS,
     brexit: BREXIT_FACTS,
-    wealth_tax: WEALTH_TAX_FACTS
+    wealth_tax: WEALTH_TAX_FACTS,
+    flat_earth: FLAT_EARTH_FACTS
   }.freeze
 
   test "every topic contains thirty four-choice fact questions" do
