@@ -35,10 +35,9 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_redirected_to opinion_question_quiz_path(@topic)
 
     get root_path
-    assert_select ".topic-card.has-opinion .card-cta-primary[href='#{opinion_question_quiz_path(@topic)}']",
-      text: /Continue your knowledge check/
-    assert_select ".topic-card.has-opinion .collective-summary-link[href='#{opinion_question_quiz_path(@topic)}'] .collective-summary"
-    assert_operator response.body.index("Continue your knowledge check"), :<, response.body.index("Your view:")
+    assert_select ".editorial-topic-footer", text: /Your position:.*Agree.*0.0% weight/m
+    assert_select ".editorial-topic-footer a[href='#{opinion_question_quiz_path(@topic)}']",
+      text: "Continue knowledge check"
 
     get opinion_question_quiz_path(@topic)
     assert_response :success
@@ -89,8 +88,9 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
   test "visitor can browse a topic but must sign in to register a response" do
     get root_path
     assert_response :success
-    assert_select ".collective-summary", text: /Knowledge-weighted result/
-    assert_select ".opinion-dial[style*='--dial-angle']"
+    assert_select ".editorial-masthead", text: /Current informed opinion/
+    assert_select ".editorial-topic", text: /Evidence test.*Evidence matters/m
+    assert_select ".editorial-result", text: /Informed result/
     assert_select ".public-result-summary", count: 0
     assert_select ".topic-number", count: 0
 
