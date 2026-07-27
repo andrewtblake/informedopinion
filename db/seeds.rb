@@ -8,6 +8,7 @@ require_relative "seeds/minimum_wage"
 require_relative "seeds/voting_reform"
 require_relative "seeds/nuclear_power"
 require_relative "seeds/death_penalty"
+require_relative "seeds/answer_length_calibrations"
 
 category_names = [
   "Economics",

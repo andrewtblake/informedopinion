@@ -9,6 +9,7 @@ require Rails.root.join("db/seeds/minimum_wage")
 require Rails.root.join("db/seeds/voting_reform")
 require Rails.root.join("db/seeds/nuclear_power")
 require Rails.root.join("db/seeds/death_penalty")
+require Rails.root.join("db/seeds/answer_length_calibrations")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
@@ -38,6 +39,33 @@ class SeedContentTest < ActiveSupport::TestCase
       assert_equal [ 0, 1, 2, 3 ], counts.keys.sort
       assert_operator counts.values.max - counts.values.min, :<=, 1,
         "#{topic} answer positions should be balanced"
+    end
+  end
+
+  test "answer length is not a successful guessing strategy" do
+    TOPICS.each do |topic, facts|
+      uniquely_longest_correct = facts.count do |fact|
+        lengths = fact[:options].map { _1.strip.length }
+        correct_length = lengths.fetch(fact[:correct_option])
+
+        correct_length == lengths.max && lengths.count(correct_length) == 1
+      end
+      weighted_total = facts.sum { _1[:importance_weight] || 1 }
+      weighted_longest_correct = facts.sum do |fact|
+        lengths = fact[:options].map { _1.strip.length }
+        correct_length = lengths.fetch(fact[:correct_option])
+
+        if correct_length == lengths.max && lengths.count(correct_length) == 1
+          fact[:importance_weight] || 1
+        else
+          0
+        end
+      end
+
+      assert_operator uniquely_longest_correct.fdiv(facts.length), :<=, 0.4,
+        "#{topic} should not reward choosing the uniquely longest answer"
+      assert_operator weighted_longest_correct.fdiv(weighted_total), :<=, 0.4,
+        "#{topic} should not reward choosing the weighted uniquely longest answer"
     end
   end
 
