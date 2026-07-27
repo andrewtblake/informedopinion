@@ -9,6 +9,7 @@ require_relative "seeds/voting_reform"
 require_relative "seeds/nuclear_power"
 require_relative "seeds/death_penalty"
 require_relative "seeds/answer_length_calibrations"
+require_relative "seeds/gaza"
 
 category_names = [
   "Economics",
@@ -149,6 +150,17 @@ topics = [
     category: "Society & law",
     tags: [ "Capital punishment", "Criminal justice", "Civil rights", "United States" ],
     facts: DEATH_PENALTY_FACTS
+  },
+  {
+    slug: "gaza-war",
+    title: "Gaza war",
+    statement: "The military and security gains achieved by Israel's campaign in Gaza from 7 October 2023 to the ceasefire beginning 10 October 2025 justified the resulting harm to Palestinian civilians.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 10,
+    accent: "slate",
+    category: "Politics & government",
+    tags: [ "Gaza", "Israel and Palestine", "Middle East", "Armed conflict", "International humanitarian law" ],
+    facts: GAZA_FACTS
   }
 ]
 

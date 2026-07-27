@@ -10,6 +10,7 @@ require Rails.root.join("db/seeds/voting_reform")
 require Rails.root.join("db/seeds/nuclear_power")
 require Rails.root.join("db/seeds/death_penalty")
 require Rails.root.join("db/seeds/answer_length_calibrations")
+require Rails.root.join("db/seeds/gaza")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
@@ -21,7 +22,8 @@ class SeedContentTest < ActiveSupport::TestCase
     minimum_wage: MINIMUM_WAGE_FACTS,
     voting_reform: VOTING_REFORM_FACTS,
     nuclear_power: NUCLEAR_POWER_FACTS,
-    death_penalty: DEATH_PENALTY_FACTS
+    death_penalty: DEATH_PENALTY_FACTS,
+    gaza: GAZA_FACTS
   }.freeze
 
   test "every topic contains thirty four-choice fact questions" do
@@ -91,11 +93,21 @@ class SeedContentTest < ActiveSupport::TestCase
   end
 
   test "new policy banks publish reviewed importance assessments" do
-    facts = MINIMUM_WAGE_FACTS + VOTING_REFORM_FACTS + NUCLEAR_POWER_FACTS + DEATH_PENALTY_FACTS
+    banks = [ MINIMUM_WAGE_FACTS, VOTING_REFORM_FACTS, NUCLEAR_POWER_FACTS, DEATH_PENALTY_FACTS, GAZA_FACTS ]
+    facts = banks.flatten
 
     assert facts.all? { |fact| FactQuestion::IMPORTANCE_LEVELS.key?(fact[:importance_weight]) }
     assert facts.all? { |fact| fact[:importance_rationale].present? }
     assert facts.any? { |fact| fact[:importance_weight] == 3 }
+    assert_includes 6..9, GAZA_FACTS.count { _1[:importance_weight] == 3 }
+    assert_operator GAZA_FACTS.count { _1[:importance_weight] == 1 }, :>=, 7
+  end
+
+  test "Gaza bank distinguishes evidence directions and procedural claims" do
+    assert_equal [ -1, 0, 1 ], GAZA_FACTS.map { _1[:evidence_direction] }.uniq.sort
+    assert GAZA_FACTS.any? { _1[:prompt].include?("provisional-measures") }
+    assert GAZA_FACTS.any? { _1[:prompt].include?("fatality total") }
+    assert GAZA_FACTS.any? { _1[:prompt].include?("principal Gaza war objectives") }
   end
 
   test "original policy banks publish reviewed importance assessments" do
