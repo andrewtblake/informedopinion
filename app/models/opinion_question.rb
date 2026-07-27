@@ -1,6 +1,9 @@
 class OpinionQuestion < ApplicationRecord
+  belongs_to :category, optional: true
   has_many :fact_questions, -> { order(:display_order) }, dependent: :destroy
   has_many :user_opinions, dependent: :destroy
+  has_many :opinion_question_tags, dependent: :destroy
+  has_many :tags, through: :opinion_question_tags
 
   validates :slug, :title, :statement, :accent, presence: true
   validates :slug, uniqueness: true

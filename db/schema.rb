@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_26_130400) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_27_090000) do
+  create_table "categories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
   create_table "fact_questions", force: :cascade do |t|
     t.integer "correct_option", null: false
     t.datetime "created_at", null: false
@@ -42,8 +51,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_26_130400) do
     t.index ["user_id"], name: "index_fact_responses_on_user_id"
   end
 
+  create_table "opinion_question_tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "opinion_question_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["opinion_question_id", "tag_id"], name: "index_opinion_question_tags_uniquely", unique: true
+    t.index ["opinion_question_id"], name: "index_opinion_question_tags_on_opinion_question_id"
+    t.index ["tag_id"], name: "index_opinion_question_tags_on_tag_id"
+  end
+
   create_table "opinion_questions", force: :cascade do |t|
     t.string "accent", default: "teal", null: false
+    t.integer "category_id"
     t.datetime "created_at", null: false
     t.integer "display_order", default: 0, null: false
     t.json "response_options", null: false
@@ -51,8 +71,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_26_130400) do
     t.text "statement", null: false
     t.string "title", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_opinion_questions_on_category_id"
     t.index ["display_order"], name: "index_opinion_questions_on_display_order", unique: true
     t.index ["slug"], name: "index_opinion_questions_on_slug", unique: true
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "user_opinions", force: :cascade do |t|
@@ -83,6 +113,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_26_130400) do
   add_foreign_key "fact_questions", "opinion_questions"
   add_foreign_key "fact_responses", "fact_questions"
   add_foreign_key "fact_responses", "users"
+  add_foreign_key "opinion_question_tags", "opinion_questions"
+  add_foreign_key "opinion_question_tags", "tags"
+  add_foreign_key "opinion_questions", "categories"
   add_foreign_key "user_opinions", "opinion_questions"
   add_foreign_key "user_opinions", "users"
 end

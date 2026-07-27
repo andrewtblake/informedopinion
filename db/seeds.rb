@@ -3,6 +3,16 @@ require_relative "seeds/gun_control"
 require_relative "seeds/brexit"
 require_relative "seeds/wealth_tax"
 
+category_names = [
+  "Economics",
+  "Politics & government",
+  "Science & environment",
+  "Society & law"
+]
+categories = category_names.index_with do |name|
+  Category.find_or_create_by!(slug: name.parameterize) { |category| category.name = name }
+end
+
 topics = [
   {
     slug: "climate-change",
@@ -17,6 +27,8 @@ topics = [
     ],
     display_order: 1,
     accent: "teal",
+    category: "Science & environment",
+    tags: [ "Climate change", "Earth science", "Scientific evidence" ],
     facts: CLIMATE_FACTS
   },
   {
@@ -32,6 +44,8 @@ topics = [
     ],
     display_order: 2,
     accent: "amber",
+    category: "Society & law",
+    tags: [ "Firearms", "Public safety", "United States", "Criminal justice" ],
     facts: GUN_CONTROL_FACTS
   },
   {
@@ -47,6 +61,8 @@ topics = [
     ],
     display_order: 3,
     accent: "violet",
+    category: "Politics & government",
+    tags: [ "European Union", "United Kingdom", "Trade", "Immigration" ],
     facts: BREXIT_FACTS
   },
   {
@@ -62,14 +78,21 @@ topics = [
     ],
     display_order: 4,
     accent: "rose",
+    category: "Economics",
+    tags: [ "Taxation", "Wealth inequality", "United Kingdom", "Public finance" ],
     facts: WEALTH_TAX_FACTS
   }
 ]
 
 topics.each do |attributes|
   facts = attributes.delete(:facts)
+  tag_names = attributes.delete(:tags)
+  attributes[:category] = categories.fetch(attributes[:category])
   topic = OpinionQuestion.find_or_initialize_by(slug: attributes[:slug])
   topic.update!(attributes)
+  topic.tags = tag_names.map do |name|
+    Tag.find_or_create_by!(slug: name.parameterize) { |tag| tag.name = name }
+  end
 
   facts.each_with_index do |fact, index|
     question = topic.fact_questions.find_or_initialize_by(display_order: index + 1)
