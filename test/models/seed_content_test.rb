@@ -4,6 +4,10 @@ require Rails.root.join("db/seeds/gun_control")
 require Rails.root.join("db/seeds/brexit")
 require Rails.root.join("db/seeds/wealth_tax")
 require Rails.root.join("db/seeds/flat_earth")
+require Rails.root.join("db/seeds/minimum_wage")
+require Rails.root.join("db/seeds/voting_reform")
+require Rails.root.join("db/seeds/nuclear_power")
+require Rails.root.join("db/seeds/death_penalty")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
@@ -11,7 +15,11 @@ class SeedContentTest < ActiveSupport::TestCase
     gun_control: GUN_CONTROL_FACTS,
     brexit: BREXIT_FACTS,
     wealth_tax: WEALTH_TAX_FACTS,
-    flat_earth: FLAT_EARTH_FACTS
+    flat_earth: FLAT_EARTH_FACTS,
+    minimum_wage: MINIMUM_WAGE_FACTS,
+    voting_reform: VOTING_REFORM_FACTS,
+    nuclear_power: NUCLEAR_POWER_FACTS,
+    death_penalty: DEATH_PENALTY_FACTS
   }.freeze
 
   test "every topic contains thirty four-choice fact questions" do
@@ -51,5 +59,13 @@ class SeedContentTest < ActiveSupport::TestCase
 
     assert FLAT_EARTH_FACTS.all? { |fact| fact[:explanation].match?(comparison_terms) }
     assert FLAT_EARTH_FACTS.all? { |fact| fact[:explanation].length >= 300 }
+  end
+
+  test "new policy banks publish reviewed importance assessments" do
+    facts = MINIMUM_WAGE_FACTS + VOTING_REFORM_FACTS + NUCLEAR_POWER_FACTS + DEATH_PENALTY_FACTS
+
+    assert facts.all? { |fact| FactQuestion::IMPORTANCE_LEVELS.key?(fact[:importance_weight]) }
+    assert facts.all? { |fact| fact[:importance_rationale].present? }
+    assert facts.any? { |fact| fact[:importance_weight] == 3 }
   end
 end

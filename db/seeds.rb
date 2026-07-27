@@ -3,6 +3,10 @@ require_relative "seeds/gun_control"
 require_relative "seeds/brexit"
 require_relative "seeds/wealth_tax"
 require_relative "seeds/flat_earth"
+require_relative "seeds/minimum_wage"
+require_relative "seeds/voting_reform"
+require_relative "seeds/nuclear_power"
+require_relative "seeds/death_penalty"
 
 category_names = [
   "Economics",
@@ -29,7 +33,7 @@ topics = [
     display_order: 1,
     accent: "teal",
     category: "Science & environment",
-    tags: [ "Climate change", "Earth science", "Scientific evidence" ],
+    tags: [ "Climate change", "Earth science", "Scientific evidence", "Global" ],
     facts: CLIMATE_FACTS
   },
   {
@@ -97,8 +101,52 @@ topics = [
     display_order: 5,
     accent: "slate",
     category: "Science & environment",
-    tags: [ "Earth science", "Astronomy", "Scientific evidence", "Geodesy" ],
+    tags: [ "Earth science", "Astronomy", "Scientific evidence", "Geodesy", "Global" ],
     facts: FLAT_EARTH_FACTS
+  },
+  {
+    slug: "us-federal-minimum-wage",
+    title: "Minimum wage",
+    statement: "The standard US federal minimum wage for non-tipped adult workers should be increased to $15 per hour.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 6,
+    accent: "amber",
+    category: "Economics",
+    tags: [ "Minimum wage", "Employment", "Income inequality", "United States" ],
+    facts: MINIMUM_WAGE_FACTS
+  },
+  {
+    slug: "uk-proportional-representation",
+    title: "Voting reform",
+    statement: "Elections to the UK House of Commons should use proportional representation instead of first past the post.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 7,
+    accent: "violet",
+    category: "Politics & government",
+    tags: [ "Electoral reform", "Democracy", "Representation", "United Kingdom" ],
+    facts: VOTING_REFORM_FACTS
+  },
+  {
+    slug: "uk-new-nuclear-power",
+    title: "Nuclear power",
+    statement: "The UK should build new nuclear power stations to replace nuclear generating capacity as existing stations retire.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 8,
+    accent: "teal",
+    category: "Science & environment",
+    tags: [ "Nuclear energy", "Energy security", "Climate change", "United Kingdom" ],
+    facts: NUCLEAR_POWER_FACTS
+  },
+  {
+    slug: "us-death-penalty",
+    title: "Death penalty",
+    statement: "The death penalty should be abolished for all federal and state crimes in the United States.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 9,
+    accent: "rose",
+    category: "Society & law",
+    tags: [ "Capital punishment", "Criminal justice", "Civil rights", "United States" ],
+    facts: DEATH_PENALTY_FACTS
   }
 ]
 

@@ -1,15 +1,14 @@
 # Informed Opinion
 
 Informed Opinion records a person's position on a question and gives that
-position a topic-specific knowledge weight. The weight is the proportion of
-the topic's fact questions that the person has most recently answered
-correctly.
+position a topic-specific knowledge weight. Facts carry a published importance
+of Supporting (1), Significant (2), or Foundational (3); the weight is the
+proportion of available importance earned by the person's latest answers.
 
 This MVP includes:
 
 - Devise registration, sessions and password recovery
-- five opinion questions: climate change, U.S. firearm background checks,
-  UK membership of the European Union, a UK wealth tax and Earth's shape
+- nine opinion questions spanning economics, politics, science and society
 - 30 sourced multiple-choice facts for each opinion question
 - four plausible choices per fact, shuffled at display time
 - one-question-at-a-time quizzes with immediate explanations and evidence links
@@ -41,7 +40,7 @@ bin/rails db:seed
 bin/rails server
 ```
 
-Open <http://localhost:3000>, create an account, and choose any of the five
+Open <http://localhost:3000>, create an account, and choose any of the nine
 questions. Seeding is idempotent: rerunning it updates the curated content
 without deleting user responses.
 
@@ -59,8 +58,8 @@ opinion → quiz → feedback → revision journey.
 ## Domain model
 
 - `OpinionQuestion` owns the proposition and its five balanced responses.
-- `FactQuestion` owns answer choices, the correct option, an explanation and
-  primary-source attribution.
+- `FactQuestion` owns answer choices, the correct option, an explanation,
+  primary-source attribution, and a published importance assessment.
 - `UserOpinion` is unique for a user and opinion question, so a position is
   revised rather than duplicated.
 - `FactResponse` is unique for a user and fact question. Retaking a question
@@ -88,7 +87,8 @@ and European Commission.
 
 `evidence_direction` is ordering metadata, not part of scoring. It describes
 whether knowing the correct fact is likely to support agreement, disagreement
-or neither. Correctness alone determines weight.
+or neither. Correctness and the question's published importance determine
+weight; the raw unweighted score is retained for auditability.
 
 The curated banks deliberately distribute correct answers evenly across their
 four stored positions. A seed-content test enforces four unique choices and
