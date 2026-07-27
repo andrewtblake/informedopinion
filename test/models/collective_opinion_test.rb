@@ -78,6 +78,22 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 450.0, result.dial_angle
   end
 
+  test "collective contributions use fact importance" do
+    user = create_user("weighted")
+    user.user_opinions.create!(opinion_question: @topic, position: 0)
+    @facts.second.update!(
+      importance_weight: 3,
+      importance_rationale: "Foundational evidence."
+    )
+    answer(user, @facts.first, 0)
+    answer(user, @facts.second, 1)
+
+    result = CollectiveOpinion.new(@topic)
+
+    assert_in_delta 0.25, result.weighted_total
+    assert_equal 1, result.informed_respondents
+  end
+
   private
 
   def create_user(prefix)

@@ -117,7 +117,10 @@ topics.each do |attributes|
     previous_assessment = [ question.prompt, question.options, question.correct_option ]
     new_assessment = [ fact[:prompt], fact[:options], fact[:correct_option] ]
     question.fact_responses.delete_all if question.persisted? && previous_assessment != new_assessment
-    question.update!(fact)
+    question.update!({
+      importance_weight: 1,
+      importance_rationale: "This question currently has the standard importance weight; unequal weights will only be assigned after review."
+    }.merge(fact))
   end
 
   topic.fact_questions.where.not(display_order: 1..facts.length).destroy_all

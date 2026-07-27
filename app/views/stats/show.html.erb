@@ -107,7 +107,7 @@
 
             <p class="personal-result-numbers">
               <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
-              <span><%= progress.correct %> correct · <%= progress.answered %> answered · <%= progress.remaining %> unseen</span>
+              <span><%= progress.correct %> correct · <%= progress.answered %> answered · <%= progress.remaining %> unseen · <%= number_with_precision(progress.raw_weight, precision: 1, strip_insignificant_zeros: true) %>% unweighted</span>
             </p>
           </div>
 

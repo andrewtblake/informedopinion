@@ -72,15 +72,15 @@ class CollectiveOpinion
 
   def user_weights
     @user_weights ||= begin
-      total_questions = opinion_question.fact_questions.count
-      correct_counts = FactResponse
+      total_importance = opinion_question.fact_questions.sum(:importance_weight)
+      earned_importance = FactResponse
         .joins(:fact_question)
         .where(correct: true, fact_questions: { opinion_question_id: opinion_question.id })
         .group(:user_id)
-        .count
+        .sum("fact_questions.importance_weight")
 
       opinions.to_h do |user_id, _position|
-        weight = total_questions.zero? ? 0.0 : correct_counts.fetch(user_id, 0).fdiv(total_questions)
+        weight = total_importance.zero? ? 0.0 : earned_importance.fetch(user_id, 0).fdiv(total_importance)
         [ user_id, weight ]
       end
     end

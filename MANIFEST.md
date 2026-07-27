@@ -60,8 +60,15 @@ random with every retake. This will make it more difficult to "game"
 the system.
 
 The weight of a user's opinion on a given opinion question is the
-proportion of fact questions that the user has been able to answer
-correctly, counting only the most recent answer to each fact question.
+proportion of the available fact-question importance that the user has
+earned by answering correctly, counting only the most recent answer to
+each fact question. Each fact has a published importance of Supporting
+(1), Significant (2), or Foundational (3), together with a rationale.
+The range is deliberately narrow so that no single editorial judgement
+can dominate a quiz. The unweighted proportion of correct answers is
+also retained and displayed for auditability. Until a question bank has
+undergone an explicit importance review, all its facts remain at the
+standard Supporting weight.
 
 In principle, the weight of an opinion only applies to that specific
 opinion question, and expertise in one area does not transfer to or

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_27_090000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_27_120000) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_27_090000) do
     t.integer "display_order", default: 0, null: false
     t.integer "evidence_direction", default: 0, null: false
     t.text "explanation", null: false
+    t.text "importance_rationale", default: "This question currently has the standard importance weight; unequal weights will only be assigned after review.", null: false
+    t.integer "importance_weight", default: 1, null: false
     t.integer "opinion_question_id", null: false
     t.json "options", null: false
     t.text "prompt", null: false
@@ -34,6 +36,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_27_090000) do
     t.datetime "updated_at", null: false
     t.index ["opinion_question_id", "display_order"], name: "index_fact_questions_on_opinion_and_order", unique: true
     t.index ["opinion_question_id"], name: "index_fact_questions_on_opinion_question_id"
+    t.check_constraint "importance_weight BETWEEN 1 AND 3", name: "fact_questions_importance_weight_range"
   end
 
   create_table "fact_responses", force: :cascade do |t|

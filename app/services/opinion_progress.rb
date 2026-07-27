@@ -19,9 +19,23 @@ class OpinionProgress
   end
 
   def weight
+    return 0.0 if total_importance.zero?
+
+    (earned_importance.fdiv(total_importance) * 100).round(1)
+  end
+
+  def raw_weight
     return 0.0 if total.zero?
 
     (correct.fdiv(total) * 100).round(1)
+  end
+
+  def earned_importance
+    responses.where(correct: true).sum("fact_questions.importance_weight")
+  end
+
+  def total_importance
+    opinion_question.fact_questions.sum(:importance_weight)
   end
 
   def remaining

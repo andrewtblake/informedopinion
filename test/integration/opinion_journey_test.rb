@@ -43,6 +43,8 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", text: @fact.prompt
     assert_select ".quiz-weight", text: /0%/
+    assert_select ".quiz-progress", text: /unweighted score 0%/
+    assert_select ".fact-importance", text: /Importance: Supporting \(1 of 3\).*standard importance weight/m
     assert_select "input[name='selected_option']", count: 4
     assert_equal %w[0 1 2 3],
       css_select("input[name='selected_option']").map { |input| input["value"] }.sort
@@ -60,6 +62,8 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select ".explanation-panel", text: /primary source supports/
     assert_select ".weight-change", count: 0
     assert_select ".quiz-weight", text: /100%/
+    assert_select ".quiz-progress", text: /unweighted score 100%/
+    assert_select ".fact-importance", text: /Importance: Supporting \(1 of 3\)/
     assert_select "a[href='https://example.com/evidence']"
 
     patch opinion_question_user_opinion_path(@topic),

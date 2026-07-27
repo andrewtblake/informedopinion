@@ -1,10 +1,16 @@
 class FactQuestion < ApplicationRecord
   DIRECTIONS = [ -1, 0, 1 ].freeze
+  IMPORTANCE_LEVELS = {
+    1 => "Supporting",
+    2 => "Significant",
+    3 => "Foundational"
+  }.freeze
 
   belongs_to :opinion_question
   has_many :fact_responses, dependent: :destroy
 
-  validates :prompt, :explanation, :source_name, :source_url, presence: true
+  validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true
+  validates :importance_weight, inclusion: { in: IMPORTANCE_LEVELS.keys }
   validates :options, length: { is: 4 }
   validates :correct_option, numericality: {
     only_integer: true,
@@ -15,6 +21,10 @@ class FactQuestion < ApplicationRecord
 
   def correct_answer
     options.fetch(correct_option)
+  end
+
+  def importance_label
+    IMPORTANCE_LEVELS.fetch(importance_weight)
   end
 
   private

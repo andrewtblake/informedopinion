@@ -338,6 +338,10 @@ h1, h2, h3 {
 .question-meta { margin-bottom: 21px; display: flex; justify-content: space-between; color: var(--accent); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .retake-badge { padding: 4px 9px; border-radius: 20px; color: var(--ink); background: color-mix(in srgb, var(--accent) 20%, white); }
 .question-card h1 { margin-bottom: 30px; font-size: clamp(27px, 5vw, 40px); letter-spacing: -.04em; }
+.fact-importance { margin: -14px 0 25px; padding: 12px 15px; border-left: 3px solid var(--accent); color: var(--muted); background: #f5f7f5; font-size: 12px; line-height: 1.45; }
+.fact-importance strong { display: block; color: var(--ink); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
+.fact-importance span { display: block; margin-top: 3px; }
+.feedback-question + .fact-importance { margin-top: -8px; }
 .answer-form fieldset { margin-bottom: 24px; display: grid; gap: 11px; }
 .answer-letter { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 9px; color: var(--muted); background: #edf1ef; font-weight: 800; }
 .answer-option:has(input:checked) .answer-letter { color: white; background: var(--accent); }

@@ -44,6 +44,23 @@ class OpinionProgressTest < ActiveSupport::TestCase
     assert_equal 100.0, OpinionProgress.new(@user, @opinion).weight
   end
 
+  test "uses importance for opinion weight and retains the unweighted score" do
+    supporting, foundational = @opinion.fact_questions
+    foundational.update!(
+      importance_weight: 3,
+      importance_rationale: "This is foundational to the proposition."
+    )
+    create_response(supporting, 0)
+    create_response(foundational, 1)
+
+    progress = OpinionProgress.new(@user, @opinion)
+
+    assert_equal 25.0, progress.weight
+    assert_equal 50.0, progress.raw_weight
+    assert_equal 1, progress.earned_importance
+    assert_equal 4, progress.total_importance
+  end
+
   private
 
   def create_response(question, selected_option)
