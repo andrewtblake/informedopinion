@@ -45,4 +45,11 @@ class SeedContentTest < ActiveSupport::TestCase
         "#{topic} questions should link to named source material"
     end
   end
+
+  test "flat Earth explanations examine a competing prediction" do
+    comparison_terms = /predict|flat|plane|disk|claim|model|perspective/i
+
+    assert FLAT_EARTH_FACTS.all? { |fact| fact[:explanation].match?(comparison_terms) }
+    assert FLAT_EARTH_FACTS.all? { |fact| fact[:explanation].length >= 300 }
+  end
 end
