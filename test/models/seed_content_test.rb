@@ -3,6 +3,7 @@ require Rails.root.join("db/seeds/climate")
 require Rails.root.join("db/seeds/gun_control")
 require Rails.root.join("db/seeds/brexit")
 require Rails.root.join("db/seeds/wealth_tax")
+require Rails.root.join("db/seeds/original_calibrations")
 require Rails.root.join("db/seeds/flat_earth")
 require Rails.root.join("db/seeds/minimum_wage")
 require Rails.root.join("db/seeds/voting_reform")
@@ -67,5 +68,18 @@ class SeedContentTest < ActiveSupport::TestCase
     assert facts.all? { |fact| FactQuestion::IMPORTANCE_LEVELS.key?(fact[:importance_weight]) }
     assert facts.all? { |fact| fact[:importance_rationale].present? }
     assert facts.any? { |fact| fact[:importance_weight] == 3 }
+  end
+
+  test "original policy banks publish reviewed importance assessments" do
+    banks = [ CLIMATE_FACTS, GUN_CONTROL_FACTS, BREXIT_FACTS, WEALTH_TAX_FACTS ]
+    facts = banks.flatten
+
+    assert facts.all? { |fact| FactQuestion::IMPORTANCE_LEVELS.key?(fact[:importance_weight]) }
+    assert facts.all? { |fact| fact[:importance_rationale].present? }
+    assert facts.map { _1[:importance_weight] }.uniq.sort == [ 1, 2, 3 ]
+    banks.each do |bank|
+      assert_includes 6..9, bank.count { _1[:importance_weight] == 3 }
+      assert_operator bank.count { _1[:importance_weight] == 1 }, :>=, 7
+    end
   end
 end
