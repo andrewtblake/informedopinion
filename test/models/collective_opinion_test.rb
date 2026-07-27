@@ -46,6 +46,9 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 33.3, result.distribution[3][:share]
     assert_equal 0.0, result.distribution[4][:share]
     assert_equal 0.5, result.weighted_score
+    assert_equal 75.0, result.indicator_position
+    assert_equal 50.0, result.score_percentage
+    assert_equal "Toward yes", result.result_label
     assert_equal 405.0, result.dial_angle
   end
 
@@ -57,6 +60,9 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 1, result.respondents
     assert_nil result.leading_response
     assert_nil result.weighted_score
+    assert_equal 50.0, result.indicator_position
+    assert_nil result.score_percentage
+    assert_equal "No weighted result", result.result_label
     assert_equal 360, result.dial_angle
     assert result.distribution.all? { |bucket| bucket[:share].zero? }
   end
@@ -92,6 +98,22 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
 
     assert_in_delta 0.25, result.weighted_total
     assert_equal 1, result.informed_respondents
+  end
+
+  test "an informed neutral opinion pulls the normalized result toward neutral" do
+    yes_user = create_user("yes")
+    neutral_user = create_user("neutral")
+    yes_user.user_opinions.create!(opinion_question: @topic, position: 0)
+    neutral_user.user_opinions.create!(opinion_question: @topic, position: 2)
+    @facts.each do |fact|
+      answer(yes_user, fact, 0)
+      answer(neutral_user, fact, 0)
+    end
+
+    result = CollectiveOpinion.new(@topic)
+
+    assert_equal 0.5, result.weighted_score
+    assert_equal 75.0, result.indicator_position
   end
 
   private

@@ -94,7 +94,9 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".editorial-masthead", text: /Current informed opinion/
     assert_select ".editorial-topic", text: /Evidence test.*Evidence matters/m
-    assert_select ".editorial-result", text: /Informed result/
+    assert_select ".editorial-result", text: /Informed aggregate.*No weighted result.*No.*Neutral.*Yes/m
+    assert_select ".editorial-opinion-scale", count: 1
+    assert_select ".editorial-result-bar", count: 0
     assert_select ".public-result-summary", count: 0
     assert_select ".topic-number", count: 0
 

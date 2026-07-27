@@ -70,6 +70,13 @@ also retained and displayed for auditability. Until a question bank has
 undergone an explicit importance review, all its facts remain at the
 standard Supporting weight.
 
+The collective informed result assigns the five opinion positions signed
+values of +1, +0.5, 0, -0.5 and -1. Each user's signed position is multiplied
+by that user's topic-specific knowledge weight. The sum is divided by the
+total knowledge weight contributed, including knowledgeable neutral opinions,
+to produce a bounded aggregate from -1 (NO) through 0 (NEUTRAL) to +1 (YES).
+Opinions with zero knowledge weight do not move the result.
+
 In principle, the weight of an opinion only applies to that specific
 opinion question, and expertise in one area does not transfer to or
 affect any other area. However, it is possible that different opinion

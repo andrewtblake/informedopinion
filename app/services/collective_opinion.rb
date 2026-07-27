@@ -48,6 +48,26 @@ class CollectiveOpinion
     (weighted_sum / weighted_total).round(3)
   end
 
+  def indicator_position
+    return 50.0 unless weighted_score
+
+    ((weighted_score + 1) * 50).round(1)
+  end
+
+  def score_percentage
+    return unless weighted_score
+
+    (weighted_score * 100).round(1)
+  end
+
+  def result_label
+    return "No weighted result" unless weighted_score
+    return "Toward yes" if weighted_score.positive?
+    return "Toward no" if weighted_score.negative?
+
+    "Neutral"
+  end
+
   def dial_angle
     360 + (90 * (weighted_score || 0))
   end
