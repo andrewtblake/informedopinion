@@ -24,7 +24,7 @@
           <span class="status-icon" aria-hidden="true"><%= @feedback.correct? ? "✓" : "×" %></span>
           <h1><%= @feedback.correct? ? "Correct" : "Incorrect" %></h1>
         </div>
-        <p class="feedback-question"><%= @fact_question.prompt %></p>
+        <p class="feedback-question"><%= glossary_text(@fact_question.prompt) %></p>
         <aside class="fact-importance">
           <strong>Importance: <%= @fact_question.importance_label %> (<%= @fact_question.importance_weight %> of 3)</strong>
           <span><%= @fact_question.importance_rationale %></span>
@@ -33,19 +33,19 @@
           <div class="answer-comparison answer-comparison-correct">
             <p>
               <span>Your correct answer</span>
-              <%= @fact_question.options[@feedback.selected_option] %>
+              <%= glossary_text(@fact_question.options[@feedback.selected_option]) %>
             </p>
           </div>
         <% else %>
           <div class="answer-comparison">
-            <p><span>Your answer</span><%= @fact_question.options[@feedback.selected_option] %></p>
-            <p><span>Correct answer</span><%= @fact_question.correct_answer %></p>
+            <p><span>Your answer</span><%= glossary_text(@fact_question.options[@feedback.selected_option]) %></p>
+            <p><span>Correct answer</span><%= glossary_text(@fact_question.correct_answer) %></p>
           </div>
         <% end %>
         <div class="explanation">
           <div class="explanation-panel">
             <h2>Why this is the answer</h2>
-            <p><%= @fact_question.explanation %></p>
+            <p><%= glossary_text(@fact_question.explanation) %></p>
           </div>
           <%= link_to @fact_question.source_url, target: "_blank", rel: "noopener", class: "source-link" do %>
             Read the source: <%= @fact_question.source_name %> <span aria-hidden="true">↗</span>
@@ -61,7 +61,7 @@
           <span>Fact question</span>
           <% if @progress.complete? %><span class="retake-badge">Review round</span><% end %>
         </div>
-        <h1><%= @fact_question.prompt %></h1>
+        <h1><%= glossary_text(@fact_question.prompt) %></h1>
         <aside class="fact-importance">
           <strong>Importance: <%= @fact_question.importance_label %> (<%= @fact_question.importance_weight %> of 3)</strong>
           <span><%= @fact_question.importance_rationale %></span>
@@ -74,7 +74,7 @@
               <label class="answer-option">
                 <%= radio_button_tag :selected_option, original_index, false, required: true %>
                 <span class="answer-letter"><%= ("A".ord + display_index).chr %></span>
-                <span><%= option %></span>
+                <span><%= glossary_text(option) %></span>
               </label>
             <% end %>
           </fieldset>

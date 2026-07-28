@@ -347,6 +347,22 @@ h1, h2, h3 {
 .answer-form fieldset { margin-bottom: 24px; display: grid; gap: 11px; }
 .answer-letter { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 9px; color: var(--muted); background: #edf1ef; font-weight: 800; }
 .answer-option:has(input:checked) .answer-letter { color: white; background: var(--accent); }
+.glossary-term {
+  position: relative; border-bottom: 1px dotted currentColor; text-decoration: none;
+  cursor: help; outline: none;
+}
+.glossary-term::after {
+  content: attr(data-definition); position: absolute; left: 50%; bottom: calc(100% + 8px); z-index: 20;
+  width: max-content; max-width: min(280px, 75vw); padding: 8px 10px; border-radius: 7px;
+  color: white; background: var(--ink); box-shadow: 0 5px 18px rgba(16, 42, 43, .2);
+  font: 600 12px/1.35 Inter, "Avenir Next", "Segoe UI", sans-serif; text-align: left;
+  opacity: 0; pointer-events: none; transform: translate(-50%, 4px);
+  transition: opacity .12s, transform .12s;
+}
+.glossary-term:hover::after, .glossary-term:focus::after {
+  opacity: 1; transform: translate(-50%, 0);
+}
+.glossary-term:focus-visible { border-radius: 2px; outline: 2px solid var(--accent); outline-offset: 2px; }
 .quiz-hint { margin: 17px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
 .opinion-reminder { margin-top: 20px; padding: 18px 23px; display: flex; align-items: center; gap: 12px; border-radius: 14px; color: var(--muted); background: rgba(255,255,255,.7); font-size: 13px; }
 .opinion-reminder strong { color: var(--ink); }

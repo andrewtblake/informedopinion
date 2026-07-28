@@ -1,2 +1,60 @@
 module ApplicationHelper
+  ORGANISATION_GLOSSARY = {
+    "ATF" => "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+    "BLS" => "Bureau of Labor Statistics",
+    "CBO" => "Congressional Budget Office",
+    "CDC" => "Centers for Disease Control and Prevention",
+    "DESNZ" => "Department for Energy Security and Net Zero",
+    "EPA" => "Environmental Protection Agency",
+    "FBI" => "Federal Bureau of Investigation",
+    "GAO" => "Government Accountability Office",
+    "HMRC" => "His Majesty's Revenue and Customs",
+    "ICC" => "International Criminal Court",
+    "ICJ" => "International Court of Justice",
+    "ICRC" => "International Committee of the Red Cross",
+    "IDF" => "Israel Defense Forces",
+    "IFS" => "Institute for Fiscal Studies",
+    "IPC" => "Integrated Food Security Phase Classification",
+    "IPCC" => "Intergovernmental Panel on Climate Change",
+    "NASA" => "National Aeronautics and Space Administration",
+    "NDA" => "Nuclear Decommissioning Authority",
+    "NICS" => "National Instant Criminal Background Check System",
+    "NIJ" => "National Institute of Justice",
+    "NIST" => "National Institute of Standards and Technology",
+    "NOAA" => "National Oceanic and Atmospheric Administration",
+    "OBR" => "Office for Budget Responsibility",
+    "OCHA" => "United Nations Office for the Coordination of Humanitarian Affairs",
+    "OECD" => "Organisation for Economic Co-operation and Development",
+    "OHCHR" => "Office of the United Nations High Commissioner for Human Rights",
+    "ONR" => "Office for Nuclear Regulation",
+    "ONS" => "Office for National Statistics",
+    "RAND" => "RAND Corporation",
+    "UN" => "United Nations",
+    "USGS" => "United States Geological Survey"
+  }.freeze
+
+  GLOSSARY_PATTERN = Regexp.new(
+    "(?<![[:alnum:]_])(#{Regexp.union(ORGANISATION_GLOSSARY.keys.sort_by { -_1.length })})(?![[:alnum:]_])"
+  )
+
+  def glossary_text(text)
+    safe_join(text.to_s.split(GLOSSARY_PATTERN).map do |segment|
+      definition = ORGANISATION_GLOSSARY[segment]
+      next segment unless definition
+
+      content_tag(
+        :abbr,
+        segment,
+        class: "glossary-term",
+        title: definition,
+        tabindex: 0,
+        aria: { label: "#{segment}: #{definition}" },
+        data: {
+          controller: "glossary",
+          action: "click->glossary#show keydown.esc->glossary#hide",
+          definition: definition
+        }
+      )
+    end)
+  end
 end
