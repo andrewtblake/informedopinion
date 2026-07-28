@@ -5,6 +5,7 @@ require Rails.root.join("db/seeds/brexit")
 require Rails.root.join("db/seeds/wealth_tax")
 require Rails.root.join("db/seeds/original_calibrations")
 require Rails.root.join("db/seeds/flat_earth")
+require Rails.root.join("db/seeds/flat_earth_calibrations")
 require Rails.root.join("db/seeds/minimum_wage")
 require Rails.root.join("db/seeds/voting_reform")
 require Rails.root.join("db/seeds/nuclear_power")
@@ -90,6 +91,16 @@ class SeedContentTest < ActiveSupport::TestCase
 
     assert FLAT_EARTH_FACTS.all? { |fact| fact[:explanation].match?(comparison_terms) }
     assert FLAT_EARTH_FACTS.all? { |fact| fact[:explanation].length >= 300 }
+  end
+
+  test "flat Earth bank publishes calibrated importance and a coherent synthesis answer" do
+    assert_equal [ 1, 2, 3 ], FLAT_EARTH_FACTS.map { _1[:importance_weight] }.uniq.sort
+    assert_equal 9, FLAT_EARTH_FACTS.count { _1[:importance_weight] == 3 }
+    assert_operator FLAT_EARTH_FACTS.count { _1[:importance_weight] == 1 }, :>=, 7
+    assert_equal(
+      "A rotating globe fits them coherently",
+      FLAT_EARTH_FACTS.fetch(28).fetch(:options).fetch(FLAT_EARTH_FACTS.fetch(28).fetch(:correct_option))
+    )
   end
 
   test "new policy banks publish reviewed importance assessments" do
