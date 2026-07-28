@@ -68,6 +68,16 @@ module FlatEarthCalibration
     12 => {
       prompt: "When the two-stick experiment is repeated at many north–south location pairs, what spherical-Earth measurement do the shadow-angle differences and surface separations consistently produce?"
     },
+    13 => {
+      prompt: "On a flat-plane model with a nearby Sun, simultaneous shadow angles from each pair of cities can be used to calculate an implied Sun height. What happens when results from several different city pairs are compared?",
+      options: [
+        "Every pair produces exactly the same height",
+        "Different pairs imply incompatible heights",
+        "Every pair places the Sun at ground level",
+        "The calculated height never depends on city separation"
+      ],
+      explanation: "For any two cities, their separation and simultaneous solar-elevation angles can be inserted into a flat-plane triangulation to infer a height for a nearby Sun. Repeating that calculation with different pairs does not yield one common height. Under the globe model, the local verticals are differently oriented and sunlight is nearly parallel; the same network of shadow observations instead produces a consistent Earth radius. Comparing many pairs therefore tests the models more strongly than fitting two observations with one adjustable height."
+    },
     28 => {
       options: [
         "A flat disk fits all four with one measured Sun height and speed",
