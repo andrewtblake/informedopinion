@@ -34,7 +34,7 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
-  test "user sees participation totals and can resume a topic" do
+  test "user sees a compact opinion card and can resume a topic" do
     @user.user_opinions.create!(opinion_question: @topic, position: 1)
     @user.fact_responses.create!(
       fact_question: @facts.first,
@@ -48,13 +48,13 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     get stats_path
 
     assert_response :success
-    assert_select "h1", text: "My stats"
-    assert_select ".stats-page-title", text: "Your opinions"
-    assert_select ".stats-overview", count: 0
-    assert_select ".stats-topic-grid[style*='repeat(2']"
-    assert_select ".personal-topic-card", text: /Stats test.*Agree.*50% weight.*1 correct.*1 answered.*1 unseen/m
-    assert_select ".personal-choice-dial[style*='max-width: 330px']"
-    assert_select ".personal-dial-arc[fill='none'][stroke='#cfd9d4']"
+    assert_select "title", text: /My opinions/
+    assert_select "h1", text: "My opinions"
+    assert_select ".opinions-tools input[type='search'][placeholder='Search your opinions']"
+    assert_select ".opinions-tools select[name='sort'] option", count: 4
+    assert_select ".opinion-card", count: 1, text: /Stats test.*Agree.*50% weight.*1\/1 correct.*1 unseen/m
+    assert_select ".compact-choice-dial", count: 1
+    assert_select ".personal-dial-arc", count: 1
     assert_select ".personal-weight-guide", count: 3
     %w[25% 50% 75%].each do |label|
       assert_select ".personal-weight-guide-label", text: label
@@ -63,6 +63,33 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     assert_select "form[action='#{opinion_question_quiz_path(@topic)}'] button.stats-card-button", text: "Resume quiz"
     assert_select "form[action='#{opinion_question_path(@topic)}'] button.stats-card-button", text: "Revise opinion"
     assert_select ".personal-card-actions", text: /→/, count: 0
-    assert_select "a[href='#{stats_path}']", text: "My stats"
+    assert_select "a[href='#{stats_path}']", text: "My opinions"
+  end
+
+  test "user can search and order their registered opinions" do
+    other_topic = OpinionQuestion.create!(
+      slug: "another-opinion",
+      title: "Another opinion",
+      statement: "A second position about housing.",
+      response_options: @topic.response_options,
+      display_order: 2
+    )
+    @user.user_opinions.create!(opinion_question: @topic, position: 1)
+    @user.user_opinions.create!(opinion_question: other_topic, position: 3)
+    sign_in @user, scope: :user
+
+    get stats_path(sort: "title")
+
+    assert_response :success
+    assert_select ".opinion-card h2" do |headings|
+      assert_equal [ "Another opinion", "Stats test" ], headings.map { _1.text.strip }
+    end
+
+    get stats_path(q: "housing", sort: "title")
+
+    assert_response :success
+    assert_select ".opinions-index-heading", text: /1 opinion/
+    assert_select ".opinion-card", count: 1, text: /Another opinion/
+    assert_select ".opinion-card", text: /Stats test/, count: 0
   end
 end

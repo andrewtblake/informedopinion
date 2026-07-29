@@ -1,21 +1,26 @@
 class OpinionProgress
   attr_reader :user, :opinion_question
 
-  def initialize(user, opinion_question)
+  def initialize(user, opinion_question, responses: nil)
     @user = user
     @opinion_question = opinion_question
+    @loaded_responses = responses
   end
 
   def total
-    opinion_question.fact_questions.count
+    @total ||= if opinion_question.fact_questions.loaded?
+      opinion_question.fact_questions.size
+    else
+      opinion_question.fact_questions.count
+    end
   end
 
   def answered
-    responses.count
+    @answered ||= loaded? ? responses.size : responses.count
   end
 
   def correct
-    responses.where(correct: true).count
+    @correct ||= loaded? ? correct_responses.size : responses.where(correct: true).count
   end
 
   def weight
@@ -31,11 +36,19 @@ class OpinionProgress
   end
 
   def earned_importance
-    responses.where(correct: true).sum("fact_questions.importance_weight")
+    @earned_importance ||= if loaded?
+      correct_responses.sum { _1.fact_question.importance_weight }
+    else
+      responses.where(correct: true).sum("fact_questions.importance_weight")
+    end
   end
 
   def total_importance
-    opinion_question.fact_questions.sum(:importance_weight)
+    @total_importance ||= if opinion_question.fact_questions.loaded?
+      opinion_question.fact_questions.sum(&:importance_weight)
+    else
+      opinion_question.fact_questions.sum(:importance_weight)
+    end
   end
 
   def remaining
@@ -48,7 +61,17 @@ class OpinionProgress
 
   private
 
+  def loaded?
+    !@loaded_responses.nil?
+  end
+
+  def correct_responses
+    @correct_responses ||= responses.select(&:correct?)
+  end
+
   def responses
+    return @loaded_responses if loaded?
+
     FactResponse
       .where(user: user)
       .joins(:fact_question)

@@ -1,39 +1,70 @@
-<% content_for :title, "My stats — Informed Opinion" %>
+<% content_for :title, "My opinions — Informed Opinion" %>
 
-<section class="topics-section stats-section">
+<section class="editorial-home opinions-page">
   <div class="container">
-    <h1 class="sr-only">My stats</h1>
-    <p class="eyebrow stats-page-title">Your opinions</p>
+    <header class="editorial-masthead opinions-masthead">
+      <p class="editorial-kicker">Personal record</p>
+      <h1>My opinions</h1>
+      <p>Your registered positions and the knowledge weight currently assigned to each.</p>
+    </header>
 
-    <div class="stats-topic-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));">
-      <% @opinion_questions.each do |question| %>
-        <% opinion = @opinions[question.id] %>
-        <% progress = @progress_by_question.fetch(question) %>
-        <% arrow_x, arrow_y = opinion ? opinion_arrow_endpoint(opinion, progress.weight) : StatsHelper::DIAL_CENTER %>
+    <%= form_with url: stats_path, method: :get, class: "opinions-tools", role: "search" do |form| %>
+      <div class="topic-search-field">
+        <%= form.label :q, "Search your opinions", class: "sr-only" %>
+        <%= form.search_field :q,
+          value: @query,
+          placeholder: "Search your opinions",
+          autocomplete: "off" %>
+      </div>
+      <div>
+        <%= form.label :sort, "Order by", class: "sr-only" %>
+        <%= form.select :sort, options_for_select(@sort_options.map { |value, label| [ label, value ] }, @sort) %>
+      </div>
+      <%= form.submit "Apply" %>
+    <% end %>
 
-        <article class="topic-card personal-topic-card topic-<%= question.accent %>">
-          <div class="topic-card-top">
-            <%= link_to "Examine →", opinion_question_path(question), class: "topic-examine" %>
+    <header class="opinions-index-heading">
+      <p><%= pluralize(@result_count, "opinion") %></p>
+      <% if @query.present? %>
+        <%= link_to "Clear search", stats_path(sort: @sort), class: "editorial-clear" %>
+      <% end %>
+    </header>
+
+    <div class="opinions-grid">
+      <% @opinion_records.each do |record| %>
+        <% question = record[:question] %>
+        <% opinion = record[:opinion] %>
+        <% progress = record[:progress] %>
+        <% arrow_x, arrow_y = opinion_arrow_endpoint(opinion, progress.weight) %>
+
+        <article class="opinion-card topic-<%= question.accent %>">
+          <div class="opinion-card-taxonomy">
+            <% if question.category %>
+              <span><%= question.category.name %></span>
+            <% end %>
+            <% question.tags.first(2).each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
           </div>
-          <h2 class="topic-headline"><%= question.title %></h2>
-          <p class="topic-statement"><%= question.statement %></p>
 
-          <div class="collective-summary collective-summary-primary personal-opinion-summary" style="background: #f1f4f2;">
-            <div class="collective-heading">
-              <span>Your weighted opinion</span>
-              <strong><%= opinion ? opinion.label : "Not registered yet" %></strong>
-            </div>
+          <h2><%= link_to question.title, opinion_question_path(question) %></h2>
+          <p class="opinion-card-statement"><%= question.statement %></p>
+
+          <div class="compact-opinion-summary">
+            <p class="compact-opinion-heading">
+              <span>Your position</span>
+              <strong><%= opinion.label %></strong>
+            </p>
 
             <svg
-              class="personal-choice-dial"
+              class="personal-choice-dial compact-choice-dial"
               viewBox="0 0 400 225"
-              style="display: block; width: 100%; max-width: 330px; height: auto; margin: 0 auto;"
               role="img"
-              aria-label="<%= opinion ? "Your opinion: #{opinion.label}; weight #{progress.weight}%" : "No opinion registered; weight 0%" %>"
+              aria-label="Your opinion: <%= opinion.label %>; weight <%= progress.weight %>%"
             >
               <defs>
                 <marker id="arrowhead-<%= question.id %>" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
-                  <path d="M0,0 L0,6 L6,3 z" class="personal-arrow-head" fill="var(--accent)"></path>
+                  <path d="M0,0 L0,6 L6,3 z" class="personal-arrow-head"></path>
                 </marker>
               </defs>
 
@@ -45,28 +76,11 @@
                 <path
                   d="M<%= 200 - radius %> 170 A<%= radius %> <%= radius %> 0 0 1 <%= 200 + radius %> 170"
                   class="personal-weight-guide"
-                  fill="none"
-                  stroke="#d8e0dc"
-                  stroke-width="1"
-                  stroke-dasharray="3 4"
                 ></path>
-                <text
-                  x="<%= label_x %>"
-                  y="<%= label_y %>"
-                  class="personal-weight-guide-label"
-                  fill="#879793"
-                  font-size="7"
-                ><%= percentage %>%</text>
+                <text x="<%= label_x %>" y="<%= label_y %>" class="personal-weight-guide-label"><%= percentage %>%</text>
               <% end %>
 
-              <path
-                d="M55 170 A145 145 0 0 1 345 170"
-                class="personal-dial-arc"
-                fill="none"
-                stroke="#cfd9d4"
-                stroke-width="7"
-                stroke-linecap="round"
-              ></path>
+              <path d="M55 170 A145 145 0 0 1 345 170" class="personal-dial-arc"></path>
 
               <% label_positions = [
                 [ 300, 165, 95, 42, "right" ],
@@ -80,59 +94,74 @@
                 <foreignObject x="<%= x %>" y="<%= y %>" width="<%= width %>" height="<%= height %>">
                   <div
                     xmlns="http://www.w3.org/1999/xhtml"
-                    class="personal-dial-choice personal-dial-choice-<%= alignment %> <%= "is-selected" if opinion&.position == position %>"
-                    style="font-size: 9px; line-height: 1.15;"
-                  >
-                    <%= label %>
-                  </div>
+                    class="personal-dial-choice personal-dial-choice-<%= alignment %> <%= "is-selected" if opinion.position == position %>"
+                  ><%= label %></div>
                 </foreignObject>
               <% end %>
 
-              <% if opinion && progress.weight.positive? %>
+              <% if progress.weight.positive? %>
                 <line
                   x1="200"
                   y1="170"
                   x2="<%= arrow_x %>"
                   y2="<%= arrow_y %>"
                   class="personal-weight-arrow"
-                  stroke="var(--accent)"
-                  stroke-width="5"
-                  stroke-linecap="round"
                   marker-end="url(#arrowhead-<%= question.id %>)"
                 ></line>
               <% end %>
-              <circle cx="200" cy="170" r="7" class="personal-dial-hub" fill="white" stroke="#102a2b" stroke-width="2"></circle>
-              <circle cx="200" cy="170" r="2.5" class="personal-dial-hub-centre" fill="#102a2b"></circle>
+              <circle cx="200" cy="170" r="7" class="personal-dial-hub"></circle>
+              <circle cx="200" cy="170" r="2.5" class="personal-dial-hub-centre"></circle>
             </svg>
 
-            <p class="personal-result-numbers">
+            <p class="compact-result-numbers">
               <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
-              <span><%= progress.correct %> correct · <%= progress.answered %> answered · <%= progress.remaining %> unseen · <%= number_with_precision(progress.raw_weight, precision: 1, strip_insignificant_zeros: true) %>% unweighted</span>
+              <span><%= progress.correct %>/<%= progress.answered %> correct · <%= progress.remaining %> unseen</span>
             </p>
           </div>
 
           <div class="personal-card-actions">
-            <% if opinion %>
-              <%= button_to(
-                progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz",
-                opinion_question_quiz_path(question),
-                method: :get,
-                class: "button stats-card-button"
-              ) %>
-              <%= button_to "Revise opinion",
-                opinion_question_path(question),
-                method: :get,
-                class: "button stats-card-button" %>
-            <% else %>
-              <%= button_to "Register your opinion",
-                opinion_question_path(question),
-                method: :get,
-                class: "button stats-card-button stats-card-button-wide",
-                form_class: "stats-card-action-wide" %>
-            <% end %>
+            <%= button_to(
+              progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz",
+              opinion_question_quiz_path(question),
+              method: :get,
+              class: "button stats-card-button"
+            ) %>
+            <%= button_to "Revise opinion",
+              opinion_question_path(question),
+              method: :get,
+              class: "button stats-card-button stats-card-button-secondary" %>
           </div>
         </article>
       <% end %>
     </div>
+
+    <% if @opinion_records.empty? %>
+      <div class="editorial-empty opinions-empty">
+        <% if @query.present? %>
+          <h2>No matching opinions</h2>
+          <p>Try a broader search or <%= link_to "clear the search", stats_path(sort: @sort) %>.</p>
+        <% else %>
+          <h2>No opinions registered</h2>
+          <p><%= link_to "Browse opinion questions", root_path %> to register your first position.</p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if @total_pages > 1 %>
+      <nav class="editorial-pagination" aria-label="Personal opinion pages">
+        <% filters = { q: @query.presence, sort: @sort }.compact %>
+        <% if @page > 1 %>
+          <%= link_to "Previous", stats_path(filters.merge(page: @page - 1)) %>
+        <% else %>
+          <span>Previous</span>
+        <% end %>
+        <b>Page <%= @page %> of <%= @total_pages %></b>
+        <% if @page < @total_pages %>
+          <%= link_to "Next", stats_path(filters.merge(page: @page + 1)) %>
+        <% else %>
+          <span>Next</span>
+        <% end %>
+      </nav>
+    <% end %>
   </div>
 </section>
