@@ -11,6 +11,9 @@ require_relative "seeds/nuclear_power"
 require_relative "seeds/death_penalty"
 require_relative "seeds/answer_length_calibrations"
 require_relative "seeds/gaza"
+require_relative "seeds/assisted_dying"
+require_relative "seeds/echr_withdrawal"
+require_relative "seeds/grey_belt_housing"
 
 category_names = [
   "Economics",
@@ -162,6 +165,39 @@ topics = [
     category: "Politics & government",
     tags: [ "Gaza", "Israel and Palestine", "Middle East", "Armed conflict", "International humanitarian law" ],
     facts: GAZA_FACTS
+  },
+  {
+    slug: "assisted-dying",
+    title: "Assisted dying",
+    statement: "Adults in England and Wales who have mental capacity and are reasonably expected to die within six months should be legally permitted to obtain medical assistance to end their lives, subject to approval by two independent doctors and an independent review panel.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 11,
+    accent: "rose",
+    category: "Society & law",
+    tags: [ "Assisted dying", "End-of-life care", "Medical ethics", "Healthcare", "England and Wales" ],
+    facts: ASSISTED_DYING_FACTS
+  },
+  {
+    slug: "echr-withdrawal",
+    title: "European human-rights convention",
+    statement: "The United Kingdom should withdraw from the European Convention on Human Rights.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 12,
+    accent: "violet",
+    category: "Politics & government",
+    tags: [ "ECHR", "Human rights", "Immigration", "Constitutional law", "United Kingdom", "Europe" ],
+    facts: ECHR_WITHDRAWAL_FACTS
+  },
+  {
+    slug: "grey-belt-housing",
+    title: "Grey Belt housing",
+    statement: "When an English local authority cannot otherwise meet its assessed housing need, national planning policy should require it to permit housing development on suitable 'grey belt' land, with at least 50% of the homes designated as affordable housing.",
+    response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
+    display_order: 13,
+    accent: "amber",
+    category: "Economics",
+    tags: [ "Housing", "Planning", "Green Belt", "Affordable housing", "Land use", "England" ],
+    facts: GREY_BELT_HOUSING_FACTS
   }
 ]
 

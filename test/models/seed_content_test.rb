@@ -12,6 +12,9 @@ require Rails.root.join("db/seeds/nuclear_power")
 require Rails.root.join("db/seeds/death_penalty")
 require Rails.root.join("db/seeds/answer_length_calibrations")
 require Rails.root.join("db/seeds/gaza")
+require Rails.root.join("db/seeds/assisted_dying")
+require Rails.root.join("db/seeds/echr_withdrawal")
+require Rails.root.join("db/seeds/grey_belt_housing")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
@@ -24,7 +27,10 @@ class SeedContentTest < ActiveSupport::TestCase
     voting_reform: VOTING_REFORM_FACTS,
     nuclear_power: NUCLEAR_POWER_FACTS,
     death_penalty: DEATH_PENALTY_FACTS,
-    gaza: GAZA_FACTS
+    gaza: GAZA_FACTS,
+    assisted_dying: ASSISTED_DYING_FACTS,
+    echr_withdrawal: ECHR_WITHDRAWAL_FACTS,
+    grey_belt_housing: GREY_BELT_HOUSING_FACTS
   }.freeze
 
   test "every topic contains thirty four-choice fact questions" do
@@ -104,7 +110,11 @@ class SeedContentTest < ActiveSupport::TestCase
   end
 
   test "new policy banks publish reviewed importance assessments" do
-    banks = [ MINIMUM_WAGE_FACTS, VOTING_REFORM_FACTS, NUCLEAR_POWER_FACTS, DEATH_PENALTY_FACTS, GAZA_FACTS ]
+    banks = [
+      MINIMUM_WAGE_FACTS, VOTING_REFORM_FACTS, NUCLEAR_POWER_FACTS,
+      DEATH_PENALTY_FACTS, GAZA_FACTS, ASSISTED_DYING_FACTS,
+      ECHR_WITHDRAWAL_FACTS, GREY_BELT_HOUSING_FACTS
+    ]
     facts = banks.flatten
 
     assert facts.all? { |fact| FactQuestion::IMPORTANCE_LEVELS.key?(fact[:importance_weight]) }
@@ -112,6 +122,10 @@ class SeedContentTest < ActiveSupport::TestCase
     assert facts.any? { |fact| fact[:importance_weight] == 3 }
     assert_includes 6..9, GAZA_FACTS.count { _1[:importance_weight] == 3 }
     assert_operator GAZA_FACTS.count { _1[:importance_weight] == 1 }, :>=, 7
+    [ ASSISTED_DYING_FACTS, ECHR_WITHDRAWAL_FACTS, GREY_BELT_HOUSING_FACTS ].each do |bank|
+      assert_includes 6..9, bank.count { _1[:importance_weight] == 3 }
+      assert_operator bank.count { _1[:importance_weight] == 1 }, :>=, 7
+    end
   end
 
   test "Gaza bank distinguishes evidence directions and procedural claims" do
