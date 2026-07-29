@@ -1,5 +1,11 @@
 class HomeController < ApplicationController
   QUESTIONS_PER_PAGE = 12
+  SORT_OPTIONS = {
+    "featured" => "Featured",
+    "popular" => "Most popular",
+    "controversial" => "Most controversial",
+    "title" => "Title A–Z"
+  }.freeze
 
   def index
     all_questions = OpinionQuestion.in_display_order.includes(:category, :tags, :fact_questions).to_a
@@ -12,6 +18,9 @@ class HomeController < ApplicationController
       .order(Arel.sql("COUNT(opinion_questions.id) DESC"), :name)
       .limit(12)
     filtered_questions = filter_questions(all_questions)
+    @sort_options = SORT_OPTIONS
+    @sort = SORT_OPTIONS.key?(params[:sort]) ? params[:sort] : "featured"
+    filtered_questions = order_questions(filtered_questions)
     @result_count = filtered_questions.length
     @total_pages = [ (@result_count.fdiv(QUESTIONS_PER_PAGE)).ceil, 1 ].max
     @page = params[:page].to_i.clamp(1, @total_pages)
@@ -45,5 +54,20 @@ class HomeController < ApplicationController
       question.category&.name,
       question.tags.map(&:name)
     ].flatten.compact.join(" ").downcase
+  end
+
+  def order_questions(questions)
+    case @sort
+    when "popular"
+      TopicDiscovery.new(questions).popular(limit: questions.length)
+    when "controversial"
+      discovery = TopicDiscovery.new(questions)
+      ranked = discovery.controversial(limit: questions.length)
+      ranked + (questions - ranked)
+    when "title"
+      questions.sort_by { [ _1.title.downcase, _1.id ] }
+    else
+      questions.sort_by { [ _1.display_order, _1.id ] }
+    end
   end
 end

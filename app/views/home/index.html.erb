@@ -9,22 +9,28 @@
     </header>
 
     <%= form_with url: root_path, method: :get, class: "topic-search", role: "search" do |form| %>
-      <div class="topic-search-field">
+      <%= form.hidden_field :category, value: params[:category] if params[:category].present? %>
+      <%= form.hidden_field :tag, value: params[:tag] if params[:tag].present? %>
+      <div class="catalogue-search-field">
         <%= form.label :q, "Search opinion questions", class: "sr-only" %>
         <%= form.search_field :q,
           value: params[:q],
           placeholder: "Search questions, categories, or tags",
           autocomplete: "off" %>
+        <button type="submit" class="catalogue-search-button" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5"></circle>
+            <path d="m15.5 15.5 5 5"></path>
+          </svg>
+        </button>
       </div>
-      <div>
-        <%= form.label :category, "Category", class: "sr-only" %>
-        <%= form.select :category,
-          options_for_select(
-            [ [ "All categories", "" ] ] + @categories.map { |category| [ category.name, category.slug ] },
-            params[:category]
-          ) %>
+      <div class="catalogue-order-field">
+        <%= form.label :sort, "Order by" %>
+        <%= form.select :sort,
+          options_for_select(@sort_options.map { |value, label| [ label, value ] }, @sort),
+          {},
+          data: { controller: "autosubmit", action: "change->autosubmit#submit" } %>
       </div>
-      <%= form.submit "Search" %>
     <% end %>
 
     <div class="editorial-layout">
@@ -37,7 +43,7 @@
             <p><%= pluralize(@result_count, "question") %></p>
           </div>
           <% if params[:q].present? || params[:category].present? || params[:tag].present? %>
-            <%= link_to "Clear filters", root_path, class: "editorial-clear" %>
+            <%= link_to "Clear filters", root_path(sort: @sort), class: "editorial-clear" %>
           <% end %>
         </header>
 
@@ -119,7 +125,7 @@
 
         <% if @total_pages > 1 %>
           <nav class="editorial-pagination" aria-label="Question catalogue pages">
-            <% preserved_filters = params.permit(:q, :category, :tag).to_h %>
+            <% preserved_filters = params.permit(:q, :category, :tag, :sort).to_h %>
             <% if @page > 1 %>
               <%= link_to "Previous", root_path(preserved_filters.merge(page: @page - 1)) %>
             <% else %>

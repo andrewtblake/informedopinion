@@ -15,6 +15,12 @@ class TopicDiscoveryTest < ActionDispatch::IntegrationTest
     get root_path
 
     assert_response :success
+    assert_select ".topic-search input[type='search'][placeholder='Search questions, categories, or tags']"
+    assert_select ".topic-search button[type='submit'][aria-label='Search']", count: 1
+    assert_select ".topic-search input[type='submit']", count: 0
+    assert_select ".catalogue-order-field label", text: "Order by"
+    assert_select ".catalogue-order-field select[data-action='change->autosubmit#submit']", count: 1
+    assert_select ".topic-search select[name='category']", count: 0
     assert_select ".editorial-topic", count: 2
     assert_select ".category-list", text: /Economics.*Science/m
     assert_select ".editorial-tag-cloud a", text: "Evidence"
@@ -30,6 +36,12 @@ class TopicDiscoveryTest < ActionDispatch::IntegrationTest
     get root_path, params: { tag: "evidence" }
     assert_select ".editorial-topic", count: 1
     assert_select ".editorial-topic h2", text: "Earth shape"
+
+    create_question("A new question", "A third catalogue entry.", @earth.category, 3)
+    get root_path, params: { sort: "title" }
+    assert_select ".editorial-topic h2" do |headings|
+      assert_equal [ "A new question", "Earth shape", "Tax policy" ], headings.map { _1.text.strip }
+    end
   end
 
   test "discovery ranks participation and genuine disagreement" do

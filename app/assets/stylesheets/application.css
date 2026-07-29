@@ -84,13 +84,23 @@ h1, h2, h3 {
 .editorial-kicker, .editorial-section-label { margin-bottom: 8px; color: #536462; font-size: 11px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
 .editorial-masthead h1 { margin-bottom: 10px; font: 700 clamp(42px, 6vw, 66px)/1.02 Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.045em; }
 .editorial-masthead > p:last-child { max-width: 760px; margin: 0; color: #52615f; font: 18px/1.55 Inter, "Avenir Next", "Segoe UI", sans-serif; }
-.topic-search { margin: 26px 0 42px; padding-bottom: 26px; display: grid; grid-template-columns: 1fr 230px auto; gap: 10px; border-bottom: 1px solid #bdc5c1; }
+.topic-search { margin: 26px 0 42px; padding-bottom: 26px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #bdc5c1; }
+.catalogue-search-field { position: relative; min-width: 240px; flex: 1 1 auto; }
+.catalogue-order-field { flex: 0 1 310px; display: flex; align-items: center; gap: 10px; }
+.catalogue-order-field label { flex: 0 0 auto; color: var(--muted); font-size: 12px; font-weight: 750; }
 .topic-search input, .topic-search select {
   width: 100%; height: 44px; padding: 0 13px; border: 1px solid #aeb9b4; border-radius: 2px;
   color: var(--ink); background: white; font-size: 14px;
 }
+.topic-search .catalogue-search-field input { padding-right: 47px; }
 .topic-search input:focus, .topic-search select:focus { border-color: #405957; outline: 2px solid rgba(64, 89, 87, .15); }
-.topic-search input[type="submit"] { width: auto; padding: 0 23px; border-color: var(--ink); color: white; background: var(--ink); font-weight: 700; cursor: pointer; }
+.catalogue-search-button {
+  position: absolute; top: 1px; right: 1px; width: 42px; height: 42px; padding: 0;
+  display: grid; place-items: center; border: 0; border-left: 1px solid var(--line); color: var(--ink);
+  background: transparent; cursor: pointer;
+}
+.catalogue-search-button:hover { color: var(--teal-dark); background: #f0f4f2; }
+.catalogue-search-button svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
 .editorial-layout { display: grid; grid-template-columns: minmax(0, 1fr) 290px; align-items: start; gap: 58px; }
 .question-index-heading { min-height: 42px; padding-bottom: 13px; display: flex; align-items: start; justify-content: space-between; border-bottom: 1px solid #263536; }
 .question-index-heading p { margin: 0; }
@@ -518,8 +528,8 @@ h1, h2, h3 {
   .editorial-home { padding: 34px 0 70px; }
   .editorial-masthead h1 { font-size: 43px; }
   .editorial-masthead > p:last-child { font-size: 16px; }
-  .topic-search { grid-template-columns: 1fr; }
-  .topic-search input[type="submit"] { width: 100%; }
+  .topic-search { align-items: stretch; flex-direction: column; }
+  .catalogue-search-field, .catalogue-order-field { width: 100%; min-width: 0; flex: none; }
   .editorial-topic-body { grid-template-columns: 1fr; gap: 18px; }
   .editorial-topic-footer { align-items: flex-start; flex-direction: column; gap: 8px; }
   .editorial-sidebar { grid-template-columns: 1fr; }
