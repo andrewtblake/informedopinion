@@ -15,6 +15,9 @@ class TopicDiscoveryTest < ActionDispatch::IntegrationTest
     get root_path
 
     assert_response :success
+    assert_select "link[rel='icon'][href='/icon.svg']", count: 1
+    assert_select "link[rel='icon'][href='/favicon.ico']", count: 1
+    assert_select "link[rel='icon'][href='/icon-32.png'][sizes='32x32']", count: 1
     assert_select ".topic-search input[type='search'][placeholder='Search questions, categories, or tags']"
     assert_select ".topic-search button[type='submit'][aria-label='Search']", count: 1
     assert_select ".topic-search input[type='submit']", count: 0
