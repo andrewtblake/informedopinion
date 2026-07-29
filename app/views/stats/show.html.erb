@@ -9,18 +9,26 @@
     </header>
 
     <%= form_with url: stats_path, method: :get, class: "opinions-tools", role: "search" do |form| %>
-      <div class="topic-search-field">
+      <div class="opinion-search-field">
         <%= form.label :q, "Search your opinions", class: "sr-only" %>
         <%= form.search_field :q,
           value: @query,
           placeholder: "Search your opinions",
           autocomplete: "off" %>
+        <button type="submit" class="opinion-search-button" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.5" cy="10.5" r="6.5"></circle>
+            <path d="m15.5 15.5 5 5"></path>
+          </svg>
+        </button>
       </div>
-      <div>
-        <%= form.label :sort, "Order by", class: "sr-only" %>
-        <%= form.select :sort, options_for_select(@sort_options.map { |value, label| [ label, value ] }, @sort) %>
+      <div class="opinion-order-field">
+        <%= form.label :sort, "Order by" %>
+        <%= form.select :sort,
+          options_for_select(@sort_options.map { |value, label| [ label, value ] }, @sort),
+          {},
+          data: { controller: "autosubmit", action: "change->autosubmit#submit" } %>
       </div>
-      <%= form.submit "Apply" %>
     <% end %>
 
     <header class="opinions-index-heading">

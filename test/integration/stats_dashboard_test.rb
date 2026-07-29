@@ -52,6 +52,10 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     assert_select "link[rel='stylesheet'][href*='application']", count: 1
     assert_select "h1", text: "My opinions"
     assert_select ".opinions-tools input[type='search'][placeholder='Search your opinions']"
+    assert_select ".opinions-tools button[type='submit'][aria-label='Search']", count: 1
+    assert_select ".opinions-tools input[type='submit']", count: 0
+    assert_select ".opinion-order-field label", text: "Order by"
+    assert_select ".opinion-order-field select[data-action='change->autosubmit#submit']", count: 1
     assert_select ".opinions-tools select[name='sort'] option", count: 4
     assert_select ".opinion-card", count: 1, text: /Stats test.*Agree.*50% weight.*1\/1 correct.*1 unseen/m
     assert_select ".compact-choice-dial", count: 1
