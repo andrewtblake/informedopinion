@@ -36,6 +36,9 @@ class TopicDiscoveryTest < ActionDispatch::IntegrationTest
     get root_path, params: { tag: "evidence" }
     assert_select ".editorial-topic", count: 1
     assert_select ".editorial-topic h2", text: "Earth shape"
+    assert_select ".selected-tag-filter", text: /Selected: Evidence/
+    assert_select ".selected-tag-filter a[href='#{root_path(sort: "featured")}']", text: "Clear tag"
+    assert_select ".editorial-tag-cloud a.is-selected", text: "Evidence"
 
     create_question("A new question", "A third catalogue entry.", @earth.category, 3)
     get root_path, params: { sort: "title" }

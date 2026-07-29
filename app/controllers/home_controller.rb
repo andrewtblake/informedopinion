@@ -17,6 +17,7 @@ class HomeController < ApplicationController
       .group("tags.id")
       .order(Arel.sql("COUNT(opinion_questions.id) DESC"), :name)
       .limit(12)
+    @selected_tag = Tag.find_by(slug: params[:tag]) if params[:tag].present?
     filtered_questions = filter_questions(all_questions)
     @sort_options = SORT_OPTIONS
     @sort = SORT_OPTIONS.key?(params[:sort]) ? params[:sort] : "featured"

@@ -183,9 +183,27 @@
 
         <section>
           <h2>Tags</h2>
+          <% if @selected_tag %>
+            <div class="selected-tag-filter">
+              <span>Selected: <strong><%= @selected_tag.name %></strong></span>
+              <%= link_to "Clear tag",
+                root_path({
+                  q: params[:q].presence,
+                  category: params[:category].presence,
+                  sort: @sort
+                }.compact) %>
+            </div>
+          <% end %>
           <div class="editorial-tag-cloud">
             <% @popular_tags.each do |tag| %>
-              <%= link_to tag.name, root_path(tag: tag.slug) %>
+              <%= link_to tag.name,
+                root_path({
+                  q: params[:q].presence,
+                  category: params[:category].presence,
+                  tag: tag.slug,
+                  sort: @sort
+                }.compact),
+                class: ("is-selected" if tag == @selected_tag) %>
             <% end %>
           </div>
         </section>

@@ -147,7 +147,14 @@ h1, h2, h3 {
 .ranked-topic-list a:hover { text-decoration: underline; }
 .ranked-topic-list span { margin-top: 2px; display: block; color: #83908e; font-size: 9px; }
 .sidebar-note { margin: 0; color: #71807d; font: 12px/1.5 Inter, "Avenir Next", "Segoe UI", sans-serif; }
+.selected-tag-filter {
+  margin: 0 0 11px; padding: 8px 0 10px; display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; border-bottom: 1px solid #e0e4e1; color: #63716f; font-size: 11px;
+}
+.selected-tag-filter strong { color: var(--ink); }
+.selected-tag-filter a { color: var(--teal-dark); font-weight: 750; text-underline-offset: 3px; }
 .editorial-tag-cloud { display: flex; flex-wrap: wrap; gap: 7px; }
+.editorial-tag-cloud a.is-selected { border-color: var(--ink); color: white; background: var(--ink); }
 .editorial-tag-cloud a { padding: 4px 7px; border: 1px solid #c6ceca; border-radius: 2px; color: #4f5f5d; font-size: 10px; text-decoration: none; }
 .editorial-tag-cloud a:hover { border-color: #687b77; background: #f0f2ef; }
 .editorial-empty { padding: 45px 0; border-bottom: 1px solid #cdd3cf; }
