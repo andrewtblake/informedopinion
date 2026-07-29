@@ -8,6 +8,7 @@ class FactQuestion < ApplicationRecord
 
   belongs_to :opinion_question
   has_many :fact_responses, dependent: :destroy
+  has_many :fact_question_flags, dependent: :destroy
 
   validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true
   validates :importance_weight, inclusion: { in: IMPORTANCE_LEVELS.keys }
