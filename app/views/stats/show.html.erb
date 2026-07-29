@@ -47,14 +47,29 @@
             <% end %>
           </div>
 
-          <h2><%= link_to question.title, opinion_question_path(question) %></h2>
-          <p class="opinion-card-statement"><%= question.statement %></p>
+          <div class="opinion-card-body">
+            <div class="opinion-card-copy">
+              <h2><%= link_to question.title, opinion_question_path(question) %></h2>
+              <p class="opinion-card-statement"><%= question.statement %></p>
 
-          <div class="compact-opinion-summary">
-            <p class="compact-opinion-heading">
-              <span>Your position</span>
-              <strong><%= opinion.label %></strong>
-            </p>
+              <p class="compact-opinion-heading">
+                <span>Your position</span>
+                <strong><%= opinion.label %></strong>
+              </p>
+
+              <p class="compact-result-numbers">
+                <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
+                <span><%= progress.correct %>/<%= progress.answered %> correct · <%= progress.remaining %> unseen</span>
+              </p>
+
+              <nav class="personal-card-actions" aria-label="<%= question.title %> actions">
+                <%= link_to(
+                  progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz",
+                  opinion_question_quiz_path(question)
+                ) %>
+                <%= link_to "Revise opinion", opinion_question_path(question) %>
+              </nav>
+            </div>
 
             <svg
               class="personal-choice-dial compact-choice-dial"
@@ -82,23 +97,6 @@
 
               <path d="M55 170 A145 145 0 0 1 345 170" class="personal-dial-arc"></path>
 
-              <% label_positions = [
-                [ 300, 165, 95, 42, "right" ],
-                [ 282, 67, 110, 44, "center" ],
-                [ 145, 4, 110, 44, "center" ],
-                [ 8, 67, 110, 44, "center" ],
-                [ 5, 165, 95, 42, "left" ]
-              ] %>
-              <% question.response_options.each_with_index do |label, position| %>
-                <% x, y, width, height, alignment = label_positions[position] %>
-                <foreignObject x="<%= x %>" y="<%= y %>" width="<%= width %>" height="<%= height %>">
-                  <div
-                    xmlns="http://www.w3.org/1999/xhtml"
-                    class="personal-dial-choice personal-dial-choice-<%= alignment %> <%= "is-selected" if opinion.position == position %>"
-                  ><%= label %></div>
-                </foreignObject>
-              <% end %>
-
               <% if progress.weight.positive? %>
                 <line
                   x1="200"
@@ -112,24 +110,6 @@
               <circle cx="200" cy="170" r="7" class="personal-dial-hub"></circle>
               <circle cx="200" cy="170" r="2.5" class="personal-dial-hub-centre"></circle>
             </svg>
-
-            <p class="compact-result-numbers">
-              <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
-              <span><%= progress.correct %>/<%= progress.answered %> correct · <%= progress.remaining %> unseen</span>
-            </p>
-          </div>
-
-          <div class="personal-card-actions">
-            <%= button_to(
-              progress.complete? ? "Review quiz" : progress.answered.positive? ? "Resume quiz" : "Start quiz",
-              opinion_question_quiz_path(question),
-              method: :get,
-              class: "button stats-card-button"
-            ) %>
-            <%= button_to "Revise opinion",
-              opinion_question_path(question),
-              method: :get,
-              class: "button stats-card-button stats-card-button-secondary" %>
           </div>
         </article>
       <% end %>

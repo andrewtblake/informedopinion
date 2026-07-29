@@ -60,8 +60,9 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
       assert_select ".personal-weight-guide-label", text: label
     end
     assert_select ".personal-choice-dial line[x2='249.5'][y2='120.5']"
-    assert_select "form[action='#{opinion_question_quiz_path(@topic)}'] button.stats-card-button", text: "Resume quiz"
-    assert_select "form[action='#{opinion_question_path(@topic)}'] button.stats-card-button", text: "Revise opinion"
+    assert_select ".personal-card-actions a[href='#{opinion_question_quiz_path(@topic)}']", text: "Resume quiz"
+    assert_select ".personal-card-actions a[href='#{opinion_question_path(@topic)}']", text: "Revise opinion"
+    assert_select ".compact-choice-dial .personal-dial-choice", count: 0
     assert_select ".personal-card-actions", text: /→/, count: 0
     assert_select "a[href='#{stats_path}']", text: "My opinions"
   end
