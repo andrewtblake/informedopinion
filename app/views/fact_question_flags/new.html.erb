@@ -1,0 +1,37 @@
+<% content_for :title, "Report a fact question — Informed Opinion" %>
+
+<section class="editorial-form-page">
+  <div class="container form-page-container">
+    <%= link_to "← Return to knowledge check", opinion_question_quiz_path(@fact_question.opinion_question), class: "back-link" %>
+    <header>
+      <p class="editorial-kicker">Reader report</p>
+      <h1>Report a fact question</h1>
+      <p>Reports identify questions that need editorial review. They do not alter scores automatically.</p>
+    </header>
+
+    <blockquote class="reported-question">
+      <strong><%= @fact_question.opinion_question.title %></strong>
+      <span><%= @fact_question.prompt %></span>
+    </blockquote>
+
+    <%= form_with model: @flag, class: "editorial-form" do |form| %>
+      <%= hidden_field_tag :fact_question_id, @fact_question.id %>
+      <%= render "devise/shared/errors", resource: @flag %>
+
+      <div class="field">
+        <%= form.label :category, "What is the problem?" %>
+        <%= form.select :category,
+          FactQuestionFlag.categories.keys.map { [ _1.humanize, _1 ] },
+          { prompt: "Choose a category" },
+          required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :details, "Details" %>
+        <%= form.text_area :details,
+          rows: 6,
+          placeholder: "Explain the problem precisely. Details are required when selecting Other." %>
+      </div>
+      <%= form.submit "Send report", class: "button button-primary" %>
+    <% end %>
+  </div>
+</section>

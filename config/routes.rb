@@ -3,11 +3,20 @@ Rails.application.routes.draw do
 
   root "home#index"
   resource :stats, only: :show
+  resources :fact_question_flags, only: %i[new create], path: "fact-reports"
+  resources :opinion_question_proposals, only: %i[new create], path: "proposals"
 
   resources :opinion_questions, only: %i[index show], param: :slug, path: "topics" do
     resource :user_opinion, only: %i[create update], path: "opinion"
+    resource :reaction, only: %i[create destroy], controller: "opinion_question_reactions"
     resource :quiz, only: :show
     resources :fact_responses, only: :create, path: "answers"
+  end
+
+  namespace :moderator do
+    root "dashboard#index"
+    resources :fact_question_flags, only: :update
+    resources :opinion_question_proposals, only: :update
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

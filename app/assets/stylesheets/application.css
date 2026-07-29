@@ -471,6 +471,73 @@ h1, h2, h3 {
 .personal-card-actions a + a { padding-left: 18px; border-left: 1px solid var(--line); }
 .opinions-empty { margin-top: 0; border-top: 0; }
 
+.fact-report-link { margin-left: 16px; color: var(--muted); font-size: 11px; font-weight: 700; text-underline-offset: 3px; }
+
+.topic-reaction-panel {
+  margin-top: 24px; padding: 26px 30px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+  gap: 35px; border: 1px solid var(--line); background: white;
+}
+.topic-reaction-panel h2 { margin: 0 0 7px; font-size: 22px; }
+.topic-reaction-panel p:last-child { margin: 0; color: var(--muted); font-size: 12px; }
+.reaction-actions { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: 9px; }
+.reaction-actions form { margin: 0; }
+.reaction-like, .reaction-dislike, .reaction-remove {
+  min-height: 38px; padding: 0 15px; border: 1px solid #9daba6; color: var(--ink); background: white;
+  font: 750 11px Inter, "Avenir Next", "Segoe UI", sans-serif; cursor: pointer;
+}
+.reaction-like.is-active, .reaction-dislike.is-active { border-color: var(--teal-dark); color: white; background: var(--teal-dark); }
+.dislike-form { display: grid; grid-template-columns: 1fr auto; gap: 6px; }
+.dislike-form label { grid-column: 1 / -1; color: var(--muted); font-size: 10px; font-weight: 750; }
+.dislike-form textarea {
+  min-height: 58px; padding: 9px 10px; resize: vertical; border: 1px solid #bdc8c3; border-radius: 0;
+  color: var(--ink); background: #fbfcfb; font: 12px/1.4 Inter, "Avenir Next", "Segoe UI", sans-serif;
+}
+.dislike-form .reaction-dislike { min-height: 58px; }
+.reaction-remove { grid-column: 1 / -1; justify-self: end; min-height: 28px; padding: 0; border: 0; color: var(--muted); background: transparent; text-decoration: underline; }
+
+.editorial-form-page { min-height: calc(100vh - 76px); padding: 46px 0 90px; background: #faf9f5; }
+.form-page-container { width: min(760px, calc(100% - 40px)); }
+.form-page-container > header { margin: 25px 0 28px; padding-bottom: 25px; border-bottom: 3px double var(--ink); }
+.form-page-container > header h1 { margin: 0 0 8px; font-size: clamp(36px, 6vw, 55px); letter-spacing: -.045em; }
+.form-page-container > header > p:last-child { max-width: 650px; margin: 0; color: var(--muted); }
+.reported-question { margin: 0 0 25px; padding: 18px 20px; border-left: 3px solid var(--teal-dark); background: white; }
+.reported-question strong, .reported-question span { display: block; }
+.reported-question strong { margin-bottom: 5px; color: var(--muted); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+.editorial-form { padding: 28px; display: grid; gap: 20px; border: 1px solid var(--line); background: white; }
+.editorial-form .field label { margin-bottom: 7px; display: block; font-size: 12px; font-weight: 750; }
+.editorial-form input[type="text"], .editorial-form select, .editorial-form textarea {
+  width: 100%; padding: 12px 13px; border: 1px solid #bdc8c3; border-radius: 0;
+  color: var(--ink); background: #fbfcfb; font: 14px/1.45 Inter, "Avenir Next", "Segoe UI", sans-serif;
+}
+.editorial-form select { height: 46px; padding-top: 0; padding-bottom: 0; }
+.editorial-form textarea { resize: vertical; }
+.editorial-form input:focus, .editorial-form select:focus, .editorial-form textarea:focus { border-color: var(--teal-dark); outline: 2px solid rgba(8, 121, 111, .12); }
+.editorial-form .button { justify-self: start; border-radius: 0; }
+
+.moderation-page { min-height: calc(100vh - 76px); padding: 54px 0 100px; background: #faf9f5; }
+.moderation-masthead { margin-bottom: 38px; }
+.moderation-section { margin-top: 36px; }
+.moderation-section > header { padding-bottom: 10px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--ink); }
+.moderation-section > header h2 { margin: 0; font-size: 24px; }
+.moderation-section > header span { color: var(--muted); font-size: 11px; }
+.moderation-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.moderation-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
+.moderation-meta strong { color: var(--teal-dark); }
+.moderation-item h3 { margin: 8px 0; font-size: 20px; }
+.moderation-item > p, .moderation-item blockquote { max-width: 850px; margin: 9px 0; color: var(--muted); font-size: 13px; }
+.moderation-item blockquote { padding-left: 15px; border-left: 2px solid var(--line); }
+.proposal-details { margin: 16px 0; display: grid; gap: 7px; font-size: 12px; }
+.proposal-details div { display: grid; grid-template-columns: 80px 1fr; }
+.proposal-details dt { color: var(--muted); font-weight: 750; }
+.proposal-details dd { margin: 0; }
+.moderation-form { max-width: 850px; margin-top: 15px; display: grid; grid-template-columns: minmax(250px, 1fr) auto; gap: 9px; }
+.moderation-form textarea { min-height: 58px; padding: 9px 11px; border: 1px solid #bdc8c3; border-radius: 0; resize: vertical; }
+.moderation-form > div { display: flex; gap: 7px; }
+.moderation-form .button { min-height: 40px; padding: 0 14px; border-radius: 0; box-shadow: none; font-size: 11px; }
+.moderation-approve { border-color: var(--teal-dark); color: white; background: var(--teal-dark); }
+.moderation-decline { border-color: #8b615b; color: #70453f; background: white; }
+.moderation-empty { padding: 25px 0; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
+
 .auth-page { min-height: calc(100vh - 76px); display: grid; grid-template-columns: 1fr 1fr; }
 .auth-panel { padding: clamp(45px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; }
 .auth-intro { min-height: 700px; justify-content: space-between; color: white; background: var(--ink); }
@@ -525,6 +592,7 @@ h1, h2, h3 {
   .auth-page { grid-template-columns: 1fr; }
   .auth-intro { min-height: 480px; }
   .participate-grid { grid-template-columns: 1fr; gap: 35px; }
+  .topic-reaction-panel { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -567,6 +635,9 @@ h1, h2, h3 {
   .auth-intro h1 { font-size: 41px; }
   .field-row { grid-template-columns: 1fr; }
   .simple-auth-card { padding: 30px 23px; }
+  .editorial-form { padding: 20px; }
+  .moderation-form { grid-template-columns: 1fr; }
+  .moderation-form > div { justify-content: flex-start; }
   .opinions-tools { align-items: stretch; flex-direction: column; }
   .opinion-search-field, .opinion-order-field { width: 100%; min-width: 0; flex: none; }
   .opinion-card-body { grid-template-columns: minmax(0, 1fr) 95px; gap: 12px; }

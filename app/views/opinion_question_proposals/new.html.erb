@@ -1,0 +1,52 @@
+<% content_for :title, "Propose an opinion question — Informed Opinion" %>
+
+<section class="editorial-form-page">
+  <div class="container form-page-container">
+    <%= link_to "← All questions", root_path, class: "back-link" %>
+    <header>
+      <p class="editorial-kicker">Reader proposal</p>
+      <h1>Propose an opinion question</h1>
+      <p>State one contestable proposition clearly enough that a respondent can agree or disagree with it.</p>
+    </header>
+
+    <%= form_with model: @proposal, class: "editorial-form" do |form| %>
+      <%= render "devise/shared/errors", resource: @proposal %>
+
+      <div class="field">
+        <%= form.label :title %>
+        <%= form.text_field :title, maxlength: 100, placeholder: "A concise subject heading", required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :statement, "Text" %>
+        <%= form.text_area :statement,
+          rows: 5,
+          maxlength: 1_000,
+          placeholder: "A single, specific proposition without loaded or double-barrelled wording",
+          required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :category_id, "Category" %>
+        <%= form.collection_select :category_id, @categories, :id, :name, { prompt: "Choose a category" }, required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :tags_text, "Tags" %>
+        <%= form.text_field :tags_text,
+          placeholder: "Comma-separated, for example: Housing, England, Planning",
+          required: true %>
+      </div>
+      <div class="field">
+        <%= form.label :geographic_scope, "Geographical scope" %>
+        <%= form.text_field :geographic_scope, placeholder: "For example: United Kingdom, United States, Global" %>
+      </div>
+      <div class="field">
+        <%= form.label :rationale, "Why should this question be included?" %>
+        <%= form.text_area :rationale,
+          rows: 5,
+          maxlength: 2_000,
+          placeholder: "Explain its public importance, genuine controversy, and the factual issues likely to inform opinion.",
+          required: true %>
+      </div>
+      <%= form.submit "Send proposal", class: "button button-primary" %>
+    <% end %>
+  </div>
+</section>

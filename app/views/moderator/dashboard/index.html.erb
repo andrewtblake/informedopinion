@@ -1,0 +1,66 @@
+<% content_for :title, "Moderation — Informed Opinion" %>
+
+<section class="moderation-page">
+  <div class="container">
+    <header class="editorial-masthead moderation-masthead">
+      <p class="editorial-kicker">Editorial review</p>
+      <h1>Moderation</h1>
+      <p>Pending fact-question reports and proposed opinion questions.</p>
+    </header>
+
+    <section class="moderation-section">
+      <header>
+        <h2>Fact-question reports</h2>
+        <span><%= @flags.length %> pending</span>
+      </header>
+      <% @flags.each do |flag| %>
+        <article class="moderation-item">
+          <div class="moderation-meta">
+            <strong><%= flag.category_label %></strong>
+            <span><%= flag.fact_question.opinion_question.title %></span>
+          </div>
+          <h3><%= flag.fact_question.prompt %></h3>
+          <% if flag.details.present? %><p><%= flag.details %></p><% end %>
+          <%= form_with model: flag, url: moderator_fact_question_flag_path(flag), method: :patch, class: "moderation-form" do |form| %>
+            <%= form.text_area :resolution_notes, rows: 2, placeholder: "Internal review notes (optional)" %>
+            <div>
+              <%= form.button "Resolve", name: "fact_question_flag[status]", value: "resolved", class: "button moderation-approve" %>
+              <%= form.button "Dismiss", name: "fact_question_flag[status]", value: "dismissed", class: "button moderation-decline" %>
+            </div>
+          <% end %>
+        </article>
+      <% end %>
+      <% if @flags.empty? %><p class="moderation-empty">No fact-question reports are awaiting review.</p><% end %>
+    </section>
+
+    <section class="moderation-section">
+      <header>
+        <h2>Proposed opinion questions</h2>
+        <span><%= @proposals.length %> pending</span>
+      </header>
+      <% @proposals.each do |proposal| %>
+        <article class="moderation-item">
+          <div class="moderation-meta">
+            <strong><%= proposal.category.name %></strong>
+            <% if proposal.geographic_scope.present? %><span><%= proposal.geographic_scope %></span><% end %>
+          </div>
+          <h3><%= proposal.title %></h3>
+          <blockquote><%= proposal.statement %></blockquote>
+          <dl class="proposal-details">
+            <div><dt>Tags</dt><dd><%= proposal.tag_names.join(", ") %></dd></div>
+            <% if proposal.geographic_scope.present? %><div><dt>Scope</dt><dd><%= proposal.geographic_scope %></dd></div><% end %>
+            <div><dt>Rationale</dt><dd><%= proposal.rationale %></dd></div>
+          </dl>
+          <%= form_with model: proposal, url: moderator_opinion_question_proposal_path(proposal), method: :patch, class: "moderation-form" do |form| %>
+            <%= form.text_area :review_notes, rows: 2, placeholder: "Internal review notes (optional)" %>
+            <div>
+              <%= form.button "Approve", name: "opinion_question_proposal[status]", value: "approved", class: "button moderation-approve" %>
+              <%= form.button "Decline", name: "opinion_question_proposal[status]", value: "declined", class: "button moderation-decline" %>
+            </div>
+          <% end %>
+        </article>
+      <% end %>
+      <% if @proposals.empty? %><p class="moderation-empty">No opinion-question proposals are awaiting review.</p><% end %>
+    </section>
+  </div>
+</section>

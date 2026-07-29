@@ -59,5 +59,43 @@
         </div>
       </div>
     <% end %>
+
+    <% if user_signed_in? %>
+      <section class="topic-reaction-panel">
+        <div>
+          <p class="eyebrow">Question quality</p>
+          <h2>Is this a worthwhile opinion question?</h2>
+          <% if @reaction %>
+            <p>Your response: <strong><%= @reaction.kind.humanize %></strong><%= " — #{@reaction.reason}" if @reaction.reason.present? %></p>
+          <% else %>
+            <p>Likes help identify useful questions. A dislike requires a reason so moderators receive actionable criticism.</p>
+          <% end %>
+        </div>
+        <div class="reaction-actions">
+          <%= button_to "Like",
+            opinion_question_reaction_path(@opinion_question),
+            method: :post,
+            params: { opinion_question_reaction: { kind: "like" } },
+            class: "reaction-like #{'is-active' if @reaction&.like?}" %>
+          <%= form_with url: opinion_question_reaction_path(@opinion_question), method: :post, class: "dislike-form" do |form| %>
+            <%= form.hidden_field :kind, value: "dislike", name: "opinion_question_reaction[kind]" %>
+            <%= form.label :reason, "Reason for disliking" %>
+            <%= form.text_area :reason,
+              name: "opinion_question_reaction[reason]",
+              value: (@reaction.reason if @reaction&.dislike?),
+              rows: 2,
+              required: true,
+              placeholder: "What makes the question unsuitable or poorly framed?" %>
+            <%= form.submit "Dislike", class: "reaction-dislike #{'is-active' if @reaction&.dislike?}" %>
+          <% end %>
+          <% if @reaction %>
+            <%= button_to "Remove response",
+              opinion_question_reaction_path(@opinion_question),
+              method: :delete,
+              class: "reaction-remove" %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
   </div>
 </section>

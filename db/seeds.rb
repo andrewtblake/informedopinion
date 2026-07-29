@@ -225,4 +225,6 @@ topics.each do |attributes|
   topic.fact_questions.where.not(display_order: 1..facts.length).destroy_all
 end
 
+User.find_by(id: 1)&.moderator!
+
 puts "Seeded #{OpinionQuestion.count} opinion questions and #{FactQuestion.count} fact questions."

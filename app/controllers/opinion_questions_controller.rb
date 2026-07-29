@@ -9,6 +9,7 @@ class OpinionQuestionsController < ApplicationController
     return unless user_signed_in?
 
     @user_opinion = current_user.user_opinions.find_by(opinion_question: @opinion_question)
+    @reaction = current_user.opinion_question_reactions.find_by(opinion_question: @opinion_question)
     @progress = OpinionProgress.new(current_user, @opinion_question)
   end
 
