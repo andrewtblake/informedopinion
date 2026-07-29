@@ -49,6 +49,7 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "title", text: /My opinions/
+    assert_select "link[rel='stylesheet'][href*='application']", count: 1
     assert_select "h1", text: "My opinions"
     assert_select ".opinions-tools input[type='search'][placeholder='Search your opinions']"
     assert_select ".opinions-tools select[name='sort'] option", count: 4
