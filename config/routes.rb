@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root "home#index"
   resource :stats, only: :show
   resources :fact_question_flags, only: %i[new create], path: "fact-reports"
-  resources :opinion_question_proposals, only: %i[new create], path: "proposals"
+  resources :opinion_question_proposals, only: %i[index new create], path: "proposals"
 
   resources :opinion_questions, only: %i[index show], param: :slug, path: "topics" do
     resource :user_opinion, only: %i[create update], path: "opinion"

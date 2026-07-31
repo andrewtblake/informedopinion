@@ -514,6 +514,38 @@ h1, h2, h3 {
 .editorial-form input:focus, .editorial-form select:focus, .editorial-form textarea:focus { border-color: var(--teal-dark); outline: 2px solid rgba(8, 121, 111, .12); }
 .editorial-form .button { justify-self: start; border-radius: 0; }
 
+.proposal-page { min-height: calc(100vh - 76px); padding: 42px 0 100px; background: #faf9f5; }
+.proposal-page-container > .back-link { margin-bottom: 22px; }
+.proposal-masthead { padding-bottom: 28px; border-bottom: 3px double #263536; }
+.proposal-masthead h1 { margin-bottom: 9px; font-size: clamp(42px, 6vw, 62px); letter-spacing: -.045em; }
+.proposal-masthead > p:last-child { max-width: 760px; margin: 0; color: #52615f; font-size: 17px; }
+.proposal-workspace { margin-top: 34px; display: grid; grid-template-columns: minmax(0, 1fr) 270px; align-items: start; gap: 58px; }
+.proposal-section-heading { padding-top: 16px; border-top: 2px solid var(--ink); }
+.proposal-section-heading h2 { margin-bottom: 7px; font-size: 26px; }
+.proposal-section-heading > p:last-child { margin-bottom: 22px; color: var(--muted); font-size: 13px; }
+.proposal-form { padding: 25px; }
+.proposal-guidance { padding-top: 13px; border-top: 1px solid #263536; }
+.proposal-guidance h2 { margin-bottom: 11px; font-size: 19px; }
+.proposal-guidance ul { margin: 0; padding: 0; list-style: none; }
+.proposal-guidance li { padding: 9px 0; border-top: 1px solid #dfe3df; color: #425452; font-size: 12px; }
+.proposal-guidance > p:last-child { margin: 17px 0 0; color: #71807d; font-size: 11px; }
+.proposal-history { margin-top: 60px; }
+.proposal-history > header { padding-bottom: 11px; display: flex; align-items: end; justify-content: space-between; border-bottom: 2px solid var(--ink); }
+.proposal-history > header p { margin-bottom: 5px; }
+.proposal-history > header h2 { margin: 0; font-size: 27px; }
+.proposal-history > header > span { color: var(--muted); font-size: 11px; }
+.proposal-record { padding: 23px 0; display: grid; grid-template-columns: minmax(0, 1fr) 105px; gap: 30px; border-bottom: 1px solid #cdd3cf; }
+.proposal-record-meta { display: flex; flex-wrap: wrap; gap: 5px 14px; color: #71807d; font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.proposal-record h3 { margin: 7px 0 5px; font-size: 20px; }
+.proposal-record-main > p { max-width: 780px; margin: 0; color: #52615f; font-size: 13px; }
+.proposal-status { margin: 0; padding-left: 14px; align-self: start; border-left: 2px solid #7c8986; }
+.proposal-status span, .proposal-status strong { display: block; }
+.proposal-status span { color: #71807d; font-size: 8px; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.proposal-status strong { font-size: 12px; }
+.proposal-status-approved { border-left-color: #477c76; }
+.proposal-status-declined { border-left-color: #92665c; }
+.proposal-history-empty { margin: 0; padding: 25px 0; color: var(--muted); font-size: 13px; border-bottom: 1px solid #cdd3cf; }
+
 .moderation-page { min-height: calc(100vh - 76px); padding: 54px 0 100px; background: #faf9f5; }
 .moderation-masthead { margin-bottom: 38px; }
 .moderation-section { margin-top: 36px; }
@@ -588,6 +620,7 @@ h1, h2, h3 {
   .account-layout { grid-template-columns: minmax(0, 1fr) 260px; gap: 38px; }
   .participate-grid { grid-template-columns: 1fr; gap: 35px; }
   .topic-reaction-panel { grid-template-columns: 1fr; }
+  .proposal-workspace { grid-template-columns: minmax(0, 1fr) 240px; gap: 38px; }
 }
 
 @media (max-width: 640px) {
@@ -633,6 +666,9 @@ h1, h2, h3 {
   .editorial-form { padding: 20px; }
   .moderation-form { grid-template-columns: 1fr; }
   .moderation-form > div { justify-content: flex-start; }
+  .proposal-workspace { grid-template-columns: 1fr; gap: 36px; }
+  .proposal-form { padding: 20px; }
+  .proposal-record { grid-template-columns: minmax(0, 1fr) 90px; gap: 16px; }
   .opinions-tools { align-items: stretch; flex-direction: column; }
   .opinion-search-field, .opinion-order-field { width: 100%; min-width: 0; flex: none; }
   .opinion-card-body { grid-template-columns: minmax(0, 1fr) 95px; gap: 12px; }

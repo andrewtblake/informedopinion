@@ -47,7 +47,54 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
         }
       }
     end
-    assert_redirected_to root_path
+    assert_redirected_to opinion_question_proposals_path
+
+    follow_redirect!
+    assert_response :success
+    assert_select "h1", "Proposals"
+    assert_select ".proposal-record", text: /A proposed question/
+    assert_select ".proposal-status", text: /Pending/
+  end
+
+  test "a user sees only their own proposal history and its statuses" do
+    approved = @participant.opinion_question_proposals.create!(
+      title: "An approved proposal",
+      statement: "The United Kingdom should adopt a defined public policy.",
+      category: @category,
+      tags_text: "United Kingdom, Public policy",
+      rationale: "It is consequential and factually assessable.",
+      status: :approved,
+      reviewer: @moderator,
+      review_notes: "Internal editorial notes."
+    )
+    other_user = create_user("other@example.com")
+    other_user.opinion_question_proposals.create!(
+      title: "Another user's proposal",
+      statement: "A proposition belonging to another user.",
+      category: @category,
+      tags_text: "Public policy",
+      rationale: "A rationale."
+    )
+
+    sign_in @participant, scope: :user
+    get opinion_question_proposals_path
+
+    assert_response :success
+    assert_select "h1", "Proposals"
+    assert_select ".proposal-record", count: 1
+    assert_select ".proposal-record h3", approved.title
+    assert_select ".proposal-status", text: /Approved/
+    assert_not_includes response.body, "Another user's proposal"
+    assert_not_includes response.body, "Internal editorial notes"
+    assert_not_includes response.body, @moderator.email
+  end
+
+  test "the former new-proposal address leads to the proposals space" do
+    sign_in @participant, scope: :user
+
+    get new_opinion_question_proposal_path
+
+    assert_redirected_to opinion_question_proposals_path
   end
 
   test "a dislike requires a reason while a like does not" do
