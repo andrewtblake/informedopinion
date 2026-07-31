@@ -7,7 +7,7 @@ class FactQuestionProposal < ApplicationRecord
   belongs_to :published_fact_question, class_name: "FactQuestion", optional: true
 
   validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true
-  validates :source_url, format: { with: %r{\Ahttps?://}i }
+  validates :source_url, format: { with: %r{\Ahttps?://[^\s]+\z}i }
   validates :options, length: { is: 4 }
   validates :correct_option, inclusion: { in: 0..3 }
   validates :importance_weight, inclusion: { in: FactQuestion::IMPORTANCE_LEVELS.keys }
