@@ -1,21 +1,27 @@
 <% content_for :title, "Choose a new password — Informed Opinion" %>
 
-<section class="simple-auth-page">
-  <div class="simple-auth-card">
-    <p class="eyebrow">Password help</p>
-    <h1>Choose a new password</h1>
-    <%= render "devise/shared/errors", resource: resource %>
-    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "stacked-form" }) do |f| %>
-      <%= f.hidden_field :reset_password_token %>
-      <div class="field">
-        <%= f.label :password, "New password" %>
-        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, minlength: 8 %>
-      </div>
-      <div class="field">
-        <%= f.label :password_confirmation, "Confirm new password" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
-      </div>
-      <%= f.submit "Change my password", class: "button button-primary button-wide" %>
-    <% end %>
+<section class="account-page">
+  <div class="container account-container account-container-narrow">
+    <header class="account-masthead">
+      <p class="editorial-kicker">Account</p>
+      <h1>Choose a new password</h1>
+      <p>Use at least eight characters.</p>
+    </header>
+
+    <main class="account-form-panel">
+      <%= render "devise/shared/errors", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "account-form" }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="field">
+          <%= f.label :password, "New password" %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, minlength: 8 %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation, "Confirm new password" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+        </div>
+        <%= f.submit "Change password", class: "button button-primary" %>
+      <% end %>
+    </main>
   </div>
 </section>
