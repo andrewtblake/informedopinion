@@ -11,6 +11,7 @@ class OpinionQuestionsController < ApplicationController
     @user_opinion = current_user.user_opinions.find_by(opinion_question: @opinion_question)
     @reaction = current_user.opinion_question_reactions.find_by(opinion_question: @opinion_question)
     @progress = OpinionProgress.new(current_user, @opinion_question)
+    @fact_proposal_eligibility = FactQuestionProposalEligibility.new(current_user, @opinion_question)
   end
 
   private

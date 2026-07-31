@@ -90,10 +90,17 @@
             </div>
             <h3><%= proposal.title %></h3>
             <p><%= proposal.statement %></p>
+            <% if proposal.edited_on_approval? %>
+              <div class="proposal-final-wording">
+                <strong>Published wording</strong>
+                <h4><%= proposal.final_title %></h4>
+                <p><%= proposal.final_statement %></p>
+              </div>
+            <% end %>
           </div>
           <p class="proposal-status proposal-status-<%= proposal.status %>">
             <span>Status</span>
-            <strong><%= proposal.status.humanize %></strong>
+            <strong><%= proposal.decision_label %></strong>
           </p>
         </article>
       <% end %>

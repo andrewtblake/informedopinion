@@ -1,13 +1,12 @@
 module Moderator
-  class OpinionQuestionProposalsController < BaseController
+  class FactQuestionProposalsController < BaseController
     def update
-      proposal = OpinionQuestionProposal.pending.find(params[:id])
+      proposal = FactQuestionProposal.pending.find(params[:id])
       if decision == "approved"
-        PublishOpinionQuestionProposal.new(
+        PublishFactQuestionProposal.new(
           proposal: proposal,
           reviewer: current_user,
-          final_title: moderation_params[:final_title],
-          final_statement: moderation_params[:final_statement],
+          attributes: editorial_attributes,
           review_notes: moderation_params[:review_notes]
         ).call
       else
@@ -18,7 +17,7 @@ module Moderator
           reviewed_at: Time.current
         )
       end
-      redirect_to moderator_root_path, notice: "The proposal has been reviewed."
+      redirect_to moderator_root_path, notice: "The fact-question proposal has been reviewed."
     rescue ActiveRecord::RecordInvalid => error
       redirect_to moderator_root_path, alert: error.record.errors.full_messages.to_sentence
     end
@@ -26,8 +25,17 @@ module Moderator
     private
 
     def moderation_params
-      params.require(:opinion_question_proposal)
-        .permit(:status, :review_notes, :final_title, :final_statement)
+      @moderation_params ||= params.require(:fact_question_proposal).permit(
+        :status, :review_notes, :prompt, :correct_option, :explanation,
+        :source_name, :source_url, :importance_weight, :importance_rationale,
+        :evidence_direction, options: []
+      )
+    end
+
+    def editorial_attributes
+      moderation_params.except(:status, :review_notes).tap do |attributes|
+        attributes[:options] = Array(attributes[:options]).map(&:strip)
+      end
     end
 
     def decision

@@ -11,12 +11,14 @@ Rails.application.routes.draw do
     resource :reaction, only: %i[create destroy], controller: "opinion_question_reactions"
     resource :quiz, only: :show
     resources :fact_responses, only: :create, path: "answers"
+    resources :fact_question_proposals, only: %i[new create], path: "fact-proposals"
   end
 
   namespace :moderator do
     root "dashboard#index"
     resources :fact_question_flags, only: :update
     resources :opinion_question_proposals, only: :update
+    resources :fact_question_proposals, only: :update
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

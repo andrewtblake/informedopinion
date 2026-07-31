@@ -5,7 +5,7 @@
     <header class="editorial-masthead moderation-masthead">
       <p class="editorial-kicker">Editorial review</p>
       <h1>Moderation</h1>
-      <p>Pending fact-question reports and proposed opinion questions.</p>
+      <p>Pending reports, proposed opinion questions, and proposed fact questions.</p>
     </header>
 
     <section class="moderation-section">
@@ -51,9 +51,22 @@
             <% if proposal.geographic_scope.present? %><div><dt>Scope</dt><dd><%= proposal.geographic_scope %></dd></div><% end %>
             <div><dt>Rationale</dt><dd><%= proposal.rationale %></dd></div>
           </dl>
-          <%= form_with model: proposal, url: moderator_opinion_question_proposal_path(proposal), method: :patch, class: "moderation-form" do |form| %>
-            <%= form.text_area :review_notes, rows: 2, placeholder: "Internal review notes (optional)" %>
-            <div>
+          <%= form_with model: proposal, url: moderator_opinion_question_proposal_path(proposal), method: :patch, class: "moderation-form moderation-editor" do |form| %>
+            <div class="moderation-edit-fields">
+              <div class="field">
+                <%= form.label :final_title, "Final title" %>
+                <%= form.text_field :final_title, value: proposal.title, required: true %>
+              </div>
+              <div class="field">
+                <%= form.label :final_statement, "Final proposition" %>
+                <%= form.text_area :final_statement, value: proposal.statement, rows: 3, required: true %>
+              </div>
+              <div class="field">
+                <%= form.label :review_notes, "Internal review notes" %>
+                <%= form.text_area :review_notes, rows: 2 %>
+              </div>
+            </div>
+            <div class="moderation-actions">
               <%= form.button "Approve", name: "opinion_question_proposal[status]", value: "approved", class: "button moderation-approve" %>
               <%= form.button "Decline", name: "opinion_question_proposal[status]", value: "declined", class: "button moderation-decline" %>
             </div>
@@ -61,6 +74,73 @@
         </article>
       <% end %>
       <% if @proposals.empty? %><p class="moderation-empty">No opinion-question proposals are awaiting review.</p><% end %>
+    </section>
+
+    <section class="moderation-section">
+      <header>
+        <h2>Proposed fact questions</h2>
+        <span><%= @fact_proposals.length %> pending</span>
+      </header>
+      <% @fact_proposals.each do |proposal| %>
+        <article class="moderation-item">
+          <div class="moderation-meta">
+            <strong><%= proposal.opinion_question.title %></strong>
+            <span><%= FactQuestion::IMPORTANCE_LEVELS.fetch(proposal.importance_weight) %></span>
+            <span><%= FactQuestion::VALENCES.fetch(proposal.evidence_direction) %></span>
+          </div>
+          <%= form_with model: proposal, url: moderator_fact_question_proposal_path(proposal), method: :patch, class: "moderation-form moderation-editor fact-moderation-editor" do |form| %>
+            <div class="moderation-edit-fields">
+              <div class="field">
+                <%= form.label :prompt, "Question" %>
+                <%= form.text_area :prompt, rows: 2, required: true %>
+              </div>
+              <fieldset class="moderation-answer-editor">
+                <legend>Answers; select the correct one</legend>
+                <% proposal.options.each_with_index do |option, index| %>
+                  <div>
+                    <%= radio_button_tag "fact_question_proposal[correct_option]", index,
+                      proposal.correct_option == index, required: true,
+                      aria: { label: "Answer #{index + 1} is correct" } %>
+                    <%= text_field_tag "fact_question_proposal[options][]", option,
+                      aria: { label: "Answer #{index + 1}" }, required: true %>
+                  </div>
+                <% end %>
+              </fieldset>
+              <div class="field">
+                <%= form.label :explanation %>
+                <%= form.text_area :explanation, rows: 3, required: true %>
+              </div>
+              <div class="moderation-inline-fields">
+                <div class="field"><%= form.label :source_name %><%= form.text_field :source_name, required: true %></div>
+                <div class="field"><%= form.label :source_url %><%= form.url_field :source_url, required: true %></div>
+              </div>
+              <div class="moderation-inline-fields">
+                <div class="field">
+                  <%= form.label :importance_weight, "Importance" %>
+                  <%= form.select :importance_weight, FactQuestion::IMPORTANCE_LEVELS.map { |value, label| [label, value] } %>
+                </div>
+                <div class="field">
+                  <%= form.label :evidence_direction, "Likely effect" %>
+                  <%= form.select :evidence_direction, FactQuestion::VALENCES.map { |value, label| [label, value] } %>
+                </div>
+              </div>
+              <div class="field">
+                <%= form.label :importance_rationale %>
+                <%= form.text_area :importance_rationale, rows: 2, required: true %>
+              </div>
+              <div class="field">
+                <%= form.label :review_notes, "Internal review notes" %>
+                <%= form.text_area :review_notes, rows: 2 %>
+              </div>
+            </div>
+            <div class="moderation-actions">
+              <%= form.button "Edit and approve", name: "fact_question_proposal[status]", value: "approved", class: "button moderation-approve" %>
+              <%= form.button "Decline", name: "fact_question_proposal[status]", value: "declined", class: "button moderation-decline" %>
+            </div>
+          <% end %>
+        </article>
+      <% end %>
+      <% if @fact_proposals.empty? %><p class="moderation-empty">No fact-question proposals are awaiting review.</p><% end %>
     </section>
   </div>
 </section>

@@ -96,6 +96,19 @@
           <% end %>
         </div>
       </section>
+
+      <section class="fact-contribution-panel">
+        <div>
+          <p class="eyebrow">Contribute evidence</p>
+          <h2>Propose a fact question</h2>
+          <p><%= @fact_proposal_eligibility.explanation %></p>
+        </div>
+        <% if @fact_proposal_eligibility.eligible? %>
+          <%= link_to "Propose a fact question",
+            new_opinion_question_fact_question_proposal_path(@opinion_question),
+            class: "button contribution-button" %>
+        <% end %>
+      </section>
     <% end %>
   </div>
 </section>

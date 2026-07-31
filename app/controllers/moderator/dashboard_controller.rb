@@ -7,6 +7,9 @@ module Moderator
       @proposals = OpinionQuestionProposal.pending
         .includes(:category)
         .order(:created_at)
+      @fact_proposals = FactQuestionProposal.pending
+        .includes(:opinion_question)
+        .order(:created_at)
     end
   end
 end
