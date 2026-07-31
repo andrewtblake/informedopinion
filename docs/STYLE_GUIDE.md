@@ -41,6 +41,10 @@ Use these classes in the view rather than recreating their declarations under a
 page name. A page-specific class can set width, grid columns, sticky behaviour,
 or the geometry of a unique visualisation.
 
+The Help page is the reference implementation for long-form explanatory copy:
+it uses the standard page, masthead and panel primitives, adding only document
+layout and reading typography.
+
 ## Topic identity
 
 Topics are identified by title, proposition, category and tags—not colour.

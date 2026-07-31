@@ -1,0 +1,115 @@
+<% content_for :title, "Help — Informed Opinion" %>
+
+<section class="help-page ui-page">
+  <div class="container help-container">
+    <header class="ui-masthead">
+      <p class="ui-kicker">About this project</p>
+      <h1>Help</h1>
+      <p>What Informed Opinion is for, how to take part, and how individual answers become a collective knowledge-weighted result.</p>
+    </header>
+
+    <div class="help-layout">
+      <nav class="help-contents ui-panel" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#purpose">Purpose</a></li>
+          <li><a href="#reading">Reading the homepage</a></li>
+          <li><a href="#taking-part">Taking part</a></li>
+          <li><a href="#weight">Opinion weight</a></li>
+          <li><a href="#collective">Collective results</a></li>
+          <li><a href="#ordering">Question order</a></li>
+          <li><a href="#quality">Editorial quality</a></li>
+          <li><a href="#contributing">Contributing questions</a></li>
+          <li><a href="#limits">Limits</a></li>
+        </ol>
+      </nav>
+
+      <article class="help-article">
+        <section id="purpose">
+          <p class="ui-kicker">Purpose</p>
+          <h2>What is Informed Opinion?</h2>
+          <p>Informed Opinion records what people think about consequential and disputed propositions. It then gives each registered opinion a weight based on the person's demonstrated knowledge of facts relevant to that particular proposition.</p>
+          <p>The central public result is therefore not simply a count of votes. It is an attempt to show where participating opinion lies after allowing greater influence to people who can correctly answer more of the relevant factual questions.</p>
+          <p>The site does not require a particular opinion, and knowing more does not guarantee that people will agree. Its purpose is to make the relationship between factual knowledge and public judgement visible.</p>
+        </section>
+
+        <section id="reading">
+          <p class="ui-kicker">Browsing</p>
+          <h2>Reading the homepage</h2>
+          <p>Each homepage entry contains a proposition and an informed aggregate running from <strong>No</strong>, through <strong>Neutral</strong>, to <strong>Yes</strong>. The indicator shows the direction and strength of the current knowledge-weighted result.</p>
+          <p>The accompanying figures state how many people registered an opinion and how many currently carry some knowledge weight. A result based on very few participants should be read cautiously.</p>
+          <p>You can search titles, propositions, categories and tags; browse by category or tag; and order the catalogue by featured position, popularity, controversy or title. You do not need an account merely to read the questions and results.</p>
+        </section>
+
+        <section id="taking-part">
+          <p class="ui-kicker">Participation</p>
+          <h2>How to take part</h2>
+          <ol class="help-steps">
+            <li><strong>Create an account or sign in.</strong> This lets the site retain your opinions and most recent answers.</li>
+            <li><strong>Open an opinion question.</strong> Read the exact proposition rather than relying on its short title.</li>
+            <li><strong>Register your present view.</strong> Choose the response that most closely represents it. You may revise this later.</li>
+            <li><strong>Take the knowledge check.</strong> Each fact question has four choices and appears one at a time.</li>
+            <li><strong>Read the feedback.</strong> After each answer, the site shows whether it was correct, identifies the correct answer, explains it and links to the source.</li>
+            <li><strong>Stop and resume whenever you wish.</strong> My opinions records your position and progress for every topic in which you have participated.</li>
+          </ol>
+        </section>
+
+        <section id="weight">
+          <p class="ui-kicker">Individual calculation</p>
+          <h2>How opinion weight is calculated</h2>
+          <p>Your opinion begins with zero weight. Each fact question has an editorial importance level: <strong>Supporting</strong> (1), <strong>Significant</strong> (2), or <strong>Foundational</strong> (3). The deliberately narrow scale prevents one editorial judgement from dominating an entire quiz.</p>
+          <div class="help-formula ui-panel">
+            <span>Your opinion weight</span>
+            <strong>importance earned from correct answers ÷ total available importance</strong>
+          </div>
+          <p>Only your most recent answer to each fact question counts. Correcting a previous error adds its importance; changing a correct answer to an incorrect one removes it. The site also displays the ordinary unweighted proportion correct so the effect of importance judgements remains visible.</p>
+          <p>Weight is specific to one opinion question. Knowledge demonstrated on Brexit, for example, does not increase the weight of an opinion about climate change.</p>
+        </section>
+
+        <section id="collective">
+          <p class="ui-kicker">Public calculation</p>
+          <h2>How the collective result is calculated</h2>
+          <p>The five possible opinion positions receive values of <strong>+1</strong>, <strong>+0.5</strong>, <strong>0</strong>, <strong>−0.5</strong> and <strong>−1</strong>, running from the strongest agreement with the proposition to the strongest disagreement.</p>
+          <p>Each participant's position value is multiplied by that participant's knowledge weight for the topic. These signed results are added together and divided by the total knowledge weight contributed.</p>
+          <div class="help-formula ui-panel">
+            <span>Collective informed result</span>
+            <strong>sum of position × knowledge weight ÷ total knowledge weight</strong>
+          </div>
+          <p>The result is bounded between −1 (No) and +1 (Yes), with zero as Neutral. An opinion with zero weight does not move the result. A knowledgeable neutral opinion contributes to the denominator but not the signed numerator, drawing the aggregate toward neutral.</p>
+        </section>
+
+        <section id="ordering">
+          <p class="ui-kicker">Evidence sequence</p>
+          <h2>Why fact questions appear in that order</h2>
+          <p>Unseen fact questions take precedence. Because each fact is marked as tending to support the proposition, counter it, or provide mixed context, the early sequence generally begins with evidence less likely to make a participant defensive about their existing view. Context and challenging evidence are introduced progressively rather than withheld.</p>
+          <p>This ordering does not change which questions are available, their correct answers, their importance, or their contribution to weight. It changes only the sequence.</p>
+          <p>After all facts have been seen, the review round gives priority to facts attempted the fewest times. Every fact must advance through a review pass before one can advance again, preventing the same small group from recurring indefinitely. Eligible questions are still randomised, and answer choices are shuffled.</p>
+        </section>
+
+        <section id="quality">
+          <p class="ui-kicker">Editorial standards</p>
+          <h2>Questions, evidence and moderation</h2>
+          <p>Opinion propositions are intended to be clear, specific and answerable on the site's five-position scale. Fact questions should be relevant to the judgement, factually resolvable, clearly worded and supported by an accessible source. Wrong choices should be plausible enough to distinguish knowledge from test-taking technique.</p>
+          <p>Importance and likely direction are editorial assessments and are published alongside the facts rather than hidden. Participants can report a fact as inaccurate, irrelevant or unclear. They can also like an opinion question, or dislike it when they provide a reason.</p>
+          <p>Moderators review reports and proposed material. The interface keeps the focus on the question and requested action rather than on communication between users. The project deliberately provides no user-to-user discussion system.</p>
+        </section>
+
+        <section id="contributing">
+          <p class="ui-kicker">Contributions</p>
+          <h2>Proposing opinion and fact questions</h2>
+          <p>Signed-in users may propose a new opinion question with a title, exact proposition, category, tags, geographic scope and rationale. A moderator may approve it as submitted, approve edited final wording, or decline it.</p>
+          <p>Approval does not make an empty question public. It remains in preparation until it has at least <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> approved fact questions.</p>
+          <p>A participant may propose a fact question for a live opinion after answering every existing fact and obtaining an unweighted score of at least <%= number_with_precision(Rails.configuration.x.fact_question_proposals.minimum_correct_percentage, precision: 0) %>%. Moderators may add facts while a question is still being prepared. Every proposed fact remains subject to editorial review.</p>
+        </section>
+
+        <section id="limits">
+          <p class="ui-kicker">Interpretation</p>
+          <h2>What the results cannot establish</h2>
+          <p>Informed Opinion is not a representative opinion poll unless its participants happen to form a representative sample. Participation is voluntary, and the people who use the site may differ systematically from the wider public.</p>
+          <p>A high knowledge weight shows success on this site's selected facts; it does not prove general expertise, good judgement, sincerity or moral authority. The choice, wording, importance and direction of facts involve editorial judgement even when each factual answer is well sourced.</p>
+          <p>The aggregate is best understood as a transparent description of this participating population under this published question bank—not as proof that the resulting position is correct. If a fact, explanation or source appears defective, use the reporting facility so it can be reviewed.</p>
+        </section>
+      </article>
+    </div>
+  </div>
+</section>

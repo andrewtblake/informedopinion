@@ -34,6 +34,7 @@
           <span>Informed Opinion</span>
         <% end %>
         <nav class="site-nav" aria-label="Account">
+          <%= link_to "Help", help_path, class: "nav-link" %>
           <% if user_signed_in? %>
             <span class="nav-greeting">Hello, <%= current_user.first_name %></span>
             <%= link_to "My opinions", stats_path, class: "nav-link" %>
@@ -62,7 +63,7 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <p><span class="brand-mark brand-mark-small">io</span> Evidence gives an opinion weight.</p>
-        <p>Built with transparent scoring and linked sources.</p>
+        <p><%= link_to "How it works", help_path %> · Built with transparent scoring and linked sources.</p>
       </div>
     </footer>
   </body>

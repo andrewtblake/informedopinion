@@ -724,6 +724,27 @@ h1, h2, h3 {
   font-weight: 800; letter-spacing: .11em; text-transform: uppercase;
 }
 
+/* Help layout; typography and surfaces come from the central primitives. */
+.help-container { width: min(1040px, calc(100% - 40px)); }
+.help-layout { margin-top: 38px; display: grid; grid-template-columns: 220px minmax(0, 1fr); align-items: start; gap: 58px; }
+.help-contents { position: sticky; top: 24px; padding: 18px 20px; }
+.help-contents > strong { display: block; padding-bottom: 9px; border-bottom: 1px solid var(--ui-rule); font-size: 13px; }
+.help-contents ol { margin: 8px 0 0; padding: 0; list-style: none; }
+.help-contents li + li { border-top: 1px solid #e0e4e1; }
+.help-contents a { padding: 7px 0; display: block; color: #405957; font-size: 11px; font-weight: 700; text-decoration: none; }
+.help-contents a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.help-article { min-width: 0; }
+.help-article > section { padding: 4px 0 34px; scroll-margin-top: 24px; }
+.help-article > section + section { padding-top: 31px; border-top: 1px solid var(--ui-border); }
+.help-article h2 { margin-bottom: 15px; font-size: 29px; letter-spacing: -.025em; }
+.help-article p, .help-steps { max-width: 720px; color: #425452; font-size: 14px; line-height: 1.7; }
+.help-steps { margin: 0; padding-left: 22px; }
+.help-steps li { padding: 4px 0 8px 5px; }
+.help-formula { max-width: 720px; margin: 22px 0; padding: 17px 19px; border-left: 3px solid var(--ui-accent); }
+.help-formula span, .help-formula strong { display: block; }
+.help-formula span { margin-bottom: 5px; color: var(--muted); font-size: 9px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.help-formula strong { font-size: 14px; font-weight: 700; }
+
 .site-footer { padding: 32px 0; color: #afbfbc; background: #0c2223; font-size: 13px; }
 .footer-inner { display: flex; align-items: center; justify-content: space-between; }
 .footer-inner p { margin: 0; display: flex; align-items: center; gap: 10px; }
@@ -742,6 +763,7 @@ h1, h2, h3 {
   .participate-grid { grid-template-columns: 1fr; gap: 35px; }
   .topic-reaction-panel { grid-template-columns: 1fr; }
   .proposal-workspace { grid-template-columns: minmax(0, 1fr) 240px; gap: 38px; }
+  .help-layout { grid-template-columns: 180px minmax(0, 1fr); gap: 35px; }
 }
 
 @media (max-width: 640px) {
@@ -802,6 +824,9 @@ h1, h2, h3 {
   .opinion-search-field, .opinion-order-field { width: 100%; min-width: 0; flex: none; }
   .opinion-card-body { grid-template-columns: minmax(0, 1fr) 95px; gap: 12px; }
   .compact-choice-dial { width: 82px; max-width: 82px; }
+  .help-container { width: min(100% - 28px, 1040px); }
+  .help-layout { grid-template-columns: 1fr; gap: 28px; }
+  .help-contents { position: static; }
   .ui-page { padding: 34px 0 70px; }
   .ui-masthead h1 { font-size: 43px; }
   .footer-inner { align-items: flex-start; flex-direction: column; gap: 13px; }

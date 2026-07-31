@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   root "home#index"
+  get "help", to: "pages#help"
   resource :stats, only: :show
   resources :fact_question_flags, only: %i[new create], path: "fact-reports"
   resources :opinion_question_proposals, only: %i[index new create], path: "proposals"
