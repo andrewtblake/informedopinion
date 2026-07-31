@@ -54,21 +54,25 @@
             new_fact_question_flag_path(fact_question_id: @fact_question.id),
             class: "fact-report-link" %>
         </div>
-        <%= link_to opinion_question_quiz_path(@opinion_question), class: "button button-primary button-wide" do %>
-          Next question <span aria-hidden="true">→</span>
-        <% end %>
+        <footer class="quiz-action-footer">
+          <%= link_to opinion_question_quiz_path(@opinion_question), class: "button button-primary button-wide" do %>
+            Next question <span aria-hidden="true">→</span>
+          <% end %>
+        </footer>
       </article>
     <% elsif @fact_question %>
       <article class="quiz-card question-card">
-        <div class="question-meta">
-          <span>Fact question</span>
-          <% if @progress.complete? %><span class="retake-badge">Review round</span><% end %>
-        </div>
-        <h1><%= glossary_text(@fact_question.prompt) %></h1>
-        <aside class="fact-importance">
-          <strong>Importance: <%= @fact_question.importance_label %> (<%= @fact_question.importance_weight %> of 3)</strong>
-          <span><%= @fact_question.importance_rationale %></span>
-        </aside>
+        <header class="quiz-question-heading">
+          <div class="question-meta">
+            <span>Fact question</span>
+            <% if @progress.complete? %><span class="retake-badge">Review round</span><% end %>
+          </div>
+          <h1><%= glossary_text(@fact_question.prompt) %></h1>
+          <aside class="fact-importance">
+            <strong>Importance: <%= @fact_question.importance_label %> (<%= @fact_question.importance_weight %> of 3)</strong>
+            <span><%= @fact_question.importance_rationale %></span>
+          </aside>
+        </header>
         <%= form_with url: opinion_question_fact_responses_path(@opinion_question), class: "answer-form" do |form| %>
           <%= hidden_field_tag :fact_question_id, @fact_question.id %>
           <fieldset>
@@ -81,7 +85,9 @@
               </label>
             <% end %>
           </fieldset>
-          <%= form.submit "Check my answer", class: "button button-primary button-wide" %>
+          <footer class="quiz-action-footer">
+            <%= form.submit "Check my answer", class: "button button-primary button-wide" %>
+          </footer>
         <% end %>
         <p class="quiz-hint">You’ll see the correct answer, an explanation and its source next.</p>
       </article>
