@@ -162,6 +162,42 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     }
     assert proposal.reload.approved?
     assert_equal @moderator, proposal.reviewer
+    assert_equal proposal.title, proposal.final_title
+    assert_equal proposal.statement, proposal.final_statement
+    assert_equal proposal.title, proposal.published_opinion_question.title
+  end
+
+  test "moderator can edit and approve final wording without an exchange" do
+    proposal = @participant.opinion_question_proposals.create!(
+      title: "Original title",
+      statement: "The original proposition should apply.",
+      category: @category,
+      tags_text: "United Kingdom, Public policy",
+      rationale: "This is consequential and contested."
+    )
+    sign_in @moderator, scope: :user
+
+    assert_difference "OpinionQuestion.count", 1 do
+      patch moderator_opinion_question_proposal_path(proposal), params: {
+        opinion_question_proposal: {
+          status: "approved",
+          final_title: "Clear final title",
+          final_statement: "The precisely defined policy should apply."
+        }
+      }
+    end
+
+    proposal.reload
+    assert proposal.edited_on_approval?
+    assert_equal "Approved with editorial changes", proposal.decision_label
+    assert_equal "Clear final title", proposal.published_opinion_question.title
+    assert_equal "The precisely defined policy should apply.", proposal.published_opinion_question.statement
+
+    sign_out @moderator
+    sign_in @participant, scope: :user
+    get opinion_question_proposals_path
+    assert_select ".proposal-record", text: /Approved with editorial changes/
+    assert_select ".proposal-final-wording", text: /Clear final title.*precisely defined policy/m
   end
 
   private
