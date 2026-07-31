@@ -10,6 +10,9 @@ module Moderator
       @fact_proposals = FactQuestionProposal.pending
         .includes(:opinion_question)
         .order(:created_at)
+      @draft_questions = OpinionQuestion.where(live: false)
+        .includes(:fact_questions)
+        .in_display_order
     end
   end
 end

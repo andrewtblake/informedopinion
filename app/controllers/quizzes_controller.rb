@@ -3,6 +3,12 @@ class QuizzesController < ApplicationController
   before_action :set_opinion_question
 
   def show
+    if @opinion_question.fact_questions.empty?
+      redirect_to opinion_question_path(@opinion_question),
+        alert: "This knowledge check is not available until fact questions have been added."
+      return
+    end
+
     @user_opinion = current_user.user_opinions.find_by(opinion_question: @opinion_question)
     unless @user_opinion
       redirect_to opinion_question_path(@opinion_question),
@@ -19,7 +25,8 @@ class QuizzesController < ApplicationController
   private
 
   def set_opinion_question
-    @opinion_question = OpinionQuestion.find_by!(slug: params[:opinion_question_slug])
+    scope = current_user.moderator? ? OpinionQuestion.all : OpinionQuestion.live
+    @opinion_question = scope.find_by!(slug: params[:opinion_question_slug])
   end
 
   def feedback_response

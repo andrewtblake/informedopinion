@@ -17,6 +17,7 @@ class OpinionQuestionsController < ApplicationController
   private
 
   def set_opinion_question
-    @opinion_question = OpinionQuestion.find_by!(slug: params[:slug])
+    scope = current_user&.moderator? ? OpinionQuestion.all : OpinionQuestion.live
+    @opinion_question = scope.find_by!(slug: params[:slug])
   end
 end

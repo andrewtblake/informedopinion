@@ -15,6 +15,8 @@ class StatsController < ApplicationController
     @query = params[:q].to_s.strip
 
     opinions = current_user.user_opinions
+      .joins(:opinion_question)
+      .merge(OpinionQuestion.live)
       .includes(opinion_question: [ :category, :tags, :fact_questions ])
       .to_a
     fact_question_ids = opinions.flat_map { _1.opinion_question.fact_questions.map(&:id) }

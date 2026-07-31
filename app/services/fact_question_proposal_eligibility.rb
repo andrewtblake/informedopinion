@@ -8,10 +8,14 @@ class FactQuestionProposalEligibility
   end
 
   def eligible?
+    return true if user.moderator?
+
     enough_questions? && progress.complete? && progress.raw_weight >= minimum_score
   end
 
   def explanation
+    return "Moderators may add fact questions while an opinion is being prepared." if user.moderator?
+
     return "This question needs at least #{minimum_questions} published fact questions before contributions open." unless enough_questions?
     return "Answer all #{progress.total} published fact questions before proposing another." unless progress.complete?
     return "A score of at least #{formatted_score}% is required; your current score is #{formatted_current_score}%." if progress.raw_weight < minimum_score

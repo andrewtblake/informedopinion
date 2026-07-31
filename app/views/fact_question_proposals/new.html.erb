@@ -50,6 +50,11 @@
           <%= form.url_field :source_url, placeholder: "https://…", required: true %>
         </div>
       </div>
+      <aside class="fact-proposition-reference">
+        <strong>Opinion proposition being assessed</strong>
+        <blockquote><%= @opinion_question.statement %></blockquote>
+        <p>Judge direction against this precise proposition: whether knowing the fact would tend to support it, counter it, or provide mixed context.</p>
+      </aside>
       <div class="fact-assessment-fields">
         <div class="field">
           <%= form.label :importance_weight, "Importance" %>

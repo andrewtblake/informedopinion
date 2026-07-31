@@ -24,7 +24,8 @@ class PublishOpinionQuestionProposal
         category: @proposal.category,
         response_options: RESPONSE_OPTIONS,
         display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
-        accent: "slate"
+        accent: "slate",
+        live: false
       )
       question.tags = @proposal.tag_names.map do |name|
         Tag.find_or_create_by!(slug: name.parameterize) { _1.name = name }

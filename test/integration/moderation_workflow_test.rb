@@ -189,7 +189,7 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
 
     proposal.reload
     assert proposal.edited_on_approval?
-    assert_equal "Approved with editorial changes", proposal.decision_label
+    assert_equal "Approved with editorial changes — being prepared", proposal.decision_label
     assert_equal "Clear final title", proposal.published_opinion_question.title
     assert_equal "The precisely defined policy should apply.", proposal.published_opinion_question.statement
 

@@ -13,8 +13,17 @@ class FactQuestionProposalsController < ApplicationController
       proposal_params.merge(opinion_question: @opinion_question)
     )
     if @proposal.save
-      redirect_to opinion_question_path(@opinion_question),
-        notice: "Your fact question has been sent for moderator review."
+      if current_user.moderator?
+        PublishFactQuestionProposal.new(
+          proposal: @proposal,
+          reviewer: current_user,
+          attributes: proposal_params
+        ).call
+        redirect_to opinion_question_path(@opinion_question), notice: "The fact question has been added."
+      else
+        redirect_to opinion_question_path(@opinion_question),
+          notice: "Your fact question has been sent for moderator review."
+      end
     else
       @previous_proposals = previous_proposals
       render :new, status: :unprocessable_content
@@ -24,7 +33,8 @@ class FactQuestionProposalsController < ApplicationController
   private
 
   def set_opinion_question
-    @opinion_question = OpinionQuestion.find_by!(slug: params[:opinion_question_slug])
+    scope = current_user.moderator? ? OpinionQuestion.all : OpinionQuestion.live
+    @opinion_question = scope.find_by!(slug: params[:opinion_question_slug])
   end
 
   def require_eligibility!

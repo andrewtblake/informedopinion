@@ -58,6 +58,7 @@ class FactQuestionProposalWorkflowTest < ActionDispatch::IntegrationTest
     get new_opinion_question_fact_question_proposal_path(@topic)
     assert_response :success
     assert_select "h1", "Propose a fact question"
+    assert_select ".fact-proposition-reference", text: /The specified policy should be adopted/
     assert_select "input[name='fact_question_proposal[options][]']", count: 4
     assert_select "input[name='fact_question_proposal[correct_option]']", count: 4
 

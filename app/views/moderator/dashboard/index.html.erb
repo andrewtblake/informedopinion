@@ -8,6 +8,25 @@
       <p>Pending reports, proposed opinion questions, and proposed fact questions.</p>
     </header>
 
+    <section class="moderation-section draft-question-section">
+      <header>
+        <h2>Questions being prepared</h2>
+        <span><%= @draft_questions.length %> not live</span>
+      </header>
+      <% @draft_questions.each do |question| %>
+        <article class="moderation-item draft-question-item">
+          <div>
+            <h3><%= question.title %></h3>
+            <p><%= question.fact_questions.length %> of <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> required fact questions</p>
+          </div>
+          <%= link_to "Add fact question",
+            new_opinion_question_fact_question_proposal_path(question),
+            class: "button moderation-approve" %>
+        </article>
+      <% end %>
+      <% if @draft_questions.empty? %><p class="moderation-empty">No opinion questions are awaiting a fact bank.</p><% end %>
+    </section>
+
     <section class="moderation-section">
       <header>
         <h2>Fact-question reports</h2>

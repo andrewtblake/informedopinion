@@ -8,12 +8,13 @@ class HomeController < ApplicationController
   }.freeze
 
   def index
-    all_questions = OpinionQuestion.in_display_order.includes(:category, :tags, :fact_questions).to_a
+    all_questions = OpinionQuestion.live.in_display_order.includes(:category, :tags, :fact_questions).to_a
     @discovery = TopicDiscovery.new(all_questions)
     @popular_questions = @discovery.popular
     @controversial_questions = @discovery.controversial
-    @categories = Category.order(:name).includes(:opinion_questions)
+    @categories = Category.order(:name).includes(:live_opinion_questions)
     @popular_tags = Tag.joins(:opinion_questions)
+      .merge(OpinionQuestion.live)
       .group("tags.id")
       .order(Arel.sql("COUNT(opinion_questions.id) DESC"), :name)
       .limit(12)

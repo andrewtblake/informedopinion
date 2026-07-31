@@ -149,7 +149,7 @@
               <li>
                 <%= link_to root_path(category: category.slug) do %>
                   <span><%= category.name %></span>
-                  <b><%= category.opinion_questions.length %></b>
+                  <b><%= category.live_opinion_questions.length %></b>
                 <% end %>
               </li>
             <% end %>

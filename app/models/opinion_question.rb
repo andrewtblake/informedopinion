@@ -13,6 +13,12 @@ class OpinionQuestion < ApplicationRecord
   validates :response_options, length: { is: 5 }
 
   scope :in_display_order, -> { order(:display_order) }
+  scope :live, -> { where(live: true) }
+
+  def publish_if_fact_bank_ready!
+    minimum = Rails.configuration.x.fact_question_proposals.minimum_existing_questions
+    update!(live: true) if !live? && fact_questions.count >= minimum
+  end
 
   def response_label(position)
     response_options.fetch(position)

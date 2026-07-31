@@ -22,8 +22,9 @@ class OpinionQuestionProposal < ApplicationRecord
   end
 
   def decision_label
-    return "Approved with editorial changes" if edited_on_approval?
+    label = edited_on_approval? ? "Approved with editorial changes" : status.humanize
+    return "#{label} — being prepared" if approved? && !published_opinion_question&.live?
 
-    status.humanize
+    label
   end
 end

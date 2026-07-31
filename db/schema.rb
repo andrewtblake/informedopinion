@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_31_193000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_31_205500) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -152,6 +152,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_193000) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.integer "display_order", default: 0, null: false
+    t.boolean "live", default: true, null: false
     t.json "response_options", null: false
     t.string "slug", null: false
     t.text "statement", null: false
@@ -159,6 +160,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_193000) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_opinion_questions_on_category_id"
     t.index ["display_order"], name: "index_opinion_questions_on_display_order", unique: true
+    t.index ["live"], name: "index_opinion_questions_on_live"
     t.index ["slug"], name: "index_opinion_questions_on_slug", unique: true
   end
 
