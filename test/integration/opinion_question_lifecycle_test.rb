@@ -1,4 +1,5 @@
 require "test_helper"
+require Rails.root.join("db/migrate/20260731212500_reconcile_approved_opinion_question_drafts")
 
 class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
   setup do
@@ -83,6 +84,28 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
     assert_equal 10, question.fact_questions.count
     get root_path
     assert_includes response.body, question.title
+  end
+
+  test "legacy approved proposals and empty live questions are reconciled as drafts" do
+    accidental_live_question = create_question(live: true)
+    legacy_proposal = @participant.opinion_question_proposals.create!(
+      title: "Legacy Moon proposal",
+      statement: "Humans landed on the Moon.",
+      category: @category,
+      tags_text: "Moon, Space",
+      rationale: "The claim can be assessed using physical evidence.",
+      status: :approved,
+      reviewer: @moderator,
+      reviewed_at: Time.current
+    )
+
+    ReconcileApprovedOpinionQuestionDrafts.new.up
+
+    assert_not accidental_live_question.reload.live?
+    published = legacy_proposal.reload.published_opinion_question
+    assert_not_nil published
+    assert_not published.live?
+    assert_equal [ "Moon", "Space" ], published.tags.order(:name).pluck(:name)
   end
 
   private
