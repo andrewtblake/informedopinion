@@ -398,7 +398,7 @@ h1, h2, h3 {
 .feedback-status h1 { margin: 0; color: var(--accent); font-size: clamp(25px, 4vw, 34px); line-height: 1; }
 .feedback-incorrect .feedback-status h1 { color: #b84d40; }
 .feedback-question { margin: 28px 0 20px; padding: 16px 18px; border-radius: 2px; background: #f2f4f1; font-weight: 600; }
-.answer-comparison { margin-bottom: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.answer-comparison { margin: 12px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .answer-comparison p { margin: 0; padding: 15px; border: 1px solid #edd0cc; border-radius: 2px; }
 .answer-comparison p:last-child { border-color: #afe0d5; }
 .answer-comparison span { display: block; margin-bottom: 5px; color: var(--muted); font-size: 10px; font-weight: 800; text-transform: uppercase; }
