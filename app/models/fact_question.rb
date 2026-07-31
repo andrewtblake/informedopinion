@@ -1,5 +1,10 @@
 class FactQuestion < ApplicationRecord
-  DIRECTIONS = [ -1, 0, 1 ].freeze
+  VALENCES = {
+    -1 => "Counters the proposition",
+    0 => "Contextual or mixed",
+    1 => "Supports the proposition"
+  }.freeze
+  DIRECTIONS = VALENCES.keys.freeze
   IMPORTANCE_LEVELS = {
     1 => "Supporting",
     2 => "Significant",
@@ -26,6 +31,10 @@ class FactQuestion < ApplicationRecord
 
   def importance_label
     IMPORTANCE_LEVELS.fetch(importance_weight)
+  end
+
+  def valence_label
+    VALENCES.fetch(evidence_direction)
   end
 
   private

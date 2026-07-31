@@ -1,4 +1,16 @@
 class NextFactQuestion
+  # The opening questions affirm the user's present position. Contextual facts
+  # are introduced almost immediately, and counter-attitudinal evidence begins
+  # in the first third before becoming progressively more frequent.
+  VALENCE_PATTERN = %i[
+    supportive supportive neutral supportive neutral
+    supportive neutral challenging supportive neutral
+    challenging supportive neutral challenging neutral
+    supportive challenging neutral challenging supportive
+    challenging neutral challenging supportive challenging
+    neutral challenging challenging neutral challenging
+  ].freeze
+
   def initialize(user:, opinion_question:, user_opinion:)
     @user = user
     @opinion_question = opinion_question
@@ -22,17 +34,45 @@ class NextFactQuestion
   end
 
   def ordered_questions
-    direction = user_opinion.stance <=> 0
+    priorities = direction_priorities
 
     opinion_question.fact_questions
       .reorder(
         Arel.sql(
           ActiveRecord::Base.sanitize_sql_array(
             [ "CASE WHEN evidence_direction = ? THEN 0 " \
-             "WHEN evidence_direction = 0 THEN 1 ELSE 2 END, RANDOM()", direction ]
+             "WHEN evidence_direction = ? THEN 1 ELSE 2 END, RANDOM()", *priorities.first(2) ]
           )
         )
       )
+  end
+
+  def direction_priorities
+    stance = user_opinion.stance <=> 0
+    position = [ response_question_ids.count, VALENCE_PATTERN.length - 1 ].min
+
+    if stance.zero?
+      neutral_priorities(position)
+    else
+      attitude_priorities(stance, VALENCE_PATTERN.fetch(position))
+    end
+  end
+
+  def attitude_priorities(stance, preferred)
+    case preferred
+    when :supportive
+      [ stance, 0, -stance ]
+    when :neutral
+      [ 0, stance, -stance ]
+    else
+      [ -stance, 0, stance ]
+    end
+  end
+
+  def neutral_priorities(position)
+    return [ 0, 1, -1 ] if position < 2
+
+    position.even? ? [ 1, 0, -1 ] : [ -1, 0, 1 ]
   end
 
   def response_question_ids
