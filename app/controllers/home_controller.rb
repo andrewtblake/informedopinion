@@ -69,7 +69,7 @@ class HomeController < ApplicationController
     when "title"
       questions.sort_by { [ _1.title.downcase, _1.id ] }
     else
-      questions.sort_by { [ _1.display_order, _1.id ] }
+      FeaturedQuestionRanker.new(questions).rank
     end
   end
 end

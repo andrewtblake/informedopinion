@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_31_223000) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_31_224600) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -154,7 +154,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_223000) do
     t.integer "category_id"
     t.datetime "created_at", null: false
     t.integer "display_order", default: 0, null: false
+    t.integer "featured_priority", default: 0, null: false
     t.boolean "live", default: true, null: false
+    t.datetime "published_at"
     t.json "response_options", null: false
     t.string "slug", null: false
     t.text "statement", null: false
@@ -164,6 +166,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_223000) do
     t.index ["display_order"], name: "index_opinion_questions_on_display_order", unique: true
     t.index ["live"], name: "index_opinion_questions_on_live"
     t.index ["slug"], name: "index_opinion_questions_on_slug", unique: true
+    t.check_constraint "featured_priority BETWEEN -10 AND 10", name: "opinion_questions_featured_priority_range"
   end
 
   create_table "tags", force: :cascade do |t|

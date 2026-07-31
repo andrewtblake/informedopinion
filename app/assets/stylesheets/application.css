@@ -608,6 +608,20 @@ h1, h2, h3 {
 .moderation-approve { border-color: var(--teal-dark); color: white; background: var(--teal-dark); }
 .moderation-decline { border-color: #8b615b; color: #70453f; background: white; }
 .moderation-empty { padding: 25px 0; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
+.moderation-guidance { max-width: 780px; margin: 14px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.featured-order-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.featured-order-list li { min-height: 66px; padding: 10px 0; display: grid; grid-template-columns: 28px minmax(220px, 1fr) 90px auto; align-items: center; gap: 14px; border-bottom: 1px solid var(--line); }
+.featured-rank { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.featured-question-summary strong, .featured-question-summary span { display: block; }
+.featured-question-summary strong { font-size: 14px; }
+.featured-question-summary span, .featured-adjustment { margin-top: 3px; color: var(--muted); font-size: 10px; }
+.featured-adjustment { text-align: right; font-variant-numeric: tabular-nums; }
+.featured-order-actions { display: flex; justify-content: flex-end; gap: 5px; }
+.featured-order-actions form { margin: 0; }
+.editorial-control { min-height: 32px; padding: 0 10px; border: 1px solid #607673; color: var(--teal-dark); background: transparent; font: inherit; font-size: 10px; font-weight: 750; cursor: pointer; }
+.editorial-control:hover { background: #edf2ef; }
+.editorial-control:disabled { opacity: .35; cursor: default; }
+.editorial-control-muted { border-color: var(--line); color: var(--muted); }
 .draft-question-item { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
 .draft-question-item h3 { margin-bottom: 3px; }
 .draft-question-item > div > p { margin: 0; color: var(--muted); font-size: 11px; }
@@ -714,6 +728,9 @@ h1, h2, h3 {
   .proposal-record { grid-template-columns: minmax(0, 1fr) 90px; gap: 16px; }
   .fact-contribution-panel { align-items: flex-start; flex-direction: column; gap: 15px; }
   .draft-question-item { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .featured-order-list li { grid-template-columns: 24px minmax(0, 1fr); gap: 9px; }
+  .featured-adjustment { grid-column: 2; text-align: left; }
+  .featured-order-actions { grid-column: 2; justify-content: flex-start; flex-wrap: wrap; }
   .fact-source-fields, .fact-assessment-fields, .moderation-inline-fields { grid-template-columns: 1fr; }
   .opinions-tools { align-items: stretch; flex-direction: column; }
   .opinion-search-field, .opinion-order-field { width: 100%; min-width: 0; flex: none; }

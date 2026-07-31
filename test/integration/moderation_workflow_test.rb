@@ -167,6 +167,23 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_equal proposal.title, proposal.published_opinion_question.title
   end
 
+  test "moderator adjusts the homepage featured order" do
+    sign_in @moderator, scope: :user
+
+    get moderator_root_path
+    assert_response :success
+    assert_select "#featured-order", text: /Homepage featured order.*#{@topic.title}/m
+    assert_select "form[action='#{moderator_featured_question_path(@topic)}']", minimum: 2
+
+    patch moderator_featured_question_path(@topic), params: { adjustment: 1 }
+
+    assert_redirected_to moderator_root_path(anchor: "featured-order")
+    assert_equal 1, @topic.reload.featured_priority
+
+    patch moderator_featured_question_path(@topic), params: { adjustment: "reset" }
+    assert_equal 0, @topic.reload.featured_priority
+  end
+
   test "moderator can edit and approve final wording without an exchange" do
     proposal = @participant.opinion_question_proposals.create!(
       title: "Original title",

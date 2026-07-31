@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :fact_question_flags, only: :update
     resources :opinion_question_proposals, only: :update
     resources :fact_question_proposals, only: :update
+    resources :featured_questions, only: :update
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

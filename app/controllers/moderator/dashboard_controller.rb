@@ -13,6 +13,10 @@ module Moderator
       @draft_questions = OpinionQuestion.where(live: false)
         .includes(:fact_questions)
         .in_display_order
+      @featured_ranker = FeaturedQuestionRanker.new(
+        OpinionQuestion.live.includes(:category).to_a
+      )
+      @featured_questions = @featured_ranker.rank
     end
   end
 end

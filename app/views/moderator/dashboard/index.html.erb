@@ -27,6 +27,39 @@
       <% if @draft_questions.empty? %><p class="moderation-empty">No opinion questions are awaiting a fact bank.</p><% end %>
     </section>
 
+    <section class="moderation-section featured-order-section" id="featured-order">
+      <header>
+        <h2>Homepage featured order</h2>
+        <span><%= @featured_questions.length %> live</span>
+      </header>
+      <p class="moderation-guidance">
+        The baseline rewards informed participation, measured disagreement and recent publication, while avoiding consecutive questions from one category. Editorial adjustments are deliberately bounded and can be reset.
+      </p>
+      <ol class="featured-order-list">
+        <% @featured_questions.each_with_index do |question, index| %>
+          <% metric = @featured_ranker.metric(question) %>
+          <li>
+            <span class="featured-rank"><%= index + 1 %></span>
+            <div class="featured-question-summary">
+              <strong><%= question.title %></strong>
+              <span><%= question.category&.name || "Uncategorised" %> · <%= metric.informed_respondents %> informed · <%= metric.respondents %> registered</span>
+            </div>
+            <span class="featured-adjustment">Editorial <%= question.featured_priority.positive? ? "+" : "" %><%= question.featured_priority %></span>
+            <div class="featured-order-actions">
+              <%= button_to "Demote", moderator_featured_question_path(question), method: :patch,
+                params: { adjustment: -1 }, class: "editorial-control", disabled: question.featured_priority <= -10 %>
+              <% if question.featured_priority != 0 %>
+                <%= button_to "Reset", moderator_featured_question_path(question), method: :patch,
+                  params: { adjustment: "reset" }, class: "editorial-control editorial-control-muted" %>
+              <% end %>
+              <%= button_to "Promote", moderator_featured_question_path(question), method: :patch,
+                params: { adjustment: 1 }, class: "editorial-control", disabled: question.featured_priority >= 10 %>
+            </div>
+          </li>
+        <% end %>
+      </ol>
+    </section>
+
     <section class="moderation-section">
       <header>
         <h2>Fact-question reports</h2>
