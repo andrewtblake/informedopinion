@@ -30,7 +30,7 @@ class NextFactQuestion
   end
 
   def answered
-    ordered_questions.where(id: response_question_ids)
+    ordered_questions.where(id: least_reviewed_question_ids)
   end
 
   def ordered_questions
@@ -76,9 +76,20 @@ class NextFactQuestion
   end
 
   def response_question_ids
+    topic_responses.select(:fact_question_id)
+  end
+
+  def least_reviewed_question_ids
+    minimum_attempts = topic_responses.minimum(:attempt_count)
+
+    topic_responses
+      .where(attempt_count: minimum_attempts)
+      .select(:fact_question_id)
+  end
+
+  def topic_responses
     user.fact_responses
       .joins(:fact_question)
       .where(fact_questions: { opinion_question_id: opinion_question.id })
-      .select(:fact_question_id)
   end
 end

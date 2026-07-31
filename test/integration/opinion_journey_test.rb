@@ -52,6 +52,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     post opinion_question_fact_responses_path(@topic),
       params: { fact_question_id: @fact.id, selected_option: 0 }
     fact_response = @user.fact_responses.find_by!(fact_question: @fact)
+    assert_equal 1, fact_response.attempt_count
     assert_redirected_to opinion_question_quiz_path(@topic, feedback: fact_response.id)
 
     follow_redirect!
@@ -71,6 +72,18 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_redirected_to opinion_question_path(@topic)
     assert_equal 3, @user.user_opinions.find_by!(opinion_question: @topic).position
     assert_equal 100.0, OpinionProgress.new(@user, @topic).weight
+  end
+
+  test "answering a fact again increments its attempt count" do
+    sign_in @user, scope: :user
+    @user.user_opinions.create!(opinion_question: @topic, position: 1)
+
+    2.times do
+      post opinion_question_fact_responses_path(@topic),
+        params: { fact_question_id: @fact.id, selected_option: 0 }
+    end
+
+    assert_equal 2, @user.fact_responses.find_by!(fact_question: @fact).attempt_count
   end
 
   test "incorrect feedback uses the same compact hierarchy" do

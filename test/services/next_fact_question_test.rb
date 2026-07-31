@@ -54,6 +54,28 @@ class NextFactQuestionTest < ActiveSupport::TestCase
     assert_equal [ -1, -1, 0, -1, 0, -1, 0, 1 ], observed
   end
 
+  test "reviews every question once before repeating one" do
+    @topic.fact_questions.each { |question| create_response(question) }
+
+    reviewed_ids = @topic.fact_questions.count.times.map do
+      question = service.call
+      response = @user.fact_responses.find_by!(fact_question: question)
+      response.update!(attempt_count: response.attempt_count + 1, answered_at: Time.current)
+      question.id
+    end
+
+    assert_equal @topic.fact_questions.count, reviewed_ids.uniq.count
+    assert_equal [ 2 ], @user.fact_responses.distinct.pluck(:attempt_count)
+  end
+
+  test "prefers facts with fewer attempts in a review round" do
+    @topic.fact_questions.each { |question| create_response(question) }
+    already_reviewed = @topic.fact_questions.first
+    @user.fact_responses.find_by!(fact_question: already_reviewed).update!(attempt_count: 2)
+
+    refute_equal already_reviewed, service.call
+  end
+
   private
 
   def service
@@ -64,6 +86,7 @@ class NextFactQuestionTest < ActiveSupport::TestCase
     @user.fact_responses.create!(
       fact_question: question,
       selected_option: 0,
+      attempt_count: 1,
       weight_before: 0,
       weight_after: 0,
       answered_at: Time.current

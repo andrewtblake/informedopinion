@@ -30,6 +30,7 @@ class FactResponsesController < ApplicationController
     FactResponse.transaction do
       response.assign_attributes(
         selected_option: params[:selected_option],
+        attempt_count: response.attempt_count + 1,
         weight_before: before,
         weight_after: before,
         answered_at: Time.current
