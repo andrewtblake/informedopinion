@@ -14,6 +14,7 @@ require_relative "seeds/gaza"
 require_relative "seeds/assisted_dying"
 require_relative "seeds/echr_withdrawal"
 require_relative "seeds/grey_belt_housing"
+require_relative "seeds/plausible_distractor_calibrations"
 
 category_names = [
   "Economics",

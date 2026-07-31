@@ -113,26 +113,44 @@ end
   ECHR_WITHDRAWAL_FACTS.fetch(index)[:importance_weight] = 1
 end
 
-# Avoid encoding the correct response in answer length.
-{
-  1 => [ 0, "Yes; it is an institution created and governed entirely by European Union law" ],
-  5 => [ 2, "All detention, prosecution and punishment following a criminal conviction" ],
-  7 => [ 0, "An unqualified entitlement that defeats every competing public interest" ],
-  9 => [ 2, "Ask Parliament and the United Nations to reconsider the case together" ],
-  10 => [ 0, "Yes; it rehearses all evidence and corrects every domestic factual or legal error" ],
-  11 => [ 1, "A fixed percentage added to every damages award made by an international court" ],
-  12 => [ 3, "It transfers the final interpretation of every Act of Parliament to an overseas court" ],
-  13 => [ 0, "Yes; any judge can permanently invalidate primary legislation without an appeal" ],
-  14 => [ 3, "To refer every disputed administrative decision to the Strasbourg Court before acting" ],
-  16 => [ 2, "The United Kingdom's Electoral Commission acting with the Supreme Court" ],
-  17 => [ 0, "A final determination that permanently resolves the whole underlying application" ],
-  19 => [ 0, "Twenty-four months followed by a mandatory referendum in every constituent nation" ],
-  22 => [ 0, "The Maastricht Treaty establishing the institutions and citizenship of the European Union" ],
-  24 => [ 2, "The euro convergence rules governing national deficits, debt and monetary policy" ],
-  26 => [ 0, "Yes; nearly every lodged application proceeds to judgment and establishes a violation" ],
-  27 => [ 1, "Only after both Houses approve the precise incompatibility by a two-thirds majority" ],
-  28 => [ 3, "Power to repeal every domestic court judgment, statute and common-law rule automatically" ],
-  29 => [ 3, "Choosing whether internationally recognised rights should have any legal definition at all" ]
-}.each do |question_index, (option_index, text)|
-  ECHR_WITHDRAWAL_FACTS.fetch(question_index)[:options][option_index] = text
+# Every wrong answer is a nearby institutional, legal or numerical alternative.
+# This makes the bank test knowledge rather than the ability to reject jokes or
+# answers from an obviously unrelated domain.
+[
+  [ "European Convention on Human Rights", "European Charter of Human Rights", "European Commission for Human Rights", "European Court of Human Rights" ],
+  [ "Yes; it is the EU's human-rights court", "No; it belongs to the separate Council of Europe system", "It became an EU institution under the Lisbon Treaty", "Only EU member states can be parties to it" ],
+  [ "France", "Ireland", "The United Kingdom", "The United States" ],
+  [ "The Court of Justice of the European Union", "The UK Supreme Court", "The Council of Europe's Committee of Ministers", "The European Court of Human Rights" ],
+  [ "The right to life", "The right to liberty and security", "The right to a fair trial", "The right to private and family life" ],
+  [ "Arbitrary arrest or detention", "Torture and inhuman or degrading treatment", "Discrimination in access to Convention rights", "Unjustified interference with private life" ],
+  [ "Yes, where national security outweighs the individual's risk", "Yes, after a domestic court finds removal proportionate", "No", "Only during a formally declared public emergency" ],
+  [ "A procedural right requiring only a fair hearing", "A right reserved to citizens and settled residents", "An absolute right allowing no state interference", "A qualified right permitting proportionate lawful interference" ],
+  [ "No", "Yes; family life always prevents deportation", "Yes; once the offender has lived in the UK for ten years", "No; Article 8 has no application to immigration decisions" ],
+  [ "Obtain permission from the Committee of Ministers", "Use effective domestic remedies", "Secure a reference from the UK Supreme Court", "Ask the UK Government to waive admissibility rules" ],
+  [ "Yes; it is a general appeal on disputed facts and domestic law", "Yes, after every route of appeal in the UK has been attempted", "No; an arguable Convention violation is required", "No; only governments may bring applications" ],
+  [ "The time allowed for a state to implement a judgment", "The range of damages available for a Convention violation", "The difference between a majority and unanimous judgment", "Discretion left to national authorities in applying some Convention rights" ],
+  [ "It lets them apply Convention rights in domestic proceedings", "It requires them to treat every Strasbourg decision as primary legislation", "It gives them a general power to invalidate Acts of Parliament", "It limits Convention arguments to cases already decided in Strasbourg" ],
+  [ "Yes; any court may disapply primary legislation", "No; higher courts can issue a declaration of incompatibility", "Yes; but only where Strasbourg has already found a violation", "No; courts cannot formally identify an incompatibility" ],
+  [ "To follow Strasbourg case law as if it were an Act of Parliament", "To disregard legislation that conflicts with a Convention right", "To act compatibly with Convention rights unless legislation prevents it", "To obtain judicial approval before limiting a qualified right" ],
+  [ "No; they are formally advisory", "Only if the Grand Chamber decided the case", "Only after the Committee of Ministers adopts the judgment", "Yes" ],
+  [ "The Council of Europe's Committee of Ministers", "The Parliamentary Assembly of the Council of Europe", "The European Court of Human Rights itself", "The European Commission" ],
+  [ "A final ruling on whether a Convention violation occurred", "An urgent temporary indication intended to prevent irreparable harm", "A procedure for referring a case to the Grand Chamber", "A timetable agreed for implementing a final judgment" ],
+  [ "Yes; the Act would cease to have effect on withdrawal", "Yes; but only after the six-month notice period", "No; Parliament would need to decide domestic-law changes", "No; the Act is legally incapable of amendment or repeal" ],
+  [ "Three months", "One month", "Two years", "Six months" ],
+  [ "No", "Yes; withdrawal ends jurisdiction over every pending allegation", "Only final judgments remain enforceable", "Only allegations already filed with the Court survive" ],
+  [ "Yes; all European and UN treaty obligations depend on ECHR membership", "No", "Only obligations enforced by international courts would remain", "Only customary international law would remain" ],
+  [ "The Sunningdale Agreement", "The Downing Street Declaration", "The Belfast/Good Friday Agreement", "The St Andrews Agreement" ],
+  [ "No; Convention compliance appears only in the Human Rights Act", "No; the settlements reserve all human-rights matters to Westminster", "Only Northern Ireland's settlement refers to Convention rights", "Yes" ],
+  [ "The Trade and Cooperation Agreement", "The Withdrawal Agreement", "The Windsor Framework", "The European Economic Area Agreement" ],
+  [ "Yes; UN membership requires continued Council of Europe membership", "No", "Only its permanent Security Council seat would end", "Not automatically; the General Assembly would first reconsider membership" ],
+  [ "Yes; most admissible and inadmissible applications end in a violation finding", "About half do", "No; many are inadmissible or struck out", "The published statistics do not distinguish judgments from other disposals" ],
+  [ "No; parliamentary procedure prevents an incompatible bill becoming law", "Only after both Houses expressly waive the Convention right", "Only devolved legislatures can enact incompatible legislation", "Yes domestically, though doing so may breach international obligations" ],
+  [ "Freedom from binding Strasbourg adjudication under this treaty", "Freedom from the interpretive duties in the Human Rights Act alone", "Control over which other Council of Europe treaties bind the UK", "Power to prevent UK courts considering international human-rights law" ],
+  [ "Whether withdrawal would by itself reduce irregular migration", "Greater national control versus common external rights supervision and associated constitutional cooperation", "Whether domestic courts or Parliament should define every right without reference to case law", "Whether economic cooperation with Europe requires political union" ]
+].each_with_index do |options, question_index|
+  fact = ECHR_WITHDRAWAL_FACTS.fetch(question_index)
+  correct_answer = fact[:options].fetch(fact[:correct_option])
+  raise "ECHR question #{question_index + 1} changed its correct answer" unless options.fetch(fact[:correct_option]) == correct_answer
+
+  fact[:options] = options
 end

@@ -15,6 +15,7 @@ require Rails.root.join("db/seeds/gaza")
 require Rails.root.join("db/seeds/assisted_dying")
 require Rails.root.join("db/seeds/echr_withdrawal")
 require Rails.root.join("db/seeds/grey_belt_housing")
+require Rails.root.join("db/seeds/plausible_distractor_calibrations")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
@@ -89,6 +90,39 @@ class SeedContentTest < ActiveSupport::TestCase
     TOPICS.each do |topic, facts|
       assert facts.all? { |fact| fact[:source_name].present? && fact[:source_url].start_with?("https://") },
         "#{topic} questions should link to named source material"
+    end
+  end
+
+  test "every fact declares its likely evidential valence" do
+    TOPICS.each do |topic, facts|
+      assert facts.all? { |fact| FactQuestion::VALENCES.key?(fact[:evidence_direction]) },
+        "#{topic} facts should say whether they support, counter or contextualise the proposition"
+    end
+  end
+
+  test "distractor review covers every question bank and removes conspicuous joke cues" do
+    fully_reviewed = %i[echr_withdrawal voting_reform nuclear_power]
+    targeted_reviewed = PlausibleDistractorCalibration::TARGETED_OPTIONS.keys
+
+    assert_equal(
+      %i[
+        assisted_dying brexit climate death_penalty flat_earth gaza
+        grey_belt gun_control minimum_wage wealth_tax
+      ].sort,
+      targeted_reviewed.sort
+    )
+    assert_equal %i[echr_withdrawal nuclear_power voting_reform], fully_reviewed.sort
+
+    banned_cues = /
+      astrology|school\ district|time\ zone|charitable\ donations|
+      estate\ agents|two\ separate\ Suns|newspaper\ editorial|
+      pharmaceutical\ manufacturer|voting\ record\ of\ their\ MP|
+      replacing\ homes\ with\ hotels|doctors\ use\ different\ calendars
+    /ix
+
+    TOPICS.each do |topic, facts|
+      assert facts.flat_map { _1[:options] }.none? { _1.match?(banned_cues) },
+        "#{topic} should not contain conspicuously unserious distractors"
     end
   end
 
