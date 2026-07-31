@@ -38,5 +38,10 @@ module InformedOpinion
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.x.fact_question_proposals.minimum_existing_questions =
+      ENV.fetch("FACT_PROPOSAL_MINIMUM_QUESTIONS", 10).to_i
+    config.x.fact_question_proposals.minimum_correct_percentage =
+      ENV.fetch("FACT_PROPOSAL_MINIMUM_SCORE", 90).to_f
   end
 end

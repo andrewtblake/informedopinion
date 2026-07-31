@@ -4,6 +4,7 @@ class OpinionQuestion < ApplicationRecord
   has_many :user_opinions, dependent: :destroy
   has_many :opinion_question_reactions, dependent: :destroy
   has_many :opinion_question_tags, dependent: :destroy
+  has_many :fact_question_proposals, dependent: :destroy
   has_many :tags, through: :opinion_question_tags
 
   validates :slug, :title, :statement, :accent, presence: true

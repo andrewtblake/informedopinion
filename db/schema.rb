@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_29_094600) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_31_193000) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -36,6 +36,35 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_29_094600) do
     t.index ["status"], name: "index_fact_question_flags_on_status"
     t.index ["user_id", "fact_question_id", "category"], name: "index_fact_flags_on_user_question_category", unique: true
     t.index ["user_id"], name: "index_fact_question_flags_on_user_id"
+  end
+
+  create_table "fact_question_proposals", force: :cascade do |t|
+    t.integer "correct_option", null: false
+    t.datetime "created_at", null: false
+    t.integer "evidence_direction", null: false
+    t.text "explanation", null: false
+    t.text "importance_rationale", null: false
+    t.integer "importance_weight", null: false
+    t.integer "opinion_question_id", null: false
+    t.json "options", null: false
+    t.text "prompt", null: false
+    t.integer "proposer_id", null: false
+    t.integer "published_fact_question_id"
+    t.text "review_notes"
+    t.datetime "reviewed_at"
+    t.integer "reviewer_id"
+    t.string "source_name", null: false
+    t.string "source_url", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["opinion_question_id"], name: "index_fact_question_proposals_on_opinion_question_id"
+    t.index ["proposer_id"], name: "index_fact_question_proposals_on_proposer_id"
+    t.index ["published_fact_question_id"], name: "index_fact_question_proposals_on_published_fact_question_id"
+    t.index ["reviewer_id"], name: "index_fact_question_proposals_on_reviewer_id"
+    t.index ["status"], name: "index_fact_question_proposals_on_status"
+    t.check_constraint "correct_option BETWEEN 0 AND 3", name: "fact_question_proposals_correct_option_range"
+    t.check_constraint "evidence_direction BETWEEN -1 AND 1", name: "fact_question_proposals_evidence_direction_range"
+    t.check_constraint "importance_weight BETWEEN 1 AND 3", name: "fact_question_proposals_importance_weight_range"
   end
 
   create_table "fact_questions", force: :cascade do |t|
@@ -75,8 +104,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_29_094600) do
   create_table "opinion_question_proposals", force: :cascade do |t|
     t.integer "category_id", null: false
     t.datetime "created_at", null: false
+    t.text "final_statement"
+    t.string "final_title"
     t.string "geographic_scope"
     t.integer "proposer_id", null: false
+    t.integer "published_opinion_question_id"
     t.text "rationale", null: false
     t.text "review_notes"
     t.datetime "reviewed_at"
@@ -88,6 +120,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_29_094600) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_opinion_question_proposals_on_category_id"
     t.index ["proposer_id"], name: "index_opinion_question_proposals_on_proposer_id"
+    t.index ["published_opinion_question_id"], name: "idx_on_published_opinion_question_id_d5b4d5e97a"
     t.index ["reviewer_id"], name: "index_opinion_question_proposals_on_reviewer_id"
     t.index ["status"], name: "index_opinion_question_proposals_on_status"
   end
@@ -168,10 +201,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_29_094600) do
   add_foreign_key "fact_question_flags", "fact_questions"
   add_foreign_key "fact_question_flags", "users"
   add_foreign_key "fact_question_flags", "users", column: "reviewer_id"
+  add_foreign_key "fact_question_proposals", "fact_questions", column: "published_fact_question_id"
+  add_foreign_key "fact_question_proposals", "opinion_questions"
+  add_foreign_key "fact_question_proposals", "users", column: "proposer_id"
+  add_foreign_key "fact_question_proposals", "users", column: "reviewer_id"
   add_foreign_key "fact_questions", "opinion_questions"
   add_foreign_key "fact_responses", "fact_questions"
   add_foreign_key "fact_responses", "users"
   add_foreign_key "opinion_question_proposals", "categories"
+  add_foreign_key "opinion_question_proposals", "opinion_questions", column: "published_opinion_question_id"
   add_foreign_key "opinion_question_proposals", "users", column: "proposer_id"
   add_foreign_key "opinion_question_proposals", "users", column: "reviewer_id"
   add_foreign_key "opinion_question_reactions", "opinion_questions"

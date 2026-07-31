@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :fact_question_flags, dependent: :destroy
   has_many :opinion_question_reactions, dependent: :destroy
   has_many :opinion_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
+  has_many :fact_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
 
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }
 
