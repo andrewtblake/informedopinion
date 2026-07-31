@@ -1,8 +1,8 @@
 <% content_for :title, "My opinions — Informed Opinion" %>
 
-<section class="editorial-home opinions-page">
+<section class="editorial-home opinions-page ui-page">
   <div class="container">
-    <header class="editorial-masthead opinions-masthead">
+    <header class="editorial-masthead opinions-masthead ui-masthead">
       <p class="editorial-kicker">Personal record</p>
       <h1>My opinions</h1>
       <p>Your registered positions and the knowledge weight currently assigned to each.</p>
@@ -45,7 +45,7 @@
         <% progress = record[:progress] %>
         <% arrow_x, arrow_y = opinion_arrow_endpoint(opinion, progress.weight) %>
 
-        <article class="opinion-card topic-<%= question.accent %>">
+        <article class="opinion-card">
           <div class="opinion-card-taxonomy">
             <% if question.category %>
               <span><%= question.category.name %></span>

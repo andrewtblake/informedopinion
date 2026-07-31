@@ -1,6 +1,6 @@
 <% content_for :title, "#{@opinion_question.title} knowledge check — Informed Opinion" %>
 
-<section class="quiz-page topic-<%= @opinion_question.accent %>">
+<section class="quiz-page ui-page">
   <div class="container quiz-container">
     <div class="quiz-header">
       <div>
@@ -19,7 +19,7 @@
     </div>
 
     <% if @feedback %>
-      <article class="quiz-card feedback-card <%= @feedback.correct? ? "feedback-correct" : "feedback-incorrect" %>">
+      <article class="quiz-card ui-sheet ui-sheet-emphasis feedback-card <%= @feedback.correct? ? "feedback-correct" : "feedback-incorrect" %>">
         <div class="feedback-status">
           <span class="status-icon" aria-hidden="true"><%= @feedback.correct? ? "✓" : "×" %></span>
           <h1><%= @feedback.correct? ? "Correct" : "Incorrect" %></h1>
@@ -54,14 +54,14 @@
             new_fact_question_flag_path(fact_question_id: @fact_question.id),
             class: "fact-report-link" %>
         </div>
-        <footer class="quiz-action-footer">
+        <footer class="quiz-action-footer ui-action-footer">
           <%= link_to opinion_question_quiz_path(@opinion_question), class: "button button-primary button-wide" do %>
             Next question <span aria-hidden="true">→</span>
           <% end %>
         </footer>
       </article>
     <% elsif @fact_question %>
-      <article class="quiz-card question-card">
+      <article class="quiz-card ui-sheet ui-sheet-emphasis question-card">
         <header class="quiz-question-heading">
           <div class="question-meta">
             <span>Fact question</span>
@@ -78,14 +78,14 @@
           <fieldset>
             <legend class="sr-only">Choose one answer</legend>
             <% @answer_choices.each_with_index do |(option, original_index), display_index| %>
-              <label class="answer-option">
+              <label class="answer-option ui-choice">
                 <%= radio_button_tag :selected_option, original_index, false, required: true %>
                 <span class="answer-letter"><%= ("A".ord + display_index).chr %></span>
                 <span><%= glossary_text(option) %></span>
               </label>
             <% end %>
           </fieldset>
-          <footer class="quiz-action-footer">
+          <footer class="quiz-action-footer ui-action-footer">
             <%= form.submit "Check my answer", class: "button button-primary button-wide" %>
           </footer>
         <% end %>

@@ -1,9 +1,9 @@
 <% content_for :title, "Propose a fact question — #{@opinion_question.title}" %>
 
-<section class="editorial-form-page fact-proposal-page">
+<section class="editorial-form-page fact-proposal-page ui-page">
   <div class="container form-page-container">
     <%= link_to "← #{@opinion_question.title}", opinion_question_path(@opinion_question), class: "back-link" %>
-    <header>
+    <header class="ui-masthead">
       <p class="editorial-kicker">Evidence contribution · <%= @opinion_question.title %></p>
       <h1>Propose a fact question</h1>
       <p>Submit a sourced question with four plausible answers. A moderator may edit it before publication.</p>

@@ -1,11 +1,11 @@
 <% content_for :title, "#{@opinion_question.title} — Informed Opinion" %>
 
-<section class="topic-page topic-<%= @opinion_question.accent %>">
+<section class="topic-page ui-page">
   <div class="container narrow-container">
     <%= link_to "← All questions", root_path(anchor: "topics"), class: "back-link" %>
 
-    <div class="topic-hero-card">
-      <p class="eyebrow"><%= @opinion_question.title %></p>
+    <div class="topic-hero-card ui-sheet ui-sheet-emphasis">
+      <p class="eyebrow ui-kicker"><%= @opinion_question.title %></p>
       <h1>Which response best reflects your view?</h1>
       <blockquote><%= @opinion_question.statement %></blockquote>
 
@@ -26,7 +26,7 @@
             <legend class="sr-only">Choose your opinion</legend>
             <div class="opinion-options">
               <% @opinion_question.response_options.each_with_index do |option, index| %>
-                <label class="opinion-option">
+                <label class="opinion-option ui-choice">
                   <%= form.radio_button :position, index, checked: @user_opinion&.position == index, required: true %>
                   <span class="radio-dot"></span>
                   <span><%= option %></span>
@@ -34,7 +34,7 @@
               <% end %>
             </div>
           </fieldset>
-          <div class="opinion-submit">
+          <div class="opinion-submit ui-action-footer">
             <%= form.submit @user_opinion ? "Revise my opinion" : "Register my opinion", class: "button button-primary" %>
             <% if @user_opinion %>
               <%= link_to "Continue knowledge check →", opinion_question_quiz_path(@opinion_question), class: "text-link" %>
@@ -47,7 +47,7 @@
     </div>
 
     <% if @user_opinion %>
-      <div class="current-weight">
+      <div class="current-weight ui-panel">
         <div>
           <p class="eyebrow">Your current position</p>
           <h2><%= @user_opinion.label %></h2>
@@ -61,7 +61,7 @@
     <% end %>
 
     <% if user_signed_in? %>
-      <section class="topic-reaction-panel">
+      <section class="topic-reaction-panel ui-panel">
         <div>
           <p class="eyebrow">Question quality</p>
           <h2>Is this a worthwhile opinion question?</h2>
@@ -72,21 +72,24 @@
           <% end %>
         </div>
         <div class="reaction-actions">
-          <%= button_to "Like",
-            opinion_question_reaction_path(@opinion_question),
-            method: :post,
-            params: { opinion_question_reaction: { kind: "like" } },
-            class: "reaction-like #{'is-active' if @reaction&.like?}" %>
+          <div class="like-control">
+            <span>Positive assessment</span>
+            <%= button_to "Like",
+              opinion_question_reaction_path(@opinion_question),
+              method: :post,
+              params: { opinion_question_reaction: { kind: "like" } },
+              class: "reaction-like ui-button #{'is-active' if @reaction&.like?}" %>
+          </div>
           <%= form_with url: opinion_question_reaction_path(@opinion_question), method: :post, class: "dislike-form" do |form| %>
             <%= form.hidden_field :kind, value: "dislike", name: "opinion_question_reaction[kind]" %>
-            <%= form.label :reason, "Reason for disliking" %>
+            <%= form.label :reason, "Dislike — reason required" %>
             <%= form.text_area :reason,
               name: "opinion_question_reaction[reason]",
               value: (@reaction.reason if @reaction&.dislike?),
               rows: 2,
               required: true,
               placeholder: "What makes the question unsuitable or poorly framed?" %>
-            <%= form.submit "Dislike", class: "reaction-dislike #{'is-active' if @reaction&.dislike?}" %>
+            <%= form.submit "Dislike", class: "reaction-dislike ui-button #{'is-active' if @reaction&.dislike?}" %>
           <% end %>
           <% if @reaction %>
             <%= button_to "Remove response",

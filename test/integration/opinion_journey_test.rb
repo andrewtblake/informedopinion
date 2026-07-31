@@ -30,6 +30,14 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
   test "user registers an opinion, answers a fact, and revises the opinion" do
     sign_in @user, scope: :user
 
+    get opinion_question_path(@topic)
+    assert_response :success
+    assert_select ".topic-page.ui-page", count: 1
+    assert_select ".topic-hero-card.ui-sheet", count: 1
+    assert_select ".opinion-option.ui-choice", count: 5
+    assert_select ".opinion-submit.ui-action-footer", count: 1
+    assert_select ".topic-page.topic-teal, .topic-page.topic-amber, .topic-page.topic-violet, .topic-page.topic-rose, .topic-page.topic-slate", count: 0
+
     post opinion_question_user_opinion_path(@topic),
       params: { user_opinion: { position: 1 } }
     assert_redirected_to opinion_question_quiz_path(@topic)
