@@ -8,11 +8,11 @@
       <p>Pending reports, proposed opinion questions, and proposed fact questions.</p>
     </header>
 
-    <section class="moderation-section draft-question-section">
-      <header>
+    <details class="moderation-section ui-disclosure draft-question-section" <%= "open" if @draft_questions.any? %>>
+      <summary>
         <h2>Questions being prepared</h2>
         <span><%= @draft_questions.length %> not live</span>
-      </header>
+      </summary>
       <% @draft_questions.each do |question| %>
         <article class="moderation-item draft-question-item">
           <div>
@@ -25,13 +25,13 @@
         </article>
       <% end %>
       <% if @draft_questions.empty? %><p class="moderation-empty">No opinion questions are awaiting a fact bank.</p><% end %>
-    </section>
+    </details>
 
-    <section class="moderation-section featured-order-section" id="featured-order">
-      <header>
+    <details class="moderation-section ui-disclosure featured-order-section" id="featured-order">
+      <summary>
         <h2>Homepage featured order</h2>
         <span><%= @featured_questions.length %> live</span>
-      </header>
+      </summary>
       <p class="moderation-guidance">
         The baseline rewards informed participation, measured disagreement and recent publication, while avoiding consecutive questions from one category. Editorial adjustments are deliberately bounded and can be reset.
       </p>
@@ -58,13 +58,13 @@
           </li>
         <% end %>
       </ol>
-    </section>
+    </details>
 
-    <section class="moderation-section">
-      <header>
+    <details class="moderation-section ui-disclosure" <%= "open" if @flags.any? %>>
+      <summary>
         <h2>Fact-question reports</h2>
         <span><%= @flags.length %> pending</span>
-      </header>
+      </summary>
       <% @flags.each do |flag| %>
         <article class="moderation-item">
           <div class="moderation-meta">
@@ -83,13 +83,13 @@
         </article>
       <% end %>
       <% if @flags.empty? %><p class="moderation-empty">No fact-question reports are awaiting review.</p><% end %>
-    </section>
+    </details>
 
-    <section class="moderation-section">
-      <header>
+    <details class="moderation-section ui-disclosure" <%= "open" if @proposals.any? %>>
+      <summary>
         <h2>Proposed opinion questions</h2>
         <span><%= @proposals.length %> pending</span>
-      </header>
+      </summary>
       <% @proposals.each do |proposal| %>
         <article class="moderation-item">
           <div class="moderation-meta">
@@ -126,13 +126,13 @@
         </article>
       <% end %>
       <% if @proposals.empty? %><p class="moderation-empty">No opinion-question proposals are awaiting review.</p><% end %>
-    </section>
+    </details>
 
-    <section class="moderation-section">
-      <header>
+    <details class="moderation-section ui-disclosure" <%= "open" if @fact_proposals.any? %>>
+      <summary>
         <h2>Proposed fact questions</h2>
         <span><%= @fact_proposals.length %> pending</span>
-      </header>
+      </summary>
       <% @fact_proposals.each do |proposal| %>
         <article class="moderation-item">
           <div class="moderation-meta">
@@ -193,6 +193,6 @@
         </article>
       <% end %>
       <% if @fact_proposals.empty? %><p class="moderation-empty">No fact-question proposals are awaiting review.</p><% end %>
-    </section>
+    </details>
   </div>
 </section>

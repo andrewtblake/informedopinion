@@ -34,6 +34,7 @@ through a different visual language.
 - `ui-kicker`: compact uppercase contextual label.
 - `ui-choice`: selectable answer or opinion row.
 - `ui-action-footer`: ruled area containing the primary next action.
+- `ui-disclosure`: accessible concertina section built with `details` and `summary`.
 - `button` / `ui-button`: canonical square-cornered controls.
 
 Use these classes in the view rather than recreating their declarations under a

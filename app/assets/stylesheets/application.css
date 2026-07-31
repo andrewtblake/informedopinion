@@ -589,9 +589,6 @@ h1, h2, h3 {
 .moderation-page { min-height: calc(100vh - 76px); padding: 54px 0 100px; background: #faf9f5; }
 .moderation-masthead { margin-bottom: 38px; }
 .moderation-section { margin-top: 36px; }
-.moderation-section > header { padding-bottom: 10px; display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--ink); }
-.moderation-section > header h2 { margin: 0; font-size: 24px; }
-.moderation-section > header span { color: var(--muted); font-size: 11px; }
 .moderation-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
 .moderation-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
 .moderation-meta strong { color: var(--teal-dark); }
@@ -708,6 +705,20 @@ h1, h2, h3 {
   box-shadow: none;
 }
 .ui-action-footer .button:hover, .ui-button:hover { transform: none; }
+.ui-disclosure > summary {
+  padding: 0 34px 10px 0; display: flex; align-items: baseline; justify-content: space-between;
+  position: relative; border-bottom: 2px solid var(--ink); cursor: pointer; list-style: none;
+}
+.ui-disclosure > summary::-webkit-details-marker { display: none; }
+.ui-disclosure > summary::after {
+  content: "+"; position: absolute; right: 3px; top: -5px; color: var(--muted);
+  font-size: 25px; font-weight: 400; line-height: 1;
+}
+.ui-disclosure[open] > summary::after { content: "−"; }
+.ui-disclosure > summary:hover::after { color: var(--ink); }
+.ui-disclosure > summary:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: 5px; }
+.ui-disclosure > summary h2 { margin: 0; font-size: 24px; }
+.ui-disclosure > summary span { color: var(--muted); font-size: 11px; }
 .ui-kicker {
   margin-bottom: 8px; color: #536462; font-size: var(--ui-compact-label-size);
   font-weight: 800; letter-spacing: .11em; text-transform: uppercase;
