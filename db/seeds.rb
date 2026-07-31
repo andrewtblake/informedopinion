@@ -15,6 +15,8 @@ require_relative "seeds/assisted_dying"
 require_relative "seeds/echr_withdrawal"
 require_relative "seeds/grey_belt_housing"
 require_relative "seeds/plausible_distractor_calibrations"
+require_relative "seeds/moon_landings"
+require_relative "seeds/sex_work_decriminalisation"
 
 category_names = [
   "Economics",
@@ -199,17 +201,34 @@ topics = [
     category: "Economics",
     tags: [ "Housing", "Planning", "Green Belt", "Affordable housing", "Land use", "England" ],
     facts: GREY_BELT_HOUSING_FACTS
-  }
+  },
+  SEX_WORK_DECRIMINALISATION_OPINION.merge(facts: SEX_WORK_DECRIMINALISATION_FACTS),
+  MOON_LANDING_OPINION.merge(facts: MOON_LANDING_FACTS)
 ]
+
+# Preserve links from proposals approved before these questions entered the curated seed catalogue.
+{
+  "prostitution-should-be-legalised" => "decriminalising-sex-work",
+  "did-humans-actually-go-to-the-moon" => "moon-landings"
+}.each do |old_slug, new_slug|
+  OpinionQuestion.find_by(slug: old_slug)&.update!(slug: new_slug)
+end
 
 topics.each do |attributes|
   facts = attributes.delete(:facts)
   tag_names = attributes.delete(:tags)
   attributes[:category] = categories.fetch(attributes[:category])
   topic = OpinionQuestion.find_or_initialize_by(slug: attributes[:slug])
+  attributes[:live] = facts.length >= Rails.configuration.x.fact_question_proposals.minimum_existing_questions
   topic.update!(attributes)
+  OpinionQuestionProposal.find_by(published_opinion_question: topic)&.update!(
+    final_title: topic.title,
+    final_statement: topic.statement
+  )
   topic.tags = tag_names.map do |name|
-    Tag.find_or_create_by!(slug: name.parameterize) { |tag| tag.name = name }
+    Tag.find_or_initialize_by(slug: name.parameterize).tap do |tag|
+      tag.update!(name: name)
+    end
   end
 
   facts.each_with_index do |fact, index|
@@ -223,7 +242,14 @@ topics.each do |attributes|
     }.merge(fact))
   end
 
-  topic.fact_questions.where.not(display_order: 1..facts.length).destroy_all
+  community_fact_ids = FactQuestionProposal
+    .where(opinion_question: topic)
+    .where.not(published_fact_question_id: nil)
+    .pluck(:published_fact_question_id)
+  topic.fact_questions
+    .where.not(display_order: 1..facts.length)
+    .where.not(id: community_fact_ids)
+    .destroy_all
 end
 
 User.find_by(id: 1)&.moderator!

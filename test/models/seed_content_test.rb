@@ -16,6 +16,8 @@ require Rails.root.join("db/seeds/assisted_dying")
 require Rails.root.join("db/seeds/echr_withdrawal")
 require Rails.root.join("db/seeds/grey_belt_housing")
 require Rails.root.join("db/seeds/plausible_distractor_calibrations")
+require Rails.root.join("db/seeds/moon_landings")
+require Rails.root.join("db/seeds/sex_work_decriminalisation")
 
 class SeedContentTest < ActiveSupport::TestCase
   TOPICS = {
@@ -31,7 +33,9 @@ class SeedContentTest < ActiveSupport::TestCase
     gaza: GAZA_FACTS,
     assisted_dying: ASSISTED_DYING_FACTS,
     echr_withdrawal: ECHR_WITHDRAWAL_FACTS,
-    grey_belt_housing: GREY_BELT_HOUSING_FACTS
+    grey_belt_housing: GREY_BELT_HOUSING_FACTS,
+    moon_landings: MOON_LANDING_FACTS,
+    sex_work_decriminalisation: SEX_WORK_DECRIMINALISATION_FACTS
   }.freeze
 
   test "every topic contains thirty four-choice fact questions" do
@@ -40,6 +44,29 @@ class SeedContentTest < ActiveSupport::TestCase
       assert facts.all? { |fact| fact[:options].length == 4 },
         "#{topic} should use exactly four choices per question"
     end
+  end
+
+  test "new community banks publish calibrated importance and all applicable valences" do
+    [ MOON_LANDING_FACTS, SEX_WORK_DECRIMINALISATION_FACTS ].each do |bank|
+      assert_equal [ 1, 2, 3 ], bank.map { _1[:importance_weight] }.uniq.sort
+      assert_includes 6..9, bank.count { _1[:importance_weight] == 3 }
+      assert_operator bank.count { _1[:importance_weight] == 1 }, :>=, 7
+      assert_equal [ -1, 0, 1 ], bank.map { _1[:evidence_direction] }.uniq.sort
+    end
+  end
+
+  test "new community propositions are scoped and use compatible response scales" do
+    assert_equal(
+      "Between 1969 and 1972, NASA's Apollo programme landed astronauts on the Moon.",
+      MOON_LANDING_OPINION.fetch(:statement)
+    )
+    assert_equal "Definitely true", MOON_LANDING_OPINION.fetch(:response_options).first
+    assert_equal "Definitely false", MOON_LANDING_OPINION.fetch(:response_options).last
+
+    assert_match(/England and Wales/, SEX_WORK_DECRIMINALISATION_OPINION.fetch(:statement))
+    assert_match(/consensual/, SEX_WORK_DECRIMINALISATION_OPINION.fetch(:statement))
+    assert_match(/retaining laws against coercion, trafficking and sexual exploitation/,
+      SEX_WORK_DECRIMINALISATION_OPINION.fetch(:statement))
   end
 
   test "correct answers are evenly distributed across A through D" do
