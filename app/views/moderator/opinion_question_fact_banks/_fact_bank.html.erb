@@ -1,0 +1,20 @@
+<% if question.published_fact_questions.any? %>
+  <ol>
+    <% question.published_fact_questions.each do |fact| %>
+      <li>
+        <span><%= glossary_text(fact.prompt) %></span>
+        <small><%= fact.importance_label %> · <%= fact.valence_label %> · <%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></small>
+        <ol class="fact-bank-options" type="A">
+          <% fact.options.each_with_index do |option, index| %>
+            <li class="<%= "correct" if index == fact.correct_option %>">
+              <%= glossary_text(option) %><% if index == fact.correct_option %> <strong>Correct</strong><% end %>
+            </li>
+          <% end %>
+        </ol>
+        <p><%= glossary_text(fact.explanation) %></p>
+      </li>
+    <% end %>
+  </ol>
+<% else %>
+  <p>No fact questions have been added.</p>
+<% end %>

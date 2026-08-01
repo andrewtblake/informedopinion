@@ -19,25 +19,12 @@
             <h3><%= question.title %></h3>
             <p><%= question.statement %></p>
             <p><strong><%= question.published_fact_questions.length %></strong> published fact questions; <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> required before publication is permitted.</p>
-            <details class="fact-bank-review" data-disclosure-key="fact-bank-<%= question.id %>" data-action="toggle->moderation-disclosures#remember">
+            <details class="fact-bank-review" data-controller="fact-bank" data-disclosure-key="fact-bank-<%= question.id %>" data-action="toggle->moderation-disclosures#remember toggle->fact-bank#load">
               <summary>Review fact-question list</summary>
-              <ol>
-                <% question.published_fact_questions.each do |fact| %>
-                  <li>
-                    <span><%= glossary_text(fact.prompt) %></span>
-                    <small><%= fact.importance_label %> · <%= fact.valence_label %> · <%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></small>
-                    <ol class="fact-bank-options" type="A">
-                      <% fact.options.each_with_index do |option, index| %>
-                        <li class="<%= "correct" if index == fact.correct_option %>">
-                          <%= glossary_text(option) %><% if index == fact.correct_option %> <strong>Correct</strong><% end %>
-                        </li>
-                      <% end %>
-                    </ol>
-                    <p><%= glossary_text(fact.explanation) %></p>
-                  </li>
-                <% end %>
-              </ol>
-              <% if question.published_fact_questions.empty? %><p>No fact questions have been added.</p><% end %>
+              <%= turbo_frame_tag dom_id(question, :fact_bank),
+                data: { source_url: moderator_opinion_question_fact_bank_path(question) } do %>
+                <p class="fact-bank-loading">Open this review to load the current fact-question bank.</p>
+              <% end %>
             </details>
           </div>
           <div class="draft-question-actions">

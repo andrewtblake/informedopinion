@@ -84,8 +84,17 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
     assert_equal 10, question.fact_questions.count
     get moderator_root_path
     assert_select ".draft-question-item", text: /Lifecycle question.*10.*published fact questions/m
-    assert_select ".fact-bank-review > ol > li", count: 10
+    assert_select "turbo-frame#fact_bank_opinion_question_#{question.id}[data-source-url=?]",
+      moderator_opinion_question_fact_bank_path(question)
     assert_select "form[action='#{moderator_opinion_question_publication_path(question)}']"
+
+    get moderator_opinion_question_fact_bank_path(question), headers: { "Turbo-Frame" => "fact_bank_opinion_question_#{question.id}" }
+    assert_response :success
+    assert_select "turbo-frame#fact_bank_opinion_question_#{question.id} > ol > li", count: 10
+
+    question.fact_questions.create!(fact_attributes(10).merge(display_order: 11))
+    get moderator_opinion_question_fact_bank_path(question), headers: { "Turbo-Frame" => "fact_bank_opinion_question_#{question.id}" }
+    assert_select "turbo-frame#fact_bank_opinion_question_#{question.id} > ol > li", count: 11
 
     post moderator_opinion_question_publication_path(question)
     assert_redirected_to moderator_root_path(anchor: "question-preparation")

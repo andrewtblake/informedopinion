@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :featured_questions, only: :update
     resources :opinion_questions, only: [] do
       resource :publication, only: %i[create destroy], controller: "opinion_question_publications"
+      resource :fact_bank, only: :show, controller: "opinion_question_fact_banks"
     end
   end
 
