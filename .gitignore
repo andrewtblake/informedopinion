@@ -32,6 +32,7 @@
 
 # Ignore key files for decrypting credentials and more.
 /config/*.key
+/config/*.unreadable
 
 # Ignore working notes and plans
 HOSTING_PLAN.md
