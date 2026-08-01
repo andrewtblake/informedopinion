@@ -69,6 +69,14 @@ h1, h2, h3 {
 .site-nav { display: flex; align-items: center; gap: 22px; }
 .site-nav form { margin: 0; }
 .nav-link { border: 0; color: var(--ink); background: none; font-weight: 600; text-decoration: none; cursor: pointer; }
+.moderation-nav-link { position: relative; }
+.moderation-notification-badge {
+  min-width: 18px; height: 18px; padding: 0 5px; display: inline-flex; align-items: center; justify-content: center;
+  border: 2px solid var(--ui-page-background); border-radius: 999px; color: #fff !important; background: #c65f20;
+  font-size: 10px !important; font-weight: 800; line-height: 1;
+}
+.moderation-notification-badge[hidden] { display: none; }
+.moderation-nav-link > .moderation-notification-badge { position: absolute; top: -10px; right: -14px; }
 .nav-button { padding: 0; }
 .nav-greeting { color: var(--muted); font-size: 14px; }
 
@@ -591,6 +599,12 @@ h1, h2, h3 {
 .moderation-masthead { margin-bottom: 38px; }
 .moderation-section { margin-top: 36px; }
 .moderation-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.moderation-item, .reaction-review { transition: background-color .7s ease; }
+.moderation-new-item { background-color: #e4f2ee; }
+.moderation-update-warning {
+  margin: 0 0 14px; padding: 9px 12px; border-left: 3px solid #c65f20;
+  color: #663213; background: #fff5eb; font-size: 12px; font-weight: 700;
+}
 .moderation-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: .05em; }
 .moderation-meta strong { color: var(--teal-dark); }
 .moderation-item h3 { margin: 8px 0; font-size: 20px; }
@@ -765,9 +779,16 @@ h1, h2, h3 {
 .ui-disclosure > summary:focus-visible { outline: 2px solid var(--ui-accent); outline-offset: 5px; }
 .ui-disclosure > summary h2 { margin: 0; font-size: 24px; }
 .ui-disclosure > summary span { color: var(--muted); font-size: 11px; }
+.ui-disclosure > summary .moderation-notification-badge {
+  position: absolute; top: -8px; right: 25px; color: #fff; transform: translateY(-25%);
+}
 .ui-kicker {
   margin-bottom: 8px; color: #536462; font-size: var(--ui-compact-label-size);
   font-weight: 800; letter-spacing: .11em; text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .moderation-item, .reaction-review { transition: none; }
 }
 
 /* Help layout; typography and surfaces come from the central primitives. */

@@ -55,4 +55,20 @@ class ModerationHeartbeatTest < ActionDispatch::IntegrationTest
     get moderator_heartbeat_path
     assert_equal 1, response.parsed_body.dig("sections", "question-preparation", "count")
   end
+
+  test "moderator pages expose the heartbeat hooks and item versions" do
+    sign_in @moderator, scope: :user
+
+    get root_path
+    assert_response :success
+    assert_select "body[data-controller~='moderation-heartbeat']"
+    assert_select "a.moderation-nav-link [data-moderation-nav-badge][hidden]", count: 1
+
+    get moderator_root_path
+    assert_response :success
+    assert_select ".moderation-page[data-moderation-page]", count: 1
+    assert_select "#opinion-question-proposals[data-action*='moderation-heartbeat#sectionToggled']"
+    assert_select "[data-moderation-item-key='opinion-proposal:#{@proposal.id}'][data-moderation-item-version]", count: 1
+    assert_select "#featured-order[data-action*='moderation-heartbeat']", count: 0
+  end
 end

@@ -239,7 +239,7 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_select "#featured-order", text: /Homepage featured order.*#{@topic.title}/m
     assert_select "details#featured-order[open]", count: 0
     assert_select "[data-controller='moderation-disclosures']"
-    assert_select "details[data-action='toggle->moderation-disclosures#remember']", minimum: 5
+    assert_select "details[data-action*='toggle->moderation-disclosures#remember']", minimum: 5
     assert_select "details.moderation-section > summary", minimum: 5
     assert_select "form[action='#{moderator_featured_question_path(@topic)}']", minimum: 2
 

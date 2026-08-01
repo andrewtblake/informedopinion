@@ -1,6 +1,6 @@
 <% content_for :title, "Moderation — Informed Opinion" %>
 
-<section class="moderation-page ui-page" data-controller="moderation-disclosures">
+<section class="moderation-page ui-page" data-controller="moderation-disclosures" data-moderation-page>
   <div class="container">
     <header class="editorial-masthead moderation-masthead ui-masthead">
       <p class="editorial-kicker">Editorial review</p>
@@ -8,13 +8,14 @@
       <p>Pending reports, proposed opinion questions, and proposed fact questions.</p>
     </header>
 
-    <details class="moderation-section ui-disclosure draft-question-section" id="question-preparation" data-disclosure-key="question-preparation" data-action="toggle->moderation-disclosures#remember" <%= "open" if @draft_questions.any? %>>
+    <details class="moderation-section ui-disclosure draft-question-section" id="question-preparation" data-disclosure-key="question-preparation" data-action="toggle->moderation-disclosures#remember toggle->moderation-heartbeat#sectionToggled" <%= "open" if @draft_questions.any? %>>
       <summary>
         <h2>Questions being prepared</h2>
         <span><%= @draft_questions.length %> not live</span>
       </summary>
       <% @draft_questions.each do |question| %>
-        <article class="moderation-item draft-question-item">
+        <% item_key = "draft:#{question.id}" %>
+        <article class="moderation-item draft-question-item" data-moderation-item-key="<%= item_key %>" data-moderation-item-version="<%= @moderation_inbox.version_for(item_key)&.iso8601(6) %>">
           <div class="draft-question-summary">
             <h3><%= question.title %></h3>
             <p><%= question.statement %></p>
@@ -52,7 +53,7 @@
       <%= render "featured_order", featured_questions: @featured_questions, featured_ranker: @featured_ranker %>
     </details>
 
-    <details class="moderation-section ui-disclosure" id="opinion-question-reactions" data-disclosure-key="opinion-question-reactions" data-action="toggle->moderation-disclosures#remember" <%= "open" if @pending_reaction_count.positive? %>>
+    <details class="moderation-section ui-disclosure" id="opinion-question-reactions" data-disclosure-key="opinion-question-reactions" data-action="toggle->moderation-disclosures#remember toggle->moderation-heartbeat#sectionToggled" <%= "open" if @pending_reaction_count.positive? %>>
       <summary>
         <h2>Opinion-question reactions</h2>
         <span><%= @pending_reaction_count %> pending · <%= @reaction_questions.length %> questions</span>
@@ -61,7 +62,8 @@
       <% @reaction_questions.each do |question, reactions| %>
         <% likes = reactions.select(&:like?) %>
         <% dislikes = reactions.select(&:dislike?) %>
-        <details class="reaction-review" data-disclosure-key="opinion-reactions-<%= question.id %>" data-action="toggle->moderation-disclosures#remember">
+        <% item_key = "opinion-reactions:#{question.id}" %>
+        <details class="reaction-review" data-disclosure-key="opinion-reactions-<%= question.id %>" data-action="toggle->moderation-disclosures#remember" data-moderation-item-key="<%= item_key %>" data-moderation-item-version="<%= @moderation_inbox.version_for(item_key)&.iso8601(6) %>">
           <summary>
             <strong><%= question.title %></strong>
             <span><%= pluralize(likes.length, "like") %> · <%= pluralize(dislikes.length, "dislike") %></span>
@@ -97,13 +99,14 @@
       <% if @reaction_questions.empty? %><p class="moderation-empty">No opinion-question reactions have been recorded.</p><% end %>
     </details>
 
-    <details class="moderation-section ui-disclosure" id="fact-question-reports" data-disclosure-key="fact-question-reports" data-action="toggle->moderation-disclosures#remember" <%= "open" if @flags.any? %>>
+    <details class="moderation-section ui-disclosure" id="fact-question-reports" data-disclosure-key="fact-question-reports" data-action="toggle->moderation-disclosures#remember toggle->moderation-heartbeat#sectionToggled" <%= "open" if @flags.any? %>>
       <summary>
         <h2>Fact-question reports</h2>
         <span><%= @flags.length %> pending</span>
       </summary>
       <% @flags.each do |flag| %>
-        <article class="moderation-item">
+        <% item_key = "fact-report:#{flag.id}" %>
+        <article class="moderation-item" data-moderation-item-key="<%= item_key %>" data-moderation-item-version="<%= @moderation_inbox.version_for(item_key)&.iso8601(6) %>">
           <div class="moderation-meta">
             <strong><%= flag.category_label %></strong>
             <span><%= flag.fact_question.opinion_question.title %></span>
@@ -184,13 +187,14 @@
       <% if @flags.empty? %><p class="moderation-empty">No fact-question reports are awaiting review.</p><% end %>
     </details>
 
-    <details class="moderation-section ui-disclosure" id="opinion-question-proposals" data-disclosure-key="opinion-question-proposals" data-action="toggle->moderation-disclosures#remember" <%= "open" if @proposals.any? %>>
+    <details class="moderation-section ui-disclosure" id="opinion-question-proposals" data-disclosure-key="opinion-question-proposals" data-action="toggle->moderation-disclosures#remember toggle->moderation-heartbeat#sectionToggled" <%= "open" if @proposals.any? %>>
       <summary>
         <h2>Proposed opinion questions</h2>
         <span><%= @proposals.length %> pending</span>
       </summary>
       <% @proposals.each do |proposal| %>
-        <article class="moderation-item">
+        <% item_key = "opinion-proposal:#{proposal.id}" %>
+        <article class="moderation-item" data-moderation-item-key="<%= item_key %>" data-moderation-item-version="<%= @moderation_inbox.version_for(item_key)&.iso8601(6) %>">
           <div class="moderation-meta">
             <strong><%= proposal.category.name %></strong>
             <% if proposal.geographic_scope.present? %><span><%= proposal.geographic_scope %></span><% end %>
@@ -231,13 +235,14 @@
       <% if @proposals.empty? %><p class="moderation-empty">No opinion-question proposals are awaiting review.</p><% end %>
     </details>
 
-    <details class="moderation-section ui-disclosure" id="fact-question-proposals" data-disclosure-key="fact-question-proposals" data-action="toggle->moderation-disclosures#remember" <%= "open" if @fact_proposals.any? %>>
+    <details class="moderation-section ui-disclosure" id="fact-question-proposals" data-disclosure-key="fact-question-proposals" data-action="toggle->moderation-disclosures#remember toggle->moderation-heartbeat#sectionToggled" <%= "open" if @fact_proposals.any? %>>
       <summary>
         <h2>Proposed fact questions</h2>
         <span><%= @fact_proposals.length %> pending</span>
       </summary>
       <% @fact_proposals.each do |proposal| %>
-        <article class="moderation-item">
+        <% item_key = "fact-proposal:#{proposal.id}" %>
+        <article class="moderation-item" data-moderation-item-key="<%= item_key %>" data-moderation-item-version="<%= @moderation_inbox.version_for(item_key)&.iso8601(6) %>">
           <div class="moderation-meta">
             <strong><%= proposal.opinion_question.title %></strong>
             <span><%= FactQuestion::IMPORTANCE_LEVELS.fetch(proposal.importance_weight) %></span>
