@@ -24,6 +24,18 @@ class OpinionQuestionProposal < ApplicationRecord
     approved? && (final_title != title || final_statement != statement)
   end
 
+  def candidate_title
+    final_title.presence || title
+  end
+
+  def candidate_statement
+    final_statement.presence || statement
+  end
+
+  def editorial_candidate?
+    final_title.present? || final_statement.present?
+  end
+
   def decision_label
     label = edited_on_approval? ? "Approved with editorial changes" : status.humanize
     return "#{label} — being prepared" if approved? && !published_opinion_question&.live?

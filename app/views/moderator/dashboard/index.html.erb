@@ -163,6 +163,7 @@
             <strong><%= proposal.category.name %></strong>
             <% if proposal.geographic_scope.present? %><span><%= proposal.geographic_scope %></span><% end %>
           </div>
+          <p class="editorial-section-label">Original submission</p>
           <h3><%= proposal.title %></h3>
           <blockquote><%= proposal.statement %></blockquote>
           <dl class="proposal-details">
@@ -172,13 +173,16 @@
           </dl>
           <%= form_with model: proposal, url: moderator_opinion_question_proposal_path(proposal), method: :patch, class: "moderation-form moderation-editor" do |form| %>
             <div class="moderation-edit-fields">
+              <% if proposal.editorial_candidate? %>
+                <p class="moderation-form-guidance">Saved editorial candidate. Review this amended wording against the original submission above before deciding.</p>
+              <% end %>
               <div class="field">
                 <%= form.label :final_title, "Final title" %>
-                <%= form.text_field :final_title, value: proposal.title, required: true %>
+                <%= form.text_field :final_title, value: proposal.candidate_title, required: true %>
               </div>
               <div class="field">
                 <%= form.label :final_statement, "Final proposition" %>
-                <%= form.text_area :final_statement, value: proposal.statement, rows: 3, required: true %>
+                <%= form.text_area :final_statement, value: proposal.candidate_statement, rows: 3, required: true %>
               </div>
               <div class="field">
                 <%= form.label :review_notes, "Internal review notes" %>

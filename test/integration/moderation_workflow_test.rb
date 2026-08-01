@@ -279,6 +279,27 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_select ".proposal-final-wording", text: /Clear final title.*precisely defined policy/m
   end
 
+  test "moderation page displays a saved editorial candidate alongside the original proposal" do
+    proposal = @participant.opinion_question_proposals.create!(
+      title: "Original drugs title",
+      statement: "All currently prohibited drugs should be legal.",
+      final_title: "Regulation of currently prohibited drugs",
+      final_statement: "The UK should replace criminal prohibition of possession with a regulated legal supply system.",
+      category: @category,
+      tags_text: "United Kingdom, Drug policy",
+      rationale: "The issue is consequential and contested."
+    )
+    sign_in @moderator, scope: :user
+
+    get moderator_root_path
+
+    assert_response :success
+    assert_select ".moderation-item", text: /Original submission.*Original drugs title.*Saved editorial candidate/m do
+      assert_select "input[name='opinion_question_proposal[final_title]'][value=?]", proposal.final_title
+      assert_select "textarea[name='opinion_question_proposal[final_statement]']", text: proposal.final_statement
+    end
+  end
+
   private
 
   def create_flag(category)
