@@ -1,5 +1,6 @@
 Devise.setup do |config|
-  config.mailer_sender = "hello@informedopinion.example"
+  config.mailer_sender = ENV.fetch("MAILER_FROM", "Informed Opinion <accounts@informedopinion.info>")
+  config.mailer = "DeviseMailer"
   require "devise/orm/active_record"
   config.case_insensitive_keys = [ :email ]
   config.strip_whitespace_keys = [ :email ]

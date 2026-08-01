@@ -23,6 +23,16 @@ services:
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: APP_HOST
+        value: informedopinion.info
+      - key: APP_PROTOCOL
+        value: https
+      - key: MAILER_FROM
+        value: Informed Opinion <accounts@informedopinion.info>
+      - key: MAILER_REPLY_TO
+        value: hello@informedopinion.info
       - key: RAILS_MAX_THREADS
         value: "3"
       - key: WEB_CONCURRENCY
