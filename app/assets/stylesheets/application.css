@@ -364,7 +364,6 @@ h1, h2, h3 {
 .question-card h1 { max-width: 710px; min-height: 2.5em; margin-bottom: 25px; font-size: clamp(24px, 3.5vw, 29px); line-height: 1.25; letter-spacing: -.025em; }
 .fact-importance { margin: 0; padding: 11px 14px; border-left: 2px solid var(--accent); color: var(--muted); background: #f4f5f2; font-size: 11px; line-height: 1.5; }
 .fact-importance strong { display: block; color: var(--ink); font-size: 11px; letter-spacing: .04em; text-transform: uppercase; }
-.fact-importance span { display: block; margin-top: 3px; }
 .feedback-question + .fact-importance { margin-top: -8px; }
 .question-card .answer-form { padding-top: 25px; flex: 1; display: flex; flex-direction: column; }
 .answer-form fieldset { margin-bottom: 24px; display: grid; gap: 9px; }

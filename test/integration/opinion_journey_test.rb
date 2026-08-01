@@ -52,7 +52,8 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select "h1", text: @fact.prompt
     assert_select ".quiz-weight", text: /0%/
     assert_select ".quiz-progress", text: /unweighted score 0%/
-    assert_select ".fact-importance", text: /Importance: Supporting \(1 of 3\).*standard importance weight/m
+    assert_select ".fact-importance", text: /Importance: Supporting \(1 of 3\)/
+    assert_not_includes response.body, @fact.importance_rationale
     assert_select ".quiz-question-heading", count: 1
     assert_select ".quiz-action-footer input[type='submit'][value='Check my answer']", count: 1
     assert_select "input[name='selected_option']", count: 4
@@ -76,6 +77,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select ".quiz-weight", text: /100%/
     assert_select ".quiz-progress", text: /unweighted score 100%/
     assert_select ".fact-importance", text: /Importance: Supporting \(1 of 3\)/
+    assert_not_includes response.body, @fact.importance_rationale
     assert_select "a[href='https://example.com/evidence']"
 
     patch opinion_question_user_opinion_path(@topic),

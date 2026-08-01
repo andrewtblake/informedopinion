@@ -27,7 +27,6 @@
         <p class="feedback-question"><%= glossary_text(@fact_question.prompt) %></p>
         <aside class="fact-importance">
           <strong>Importance: <%= @fact_question.importance_label %> (<%= @fact_question.importance_weight %> of 3)</strong>
-          <span><%= @fact_question.importance_rationale %></span>
         </aside>
         <% if @feedback.correct? %>
           <div class="answer-comparison answer-comparison-correct">
@@ -70,7 +69,6 @@
           <h1><%= glossary_text(@fact_question.prompt) %></h1>
           <aside class="fact-importance">
             <strong>Importance: <%= @fact_question.importance_label %> (<%= @fact_question.importance_weight %> of 3)</strong>
-            <span><%= @fact_question.importance_rationale %></span>
           </aside>
         </header>
         <%= form_with url: opinion_question_fact_responses_path(@opinion_question), class: "answer-form" do |form| %>
