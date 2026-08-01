@@ -92,10 +92,13 @@ class CollectiveOpinion
 
   def user_weights
     @user_weights ||= begin
-      total_importance = opinion_question.fact_questions.sum(:importance_weight)
+      total_importance = opinion_question.published_fact_questions.sum(:importance_weight)
       earned_importance = FactResponse
         .joins(:fact_question)
-        .where(correct: true, fact_questions: { opinion_question_id: opinion_question.id })
+        .where(
+          correct: true,
+          fact_questions: { opinion_question_id: opinion_question.id, withdrawn_at: nil }
+        )
         .group(:user_id)
         .sum("fact_questions.importance_weight")
 

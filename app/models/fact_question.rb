@@ -16,6 +16,7 @@ class FactQuestion < ApplicationRecord
   has_many :fact_question_flags, dependent: :destroy
 
   validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true
+  validates :source_url, format: { with: %r{\Ahttps?://[^\s]+\z}i }
   validates :importance_weight, inclusion: { in: IMPORTANCE_LEVELS.keys }
   validates :options, length: { is: 4 }
   validates :correct_option, numericality: {
@@ -24,6 +25,13 @@ class FactQuestion < ApplicationRecord
   }
   validates :evidence_direction, inclusion: { in: DIRECTIONS }
   validate :correct_option_is_available
+  validate :options_are_present_and_distinct
+
+  scope :published, -> { where(withdrawn_at: nil) }
+
+  def withdrawn?
+    withdrawn_at.present?
+  end
 
   def correct_answer
     options.fetch(correct_option)
@@ -43,5 +51,11 @@ class FactQuestion < ApplicationRecord
     return if correct_option.blank? || correct_option < options.length
 
     errors.add(:correct_option, "must identify one of the available options")
+  end
+
+  def options_are_present_and_distinct
+    normalized = Array(options).map { _1.to_s.strip }
+    errors.add(:options, "must all be present") if normalized.any?(&:blank?)
+    errors.add(:options, "must be distinct") if normalized.uniq.length != 4
   end
 end

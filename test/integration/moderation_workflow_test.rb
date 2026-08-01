@@ -152,9 +152,10 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_select ".moderation-item", text: /Participant User/, count: 0
 
     patch moderator_fact_question_flag_path(flag), params: {
-      fact_question_flag: { status: "resolved", resolution_notes: "Source checked." }
+      fact_question_flag: { outcome: "dismissed", resolution_notes: "Source checked; no defect found." }
     }
-    assert flag.reload.resolved?
+    assert flag.reload.dismissed?
+    assert flag.resolution_no_change?
     assert_equal @moderator, flag.reviewer
 
     patch moderator_opinion_question_proposal_path(proposal), params: {
@@ -165,6 +166,53 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_equal proposal.title, proposal.final_title
     assert_equal proposal.statement, proposal.final_statement
     assert_equal proposal.title, proposal.published_opinion_question.title
+  end
+
+  test "moderator corrects a fact and resolves its report" do
+    flag = create_flag(:inaccurate)
+    sign_in @moderator, scope: :user
+
+    patch moderator_fact_question_flag_path(flag), params: {
+      fact_question_flag: {
+        outcome: "corrected",
+        resolution_notes: "Corrected the overbroad wording and replaced the source."
+      },
+      fact_question: fact_attributes(
+        prompt: "Is the corrected fact question clear?",
+        options: [ "Correct", "Plausible", "Incorrect", "Unknown" ],
+        correct_option: 0,
+        source_name: "Corrected source",
+        source_url: "https://example.com/corrected"
+      )
+    }
+
+    assert_redirected_to moderator_root_path
+    assert flag.reload.resolved?
+    assert flag.resolution_corrected?
+    assert_equal @moderator, flag.reviewer
+    assert_equal "Is the corrected fact question clear?", @fact.reload.prompt
+    assert_equal "Corrected source", @fact.source_name
+    assert_nil @fact.withdrawn_at
+  end
+
+  test "moderator withdraws a fact and resolves its report" do
+    flag = create_flag(:irrelevant)
+    sign_in @moderator, scope: :user
+
+    patch moderator_fact_question_flag_path(flag), params: {
+      fact_question_flag: {
+        outcome: "withdrawn",
+        resolution_notes: "The fact does not bear sufficiently on the proposition."
+      }
+    }
+
+    assert_redirected_to moderator_root_path
+    assert flag.reload.resolved?
+    assert flag.resolution_withdrawn?
+    assert @fact.reload.withdrawn?
+    assert_empty @topic.reload.published_fact_questions
+    assert_not @topic.live?
+    assert_equal 0, OpinionProgress.new(@participant, @topic).total
   end
 
   test "moderator adjusts the homepage featured order" do
@@ -220,6 +268,28 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
   end
 
   private
+
+  def create_flag(category)
+    @participant.fact_question_flags.create!(
+      fact_question: @fact,
+      category: category,
+      details: "Please review this fact."
+    )
+  end
+
+  def fact_attributes(overrides = {})
+    {
+      prompt: @fact.prompt,
+      options: @fact.options,
+      correct_option: @fact.correct_option,
+      explanation: @fact.explanation,
+      source_name: @fact.source_name,
+      source_url: @fact.source_url,
+      importance_weight: @fact.importance_weight,
+      importance_rationale: @fact.importance_rationale,
+      evidence_direction: @fact.evidence_direction
+    }.merge(overrides)
+  end
 
   def create_user(email, role: :participant)
     User.create!(

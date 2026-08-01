@@ -19,7 +19,7 @@ class FactQuestionFlagsController < ApplicationController
   private
 
   def set_fact_question
-    @fact_question = FactQuestion.includes(:opinion_question).find(params[:fact_question_id])
+    @fact_question = FactQuestion.published.includes(:opinion_question).find(params[:fact_question_id])
   end
 
   def flag_params

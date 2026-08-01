@@ -615,6 +615,8 @@ h1, h2, h3 {
 .moderation-inline-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .moderation-approve { border-color: var(--teal-dark); color: white; background: var(--teal-dark); }
 .moderation-decline { border-color: #8b615b; color: #70453f; background: white; }
+.moderation-withdraw { border-color: #7d6840; color: #66512c; background: #fbf8ef; }
+.moderation-form-guidance { margin: 0; padding: 12px 14px; border-left: 2px solid var(--ui-accent); color: var(--muted); background: #f3f5f2; font-size: 11px; }
 .moderation-empty { padding: 25px 0; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
 .moderation-guidance { max-width: 780px; margin: 14px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 .featured-order-list { margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }

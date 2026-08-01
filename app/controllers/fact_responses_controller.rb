@@ -4,7 +4,7 @@ class FactResponsesController < ApplicationController
 
   def create
     current_user.user_opinions.find_by!(opinion_question: @opinion_question)
-    fact_question = @opinion_question.fact_questions.find(params[:fact_question_id])
+    fact_question = @opinion_question.published_fact_questions.find(params[:fact_question_id])
     response = record_response(fact_question)
 
     if response.persisted?

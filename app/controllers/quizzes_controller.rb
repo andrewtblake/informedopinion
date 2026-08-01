@@ -3,7 +3,7 @@ class QuizzesController < ApplicationController
   before_action :set_opinion_question
 
   def show
-    if @opinion_question.fact_questions.empty?
+    if @opinion_question.published_fact_questions.empty?
       redirect_to opinion_question_path(@opinion_question),
         alert: "This knowledge check is not available until fact questions have been added."
       return

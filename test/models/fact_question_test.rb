@@ -22,4 +22,18 @@ class FactQuestionTest < ActiveSupport::TestCase
     assert_equal "Supporting", FactQuestion.new(importance_weight: 1).importance_label
     assert_equal "Foundational", FactQuestion.new(importance_weight: 3).importance_label
   end
+
+  test "published sources and answer choices remain safe and usable" do
+    question = FactQuestion.new(
+      source_url: "javascript:alert(1)",
+      options: [ "Same", "Same", "", "Different" ],
+      correct_option: 0
+    )
+
+    question.validate
+
+    assert_includes question.errors[:source_url], "is invalid"
+    assert_includes question.errors[:options], "must all be present"
+    assert_includes question.errors[:options], "must be distinct"
+  end
 end

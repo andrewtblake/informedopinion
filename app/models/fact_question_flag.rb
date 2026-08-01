@@ -8,6 +8,7 @@ class FactQuestionFlag < ApplicationRecord
     other: 5
   }
   enum :status, { pending: 0, resolved: 1, dismissed: 2 }
+  enum :resolution_action, { corrected: 0, withdrawn: 1, no_change: 2 }, prefix: :resolution
 
   belongs_to :user
   belongs_to :fact_question
@@ -16,6 +17,7 @@ class FactQuestionFlag < ApplicationRecord
   validates :category, presence: true
   validates :category, uniqueness: { scope: [ :user_id, :fact_question_id ] }
   validates :details, presence: true, if: :other?
+  validates :resolution_action, :resolution_notes, presence: true, unless: :pending?
 
   def category_label
     category.humanize

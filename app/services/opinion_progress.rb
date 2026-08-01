@@ -8,10 +8,10 @@ class OpinionProgress
   end
 
   def total
-    @total ||= if opinion_question.fact_questions.loaded?
-      opinion_question.fact_questions.size
+    @total ||= if opinion_question.published_fact_questions.loaded?
+      opinion_question.published_fact_questions.size
     else
-      opinion_question.fact_questions.count
+      opinion_question.published_fact_questions.count
     end
   end
 
@@ -44,10 +44,10 @@ class OpinionProgress
   end
 
   def total_importance
-    @total_importance ||= if opinion_question.fact_questions.loaded?
-      opinion_question.fact_questions.sum(&:importance_weight)
+    @total_importance ||= if opinion_question.published_fact_questions.loaded?
+      opinion_question.published_fact_questions.sum(&:importance_weight)
     else
-      opinion_question.fact_questions.sum(:importance_weight)
+      opinion_question.published_fact_questions.sum(:importance_weight)
     end
   end
 
@@ -75,6 +75,6 @@ class OpinionProgress
     FactResponse
       .where(user: user)
       .joins(:fact_question)
-      .where(fact_questions: { opinion_question_id: opinion_question.id })
+      .where(fact_questions: { opinion_question_id: opinion_question.id, withdrawn_at: nil })
   end
 end

@@ -61,6 +61,20 @@ class OpinionProgressTest < ActiveSupport::TestCase
     assert_equal 4, progress.total_importance
   end
 
+  test "withdrawn facts and their responses do not affect progress" do
+    first, second = @opinion.fact_questions
+    create_response(first, 0)
+    create_response(second, 1)
+    first.update!(withdrawn_at: Time.current)
+
+    progress = OpinionProgress.new(@user, @opinion)
+
+    assert_equal 1, progress.total
+    assert_equal 1, progress.answered
+    assert_equal 0, progress.correct
+    assert_equal 0.0, progress.weight
+  end
+
   private
 
   def create_response(question, selected_option)

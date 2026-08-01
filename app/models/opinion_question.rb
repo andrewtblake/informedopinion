@@ -1,6 +1,9 @@
 class OpinionQuestion < ApplicationRecord
   belongs_to :category, optional: true
   has_many :fact_questions, -> { order(:display_order) }, dependent: :destroy
+  has_many :published_fact_questions,
+    -> { published.order(:display_order) },
+    class_name: "FactQuestion"
   has_many :user_opinions, dependent: :destroy
   has_many :opinion_question_reactions, dependent: :destroy
   has_many :opinion_question_tags, dependent: :destroy
@@ -20,9 +23,14 @@ class OpinionQuestion < ApplicationRecord
 
   def publish_if_fact_bank_ready!
     minimum = Rails.configuration.x.fact_question_proposals.minimum_existing_questions
-    if !live? && fact_questions.count >= minimum
+    if !live? && published_fact_questions.count >= minimum
       update!(live: true, published_at: Time.current)
     end
+  end
+
+  def unpublish_if_fact_bank_not_ready!
+    minimum = Rails.configuration.x.fact_question_proposals.minimum_existing_questions
+    update!(live: false) if live? && published_fact_questions.count < minimum
   end
 
   def response_label(position)

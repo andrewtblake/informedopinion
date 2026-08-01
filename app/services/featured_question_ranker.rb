@@ -74,7 +74,7 @@ class FeaturedQuestionRanker
 
   def informed_counts
     @informed_counts ||= FactResponse.joins(:fact_question)
-      .where(correct: true, fact_questions: { opinion_question_id: question_ids })
+      .where(correct: true, fact_questions: { opinion_question_id: question_ids, withdrawn_at: nil })
       .group("fact_questions.opinion_question_id")
       .distinct
       .count(:user_id)

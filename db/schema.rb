@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_31_224600) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_01_110000) do
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_224600) do
     t.datetime "created_at", null: false
     t.text "details"
     t.integer "fact_question_id", null: false
+    t.integer "resolution_action"
     t.text "resolution_notes"
     t.datetime "reviewed_at"
     t.integer "reviewer_id"
@@ -81,8 +82,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_31_224600) do
     t.string "source_name", null: false
     t.string "source_url", null: false
     t.datetime "updated_at", null: false
+    t.datetime "withdrawn_at"
     t.index ["opinion_question_id", "display_order"], name: "index_fact_questions_on_opinion_and_order", unique: true
     t.index ["opinion_question_id"], name: "index_fact_questions_on_opinion_question_id"
+    t.index ["withdrawn_at"], name: "index_fact_questions_on_withdrawn_at"
     t.check_constraint "importance_weight BETWEEN 1 AND 3", name: "fact_questions_importance_weight_range"
   end
 

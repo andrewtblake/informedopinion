@@ -8,7 +8,9 @@ class HomeController < ApplicationController
   }.freeze
 
   def index
-    all_questions = OpinionQuestion.live.in_display_order.includes(:category, :tags, :fact_questions).to_a
+    all_questions = OpinionQuestion.live.in_display_order
+      .includes(:category, :tags, :published_fact_questions)
+      .to_a
     @discovery = TopicDiscovery.new(all_questions)
     @popular_questions = @discovery.popular
     @controversial_questions = @discovery.controversial

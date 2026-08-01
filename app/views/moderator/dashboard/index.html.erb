@@ -17,7 +17,7 @@
         <article class="moderation-item draft-question-item">
           <div>
             <h3><%= question.title %></h3>
-            <p><%= question.fact_questions.length %> of <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> required fact questions</p>
+            <p><%= question.published_fact_questions.length %> of <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> required fact questions</p>
           </div>
           <%= link_to "Add fact question",
             new_opinion_question_fact_question_proposal_path(question),
@@ -73,11 +73,73 @@
           </div>
           <h3><%= flag.fact_question.prompt %></h3>
           <% if flag.details.present? %><p><%= flag.details %></p><% end %>
-          <%= form_with model: flag, url: moderator_fact_question_flag_path(flag), method: :patch, class: "moderation-form" do |form| %>
-            <%= form.text_area :resolution_notes, rows: 2, placeholder: "Internal review notes (optional)" %>
-            <div>
-              <%= form.button "Resolve", name: "fact_question_flag[status]", value: "resolved", class: "button moderation-approve" %>
-              <%= form.button "Dismiss", name: "fact_question_flag[status]", value: "dismissed", class: "button moderation-decline" %>
+          <%= form_with model: flag, url: moderator_fact_question_flag_path(flag), method: :patch, class: "moderation-form moderation-editor fact-report-editor" do |form| %>
+            <div class="moderation-edit-fields">
+              <p class="moderation-form-guidance">Edit the published fact before choosing <strong>Correct and resolve</strong>. Withdrawal retains the fact and its response history for audit but removes it from quizzes and weighting. Dismissal leaves it unchanged.</p>
+              <div class="field">
+                <%= label_tag "fact_question_prompt_#{flag.id}", "Question" %>
+                <%= text_area_tag "fact_question[prompt]", flag.fact_question.prompt,
+                  id: "fact_question_prompt_#{flag.id}", rows: 2, required: true %>
+              </div>
+              <fieldset class="moderation-answer-editor">
+                <legend>Answers; select the correct one</legend>
+                <% flag.fact_question.options.each_with_index do |option, index| %>
+                  <div>
+                    <%= radio_button_tag "fact_question[correct_option]", index,
+                      flag.fact_question.correct_option == index, required: true,
+                      id: "flag_#{flag.id}_correct_option_#{index}",
+                      aria: { label: "Answer #{index + 1} is correct" } %>
+                    <%= text_field_tag "fact_question[options][]", option,
+                      aria: { label: "Answer #{index + 1}" }, required: true %>
+                  </div>
+                <% end %>
+              </fieldset>
+              <div class="field">
+                <%= label_tag "fact_question_explanation_#{flag.id}", "Explanation" %>
+                <%= text_area_tag "fact_question[explanation]", flag.fact_question.explanation,
+                  id: "fact_question_explanation_#{flag.id}", rows: 3, required: true %>
+              </div>
+              <div class="moderation-inline-fields">
+                <div class="field">
+                  <%= label_tag "fact_question_source_name_#{flag.id}", "Source name" %>
+                  <%= text_field_tag "fact_question[source_name]", flag.fact_question.source_name,
+                    id: "fact_question_source_name_#{flag.id}", required: true %>
+                </div>
+                <div class="field">
+                  <%= label_tag "fact_question_source_url_#{flag.id}", "Source URL" %>
+                  <%= url_field_tag "fact_question[source_url]", flag.fact_question.source_url,
+                    id: "fact_question_source_url_#{flag.id}", required: true %>
+                </div>
+              </div>
+              <div class="moderation-inline-fields">
+                <div class="field">
+                  <%= label_tag "fact_question_importance_#{flag.id}", "Importance" %>
+                  <%= select_tag "fact_question[importance_weight]",
+                    options_for_select(FactQuestion::IMPORTANCE_LEVELS.map { |value, label| [ label, value ] }, flag.fact_question.importance_weight),
+                    id: "fact_question_importance_#{flag.id}" %>
+                </div>
+                <div class="field">
+                  <%= label_tag "fact_question_direction_#{flag.id}", "Likely effect" %>
+                  <%= select_tag "fact_question[evidence_direction]",
+                    options_for_select(FactQuestion::VALENCES.map { |value, label| [ label, value ] }, flag.fact_question.evidence_direction),
+                    id: "fact_question_direction_#{flag.id}" %>
+                </div>
+              </div>
+              <div class="field">
+                <%= label_tag "fact_question_rationale_#{flag.id}", "Importance rationale" %>
+                <%= text_area_tag "fact_question[importance_rationale]", flag.fact_question.importance_rationale,
+                  id: "fact_question_rationale_#{flag.id}", rows: 2, required: true %>
+              </div>
+              <div class="field">
+                <%= form.label :resolution_notes, "Resolution note" %>
+                <%= form.text_area :resolution_notes, rows: 2, required: true,
+                  placeholder: "Record what was corrected, why it was withdrawn, or why no change is warranted." %>
+              </div>
+            </div>
+            <div class="moderation-actions">
+              <%= form.button "Correct and resolve", name: "fact_question_flag[outcome]", value: "corrected", class: "button moderation-approve" %>
+              <%= form.button "Withdraw and resolve", name: "fact_question_flag[outcome]", value: "withdrawn", class: "button moderation-withdraw" %>
+              <%= form.button "Dismiss — no change", name: "fact_question_flag[outcome]", value: "dismissed", class: "button moderation-decline" %>
             </div>
           <% end %>
         </article>

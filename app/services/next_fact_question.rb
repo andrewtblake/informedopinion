@@ -36,7 +36,7 @@ class NextFactQuestion
   def ordered_questions
     priorities = direction_priorities
 
-    opinion_question.fact_questions
+    opinion_question.published_fact_questions
       .reorder(
         Arel.sql(
           ActiveRecord::Base.sanitize_sql_array(
@@ -90,6 +90,6 @@ class NextFactQuestion
   def topic_responses
     user.fact_responses
       .joins(:fact_question)
-      .where(fact_questions: { opinion_question_id: opinion_question.id })
+      .where(fact_questions: { opinion_question_id: opinion_question.id, withdrawn_at: nil })
   end
 end

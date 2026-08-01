@@ -108,7 +108,7 @@
                   <p>Your position: <strong><%= opinion.label %></strong> · <%= progress.weight %>% weight</p>
                   <%= link_to "Continue knowledge check", opinion_question_quiz_path(question) %>
                 <% else %>
-                  <p><%= question.fact_questions.length %> sourced fact questions</p>
+                  <p><%= question.published_fact_questions.length %> sourced fact questions</p>
                   <%= link_to "Examine question", opinion_question_path(question) %>
                 <% end %>
               </footer>

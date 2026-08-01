@@ -116,6 +116,19 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 75.0, result.indicator_position
   end
 
+  test "withdrawn facts no longer contribute to the collective result" do
+    user = create_user("withdrawn")
+    user.user_opinions.create!(opinion_question: @topic, position: 0)
+    answer(user, @facts.first, 0)
+    @facts.first.update!(withdrawn_at: Time.current)
+
+    result = CollectiveOpinion.new(@topic)
+
+    assert_equal 0, result.informed_respondents
+    assert_nil result.weighted_score
+    assert_equal "No weighted result", result.result_label
+  end
+
   private
 
   def create_user(prefix)
