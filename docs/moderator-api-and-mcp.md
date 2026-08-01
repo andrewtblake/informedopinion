@@ -15,6 +15,7 @@ The versioned moderator API is the authoritative interface for agent-assisted ed
 ## Issue IDs and workflow
 
 Moderation issue IDs are composite and stable, for example `opinion_proposal:12`, `fact_proposal:7`, and `fact_report:31`.
+Anonymous dislike reasons appear as `opinion_reaction:9`. They can be resolved as `reviewed` when they identify useful editorial work or `dismissed` when no action is warranted; likes are aggregate-only and are not moderation issues.
 
 For an opinion proposal:
 

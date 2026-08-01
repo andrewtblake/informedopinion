@@ -13,6 +13,11 @@ class User < ApplicationRecord
   has_many :fact_responses, dependent: :destroy
   has_many :fact_question_flags, dependent: :destroy
   has_many :opinion_question_reactions, dependent: :destroy
+  has_many :reviewed_opinion_question_reactions,
+    class_name: "OpinionQuestionReaction",
+    foreign_key: :reviewer_id,
+    dependent: :nullify,
+    inverse_of: :reviewer
   has_many :opinion_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
   has_many :fact_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
   has_many :moderator_api_tokens, dependent: :destroy

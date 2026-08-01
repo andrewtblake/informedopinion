@@ -52,6 +52,51 @@
       <%= render "featured_order", featured_questions: @featured_questions, featured_ranker: @featured_ranker %>
     </details>
 
+    <details class="moderation-section ui-disclosure" id="opinion-question-reactions" data-disclosure-key="opinion-question-reactions" data-action="toggle->moderation-disclosures#remember" <%= "open" if @pending_reaction_count.positive? %>>
+      <summary>
+        <h2>Opinion-question reactions</h2>
+        <span><%= @pending_reaction_count %> pending · <%= @reaction_questions.length %> questions</span>
+      </summary>
+      <p class="moderation-guidance">Likes are shown only as totals. Dislike reasons are anonymous and ordered for editorial review; no participant identity is shown.</p>
+      <% @reaction_questions.each do |question, reactions| %>
+        <% likes = reactions.select(&:like?) %>
+        <% dislikes = reactions.select(&:dislike?) %>
+        <details class="reaction-review" data-disclosure-key="opinion-reactions-<%= question.id %>" data-action="toggle->moderation-disclosures#remember">
+          <summary>
+            <strong><%= question.title %></strong>
+            <span><%= pluralize(likes.length, "like") %> · <%= pluralize(dislikes.length, "dislike") %></span>
+          </summary>
+          <% if dislikes.any? %>
+            <div class="reaction-reasons">
+              <% dislikes.sort_by { |reaction| [reaction.moderation_pending? ? 0 : 1, reaction.created_at] }.each do |reaction| %>
+                <article class="reaction-reason reaction-reason-<%= reaction.moderation_status %>">
+                  <header>
+                    <strong>Anonymous reason</strong>
+                    <span><%= reaction.moderation_status.humanize %></span>
+                  </header>
+                  <blockquote><%= reaction.reason %></blockquote>
+                  <% if reaction.moderation_pending? %>
+                    <%= form_with model: reaction, url: moderator_opinion_question_reaction_path(reaction), method: :patch, class: "reaction-review-form" do |form| %>
+                      <%= form.text_area :moderation_notes, rows: 2, placeholder: "Optional internal note", aria: { label: "Internal moderation note" } %>
+                      <div>
+                        <%= form.button "Mark reviewed", name: "opinion_question_reaction[moderation_status]", value: "reviewed", class: "editorial-control" %>
+                        <%= form.button "Dismiss", name: "opinion_question_reaction[moderation_status]", value: "dismissed", class: "editorial-control editorial-control-muted" %>
+                      </div>
+                    <% end %>
+                  <% elsif reaction.moderation_notes.present? %>
+                    <p class="reaction-review-note"><strong>Internal note:</strong> <%= reaction.moderation_notes %></p>
+                  <% end %>
+                </article>
+              <% end %>
+            </div>
+          <% else %>
+            <p class="moderation-empty">This question has likes but no dislikes.</p>
+          <% end %>
+        </details>
+      <% end %>
+      <% if @reaction_questions.empty? %><p class="moderation-empty">No opinion-question reactions have been recorded.</p><% end %>
+    </details>
+
     <details class="moderation-section ui-disclosure" id="fact-question-reports" data-disclosure-key="fact-question-reports" data-action="toggle->moderation-disclosures#remember" <%= "open" if @flags.any? %>>
       <summary>
         <h2>Fact-question reports</h2>

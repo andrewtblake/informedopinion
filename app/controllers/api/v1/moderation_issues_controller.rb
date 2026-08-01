@@ -1,16 +1,24 @@
 class Api::V1::ModerationIssuesController < Api::V1::BaseController
   TYPES = {
-    "fact_report" => FactQuestionFlag,
-    "opinion_proposal" => OpinionQuestionProposal,
-    "fact_proposal" => FactQuestionProposal
+    "fact_report" => { model: FactQuestionFlag, status: :status },
+    "opinion_proposal" => { model: OpinionQuestionProposal, status: :status },
+    "fact_proposal" => { model: FactQuestionProposal, status: :status },
+    "opinion_reaction" => { model: OpinionQuestionReaction.dislike, status: :moderation_status }
   }.freeze
 
   def index
     status = params[:status].presence || "pending"
-    issues = TYPES.flat_map do |type, model|
+    issues = TYPES.flat_map do |type, configuration|
       next [] if params[:type].present? && params[:type] != type
 
-      scope = status == "all" ? model.all : model.where(status: status)
+      scope = configuration.fetch(:model)
+      if status != "all"
+        status_column = configuration.fetch(:status)
+        model_class = scope.respond_to?(:klass) ? scope.klass : scope
+        next [] unless model_class.defined_enums.fetch(status_column.to_s).key?(status)
+
+        scope = scope.where(status_column => status)
+      end
       scope.order(:created_at).map { serialize(type, _1) }
     end.sort_by { _1.fetch("created_at") }
     render json: { moderation_issues: issues, count: issues.length }
@@ -33,7 +41,7 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
   end
 
   def approve
-    return already_decided unless issue.pending?
+    return already_decided unless issue_pending?
 
     published = case issue_type
     when "opinion_proposal"
@@ -59,8 +67,10 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
   end
 
   def decline
-    return already_decided unless issue.pending?
-    return render(json: { error: "wrong_action" }, status: :unprocessable_entity) if issue_type == "fact_report"
+    return already_decided unless issue_pending?
+    unless %w[opinion_proposal fact_proposal].include?(issue_type)
+      return render json: { error: "wrong_action" }, status: :unprocessable_entity
+    end
 
     issue.update!(status: :declined, reviewer: current_moderator, review_notes: params.require(:review_notes), reviewed_at: Time.current)
     audit!(action: "#{issue_type}.decline", resource: issue, changes: { "review_notes" => issue.review_notes })
@@ -68,7 +78,11 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
   end
 
   def resolve
-    return already_decided unless issue.pending?
+    return already_decided unless issue_pending?
+
+    if issue_type == "opinion_reaction"
+      return resolve_opinion_reaction
+    end
     return render(json: { error: "wrong_action" }, status: :unprocessable_entity) unless issue_type == "fact_report"
 
     outcome = params.require(:outcome)
@@ -98,7 +112,8 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
   end
 
   def issue
-    @issue ||= TYPES.fetch(issue_type) { raise ActiveRecord::RecordNotFound }.find(params[:id].to_s.split(":", 2).second)
+    configuration = TYPES.fetch(issue_type) { raise ActiveRecord::RecordNotFound }
+    @issue ||= configuration.fetch(:model).find(params[:id].to_s.split(":", 2).second)
   end
 
   def serialize(type, record)
@@ -112,6 +127,8 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
       { "opinion_question" => record.opinion_question.as_json(only: %i[id title statement slug]) }
     when "opinion_proposal"
       { "category" => record.category.name }
+    when "opinion_reaction"
+      { "opinion_question" => record.opinion_question.as_json(only: %i[id title statement slug]) }
     end
     common.merge("id" => "#{type}:#{record.id}", "type" => type, "created_at" => record.created_at.iso8601,
       "editorial_context" => context)
@@ -135,8 +152,25 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
       reviewer: current_moderator, reviewed_at: Time.current)
   end
 
+  def resolve_opinion_reaction
+    outcome = params.require(:outcome)
+    unless %w[reviewed dismissed].include?(outcome)
+      return render json: { error: "invalid_outcome" }, status: :unprocessable_entity
+    end
+
+    issue.update!(moderation_status: outcome, moderation_notes: params[:resolution_notes],
+      reviewer: current_moderator, reviewed_at: Time.current)
+    audit!(action: "opinion_reaction.#{outcome}", resource: issue,
+      changes: { "moderation_notes" => issue.moderation_notes })
+    render json: serialize(issue_type, issue.reload)
+  end
+
   def already_decided
     render json: { error: "already_decided" }, status: :conflict
+  end
+
+  def issue_pending?
+    issue_type == "opinion_reaction" ? issue.moderation_pending? : issue.pending?
   end
 
   def diff(before, after)

@@ -90,6 +90,29 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_response :unauthorized
   end
 
+  test "anonymous dislikes are moderation issues and can be reviewed through the API" do
+    opinion = OpinionQuestion.create!(category: @category, title: "Reaction review", statement: "The policy should be adopted.",
+      slug: "reaction-review", live: true, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    reaction = @participant.opinion_question_reactions.create!(opinion_question: opinion, kind: :dislike,
+      reason: "The wording assumes a disputed premise.")
+
+    get api_v1_moderation_issues_path(type: "opinion_reaction"), headers: @headers
+    assert_response :success
+    issue = response.parsed_body.fetch("moderation_issues").sole
+    assert_equal "opinion_reaction:#{reaction.id}", issue.fetch("id")
+    assert_equal reaction.reason, issue.fetch("reason")
+    assert_not issue.key?("user_id")
+    assert_not_includes response.body, @participant.email
+
+    post resolve_api_v1_moderation_issue_path("opinion_reaction:#{reaction.id}"),
+      params: { outcome: "reviewed", resolution_notes: "Editorial wording review required." }.to_json,
+      headers: @headers
+    assert_response :success
+    assert reaction.reload.moderation_reviewed?
+    assert_equal "opinion_reaction.reviewed", ApiAuditEvent.last.action
+  end
+
   private
 
   def fact_payload(prompt, options)

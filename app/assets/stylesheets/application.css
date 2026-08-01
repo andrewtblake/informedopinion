@@ -650,6 +650,19 @@ h1, h2, h3 {
 .fact-bank-review .fact-bank-options li.correct { color: var(--ink); }
 .fact-bank-review .fact-bank-options strong { margin-left: 5px; color: var(--teal-dark); font-size: 8px; text-transform: uppercase; letter-spacing: .08em; }
 .fact-bank-review li > p { margin: 5px 0 0; color: var(--muted); font-size: 10px; }
+.reaction-review { border-top: 1px solid var(--line); }
+.reaction-review > summary { min-height: 54px; padding: 10px 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; }
+.reaction-review > summary strong { font-size: 13px; }
+.reaction-review > summary span { color: var(--muted); font-size: 10px; }
+.reaction-reasons { padding-bottom: 14px; }
+.reaction-reason { padding: 15px; border: 1px solid var(--line); background: #fbfbf8; }
+.reaction-reason + .reaction-reason { margin-top: 8px; }
+.reaction-reason header { display: flex; justify-content: space-between; gap: 15px; color: var(--muted); font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }
+.reaction-reason blockquote { margin: 10px 0; padding-left: 12px; border-left: 2px solid var(--ui-accent); font-size: 12px; }
+.reaction-review-form { display: grid; grid-template-columns: minmax(220px, 1fr) auto; align-items: end; gap: 10px; }
+.reaction-review-form textarea { min-height: 58px; }
+.reaction-review-form > div { display: flex; gap: 5px; }
+.reaction-review-note { margin: 8px 0 0; color: var(--muted); font-size: 10px; }
 
 .account-page { min-height: calc(100vh - 76px); padding: 54px 0 100px; background: #faf9f5; }
 .account-container { width: min(1000px, calc(100% - 40px)); }
@@ -855,6 +868,8 @@ h1, h2, h3 {
   .fact-contribution-panel { align-items: flex-start; flex-direction: column; gap: 15px; }
   .draft-question-item { grid-template-columns: 1fr; gap: 14px; }
   .draft-question-actions { flex-wrap: wrap; }
+  .reaction-review-form { grid-template-columns: 1fr; }
+  .reaction-review-form > div { flex-wrap: wrap; }
   .featured-order-list li { grid-template-columns: 24px minmax(0, 1fr); gap: 9px; }
   .featured-adjustment { grid-column: 2; text-align: left; }
   .featured-order-actions { grid-column: 2; justify-content: flex-start; flex-wrap: wrap; }

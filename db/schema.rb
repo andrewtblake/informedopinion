@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_01_190000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_01_220000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -162,11 +162,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_190000) do
   create_table "opinion_question_reactions", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "kind", null: false
+    t.text "moderation_notes"
+    t.integer "moderation_status"
     t.integer "opinion_question_id", null: false
     t.text "reason"
+    t.datetime "reviewed_at"
+    t.integer "reviewer_id"
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
+    t.index ["moderation_status"], name: "index_opinion_question_reactions_on_moderation_status"
     t.index ["opinion_question_id"], name: "index_opinion_question_reactions_on_opinion_question_id"
+    t.index ["reviewer_id"], name: "index_opinion_question_reactions_on_reviewer_id"
     t.index ["user_id", "opinion_question_id"], name: "index_opinion_reactions_on_user_and_question", unique: true
     t.index ["user_id"], name: "index_opinion_question_reactions_on_user_id"
   end
@@ -391,6 +397,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_190000) do
   add_foreign_key "opinion_question_proposals", "users", column: "reviewer_id"
   add_foreign_key "opinion_question_reactions", "opinion_questions"
   add_foreign_key "opinion_question_reactions", "users"
+  add_foreign_key "opinion_question_reactions", "users", column: "reviewer_id", on_delete: :nullify
   add_foreign_key "opinion_question_tags", "opinion_questions"
   add_foreign_key "opinion_question_tags", "tags"
   add_foreign_key "opinion_questions", "categories"

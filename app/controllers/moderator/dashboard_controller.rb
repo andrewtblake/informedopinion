@@ -17,6 +17,16 @@ module Moderator
         OpinionQuestion.live.includes(:category).to_a
       )
       @featured_questions = @featured_ranker.rank
+      @reaction_questions = OpinionQuestion.includes(:opinion_question_reactions).filter_map do |question|
+        reactions = question.opinion_question_reactions
+        next if reactions.empty?
+
+        [ question, reactions ]
+      end.sort_by do |question, reactions|
+        dislikes = reactions.count(&:dislike?)
+        [ -dislikes, -(dislikes.fdiv(reactions.length)), question.title ]
+      end
+      @pending_reaction_count = OpinionQuestionReaction.dislike.moderation_pending.count
     end
   end
 end

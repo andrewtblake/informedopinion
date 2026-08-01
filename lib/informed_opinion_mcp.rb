@@ -44,7 +44,7 @@ module InformedOpinionMcp
     def define_tools(server, client)
       tool(server, "list_moderation_issues", "List issues needing moderator attention. Returns anonymous editorial records.",
         { status: { type: "string", enum: %w[pending approved declined resolved dismissed all], default: "pending" },
-          type: { type: "string", enum: %w[fact_report opinion_proposal fact_proposal] } }, read_only: true) do |args|
+          type: { type: "string", enum: %w[fact_report opinion_proposal fact_proposal opinion_reaction] } }, read_only: true) do |args|
         query = URI.encode_www_form(args.compact)
         client.request("get", "moderation_issues?#{query}")
       end
@@ -59,7 +59,7 @@ module InformedOpinionMcp
       end
       tool(server, "decide_moderation_issue", "Explicitly approve or decline a proposal, or resolve a fact report. This changes moderation state.",
         { id: { type: "string" }, action: { type: "string", enum: %w[approve decline resolve] }, review_notes: { type: "string" },
-          outcome: { type: "string", enum: %w[corrected withdrawn dismissed] }, fact_question: { type: "object" } }, required: %w[id action]) do |args|
+          outcome: { type: "string", enum: %w[corrected withdrawn reviewed dismissed] }, fact_question: { type: "object" } }, required: %w[id action]) do |args|
         action = args.delete(:action)
         client.request("post", "moderation_issues/#{args.delete(:id)}/#{action}", args)
       end

@@ -113,13 +113,16 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
       }
     end
     assert @participant.opinion_question_reactions.reload.last.like?
+    assert_nil @participant.opinion_question_reactions.last.moderation_status
 
     assert_no_difference "OpinionQuestionReaction.count" do
       post opinion_question_reaction_path(@topic), params: {
         opinion_question_reaction: { kind: "dislike", reason: "The proposition combines two policies." }
       }
     end
-    assert_equal "The proposition combines two policies.", @participant.opinion_question_reactions.reload.last.reason
+    reaction = @participant.opinion_question_reactions.reload.last
+    assert_equal "The proposition combines two policies.", reaction.reason
+    assert reaction.moderation_pending?
   end
 
   test "moderator reviews anonymous editorial inputs" do
@@ -134,6 +137,11 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
       category: @category,
       tags_text: "United Kingdom, Public policy",
       rationale: "This is consequential and contested."
+    )
+    reaction = @participant.opinion_question_reactions.create!(
+      opinion_question: @topic,
+      kind: :dislike,
+      reason: "The proposition combines two distinct policies."
     )
 
     sign_in @participant, scope: :user
@@ -150,6 +158,14 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_select ".moderation-item", text: /A proposed question/
     assert_select ".moderation-item", text: /participant@example.com/, count: 0
     assert_select ".moderation-item", text: /Participant User/, count: 0
+    assert_select "#opinion-question-reactions", text: /1 pending.*1 question.*Moderation topic.*1 dislike.*combines two distinct policies/m
+    assert_not_includes response.body, @participant.email
+
+    patch moderator_opinion_question_reaction_path(reaction), params: {
+      opinion_question_reaction: { moderation_status: "reviewed", moderation_notes: "Consider separating the policies." }
+    }
+    assert reaction.reload.moderation_reviewed?
+    assert_equal @moderator, reaction.reviewer
 
     patch moderator_fact_question_flag_path(flag), params: {
       fact_question_flag: { outcome: "dismissed", resolution_notes: "Source checked; no defect found." }
