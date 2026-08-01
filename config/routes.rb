@@ -29,6 +29,21 @@ Rails.application.routes.draw do
     resources :featured_questions, only: :update
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :opinion_questions, only: %i[index show create update destroy] do
+        resources :fact_questions, only: %i[index show create update destroy], shallow: true
+        post "fact_questions/bulk", to: "fact_questions#bulk_create", on: :member
+      end
+      resources :moderation_issues, only: %i[index show update] do
+        post :approve, on: :member
+        post :decline, on: :member
+        post :resolve, on: :member
+      end
+      get "editorial_standard", to: "documentation#editorial_standard"
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -36,7 +36,7 @@
           <h2>Information collected</h2>
           <p>Account information consists of first and last name, email address, encrypted password credentials, account role, authentication tokens and relevant timestamps. Passwords are not stored in readable form.</p>
           <p>Participation information consists of registered topic positions, fact-question answers and correctness, answer and review counts, knowledge weights, likes or dislikes and their reasons, fact reports, proposed opinion and fact questions, and moderation outcomes.</p>
-          <p>Operational records may include IP addresses, request times, browser information, delivery records and security events in short-lived application, hosting and email logs. The service does not ask for demographic profiles and does not use advertising or behavioural analytics.</p>
+          <p>Operational records may include IP addresses, request times, browser information, delivery records and security events in short-lived application, hosting and email logs. Moderator API activity records the moderator account, the revocable access token used, the action, affected editorial record, request identifier and changed values. API secrets are stored only as one-way digests. The service does not ask for demographic profiles and does not use advertising or behavioural analytics.</p>
         </section>
 
         <section id="purpose">
@@ -52,6 +52,7 @@
           <h2>What is and is not public</h2>
           <p>The site publishes aggregate opinion results and aggregate participant counts. It does not publish a participant's name, email address, individual answer history, individual knowledge weight or individual topic position.</p>
           <p>Approved question proposals may become public editorial questions, but the public question is not attributed to the proposer. Moderators see the material and action required; normal moderation interfaces do not identify contributors to moderators unless operational investigation makes access necessary.</p>
+          <p>Moderators may use an authorised AI assistant to analyse and edit editorial material through the moderator API. The API deliberately withholds contributor identity from moderation issue data. The assistant cannot publish or alter material without an authenticated moderator token, and its writes are audited.</p>
         </section>
 
         <section id="processors">
@@ -67,6 +68,7 @@
           <h2>Retention and deletion</h2>
           <p>Account and participation records are retained while the account remains active because they are needed to preserve progress and calculate current aggregates. Participants can delete them from the Account page. Dormant accounts and associated participation should be reviewed after two years without a sign-in and deleted unless the participant is first offered a reasonable opportunity to retain them.</p>
           <p>Ordinary application and security logs should be retained for no longer than 30 days unless a specific security incident requires a restricted copy for investigation. Transactional email delivery records follow the configured provider retention period and should be reviewed periodically.</p>
+          <p>Moderator API audit records are retained with the editorial history while needed for accountability, security and review. They contain the moderator actor but not the identity of the participant who submitted the underlying proposal or report.</p>
           <p>Account deletion removes the live account and associated participation records immediately. Encrypted backup copies may remain temporarily within restricted disaster-recovery backups until those backups expire under the hosting provider's rotation. They are not used for ordinary processing and should not be restored without reapplying subsequent deletion records where practicable.</p>
           <p>Published editorial questions produced from approved proposals may remain because they no longer retain public attribution to the proposer. Contact the privacy address if their text itself contains personal information.</p>
         </section>

@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_01_170000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_01_190000) do
+  create_table "api_audit_events", force: :cascade do |t|
+    t.string "action", null: false
+    t.integer "actor_id"
+    t.json "change_data", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.integer "moderator_api_token_id"
+    t.string "request_id"
+    t.bigint "resource_id"
+    t.string "resource_type", null: false
+    t.datetime "updated_at", null: false
+    t.index ["actor_id"], name: "index_api_audit_events_on_actor_id"
+    t.index ["created_at"], name: "index_api_audit_events_on_created_at"
+    t.index ["moderator_api_token_id"], name: "index_api_audit_events_on_moderator_api_token_id"
+    t.index ["resource_type", "resource_id"], name: "index_api_audit_events_on_resource_type_and_resource_id"
+  end
+
   create_table "categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name", null: false
@@ -104,6 +120,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_170000) do
     t.index ["user_id", "fact_question_id"], name: "index_fact_responses_on_user_id_and_fact_question_id", unique: true
     t.index ["user_id"], name: "index_fact_responses_on_user_id"
     t.check_constraint "attempt_count >= 0", name: "fact_responses_attempt_count_nonnegative"
+  end
+
+  create_table "moderator_api_tokens", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "last_used_at"
+    t.string "name", null: false
+    t.datetime "revoked_at"
+    t.string "token_digest", null: false
+    t.string "token_prefix", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id", null: false
+    t.index ["token_digest"], name: "index_moderator_api_tokens_on_token_digest", unique: true
+    t.index ["user_id"], name: "index_moderator_api_tokens_on_user_id"
   end
 
   create_table "opinion_question_proposals", force: :cascade do |t|
@@ -343,6 +372,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_170000) do
     t.index ["role"], name: "index_users_on_role"
   end
 
+  add_foreign_key "api_audit_events", "moderator_api_tokens", on_delete: :nullify
+  add_foreign_key "api_audit_events", "users", column: "actor_id", on_delete: :nullify
   add_foreign_key "fact_question_flags", "fact_questions"
   add_foreign_key "fact_question_flags", "users"
   add_foreign_key "fact_question_flags", "users", column: "reviewer_id"
@@ -353,6 +384,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_170000) do
   add_foreign_key "fact_questions", "opinion_questions"
   add_foreign_key "fact_responses", "fact_questions"
   add_foreign_key "fact_responses", "users"
+  add_foreign_key "moderator_api_tokens", "users"
   add_foreign_key "opinion_question_proposals", "categories"
   add_foreign_key "opinion_question_proposals", "opinion_questions", column: "published_opinion_question_id"
   add_foreign_key "opinion_question_proposals", "users", column: "proposer_id"

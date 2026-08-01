@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :opinion_question_reactions, dependent: :destroy
   has_many :opinion_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
   has_many :fact_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
+  has_many :moderator_api_tokens, dependent: :destroy
+  has_many :api_audit_events, foreign_key: :actor_id, dependent: :nullify, inverse_of: :actor
   has_many :reviewed_fact_question_flags,
     class_name: "FactQuestionFlag",
     foreign_key: :reviewer_id,
