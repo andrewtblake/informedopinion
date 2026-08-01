@@ -75,7 +75,7 @@ module InformedOpinionMcp
         { id: { type: "integer" }, opinion_question: { type: "object" } }, required: %w[id opinion_question]) do |args|
         client.request("patch", "opinion_questions/#{args.delete(:id)}", args)
       end
-      tool(server, "create_fact_questions", "Atomically create 1–30 calibrated four-option fact questions for one opinion question.",
+      tool(server, "create_fact_questions", "Atomically create 1–30 calibrated, completely self-contained four-option fact questions. No item may refer or allude to another item in the bank or assume a presentation order.",
         { opinion_question_id: { type: "integer" }, fact_questions: { type: "array", minItems: 1, maxItems: 30, items: fact_schema } },
         required: %w[opinion_question_id fact_questions]) do |args|
         client.request("post", "opinion_questions/#{args.delete(:opinion_question_id)}/fact_questions/bulk", args)
@@ -107,7 +107,7 @@ module InformedOpinionMcp
 
     def fact_schema
       { type: "object", required: %w[prompt options correct_option explanation source_name source_url importance_weight importance_rationale evidence_direction],
-        properties: { prompt: { type: "string" }, options: { type: "array", minItems: 4, maxItems: 4, items: { type: "string" } },
+        properties: { prompt: { type: "string", description: "Self-contained wording that does not refer to any other current or planned fact question." }, options: { type: "array", minItems: 4, maxItems: 4, items: { type: "string" } },
           correct_option: { type: "integer", minimum: 0, maximum: 3 }, explanation: { type: "string" }, source_name: { type: "string" },
           source_url: { type: "string" }, importance_weight: { type: "integer", minimum: 1, maximum: 3 },
           importance_rationale: { type: "string" }, evidence_direction: { type: "integer", minimum: -1, maximum: 1 } } }

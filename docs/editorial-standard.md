@@ -23,7 +23,7 @@ Each published bank contains at least 30 questions. Every fact question must:
 1. Test a fact, not a value judgement, prediction presented as certainty, or disguised argument.
 2. Be relevant to the exact opinion proposition and reasonably capable of changing or refining an informed person's view.
 3. Prefer decision-relevant evidence: the current legal or factual baseline, scale, causal mechanisms, measured outcomes, material benefits, material harms, uncertainty and the strongest evidence invoked on each side.
-4. Stand alone. Define abbreviations and supply enough jurisdictional and temporal context to understand the question without reading another item.
+4. Be completely self-contained. Define abbreviations and supply enough jurisdictional and temporal context to understand the question without reading another item. A question, answer choice or explanation must never refer or allude to another fact question in the bank—whether earlier, later, numbered, currently present or merely planned. It must remain coherent when presented first, last or in isolation.
 5. Have one unambiguously best answer supported by the linked source and a concise explanation of why it is correct.
 6. Link directly to a named primary, official or otherwise authoritative source using HTTPS. Secondary sources may be used when they are the best synthesis of contested or dispersed evidence.
 7. Offer exactly four mutually distinct choices. Every wrong choice must be plausible to an intelligent non-expert and wrong for a substantive reason; joke answers, category errors and conspicuous absurdities are prohibited.
@@ -43,6 +43,7 @@ Before publication, an editor checks the bank as a whole for:
 - consistent terminology, geographical scope and dates;
 - source accessibility and continued support for the stated answer;
 - duplicated facts, trivia, accidental advocacy and culturally loaded wording;
+- dependencies between questions, including language such as “as established above”, “the previous finding”, “this result”, “the other question” or references to an assumed sequence;
 - plausible distractors and resistance to answer-length guessing;
 - HTML limited to approved clarification markup, never used to conceal qualifications or evidence.
 
