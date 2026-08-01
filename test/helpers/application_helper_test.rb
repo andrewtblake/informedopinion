@@ -10,6 +10,24 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "glossary", fragment.at_css("abbr")["data-controller"]
   end
 
+  test "economic and ownership initialisms receive accessible definitions" do
+    rendered = glossary_text("An ESOP is governed by ERISA. SOE evidence from the IMF, NBER and TVA includes GDP and COVID-19 data.")
+    fragment = Nokogiri::HTML.fragment(rendered)
+
+    expected_definitions = {
+      "ESOP" => "Employee Stock Ownership Plan",
+      "ERISA" => "Employee Retirement Income Security Act",
+      "SOE" => "State-Owned Enterprise",
+      "IMF" => "International Monetary Fund",
+      "NBER" => "National Bureau of Economic Research",
+      "TVA" => "Tennessee Valley Authority",
+      "GDP" => "Gross Domestic Product",
+      "COVID-19" => "Coronavirus Disease 2019"
+    }
+
+    assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
+  end
+
   test "glossary rendering continues to escape arbitrary HTML" do
     rendered = glossary_text("<script>alert('x')</script> ICC")
     fragment = Nokogiri::HTML.fragment(rendered)
