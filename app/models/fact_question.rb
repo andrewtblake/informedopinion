@@ -11,7 +11,7 @@ class FactQuestion < ApplicationRecord
     3 => "Foundational"
   }.freeze
 
-  belongs_to :opinion_question
+  belongs_to :opinion_question, touch: true
   has_many :fact_responses, dependent: :destroy
   has_many :fact_question_flags, dependent: :destroy
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_01_220000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_01_230000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -120,6 +120,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_220000) do
     t.index ["user_id", "fact_question_id"], name: "index_fact_responses_on_user_id_and_fact_question_id", unique: true
     t.index ["user_id"], name: "index_fact_responses_on_user_id"
     t.check_constraint "attempt_count >= 0", name: "fact_responses_attempt_count_nonnegative"
+  end
+
+  create_table "moderation_item_views", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "displayed_at", null: false
+    t.string "item_key", null: false
+    t.integer "moderator_id", null: false
+    t.datetime "seen_version_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["moderator_id", "item_key"], name: "index_moderation_item_views_on_moderator_id_and_item_key", unique: true
+    t.index ["moderator_id"], name: "index_moderation_item_views_on_moderator_id"
   end
 
   create_table "moderator_api_tokens", force: :cascade do |t|
@@ -390,6 +401,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_220000) do
   add_foreign_key "fact_questions", "opinion_questions"
   add_foreign_key "fact_responses", "fact_questions"
   add_foreign_key "fact_responses", "users"
+  add_foreign_key "moderation_item_views", "users", column: "moderator_id", on_delete: :cascade
   add_foreign_key "moderator_api_tokens", "users"
   add_foreign_key "opinion_question_proposals", "categories"
   add_foreign_key "opinion_question_proposals", "opinion_questions", column: "published_opinion_question_id"

@@ -1,6 +1,7 @@
 module Moderator
   class DashboardController < BaseController
     def index
+      @moderation_inbox = ModerationInbox.new(current_user)
       @flags = FactQuestionFlag.pending
         .includes(fact_question: :opinion_question)
         .order(:created_at)
