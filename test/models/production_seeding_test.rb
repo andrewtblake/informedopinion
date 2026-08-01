@@ -37,7 +37,7 @@ class ProductionSeedingTest < ActiveSupport::TestCase
       importance_rationale: "The community and moderator assessed this as significant.",
       evidence_direction: 0
     )
-    user = User.create!(
+    user = create_user!(
       first_name: "Genuine",
       last_name: "Participant",
       email: "genuine@example.com",

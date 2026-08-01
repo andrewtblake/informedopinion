@@ -77,7 +77,7 @@ class TopicDiscoveryTest < ActionDispatch::IntegrationTest
   end
 
   def create_user(index)
-    User.create!(
+    create_user!(
       first_name: "Reader",
       last_name: index.to_s,
       email: "reader#{index}@example.com",

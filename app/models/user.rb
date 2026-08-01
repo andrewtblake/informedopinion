@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  attribute :accept_terms, :boolean
+  attribute :consent_sensitive_data, :boolean
+  attr_accessor :require_participation_consent
+
   enum :role, { participant: 0, moderator: 1 }
 
   devise :database_authenticatable, :registerable,
@@ -11,10 +15,54 @@ class User < ApplicationRecord
   has_many :opinion_question_reactions, dependent: :destroy
   has_many :opinion_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
   has_many :fact_question_proposals, foreign_key: :proposer_id, dependent: :destroy, inverse_of: :proposer
+  has_many :reviewed_fact_question_flags,
+    class_name: "FactQuestionFlag",
+    foreign_key: :reviewer_id,
+    dependent: :nullify,
+    inverse_of: :reviewer
+  has_many :reviewed_opinion_question_proposals,
+    class_name: "OpinionQuestionProposal",
+    foreign_key: :reviewer_id,
+    dependent: :nullify,
+    inverse_of: :reviewer
+  has_many :reviewed_fact_question_proposals,
+    class_name: "FactQuestionProposal",
+    foreign_key: :reviewer_id,
+    dependent: :nullify,
+    inverse_of: :reviewer
 
   validates :first_name, :last_name, presence: true, length: { maximum: 50 }
+  validates :accept_terms,
+    inclusion: { in: [ true ], message: "must be accepted" },
+    if: :require_participation_consent
+  validates :consent_sensitive_data,
+    inclusion: { in: [ true ], message: "must be accepted" },
+    if: :require_participation_consent
+
+  before_create :record_initial_privacy_consent, if: :require_participation_consent
 
   def name
     [ first_name, last_name ].join(" ")
+  end
+
+  def privacy_consent_current?
+    terms_accepted_at.present? && special_category_consent_at.present? &&
+      privacy_notice_version == Rails.configuration.x.privacy.notice_version
+  end
+
+  def record_privacy_consent!
+    update!(
+      terms_accepted_at: Time.current,
+      special_category_consent_at: Time.current,
+      privacy_notice_version: Rails.configuration.x.privacy.notice_version
+    )
+  end
+
+  private
+
+  def record_initial_privacy_consent
+    self.terms_accepted_at = Time.current
+    self.special_category_consent_at = Time.current
+    self.privacy_notice_version = Rails.configuration.x.privacy.notice_version
   end
 end

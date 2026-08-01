@@ -27,6 +27,8 @@ class AuthenticationPagesTest < ActionDispatch::IntegrationTest
     assert_select "input[name='user[email]']"
     assert_select "input[name='user[password]']"
     assert_select "input[name='user[password_confirmation]']"
+    assert_select "input[name='user[accept_terms]'][type=checkbox]"
+    assert_select "input[name='user[consent_sensitive_data]'][type=checkbox]"
     assert_select ".account-note h2", "How the account is used"
   end
 

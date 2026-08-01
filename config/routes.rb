@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   root "home#index"
   get "help", to: "pages#help"
+  get "methodology", to: "pages#methodology"
+  get "privacy", to: "pages#privacy"
+  get "terms", to: "pages#terms"
+  resource :account, only: %i[show destroy] do
+    patch :consent
+  end
   resource :stats, only: :show
   resources :fact_question_flags, only: %i[new create], path: "fact-reports"
   resources :opinion_question_proposals, only: %i[index new create], path: "proposals"

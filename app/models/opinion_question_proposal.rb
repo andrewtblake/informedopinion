@@ -3,7 +3,10 @@ class OpinionQuestionProposal < ApplicationRecord
 
   belongs_to :proposer, class_name: "User"
   belongs_to :category
-  belongs_to :reviewer, class_name: "User", optional: true
+  belongs_to :reviewer,
+    class_name: "User",
+    optional: true,
+    inverse_of: :reviewed_opinion_question_proposals
   belongs_to :published_opinion_question, class_name: "OpinionQuestion", optional: true
 
   validates :title, presence: true, length: { maximum: 100 }

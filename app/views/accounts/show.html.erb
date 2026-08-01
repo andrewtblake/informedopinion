@@ -1,0 +1,62 @@
+<% content_for :title, "Account — Informed Opinion" %>
+
+<section class="account-page ui-page">
+  <div class="container account-container account-container-narrow">
+    <header class="account-masthead ui-masthead">
+      <p class="ui-kicker">Personal data</p>
+      <h1>Account</h1>
+      <p>Review what is associated with your account, record participation consent, or delete the account and its participation data.</p>
+    </header>
+
+    <% unless current_user.privacy_consent_current? %>
+      <section class="account-management-section account-consent-review ui-panel">
+        <p class="ui-kicker">Action required</p>
+        <h2>Review the current participation terms</h2>
+        <p>Some topic responses may reveal political opinions or other sensitive beliefs. They are stored against your private account so your knowledge-weighted opinion can be calculated. Your name and individual answers are not published.</p>
+        <p>Read the <%= link_to "privacy notice", privacy_path %>, <%= link_to "participation terms", terms_path %>, and <%= link_to "methodology", methodology_path %> before deciding.</p>
+        <%= form_with url: consent_account_path, method: :patch, class: "account-form" do |form| %>
+          <div class="account-consent-choice">
+            <%= form.check_box :accept_terms, required: true %>
+            <%= form.label :accept_terms, "I have read and agree to the current participation terms and have read the privacy notice." %>
+          </div>
+          <div class="account-consent-choice">
+            <%= form.check_box :consent_sensitive_data, required: true %>
+            <%= form.label :consent_sensitive_data, "I explicitly consent to the recording and use of my topic opinions and knowledge-check answers for the stated purposes, including responses that may reveal political opinions or other sensitive beliefs." %>
+          </div>
+          <%= form.submit "Accept and continue", class: "button button-primary" %>
+        <% end %>
+      </section>
+    <% end %>
+
+    <section class="account-management-section">
+      <p class="ui-kicker">Account record</p>
+      <h2><%= current_user.email %></h2>
+      <dl class="account-data-summary">
+        <div><dt>Registered opinions</dt><dd><%= @account_counts[:opinions] %></dd></div>
+        <div><dt>Fact answers</dt><dd><%= @account_counts[:answers] %></dd></div>
+        <div><dt>Question reactions</dt><dd><%= @account_counts[:reactions] %></dd></div>
+        <div><dt>Fact reports</dt><dd><%= @account_counts[:reports] %></dd></div>
+        <div><dt>Proposals</dt><dd><%= @account_counts[:proposals] %></dd></div>
+      </dl>
+      <p class="account-record-note">The public aggregate uses your opinion position and topic-specific knowledge weight. It does not display your name, email address, individual answers or individual opinion record.</p>
+    </section>
+
+    <section class="account-management-section account-danger-zone">
+      <p class="ui-kicker">Permanent deletion</p>
+      <h2>Delete this account</h2>
+      <p>This removes the account, registered opinions, fact answers, reactions, reports and proposals from the live database. Published editorial questions created from an approved proposal remain part of the public question bank, without a public attribution to you.</p>
+      <p>The action cannot be undone. Confirm it with your current password and the word <strong>DELETE</strong>.</p>
+      <%= form_with url: account_path, method: :delete, class: "account-form" do |form| %>
+        <div class="field">
+          <%= form.label :current_password, "Current password" %>
+          <%= form.password_field :current_password, autocomplete: "current-password", required: true %>
+        </div>
+        <div class="field">
+          <%= form.label :confirmation, "Type DELETE" %>
+          <%= form.text_field :confirmation, autocomplete: "off", required: true, pattern: "DELETE" %>
+        </div>
+        <%= form.submit "Permanently delete account", class: "button button-danger", data: { turbo_confirm: "Permanently delete your account and participation data?" } %>
+      <% end %>
+    </section>
+  </div>
+</section>

@@ -76,7 +76,7 @@ class FeaturedQuestionRankerTest < ActiveSupport::TestCase
   end
 
   def create_user(index)
-    User.create!(
+    create_user!(
       first_name: "Reader",
       last_name: index.to_s,
       email: "featured#{index}@example.com",

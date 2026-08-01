@@ -7,7 +7,7 @@ class UsersTaskTest < ActiveSupport::TestCase
   end
 
   test "promote_moderator promotes the registered account designated by email" do
-    user = User.create!(
+    user = create_user!(
       first_name: "Initial",
       last_name: "Moderator",
       email: "blakethomasandrew@gmail.com",

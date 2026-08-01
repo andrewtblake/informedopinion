@@ -20,7 +20,7 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
         display_order: index + 1
       )
     end
-    @user = User.create!(
+    @user = create_user!(
       first_name: "Ada",
       last_name: "Lovelace",
       email: "ada@example.com",

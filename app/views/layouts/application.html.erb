@@ -39,6 +39,7 @@
             <span class="nav-greeting">Hello, <%= current_user.first_name %></span>
             <%= link_to "My opinions", stats_path, class: "nav-link" %>
             <%= link_to "Proposals", opinion_question_proposals_path, class: "nav-link" %>
+            <%= link_to "Account", account_path, class: "nav-link" %>
             <% if current_user.moderator? %>
               <%= link_to "Moderation", moderator_root_path, class: "nav-link" %>
             <% end %>
@@ -63,7 +64,15 @@
     <footer class="site-footer">
       <div class="container footer-inner">
         <p><span class="brand-mark brand-mark-small">io</span> Evidence gives an opinion weight.</p>
-        <p><%= link_to "How it works", help_path %> · Built with transparent scoring and linked sources.</p>
+        <p class="footer-links">
+          <%= link_to "How it works", help_path %>
+          <span>·</span>
+          <%= link_to "Methodology", methodology_path %>
+          <span>·</span>
+          <%= link_to "Privacy", privacy_path %>
+          <span>·</span>
+          <%= link_to "Terms", terms_path %>
+        </p>
       </div>
     </footer>
   </body>

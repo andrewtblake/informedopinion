@@ -1,0 +1,92 @@
+<% content_for :title, "Privacy notice — Informed Opinion" %>
+
+<section class="help-page ui-page">
+  <div class="container help-container">
+    <header class="ui-masthead">
+      <p class="ui-kicker">Privacy notice</p>
+      <h1>How your information is used</h1>
+      <p>Effective 1 August 2026. This notice explains what Informed Opinion records, why it is needed, who receives it, and the choices available to participants.</p>
+    </header>
+
+    <div class="help-layout">
+      <nav class="help-contents ui-panel" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#controller">Controller</a></li>
+          <li><a href="#data">Information collected</a></li>
+          <li><a href="#purpose">Purpose and legal basis</a></li>
+          <li><a href="#public">What becomes public</a></li>
+          <li><a href="#processors">Service providers</a></li>
+          <li><a href="#retention">Retention</a></li>
+          <li><a href="#cookies">Cookies</a></li>
+          <li><a href="#rights">Your rights</a></li>
+        </ol>
+      </nav>
+
+      <article class="help-article">
+        <section id="controller">
+          <p class="ui-kicker">Who is responsible</p>
+          <h2>Data controller and contact</h2>
+          <p><%= Rails.configuration.x.privacy.operator_name %> is the data controller for information processed through this service. Privacy enquiries and rights requests should be sent to <%= mail_to Rails.configuration.x.privacy.contact_email %>.</p>
+          <p>This notice applies to the public Informed Opinion website. External sources linked from fact questions operate under their own privacy notices.</p>
+        </section>
+
+        <section id="data">
+          <p class="ui-kicker">Data categories</p>
+          <h2>Information collected</h2>
+          <p>Account information consists of first and last name, email address, encrypted password credentials, account role, authentication tokens and relevant timestamps. Passwords are not stored in readable form.</p>
+          <p>Participation information consists of registered topic positions, fact-question answers and correctness, answer and review counts, knowledge weights, likes or dislikes and their reasons, fact reports, proposed opinion and fact questions, and moderation outcomes.</p>
+          <p>Operational records may include IP addresses, request times, browser information, delivery records and security events in short-lived application, hosting and email logs. The service does not ask for demographic profiles and does not use advertising or behavioural analytics.</p>
+        </section>
+
+        <section id="purpose">
+          <p class="ui-kicker">Why it is processed</p>
+          <h2>Purposes and lawful basis</h2>
+          <p>Account and operational information is processed to provide the requested service, preserve progress, secure accounts, prevent abuse, answer support requests and maintain the integrity of public results. The intended Article 6 basis is legitimate interests in operating a transparent, secure public-interest participation service. Those interests are balanced against participants' privacy through data minimisation, private individual records, access controls and account deletion.</p>
+          <p>Topic positions can reveal political opinions or philosophical beliefs. These may be special-category data. The Article 9 condition used for recording and calculating with those responses is the participant's separate, explicit consent. Consent is recorded with the version of this notice and can be withdrawn by deleting the account or by contacting the privacy address.</p>
+          <p>The calculation is automated, but it does not make decisions about individuals and has no legal or similarly significant effect. It assigns topic-specific weight and contributes an unattributed value to a public aggregate according to the published <%= link_to "methodology", methodology_path %>.</p>
+        </section>
+
+        <section id="public">
+          <p class="ui-kicker">Publication</p>
+          <h2>What is and is not public</h2>
+          <p>The site publishes aggregate opinion results and aggregate participant counts. It does not publish a participant's name, email address, individual answer history, individual knowledge weight or individual topic position.</p>
+          <p>Approved question proposals may become public editorial questions, but the public question is not attributed to the proposer. Moderators see the material and action required; normal moderation interfaces do not identify contributors to moderators unless operational investigation makes access necessary.</p>
+        </section>
+
+        <section id="processors">
+          <p class="ui-kicker">Recipients</p>
+          <h2>Service providers and transfers</h2>
+          <p>Render hosts the application and PostgreSQL database. Resend delivers transactional account email. Gandi provides domain and related email services. These organisations process limited information as service providers under their own security and contractual arrangements.</p>
+          <p>Providers may process data outside the UK. Where required, transfers should be covered by applicable adequacy arrangements or contractual safeguards. The operator should retain current provider agreements and transfer information as part of the deployment record.</p>
+          <p>Personal information is not sold, supplied to advertisers or used for targeted political messaging. It may be disclosed where legally required or reasonably necessary to investigate security abuse.</p>
+        </section>
+
+        <section id="retention">
+          <p class="ui-kicker">Storage period</p>
+          <h2>Retention and deletion</h2>
+          <p>Account and participation records are retained while the account remains active because they are needed to preserve progress and calculate current aggregates. Participants can delete them from the Account page. Dormant accounts and associated participation should be reviewed after two years without a sign-in and deleted unless the participant is first offered a reasonable opportunity to retain them.</p>
+          <p>Ordinary application and security logs should be retained for no longer than 30 days unless a specific security incident requires a restricted copy for investigation. Transactional email delivery records follow the configured provider retention period and should be reviewed periodically.</p>
+          <p>Account deletion removes the live account and associated participation records immediately. Encrypted backup copies may remain temporarily within restricted disaster-recovery backups until those backups expire under the hosting provider's rotation. They are not used for ordinary processing and should not be restored without reapplying subsequent deletion records where practicable.</p>
+          <p>Published editorial questions produced from approved proposals may remain because they no longer retain public attribution to the proposer. Contact the privacy address if their text itself contains personal information.</p>
+        </section>
+
+        <section id="cookies">
+          <p class="ui-kicker">Essential storage only</p>
+          <h2>Cookies</h2>
+          <p>The site uses an encrypted session cookie named <code>_informed_opinion_session</code> to keep a participant signed in, protect forms and retain the current session. If “Remember me” is selected, an additional authentication cookie can retain the sign-in for up to two weeks.</p>
+          <p>These cookies are strictly necessary to provide account and security functions. No advertising, cross-site tracking or analytics cookies are currently used, so there is no non-essential cookie consent banner. If non-essential technology is introduced, this notice and the consent mechanism must be changed before it is enabled.</p>
+        </section>
+
+        <section id="rights">
+          <p class="ui-kicker">Control</p>
+          <h2>Your data-protection rights</h2>
+          <p>Depending on the circumstances, participants may request access, correction, erasure, restriction, portability, or object to processing. Explicit consent for sensitive topic responses can be withdrawn at any time. The automated Account page provides immediate deletion; other requests should be sent to <%= mail_to Rails.configuration.x.privacy.contact_email %>.</p>
+          <div class="help-formula ui-panel"><span>Right to object</span><strong>You may object to processing based on legitimate interests. Send the request to <%= Rails.configuration.x.privacy.contact_email %>; it will be considered without undue delay.</strong></div>
+          <p>Concerns should first be raised with the operator. Participants also have the right to complain to the UK Information Commissioner's Office through <%= link_to "ico.org.uk/make-a-complaint", "https://ico.org.uk/make-a-complaint/", target: "_blank", rel: "noopener" %>.</p>
+          <p>This notice will be reviewed when the service, providers or purposes change. Material changes affecting consent will require participants to review and accept a new notice version.</p>
+        </section>
+      </article>
+    </div>
+  </div>
+</section>

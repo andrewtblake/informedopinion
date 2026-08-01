@@ -3,7 +3,10 @@ class FactQuestionProposal < ApplicationRecord
 
   belongs_to :proposer, class_name: "User", inverse_of: :fact_question_proposals
   belongs_to :opinion_question
-  belongs_to :reviewer, class_name: "User", optional: true
+  belongs_to :reviewer,
+    class_name: "User",
+    optional: true,
+    inverse_of: :reviewed_fact_question_proposals
   belongs_to :published_fact_question, class_name: "FactQuestion", optional: true
 
   validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true

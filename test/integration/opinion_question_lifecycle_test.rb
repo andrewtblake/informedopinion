@@ -138,7 +138,7 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
   end
 
   def create_user(email, role: :participant)
-    User.create!(
+    create_user!(
       first_name: role.to_s.humanize,
       last_name: "User",
       email: email,

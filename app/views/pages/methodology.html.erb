@@ -1,0 +1,71 @@
+<% content_for :title, "Methodology — Informed Opinion" %>
+
+<section class="help-page ui-page">
+  <div class="container help-container">
+    <header class="ui-masthead">
+      <p class="ui-kicker">Transparent scoring</p>
+      <h1>Methodology</h1>
+      <p>How factual knowledge gives an individual opinion weight and how those weighted positions form the public aggregate.</p>
+    </header>
+
+    <div class="help-layout">
+      <nav class="help-contents ui-panel" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#individual">Individual weight</a></li>
+          <li><a href="#importance">Fact importance</a></li>
+          <li><a href="#aggregate">Collective result</a></li>
+          <li><a href="#sequence">Question sequence</a></li>
+          <li><a href="#publication">Publication rules</a></li>
+          <li><a href="#limits">Limits</a></li>
+        </ol>
+      </nav>
+
+      <article class="help-article">
+        <section id="individual">
+          <p class="ui-kicker">Per topic</p>
+          <h2>Individual opinion weight</h2>
+          <p>Every opinion begins with zero weight. For a particular topic, the application adds the importance values of the published fact questions the participant currently answers correctly, then divides that by the importance available across the complete published fact bank.</p>
+          <div class="help-formula ui-panel"><span>Opinion weight</span><strong>importance earned from correct answers ÷ total published importance</strong></div>
+          <p>Only the most recent answer to each fact counts. The displayed unweighted score remains available as a check on how much the editorial importance ratings affect the result. Knowledge demonstrated on one topic never carries into another.</p>
+        </section>
+
+        <section id="importance">
+          <p class="ui-kicker">Editorial assessment</p>
+          <h2>Fact importance</h2>
+          <p>Each fact has one of three deliberately narrow values: Supporting (1), Significant (2), or Foundational (3). Importance concerns how necessary the fact is for an informed judgement about the proposition—not whether it supports or counters that proposition.</p>
+          <p>Every fact also records its likely evidential direction: supporting the proposition, countering it, or contextual/mixed. Direction affects presentation order only. It does not alter the correct answer or numerical weight.</p>
+        </section>
+
+        <section id="aggregate">
+          <p class="ui-kicker">Public result</p>
+          <h2>Collective informed opinion</h2>
+          <p>The five ordered response positions are assigned values +1, +0.5, 0, −0.5 and −1 from strongest agreement to strongest disagreement. Each value is multiplied by that participant's topic weight.</p>
+          <div class="help-formula ui-panel"><span>Aggregate score</span><strong>sum of position value × topic weight ÷ sum of topic weights</strong></div>
+          <p>The result lies between −1 (No) and +1 (Yes), with zero as Neutral. Zero-weight opinions are counted as registered opinions but cannot move the indicator. A weighted neutral response adds to the denominator without adding a signed value and therefore draws the result toward neutral.</p>
+        </section>
+
+        <section id="sequence">
+          <p class="ui-kicker">Presentation</p>
+          <h2>Question sequence and review</h2>
+          <p>Unseen facts are shown before review questions. The sequence normally begins with evidence closer to the participant's registered view and introduces challenging evidence progressively. This is intended to reduce defensive rejection; it never removes contrary evidence or changes scoring.</p>
+          <p>After every fact has been seen, review prioritises the least-repeated material so a small group of questions cannot recur indefinitely. Answer choices are shuffled to reduce answer-position cues.</p>
+        </section>
+
+        <section id="publication">
+          <p class="ui-kicker">Editorial controls</p>
+          <h2>Publication and correction</h2>
+          <p>A topic is not live until it has the configured minimum number of published facts. Facts should be relevant, resolvable, clearly worded, supported by an accessible source and supplied with four plausible choices. Participants may report inaccurate, irrelevant, unclear, biased or outdated material for moderator review.</p>
+          <p>Question wording, sources, importance and direction remain editorial judgements. The project publishes those judgements and its formula so they can be scrutinised rather than treating them as neutral machinery.</p>
+        </section>
+
+        <section id="limits">
+          <p class="ui-kicker">Interpretation</p>
+          <h2>What the result does not prove</h2>
+          <p>Participants are self-selecting, so this is not a representative opinion poll. A high weight demonstrates performance on the selected fact bank; it does not prove expertise, sincerity, sound judgement or that an opinion is correct.</p>
+          <p>The aggregate describes participating opinion under the published question bank and calculation at that time. Participant counts, source quality, question selection and editorial decisions should all inform how cautiously it is read.</p>
+        </section>
+      </article>
+    </div>
+  </div>
+</section>

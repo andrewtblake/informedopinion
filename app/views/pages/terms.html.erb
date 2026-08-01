@@ -1,0 +1,78 @@
+<% content_for :title, "Participation terms — Informed Opinion" %>
+
+<section class="help-page ui-page">
+  <div class="container help-container">
+    <header class="ui-masthead">
+      <p class="ui-kicker">Participation terms</p>
+      <h1>Terms of participation</h1>
+      <p>Effective 1 August 2026. These terms set the boundaries for registering opinions, answering facts and contributing editorial material.</p>
+    </header>
+
+    <div class="help-layout">
+      <nav class="help-contents ui-panel" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#service">The service</a></li>
+          <li><a href="#accounts">Accounts</a></li>
+          <li><a href="#participation">Participation</a></li>
+          <li><a href="#contributions">Contributions</a></li>
+          <li><a href="#moderation">Moderation</a></li>
+          <li><a href="#availability">Availability</a></li>
+          <li><a href="#ending">Ending participation</a></li>
+        </ol>
+      </nav>
+
+      <article class="help-article">
+        <section id="service">
+          <p class="ui-kicker">Purpose</p>
+          <h2>What the service provides</h2>
+          <p>Informed Opinion is an experimental public-interest service for examining the relationship between factual knowledge and opinions on disputed propositions. It publishes aggregate results using the stated methodology; it does not determine that an opinion is correct and is not a representative poll unless its participant population happens to be representative.</p>
+          <p>The site is educational and informational. It does not provide legal, medical, financial or professional advice.</p>
+        </section>
+
+        <section id="accounts">
+          <p class="ui-kicker">Responsibility</p>
+          <h2>Accounts and security</h2>
+          <p>Provide accurate account details, use an address you control, keep the password confidential and do not share an account. One person should use one account. Notify <%= mail_to Rails.configuration.x.privacy.contact_email %> if an account appears compromised.</p>
+          <p>The service is not directed to children under 16. A person under 16 should not create an account or submit participation data.</p>
+        </section>
+
+        <section id="participation">
+          <p class="ui-kicker">Good faith</p>
+          <h2>Registering opinions and answers</h2>
+          <p>Participate honestly and in good faith. Do not automate answers, create duplicate accounts, manipulate public aggregates, evade technical limits, interfere with other users, probe private data or attempt unauthorised access.</p>
+          <p>Opinions may be revised and fact questions repeated under the application's published rules. Sources and explanations should be read critically. Errors can be reported through the provided review mechanism.</p>
+        </section>
+
+        <section id="contributions">
+          <p class="ui-kicker">Editorial material</p>
+          <h2>Proposed questions and reports</h2>
+          <p>Submit only material you are entitled to provide. Do not include personal information, confidential information, unlawful content, harassment, advertising, copied material beyond what copyright permits, or links intended to deceive or harm.</p>
+          <p>By submitting question wording, explanations or rationale, you grant the service a non-exclusive, worldwide, royalty-free and perpetual permission to edit, publish, reproduce and maintain that material as part of the question bank. This is necessary because an approved editorial question may remain after the proposing account is deleted.</p>
+          <p>Approval is not guaranteed. Sources, wording, importance and likely evidential direction may be amended through editorial review.</p>
+        </section>
+
+        <section id="moderation">
+          <p class="ui-kicker">Integrity</p>
+          <h2>Moderation and enforcement</h2>
+          <p>Moderators may correct or withdraw facts, decline contributions, remove reactions, restrict accounts or preserve limited evidence of misuse where reasonably necessary to protect the service. Decisions should concern the quality and integrity of material rather than agreement with a participant's opinion.</p>
+          <p>The service intentionally provides no user-to-user communication system. Moderator-to-user communication is kept to what is operationally necessary.</p>
+        </section>
+
+        <section id="availability">
+          <p class="ui-kicker">Limitations</p>
+          <h2>Accuracy and availability</h2>
+          <p>Reasonable efforts are made to use clear questions and credible sources, but the question bank can contain errors, omissions, outdated material or contestable editorial judgements. External sources can change or disappear. The service may be interrupted, changed or withdrawn and no uninterrupted availability is promised.</p>
+          <p>Nothing in these terms excludes responsibility that cannot lawfully be excluded. Otherwise, use of the service and reliance on its experimental aggregate are at the participant's own judgement.</p>
+        </section>
+
+        <section id="ending">
+          <p class="ui-kicker">Withdrawal</p>
+          <h2>Ending participation and changes</h2>
+          <p>A participant may stop using the service or permanently delete the account and associated live participation data from the Account page. Deletion also withdraws consent for continued processing of sensitive topic responses. Backup and published-editorial treatment is explained in the <%= link_to "privacy notice", privacy_path %>.</p>
+          <p>These terms may change as the project develops. A material change will receive a new version and signed-in participants will be asked to review it before continuing.</p>
+        </section>
+      </article>
+    </div>
+  </div>
+</section>

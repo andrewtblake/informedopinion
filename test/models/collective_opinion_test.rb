@@ -132,7 +132,7 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
   private
 
   def create_user(prefix)
-    User.create!(
+    create_user!(
       first_name: prefix.capitalize,
       last_name: "Person",
       email: "#{prefix}@example.com",

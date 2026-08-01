@@ -17,7 +17,7 @@ class ApplicationMailerTest < ActionMailer::TestCase
   end
 
   test "password recovery replies reach the public contact address" do
-    user = User.create!(
+    user = create_user!(
       first_name: "Mailer",
       last_name: "Test",
       email: "mailer-test@example.com",

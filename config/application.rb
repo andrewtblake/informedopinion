@@ -43,5 +43,9 @@ module InformedOpinion
       ENV.fetch("FACT_PROPOSAL_MINIMUM_QUESTIONS", 10).to_i
     config.x.fact_question_proposals.minimum_correct_percentage =
       ENV.fetch("FACT_PROPOSAL_MINIMUM_SCORE", 90).to_f
+
+    config.x.privacy.notice_version = "2026-08-01"
+    config.x.privacy.contact_email = ENV.fetch("PRIVACY_CONTACT_EMAIL", "hello@informedopinion.info")
+    config.x.privacy.operator_name = ENV.fetch("SITE_OPERATOR_NAME", "Informed Opinion")
   end
 end

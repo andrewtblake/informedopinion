@@ -19,7 +19,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
       evidence_direction: 1,
       display_order: 1
     )
-    @user = User.create!(
+    @user = create_user!(
       first_name: "Grace",
       last_name: "Hopper",
       email: "grace@example.com",

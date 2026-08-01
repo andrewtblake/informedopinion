@@ -12,7 +12,10 @@ class FactQuestionFlag < ApplicationRecord
 
   belongs_to :user
   belongs_to :fact_question
-  belongs_to :reviewer, class_name: "User", optional: true
+  belongs_to :reviewer,
+    class_name: "User",
+    optional: true,
+    inverse_of: :reviewed_fact_question_flags
 
   validates :category, presence: true
   validates :category, uniqueness: { scope: [ :user_id, :fact_question_id ] }
