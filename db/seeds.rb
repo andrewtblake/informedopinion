@@ -206,52 +206,32 @@ topics = [
   MOON_LANDING_OPINION.merge(facts: MOON_LANDING_FACTS)
 ]
 
-# Preserve links from proposals approved before these questions entered the curated seed catalogue.
-{
-  "prostitution-should-be-legalised" => "decriminalising-sex-work",
-  "did-humans-actually-go-to-the-moon" => "moon-landings"
-}.each do |old_slug, new_slug|
-  OpinionQuestion.find_by(slug: old_slug)&.update!(slug: new_slug)
-end
-
-topics.each do |attributes|
+# Seeds bootstrap editorial content; they are not an editorial synchronisation
+# mechanism. Once a topic exists, moderators and participants may have changed
+# or referred to it, so rerunning seeds must leave it untouched. Changes to
+# published content belong in reviewed migrations or the moderation workflow.
+topics.each do |catalogue_entry|
+  attributes = catalogue_entry.deep_dup
   facts = attributes.delete(:facts)
   tag_names = attributes.delete(:tags)
   attributes[:category] = categories.fetch(attributes[:category])
-  topic = OpinionQuestion.find_or_initialize_by(slug: attributes[:slug])
   attributes[:live] = facts.length >= Rails.configuration.x.fact_question_proposals.minimum_existing_questions
-  topic.update!(attributes)
-  OpinionQuestionProposal.find_by(published_opinion_question: topic)&.update!(
-    final_title: topic.title,
-    final_statement: topic.statement
-  )
-  topic.tags = tag_names.map do |name|
-    Tag.find_or_initialize_by(slug: name.parameterize).tap do |tag|
-      tag.update!(name: name)
+  next if OpinionQuestion.exists?(slug: attributes[:slug])
+
+  OpinionQuestion.transaction do
+    topic = OpinionQuestion.create!(attributes)
+    topic.tags = tag_names.map do |name|
+      Tag.find_or_create_by!(slug: name.parameterize) { |tag| tag.name = name }
+    end
+
+    facts.each_with_index do |fact, index|
+      topic.fact_questions.create!({
+        display_order: index + 1,
+        importance_weight: 1,
+        importance_rationale: "This question currently has the standard importance weight; unequal weights will only be assigned after review."
+      }.merge(fact))
     end
   end
-
-  facts.each_with_index do |fact, index|
-    question = topic.fact_questions.find_or_initialize_by(display_order: index + 1)
-    previous_assessment = [ question.prompt, question.options, question.correct_option ]
-    new_assessment = [ fact[:prompt], fact[:options], fact[:correct_option] ]
-    question.fact_responses.delete_all if question.persisted? && previous_assessment != new_assessment
-    question.update!({
-      importance_weight: 1,
-      importance_rationale: "This question currently has the standard importance weight; unequal weights will only be assigned after review."
-    }.merge(fact))
-  end
-
-  community_fact_ids = FactQuestionProposal
-    .where(opinion_question: topic)
-    .where.not(published_fact_question_id: nil)
-    .pluck(:published_fact_question_id)
-  topic.fact_questions
-    .where.not(display_order: 1..facts.length)
-    .where.not(id: community_fact_ids)
-    .destroy_all
 end
-
-User.find_by(id: 1)&.moderator!
 
 puts "Seeded #{OpinionQuestion.count} opinion questions and #{FactQuestion.count} fact questions."
