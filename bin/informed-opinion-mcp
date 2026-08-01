@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require_relative "../config/boot"
+require_relative "../lib/informed_opinion_mcp"
+
+MCP::Server::Transports::StdioTransport.new(InformedOpinionMcp.server).open

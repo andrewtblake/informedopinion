@@ -27,6 +27,9 @@ gem "devise", "~> 5.0"
 # Request throttling for authentication and contribution endpoints
 gem "rack-attack", "~> 6.8"
 
+# Official Model Context Protocol SDK for the moderator agent bridge
+gem "mcp", "~> 0.25.0", require: false
+
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
