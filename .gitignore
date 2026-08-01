@@ -35,3 +35,6 @@
 
 # Ignore working notes and plans
 HOSTING_PLAN.md
+
+# Ignore voiceterm files
+/.voiceterm/
