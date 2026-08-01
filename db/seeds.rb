@@ -117,7 +117,7 @@ topics = [
   {
     slug: "us-federal-minimum-wage",
     title: "Minimum wage",
-    statement: "The standard US federal minimum wage for non-tipped adult workers should be increased to $15 per hour.",
+    statement: "The standard US federal minimum wage for covered, non-tipped workers aged 20 or older should be increased to at least $15 per hour within five years of enactment.",
     response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
     display_order: 6,
     accent: "amber",
