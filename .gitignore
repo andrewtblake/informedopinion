@@ -32,3 +32,6 @@
 
 # Ignore key files for decrypting credentials and more.
 /config/*.key
+
+# Ignore working notes and plans
+HOSTING_PLAN.md
