@@ -79,9 +79,8 @@ class ModerationInbox
   end
 
   def reaction_items
-    OpinionQuestion.joins(:opinion_question_reactions).distinct.filter_map do |question|
-      version = question.opinion_question_reactions.maximum(:updated_at)
-      Item.new(section: "opinion-question-reactions", key: "opinion-reactions:#{question.id}", version: version) if version
+    OpinionQuestionReaction.group(:opinion_question_id).maximum(:updated_at).map do |question_id, version|
+      Item.new(section: "opinion-question-reactions", key: "opinion-reactions:#{question_id}", version: version)
     end
   end
 

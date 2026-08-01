@@ -56,6 +56,26 @@ class ModerationHeartbeatTest < ActionDispatch::IntegrationTest
     assert_equal 1, response.parsed_body.dig("sections", "question-preparation", "count")
   end
 
+  test "reactions are grouped by opinion question using their latest version" do
+    first_reaction = @participant.opinion_question_reactions.create!(opinion_question: @draft, kind: :like)
+    second_participant = create_user!(email: "second-heartbeat-participant@example.test", password: "password123",
+      first_name: "Second", last_name: "Participant")
+    second_reaction = travel 1.second do
+      second_participant.opinion_question_reactions.create!(opinion_question: @draft, kind: :dislike,
+        reason: "The proposition needs more context.")
+    end
+
+    sign_in @moderator, scope: :user
+    get moderator_heartbeat_path
+
+    assert_response :success
+    reaction_items = response.parsed_body.dig("sections", "opinion-question-reactions", "items")
+    assert_equal 1, reaction_items.length
+    assert_equal "opinion-reactions:#{@draft.id}", reaction_items.sole.fetch("key")
+    assert_equal second_reaction.updated_at.iso8601(6), reaction_items.sole.fetch("version")
+    assert_operator second_reaction.updated_at, :>, first_reaction.updated_at
+  end
+
   test "moderator pages expose the heartbeat hooks and item versions" do
     sign_in @moderator, scope: :user
 
