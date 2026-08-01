@@ -373,7 +373,7 @@ DEPENDENCIES
   devise (~> 5.0)
   importmap-rails
   kamal
-  mcp (~> 0.9)
+  mcp (~> 0.25.0)
   pg (~> 1.6)
   propshaft
   puma (>= 5.0)
