@@ -7,13 +7,15 @@ module InformedOpinionMcp
   class ApiClient
     def initialize
       @base_url = ENV.fetch("INFORMED_OPINION_API_URL", "http://localhost:3000/api/v1").sub(%r{/+\z}, "")
-      @token = ENV.fetch("INFORMED_OPINION_API_TOKEN")
     end
 
     def request(method, path, body = nil)
+      token = ENV.fetch("INFORMED_OPINION_API_TOKEN") do
+        raise "INFORMED_OPINION_API_TOKEN is not available to the MCP process. Export it before starting Codex or configure it with `codex mcp add --env`."
+      end
       uri = URI("#{@base_url}/#{path.sub(%r{\A/+}, '')}")
       request = Net::HTTP.const_get(method.capitalize).new(uri)
-      request["Authorization"] = "Bearer #{@token}"
+      request["Authorization"] = "Bearer #{token}"
       request["Accept"] = "application/json"
       if body
         request["Content-Type"] = "application/json"
