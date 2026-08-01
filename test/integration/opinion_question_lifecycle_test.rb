@@ -37,7 +37,7 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
     sign_out @participant
     sign_in @moderator, scope: :user
     get moderator_root_path
-    assert_select ".draft-question-item", text: /Draft public question.*0 of 10 required fact questions/m
+    assert_select ".draft-question-item", text: /Draft public question.*0.*published fact questions.*10 required/m
     assert_select ".draft-question-item a", text: "Add fact question"
 
     sign_out @moderator
@@ -61,7 +61,7 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
     assert_select ".flash-alert", text: /not available until fact questions have been added/
   end
 
-  test "a moderator can directly populate a draft and the threshold makes it live" do
+  test "a moderator reviews a complete fact bank and explicitly makes the question live" do
     question = create_question(live: false)
     sign_in @moderator, scope: :user
 
@@ -77,13 +77,34 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
       end
       assert_redirected_to opinion_question_path(question)
       assert FactQuestionProposal.order(:id).last.approved?
-      assert_not question.reload.live? if index < 9
+      assert_not question.reload.live?
     end
 
-    assert question.reload.live?
+    assert_not question.reload.live?
     assert_equal 10, question.fact_questions.count
+    get moderator_root_path
+    assert_select ".draft-question-item", text: /Lifecycle question.*10.*published fact questions/m
+    assert_select ".fact-bank-review > ol > li", count: 10
+    assert_select "form[action='#{moderator_opinion_question_publication_path(question)}']"
+
+    post moderator_opinion_question_publication_path(question)
+    assert_redirected_to moderator_root_path(anchor: "question-preparation")
+    assert question.reload.live?
+
     get root_path
     assert_includes response.body, question.title
+  end
+
+  test "a moderator cannot publish a draft before the minimum is reached" do
+    question = create_question(live: false)
+    sign_in @moderator, scope: :user
+
+    post moderator_opinion_question_publication_path(question)
+
+    assert_redirected_to moderator_root_path(anchor: "question-preparation")
+    assert_not question.reload.live?
+    follow_redirect!
+    assert_select ".flash-alert", text: /requires at least 10 published fact questions/
   end
 
   test "legacy approved proposals and empty live questions are reconciled as drafts" do

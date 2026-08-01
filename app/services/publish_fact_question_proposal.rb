@@ -28,7 +28,6 @@ class PublishFactQuestionProposal
         review_notes: @review_notes,
         reviewed_at: Time.current
       )
-      @proposal.opinion_question.publish_if_fact_bank_ready!
       fact_question
     end
   end

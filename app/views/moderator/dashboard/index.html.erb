@@ -8,23 +8,53 @@
       <p>Pending reports, proposed opinion questions, and proposed fact questions.</p>
     </header>
 
-    <details class="moderation-section ui-disclosure draft-question-section" <%= "open" if @draft_questions.any? %>>
+    <details class="moderation-section ui-disclosure draft-question-section" id="question-preparation" <%= "open" if @draft_questions.any? %>>
       <summary>
         <h2>Questions being prepared</h2>
         <span><%= @draft_questions.length %> not live</span>
       </summary>
       <% @draft_questions.each do |question| %>
         <article class="moderation-item draft-question-item">
-          <div>
+          <div class="draft-question-summary">
             <h3><%= question.title %></h3>
-            <p><%= question.published_fact_questions.length %> of <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> required fact questions</p>
+            <p><%= question.statement %></p>
+            <p><strong><%= question.published_fact_questions.length %></strong> published fact questions; <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> required before publication is permitted.</p>
+            <details class="fact-bank-review">
+              <summary>Review fact-question list</summary>
+              <ol>
+                <% question.published_fact_questions.each do |fact| %>
+                  <li>
+                    <span><%= glossary_text(fact.prompt) %></span>
+                    <small><%= fact.importance_label %> · <%= fact.valence_label %> · <%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></small>
+                    <ol class="fact-bank-options" type="A">
+                      <% fact.options.each_with_index do |option, index| %>
+                        <li class="<%= "correct" if index == fact.correct_option %>">
+                          <%= glossary_text(option) %><% if index == fact.correct_option %> <strong>Correct</strong><% end %>
+                        </li>
+                      <% end %>
+                    </ol>
+                    <p><%= glossary_text(fact.explanation) %></p>
+                  </li>
+                <% end %>
+              </ol>
+              <% if question.published_fact_questions.empty? %><p>No fact questions have been added.</p><% end %>
+            </details>
           </div>
-          <%= link_to "Add fact question",
-            new_opinion_question_fact_question_proposal_path(question),
-            class: "button moderation-approve" %>
+          <div class="draft-question-actions">
+            <%= link_to "Add fact question",
+              new_opinion_question_fact_question_proposal_path(question),
+              class: "button moderation-approve" %>
+            <% if question.eligible_for_publication? %>
+              <%= button_to "Mark as live", moderator_opinion_question_publication_path(question),
+                class: "button moderation-approve",
+                data: { turbo_confirm: "Publish #{question.title}? Its aggregate and quiz will become public." } %>
+            <% else %>
+              <button class="button moderation-approve" disabled>Mark as live</button>
+            <% end %>
+          </div>
         </article>
       <% end %>
-      <% if @draft_questions.empty? %><p class="moderation-empty">No opinion questions are awaiting a fact bank.</p><% end %>
+      <% if @draft_questions.empty? %><p class="moderation-empty">No opinion questions are awaiting editorial publication.</p><% end %>
     </details>
 
     <details class="moderation-section ui-disclosure featured-order-section" id="featured-order">

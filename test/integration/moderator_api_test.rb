@@ -58,6 +58,27 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_response :created
     assert_equal 1, opinion.fact_questions.count
     assert_equal "fact_question.create", ApiAuditEvent.last.action
+    assert_not opinion.reload.live?
+  end
+
+  test "API publication is explicit and requires a complete fact bank" do
+    opinion = OpinionQuestion.create!(category: @category, title: "Publication review", statement: "The UK should adopt this measure.",
+      slug: "publication-review", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+
+    post api_v1_opinion_question_publication_path(opinion), headers: @headers
+    assert_response :unprocessable_entity
+    assert_not opinion.reload.live?
+
+    10.times do |index|
+      attributes = fact_payload("Publication fact #{index}?", [ "Correct #{index}", "Alternative A", "Alternative B", "Alternative C" ])
+      opinion.fact_questions.create!(attributes.merge(display_order: index + 1))
+    end
+
+    post api_v1_opinion_question_publication_path(opinion), headers: @headers
+    assert_response :success
+    assert opinion.reload.live?
+    assert_equal "opinion_question.publish", ApiAuditEvent.last.action
   end
 
   test "plaintext tokens are not stored and revoked tokens stop working" do

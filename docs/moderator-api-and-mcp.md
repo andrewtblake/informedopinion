@@ -23,9 +23,10 @@ For an opinion proposal:
 3. Draft wording in conversation. No write is needed for a draft that the moderator has not accepted.
 4. After instruction, save the agreed candidate with `save_opinion_proposal_edit`.
 5. Only after a separate instruction, call `decide_moderation_issue` with `action: approve`.
-6. Read the newly published, initially non-live opinion question and create its fact bank with `create_fact_questions`.
+6. Read the approved, initially non-live opinion question and create its fact bank with `create_fact_questions`.
+7. Review the complete bank against the editorial standard. Only after the moderator is satisfied, publish it with `publish_opinion_question`.
 
-An approved opinion remains non-live until the configured minimum number of published fact questions exists.
+An approved opinion remains non-live after the configured minimum is reached. The threshold establishes eligibility; explicit moderator publication makes it public.
 
 ## HTTP API
 
@@ -33,6 +34,7 @@ All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 
 - `GET/POST /opinion_questions`
 - `GET/PATCH/DELETE /opinion_questions/:id`
+- `POST/DELETE /opinion_questions/:opinion_question_id/publication`
 - `GET/POST /opinion_questions/:opinion_question_id/fact_questions`
 - `POST /opinion_questions/:id/fact_questions/bulk`
 - `GET/PATCH/DELETE /fact_questions/:id`

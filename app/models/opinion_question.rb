@@ -21,16 +21,21 @@ class OpinionQuestion < ApplicationRecord
 
   before_create :record_initial_publication
 
-  def publish_if_fact_bank_ready!
-    minimum = Rails.configuration.x.fact_question_proposals.minimum_existing_questions
-    if !live? && published_fact_questions.count >= minimum
-      update!(live: true, published_at: Time.current)
+  def eligible_for_publication?
+    published_fact_questions.count >= minimum_fact_questions
+  end
+
+  def publish!
+    unless eligible_for_publication?
+      errors.add(:base, "requires at least #{minimum_fact_questions} published fact questions before publication")
+      raise ActiveRecord::RecordInvalid, self
     end
+
+    update!(live: true, published_at: published_at || Time.current)
   end
 
   def unpublish_if_fact_bank_not_ready!
-    minimum = Rails.configuration.x.fact_question_proposals.minimum_existing_questions
-    update!(live: false) if live? && published_fact_questions.count < minimum
+    update!(live: false) if live? && !eligible_for_publication?
   end
 
   def response_label(position)
@@ -42,6 +47,10 @@ class OpinionQuestion < ApplicationRecord
   end
 
   private
+
+  def minimum_fact_questions
+    Rails.configuration.x.fact_question_proposals.minimum_existing_questions
+  end
 
   def record_initial_publication
     self.published_at ||= Time.current if live?

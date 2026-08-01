@@ -26,10 +26,6 @@ class Api::V1::OpinionQuestionsController < Api::V1::BaseController
   end
 
   def update
-    if params.dig(:opinion_question, :live).present? && ActiveModel::Type::Boolean.new.cast(params.dig(:opinion_question, :live)) &&
-        question.published_fact_questions.count < Rails.configuration.x.fact_question_proposals.minimum_existing_questions
-      return render json: { error: "fact_bank_too_small", message: "This question cannot go live until its fact bank reaches the configured minimum." }, status: :unprocessable_entity
-    end
     before = question.attributes
     OpinionQuestion.transaction do
       question.update!(question_attributes)
@@ -59,7 +55,7 @@ class Api::V1::OpinionQuestionsController < Api::V1::BaseController
   end
 
   def question_attributes
-    params.require(:opinion_question).permit(:title, :statement, :slug, :category_id, :featured_priority, :live,
+    params.require(:opinion_question).permit(:title, :statement, :slug, :category_id, :featured_priority,
       response_options: []).except(:tag_names)
   end
 

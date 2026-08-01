@@ -80,6 +80,14 @@ module InformedOpinionMcp
         required: %w[opinion_question_id fact_questions]) do |args|
         client.request("post", "opinion_questions/#{args.delete(:opinion_question_id)}/fact_questions/bulk", args)
       end
+      tool(server, "publish_opinion_question", "Mark an eligible opinion question as live after the moderator has reviewed and accepted its complete fact bank.",
+        { opinion_question_id: { type: "integer" } }, required: %w[opinion_question_id]) do |args|
+        client.request("post", "opinion_questions/#{args[:opinion_question_id]}/publication")
+      end
+      tool(server, "unpublish_opinion_question", "Take an opinion question out of public view without deleting its editorial or participation history.",
+        { opinion_question_id: { type: "integer" } }, required: %w[opinion_question_id]) do |args|
+        client.request("delete", "opinion_questions/#{args[:opinion_question_id]}/publication")
+      end
       tool(server, "update_fact_question", "Correct, recalibrate, or withdraw a fact question.",
         { id: { type: "integer" }, fact_question: { type: "object" } }, required: %w[id fact_question]) do |args|
         client.request("patch", "fact_questions/#{args.delete(:id)}", args)

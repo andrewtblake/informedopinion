@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     resources :opinion_question_proposals, only: :update
     resources :fact_question_proposals, only: :update
     resources :featured_questions, only: :update
+    resources :opinion_questions, only: [] do
+      resource :publication, only: %i[create destroy], controller: "opinion_question_publications"
+    end
   end
 
   namespace :api do
@@ -34,6 +37,7 @@ Rails.application.routes.draw do
       resources :opinion_questions, only: %i[index show create update destroy] do
         resources :fact_questions, only: %i[index show create update destroy], shallow: true
         post "fact_questions/bulk", to: "fact_questions#bulk_create", on: :member
+        resource :publication, only: %i[create destroy], controller: "opinion_question_publications"
       end
       resources :moderation_issues, only: %i[index show update] do
         post :approve, on: :member

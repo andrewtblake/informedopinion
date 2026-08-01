@@ -98,7 +98,7 @@
           <p class="ui-kicker">Contributions</p>
           <h2>Proposing opinion and fact questions</h2>
           <p>Signed-in users may propose a new opinion question with a title, exact proposition, category, tags, geographic scope and rationale. A moderator may approve it as submitted, approve edited final wording, or decline it.</p>
-          <p>Approval does not make an empty question public. It remains in preparation until it has at least <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> approved fact questions.</p>
+          <p>Approval does not make a question public. It remains in preparation while its fact bank is assembled. Once it has at least <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> approved fact questions, a moderator reviews the bank as a whole and must explicitly mark the opinion question as live.</p>
           <p>A participant may propose a fact question for a live opinion after answering every existing fact and obtaining an unweighted score of at least <%= number_with_precision(Rails.configuration.x.fact_question_proposals.minimum_correct_percentage, precision: 0) %>%. Moderators may add facts while a question is still being prepared. Every proposed fact remains subject to editorial review.</p>
         </section>
 

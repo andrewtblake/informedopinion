@@ -23,7 +23,6 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
 
     records = FactQuestion.transaction do
       created = payload.map { |attributes| create_for!(parent, permitted(attributes)) }
-      parent.publish_if_fact_bank_ready!
       created.each { audit!(action: "fact_question.create", resource: _1, changes: _1.attributes.except("created_at", "updated_at")) }
       created
     end
@@ -36,7 +35,6 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
       fact_question.update!(fact_attributes)
       fact_question.opinion_question.tap do |opinion|
         opinion.unpublish_if_fact_bank_not_ready!
-        opinion.publish_if_fact_bank_ready!
       end
       changes = fact_question.attributes.filter_map do |key, value|
         [ key, { "from" => before[key], "to" => value } ] if before[key] != value

@@ -46,4 +46,6 @@ Before publication, an editor checks the bank as a whole for:
 - plausible distractors and resistance to answer-length guessing;
 - HTML limited to approved clarification markup, never used to conceal qualifications or evidence.
 
+Reaching the configured minimum number of fact questions only makes an opinion question eligible for publication. It remains non-public until a moderator completes this bank-level review and explicitly marks it as live.
+
 Content is revised when law, data or the cited evidence changes. The most recent answer to a revised fact is discarded whenever its prompt, choices or correct answer changes.
