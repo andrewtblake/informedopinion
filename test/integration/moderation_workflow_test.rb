@@ -234,6 +234,16 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
 
     patch moderator_featured_question_path(@topic), params: { adjustment: "reset" }
     assert_equal 0, @topic.reload.featured_priority
+
+    patch moderator_featured_question_path(@topic),
+      params: { adjustment: 1 },
+      headers: { "Accept" => "text/vnd.turbo-stream.html" }
+
+    assert_response :success
+    assert_equal "text/vnd.turbo-stream.html", response.media_type
+    assert_select "turbo-stream[action='replace'][target='featured-order-content']"
+    assert_select "#featured-order-content", text: /Editorial \+1/
+    assert_equal 1, @topic.reload.featured_priority
   end
 
   test "moderator can edit and approve final wording without an exchange" do

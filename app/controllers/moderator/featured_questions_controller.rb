@@ -6,8 +6,20 @@ module Moderator
         question.update!(featured_priority: revised_priority(question))
       end
 
-      redirect_to moderator_root_path(anchor: "featured-order"),
-        notice: "The featured-order adjustment has been updated."
+      respond_to do |format|
+        format.turbo_stream do
+          ranker = FeaturedQuestionRanker.new(OpinionQuestion.live.includes(:category).to_a)
+          render turbo_stream: turbo_stream.replace(
+            "featured-order-content",
+            partial: "moderator/dashboard/featured_order",
+            locals: { featured_questions: ranker.rank, featured_ranker: ranker }
+          )
+        end
+        format.html do
+          redirect_to moderator_root_path(anchor: "featured-order"),
+            notice: "The featured-order adjustment has been updated."
+        end
+      end
     end
 
     private
