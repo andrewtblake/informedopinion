@@ -1,6 +1,15 @@
 require "test_helper"
 
 class PublicServiceEssentialsTest < ActionDispatch::IntegrationTest
+  test "the public site does not reject an older mobile browser" do
+    older_android_chrome = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 " \
+      "(KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+
+    get root_path, headers: { "User-Agent" => older_android_chrome }
+
+    assert_response :success
+  end
+
   test "privacy terms and methodology are publicly available" do
     {
       privacy_path => [ "How your information is used", "Cookies", "Your data-protection rights" ],
