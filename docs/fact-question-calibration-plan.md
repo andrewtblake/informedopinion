@@ -296,6 +296,16 @@ note, or request reassessment. These decisions must retain the original AI value
 and be auditable. Moderators are not expected to inspect every ordinary rating
 individually.
 
+The moderator calibration interface provides a bank overview and per-bank views
+for the supervisory sample, all pending assessments, all unfit assessments and
+complete assessment history. Sampling deterministically includes mandatory
+extremes and low-confidence cases, one representative from each populated rating
+combination, and an additional stable sample. The interface displays the complete
+question, source, AI rationales, confidence, provenance, failure diagnosis and
+remediation proposal. Acceptance, override and reassessment decisions are
+fingerprint-protected and recorded in the audit log. An override stores reviewed
+values separately so the original AI assessment remains intact.
+
 ### Stage 5: remediate failures and substantive gaps
 
 Review the audit before changing content. For each zero-rated item, decide whether

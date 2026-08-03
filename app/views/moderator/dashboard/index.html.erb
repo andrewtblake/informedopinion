@@ -6,6 +6,7 @@
       <p class="editorial-kicker">Editorial review</p>
       <h1>Moderation</h1>
       <p>Pending reports, proposed opinion questions, and proposed fact questions.</p>
+      <%= link_to "Review fact-question calibration", moderator_calibration_reviews_path, class: "button button-primary" %>
     </header>
 
     <details class="moderation-section ui-disclosure draft-question-section" id="question-preparation" data-disclosure-key="question-preparation" data-action="toggle->moderation-disclosures#remember toggle->moderation-heartbeat#sectionToggled" <%= "open" if @draft_questions.any? %>>

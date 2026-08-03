@@ -26,9 +26,13 @@ class FactQuestionCalibrationAssessment < ApplicationRecord
   validates :specialist_knowledge, inclusion: { in: FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.keys }
   validates :answerability, inclusion: { in: FactQuestion::ANSWERABILITY_LEVELS.keys }
   validates :specialist_knowledge_confidence, :answerability_confidence, inclusion: { in: 1..5 }
+  validates :reviewed_specialist_knowledge, inclusion: { in: FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.keys },
+    allow_nil: true
+  validates :reviewed_answerability, inclusion: { in: FactQuestion::ANSWERABILITY_LEVELS.keys }, allow_nil: true
   validates :failure_category, inclusion: { in: FAILURE_CATEGORIES },
     allow_nil: true
   validate :unfit_assessment_has_diagnosis
+  validate :review_outcome_is_complete
 
   private
 
@@ -37,5 +41,15 @@ class FactQuestionCalibrationAssessment < ApplicationRecord
 
     errors.add(:failure_category, "must identify why the question is unfit") if failure_category.blank?
     errors.add(:remediation, "must propose how to correct or replace the question") if remediation.blank?
+  end
+
+  def review_outcome_is_complete
+    if accepted? || overridden?
+      errors.add(:reviewed_specialist_knowledge, "must record the accepted rating") if reviewed_specialist_knowledge.nil?
+      errors.add(:reviewed_answerability, "must record the accepted rating") if reviewed_answerability.nil?
+    end
+    if (overridden? || reassessment_requested?) && review_notes.blank?
+      errors.add(:review_notes, "must explain the moderator's decision")
+    end
   end
 end

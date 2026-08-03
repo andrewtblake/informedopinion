@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_03_130000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_03_150000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -47,7 +47,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_130000) do
     t.string "failure_category"
     t.text "remediation"
     t.text "review_notes"
+    t.integer "reviewed_answerability"
     t.datetime "reviewed_at"
+    t.integer "reviewed_specialist_knowledge"
     t.integer "reviewer_id"
     t.string "run_identifier", null: false
     t.integer "specialist_knowledge", null: false
@@ -64,6 +66,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_130000) do
     t.index ["submitted_by_id"], name: "index_fact_question_calibration_assessments_on_submitted_by_id"
     t.check_constraint "answerability BETWEEN 0 AND 5", name: "fact_calibrations_answerability_range"
     t.check_constraint "answerability_confidence BETWEEN 1 AND 5", name: "fact_calibrations_answerability_confidence_range"
+    t.check_constraint "reviewed_answerability IS NULL OR reviewed_answerability BETWEEN 0 AND 5", name: "fact_calibrations_reviewed_answerability_range"
+    t.check_constraint "reviewed_specialist_knowledge IS NULL OR reviewed_specialist_knowledge BETWEEN 1 AND 6", name: "fact_calibrations_reviewed_specialist_range"
     t.check_constraint "specialist_knowledge BETWEEN 1 AND 6", name: "fact_calibrations_specialist_knowledge_range"
     t.check_constraint "specialist_knowledge_confidence BETWEEN 1 AND 5", name: "fact_calibrations_specialist_confidence_range"
   end

@@ -1,0 +1,113 @@
+<% content_for :title, "#{@question.title} calibration — Informed Opinion" %>
+
+<section class="calibration-page ui-page">
+  <div class="container">
+    <header class="editorial-masthead ui-masthead">
+      <p class="editorial-kicker">Supervisory review · <%= @question.live? ? "Live" : "Draft" %></p>
+      <h1><%= @question.title %></h1>
+      <p><%= @question.statement %></p>
+      <%= link_to "← All calibration banks", moderator_calibration_reviews_path, class: "back-link" %>
+    </header>
+
+    <% summary = @review.summary %>
+    <section class="calibration-summary ui-sheet">
+      <dl class="calibration-counts">
+        <div><dt>Assessed</dt><dd><%= summary[:assessed] %>/<%= summary[:total_questions] %></dd></div>
+        <div><dt>Awaiting review</dt><dd><%= summary[:pending] %></dd></div>
+        <div><dt>Accepted</dt><dd><%= summary[:accepted] %></dd></div>
+        <div><dt>Overridden</dt><dd><%= summary[:overridden] %></dd></div>
+        <div><dt>Reassess</dt><dd><%= summary[:reassessment_requested] %></dd></div>
+        <div><dt>Unfit</dt><dd><%= summary[:unfit] %></dd></div>
+      </dl>
+      <div class="calibration-distributions">
+        <p><strong>Specialist knowledge:</strong> <%= @review.specialist_distribution.map { |rating, count| "#{rating}: #{count}" }.join(" · ") %></p>
+        <p><strong>Answerability:</strong> <%= @review.answerability_distribution.map { |rating, count| "#{rating}: #{count}" }.join(" · ") %></p>
+        <p><strong>Cross-tabulation:</strong> <%= @review.cross_tabulation.sort.map { |(specialist, answerability), count| "#{specialist}:#{answerability}=#{count}" }.join(" · ").presence || "No assessments" %></p>
+      </div>
+    </section>
+
+    <nav class="calibration-filters" aria-label="Calibration review scope">
+      <% { "sample" => "Supervisory sample", "pending" => "All pending", "unfit" => "All unfit", "all" => "Complete history" }.each do |scope, label| %>
+        <%= link_to label, moderator_calibration_review_path(@question, scope: scope), class: "#{"is-active" if @scope == scope}" %>
+      <% end %>
+    </nav>
+
+    <% @assessments.each do |assessment| %>
+      <% fact = assessment.fact_question %>
+      <% reasons = @review.review_reasons(assessment) %>
+      <article class="calibration-assessment ui-sheet <%= "is-unfit" if assessment.answerability.zero? %>" id="calibration-assessment-<%= assessment.id %>">
+        <header>
+          <div>
+            <p class="editorial-section-label">Question <%= fact.display_order %> · <%= assessment.status.humanize %></p>
+            <h2><%= glossary_text(fact.prompt) %></h2>
+          </div>
+          <% if reasons.any? %><p class="calibration-review-reasons"><%= reasons.join(" · ") %></p><% end %>
+        </header>
+
+        <ol class="fact-bank-options" type="A">
+          <% fact.options.each_with_index do |option, index| %>
+            <li class="<%= "correct" if index == fact.correct_option %>">
+              <%= glossary_text(option) %><% if index == fact.correct_option %> <strong>Correct</strong><% end %>
+            </li>
+          <% end %>
+        </ol>
+        <p><strong>Explanation:</strong> <%= glossary_text(fact.explanation) %></p>
+        <p><%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></p>
+
+        <div class="calibration-ai-assessment">
+          <section>
+            <h3>Specialist knowledge: <%= assessment.specialist_knowledge %>/6</h3>
+            <p><%= assessment.specialist_knowledge_rationale %></p>
+            <small>AI confidence: <%= assessment.specialist_knowledge_confidence %>/5</small>
+          </section>
+          <section>
+            <h3>Answerability: <%= assessment.answerability %>/5</h3>
+            <p><%= assessment.answerability_rationale %></p>
+            <small>AI confidence: <%= assessment.answerability_confidence %>/5</small>
+          </section>
+        </div>
+        <% if assessment.answerability.zero? %>
+          <aside class="calibration-failure">
+            <strong><%= assessment.failure_category.humanize %></strong>
+            <p><%= assessment.remediation %></p>
+          </aside>
+        <% end %>
+        <p class="calibration-provenance">Assessed by <%= assessment.assessor_name %> · Run <%= assessment.run_identifier %></p>
+
+        <% if assessment.ai_proposed? && @current_assessment_ids.include?(assessment.id) %>
+          <%= form_with model: assessment, url: moderator_calibration_assessment_path(assessment), method: :patch, class: "calibration-review-form" do |form| %>
+            <div class="moderation-inline-fields">
+              <div class="field">
+                <%= form.label :reviewed_specialist_knowledge, "Accepted specialist knowledge" %>
+                <%= form.select :reviewed_specialist_knowledge,
+                  FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.map { |value, label| ["#{value} — #{label}", value] },
+                  selected: assessment.specialist_knowledge %>
+              </div>
+              <div class="field">
+                <%= form.label :reviewed_answerability, "Accepted answerability" %>
+                <%= form.select :reviewed_answerability,
+                  FactQuestion::ANSWERABILITY_LEVELS.map { |value, label| ["#{value} — #{label}", value] },
+                  selected: assessment.answerability %>
+              </div>
+            </div>
+            <div class="field">
+              <%= form.label :review_notes, "Moderator note" %>
+              <%= form.text_area :review_notes, rows: 2, placeholder: "Required for an override or reassessment request" %>
+            </div>
+            <div class="moderation-actions">
+              <%= form.button "Accept AI ratings", name: "fact_question_calibration_assessment[decision]", value: "accept", class: "button moderation-approve" %>
+              <%= form.button "Save override", name: "fact_question_calibration_assessment[decision]", value: "override", class: "button editorial-control" %>
+              <%= form.button "Request reassessment", name: "fact_question_calibration_assessment[decision]", value: "reassess", class: "button moderation-decline" %>
+            </div>
+          <% end %>
+        <% else %>
+          <p><strong>Moderator outcome:</strong> <%= assessment.status.humanize %>
+            <% if assessment.reviewed_specialist_knowledge %> · Specialist knowledge <%= assessment.reviewed_specialist_knowledge %> · Answerability <%= assessment.reviewed_answerability %><% end %>
+          </p>
+          <% if assessment.review_notes.present? %><blockquote><%= assessment.review_notes %></blockquote><% end %>
+        <% end %>
+      </article>
+    <% end %>
+    <% if @assessments.empty? %><p class="moderation-empty">No assessments match this view.</p><% end %>
+  </div>
+</section>

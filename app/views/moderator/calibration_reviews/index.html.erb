@@ -1,0 +1,34 @@
+<% content_for :title, "Calibration review — Informed Opinion" %>
+
+<section class="calibration-page ui-page">
+  <div class="container">
+    <header class="editorial-masthead ui-masthead">
+      <p class="editorial-kicker">Supervisory review</p>
+      <h1>Fact-question calibration</h1>
+      <p>Inspect AI assessments by bank, prioritising unfit, extreme, uncertain and representative questions.</p>
+      <%= link_to "← Moderation", moderator_root_path, class: "back-link" %>
+    </header>
+
+    <div class="calibration-bank-list">
+      <% @reviews.each do |review| %>
+        <% summary = review.summary %>
+        <article class="calibration-bank ui-sheet">
+          <div>
+            <p class="editorial-section-label"><%= review.opinion_question.live? ? "Live" : "Draft" %></p>
+            <h2><%= review.opinion_question.title %></h2>
+            <p><%= review.opinion_question.statement %></p>
+          </div>
+          <dl class="calibration-counts">
+            <div><dt>Assessed</dt><dd><%= summary[:assessed] %>/<%= summary[:total_questions] %></dd></div>
+            <div><dt>Pending</dt><dd><%= summary[:pending] %></dd></div>
+            <div><dt>Accepted</dt><dd><%= summary[:accepted] %></dd></div>
+            <div><dt>Overridden</dt><dd><%= summary[:overridden] %></dd></div>
+            <div><dt>Unfit</dt><dd><%= summary[:unfit] %></dd></div>
+            <div><dt>Stale</dt><dd><%= summary[:stale] %></dd></div>
+          </dl>
+          <%= link_to "Review calibration", moderator_calibration_review_path(review.opinion_question), class: "button button-primary" %>
+        </article>
+      <% end %>
+    </div>
+  </div>
+</section>

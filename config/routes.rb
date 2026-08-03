@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   namespace :moderator do
     root "dashboard#index"
+    resources :calibration_reviews, only: %i[index show]
+    resources :calibration_assessments, only: :update
     resource :heartbeat, only: :show
     resource :moderation_views, only: :create
     resources :fact_question_flags, only: :update
