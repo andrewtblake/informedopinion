@@ -2,16 +2,7 @@ require "digest"
 
 class FactQuestionCalibrationAudit
   VERSION = 1
-  FAILURE_CATEGORIES = %w[
-    implausible_distractors
-    answer_cue
-    multiple_defensible_answers
-    unsupported_distinction
-    immaterial_trivia
-    unnecessary_technical_language
-    misleading_numerical_options
-    other
-  ].freeze
+  FAILURE_CATEGORIES = FactQuestionCalibrationAssessment::FAILURE_CATEGORIES
 
   class InvalidWorksheet < StandardError; end
 
@@ -62,8 +53,14 @@ class FactQuestionCalibrationAudit
       unless FactQuestion::ANSWERABILITY_LEVELS.key?(answerability)
         errors << "#{prefix} answerability must be from 0 to 5"
       end
-      errors << "#{prefix} needs a specialist-knowledge reason" if assessment["specialist_knowledge_reason"].blank?
-      errors << "#{prefix} needs an answerability reason" if assessment["answerability_reason"].blank?
+      errors << "#{prefix} needs a specialist-knowledge rationale" if assessment["specialist_knowledge_rationale"].blank?
+      errors << "#{prefix} needs an answerability rationale" if assessment["answerability_rationale"].blank?
+      unless (1..5).include?(assessment["specialist_knowledge_confidence"])
+        errors << "#{prefix} specialist-knowledge confidence must be from 1 to 5"
+      end
+      unless (1..5).include?(assessment["answerability_confidence"])
+        errors << "#{prefix} answerability confidence must be from 1 to 5"
+      end
 
       next unless answerability == 0
 
@@ -175,9 +172,11 @@ class FactQuestionCalibrationAudit
       "content_fingerprint" => self.class.fingerprint(fact),
       "assessment" => {
         "specialist_knowledge" => fact.specialist_knowledge,
-        "specialist_knowledge_reason" => nil,
+        "specialist_knowledge_rationale" => nil,
+        "specialist_knowledge_confidence" => nil,
         "answerability" => fact.answerability,
-        "answerability_reason" => nil,
+        "answerability_rationale" => nil,
+        "answerability_confidence" => nil,
         "failure_category" => nil,
         "remediation" => nil
       }

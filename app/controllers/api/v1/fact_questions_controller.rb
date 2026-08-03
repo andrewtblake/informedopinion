@@ -61,6 +61,7 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
   def self.serialize(record)
     record.as_json(only: %i[id opinion_question_id prompt options correct_option explanation source_name source_url
       importance_weight importance_rationale evidence_direction specialist_knowledge answerability display_order withdrawn_at])
+      .merge("content_fingerprint" => FactQuestionCalibrationAudit.fingerprint(record))
   end
 
   private

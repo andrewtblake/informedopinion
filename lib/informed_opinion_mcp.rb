@@ -92,6 +92,12 @@ module InformedOpinionMcp
         { id: { type: "integer" }, fact_question: { type: "object" } }, required: %w[id fact_question]) do |args|
         client.request("patch", "fact_questions/#{args.delete(:id)}", args)
       end
+      tool(server, "submit_fact_question_calibrations", "Submit one complete, fingerprinted AI calibration run for supervisory review. The batch must cover every fact question in the bank and is applied atomically.",
+        { opinion_question_id: { type: "integer" }, assessor_name: { type: "string" }, run_identifier: { type: "string" },
+          assessments: { type: "array", minItems: 1, maxItems: 100, items: calibration_schema } },
+        required: %w[opinion_question_id assessor_name run_identifier assessments]) do |args|
+        client.request("post", "opinion_questions/#{args.delete(:opinion_question_id)}/calibration_assessments/bulk", args)
+      end
     end
 
     def tool(server, name, description, properties, required: [], read_only: false, &block)
@@ -113,6 +119,23 @@ module InformedOpinionMcp
           importance_rationale: { type: "string" }, evidence_direction: { type: "integer", minimum: -1, maximum: 1 },
           specialist_knowledge: { type: "integer", minimum: 1, maximum: 6, description: "Prior topic-specific knowledge required before seeing the options." },
           answerability: { type: "integer", minimum: 1, maximum: 5, description: "Ease of answering the presented item. New questions must pass; use 0 only when auditing an existing item as unfit." } } }
+    end
+
+    def calibration_schema
+      { type: "object", required: %w[fact_question_id content_fingerprint specialist_knowledge
+        specialist_knowledge_rationale specialist_knowledge_confidence answerability answerability_rationale
+        answerability_confidence],
+        properties: {
+          fact_question_id: { type: "integer" }, content_fingerprint: { type: "string" },
+          specialist_knowledge: { type: "integer", minimum: 1, maximum: 6 },
+          specialist_knowledge_rationale: { type: "string" },
+          specialist_knowledge_confidence: { type: "integer", minimum: 1, maximum: 5 },
+          answerability: { type: "integer", minimum: 0, maximum: 5 },
+          answerability_rationale: { type: "string" },
+          answerability_confidence: { type: "integer", minimum: 1, maximum: 5 },
+          failure_category: { type: "string", enum: FactQuestionCalibrationAssessment::FAILURE_CATEGORIES },
+          remediation: { type: "string" }
+        } }
     end
 
     def define_resources(server)

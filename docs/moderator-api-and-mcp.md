@@ -38,6 +38,8 @@ All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 - `POST/DELETE /opinion_questions/:opinion_question_id/publication`
 - `GET/POST /opinion_questions/:opinion_question_id/fact_questions`
 - `POST /opinion_questions/:id/fact_questions/bulk`
+- `GET /opinion_questions/:id/calibration_assessments`
+- `POST /opinion_questions/:id/calibration_assessments/bulk`
 - `GET/PATCH/DELETE /fact_questions/:id`
 - `GET /moderation_issues?status=pending&type=opinion_proposal`
 - `GET/PATCH /moderation_issues/:composite_id`
@@ -47,6 +49,14 @@ All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 - `GET /editorial_standard`
 
 Fact-question payloads use zero-based `correct_option`, exactly four `options`, `importance_weight` 1–3, `evidence_direction` -1, 0, or 1, `specialist_knowledge` 1–6, and `answerability` 1–5. New questions must have passing ratings. An `answerability` of 0 may be assigned when updating an existing item during an audit to record that it is unfit and cannot be published; it is not the difficult end of the passing scale. See [editorial-standard.md](editorial-standard.md) for the fields' independent editorial meanings.
+
+An AI calibration submission is atomic at bank level and must contain exactly one
+fingerprinted assessment for every fact question in the bank. Each assessment
+includes both ratings, concise rationales, confidence values from 1 to 5, and—when
+answerability is 0—a failure category and proposed remediation. The API preserves
+the assessment as awaiting supervisory review, copies its proposed ratings to the
+fact question, and records audited provenance through `assessor_name` and
+`run_identifier`. A stale fingerprint rejects the entire batch.
 
 ## Issue a token
 

@@ -108,6 +108,33 @@ Rigid distribution targets should not be introduced until the existing corpus ha
 been audited. The audit will provide a defensible empirical baseline for future
 guidance.
 
+## Operating model
+
+The exhaustive first assessment is performed in bulk by AI. The moderator's role
+is supervisory rather than manually rating every question:
+
+```text
+AI rates the complete corpus
+        ↓
+automatic validation and distribution analysis
+        ↓
+moderator reviews targeted and representative samples
+        ↓
+moderator accepts, overrides or requests reassessment
+        ↓
+accepted ratings become available for sequencing
+```
+
+AI assessment must include concise rationales, confidence ratings, provenance,
+and a diagnosis and proposed remedy for every unfit question. These are retained
+as durable assessment history. The accepted numeric ratings are also copied onto
+the fact question for efficient reporting and sequencing.
+
+Supervisory review should always include unfit questions, extreme ratings,
+low-confidence ratings, cross-bank inconsistencies and questions changed after
+assessment. It should add a stratified sample from ordinary rating combinations
+and a random sample from every bank. A purely random sample is insufficient.
+
 ## Delivery stages
 
 ### Stage 1: publish the definitions
@@ -206,7 +233,7 @@ Generate per-bank distributions and cross-tabulations. Flag extreme values,
 unrated questions, zero-rated questions, narrow distributions and unusually strong
 relationships between specialist knowledge, answerability and importance.
 
-The repository provides three read-only workflow tasks. They operate on the
+The repository provides three read-only interchange tasks. They operate on the
 database selected by the Rails environment and never apply ratings:
 
 ```sh
@@ -215,11 +242,12 @@ bin/rails fact_questions:calibration:validate INPUT=tmp/fact-question-calibratio
 bin/rails fact_questions:calibration:report INPUT=tmp/fact-question-calibration.json
 ```
 
-The export contains the full question, a content fingerprint and empty reason
-fields. Validation requires both ratings and concise reasons for every item,
+The exported JSON is an AI interchange format, not a worksheet that moderators
+are expected to edit. It contains the full question, a content fingerprint and
+empty assessment fields. Validation requires both ratings, confidence values and concise reasons for every item,
 checks the fingerprint against the current database, and requires a recognised
 failure category and remediation proposal for every zero-rated item. Reporting
-works on either a completed worksheet or the current database and emits per-bank
+works on either an assessed interchange file or the current database and emits per-bank
 distributions, cross-tabulations, unused levels, and unrated and unfit IDs.
 
 Export the seed catalogue from a freshly seeded local database. Export production
@@ -227,30 +255,46 @@ from the production environment rather than assuming that it still matches the
 seed catalogue. Rating persistence remains a separate, explicit and audited
 operation.
 
-### Stage 4: assess every existing question without rewriting it
+### Stage 4: submit bulk AI assessments without rewriting questions
 
-Review one bank at a time:
+Assess and submit one bank at a time:
 
 1. Read the exact opinion proposition and establish its reference population.
-2. Rate each underlying fact for specialist knowledge without considering its
+2. Have the AI rate each underlying fact for specialist knowledge without considering its
    answer choices.
-3. Rate the complete presented item for answerability.
+3. Have the AI rate the complete presented item for answerability.
 4. Assign zero where the item fails and record the reason.
-5. Compare ratings within the bank and with analogous questions in other banks.
-6. Persist the ratings in the seed catalogue and production data.
-7. Verify that no current question remains unrated.
+5. Record confidence, model or assessor identity, run identity, rationales,
+   failure diagnosis and proposed remediation.
+6. Compare ratings within the bank and with analogous questions in other banks.
+7. Validate fingerprints and submit exactly one assessment for every question in
+   the bank through an atomic, audited operation.
+8. Preserve each submitted assessment as history and mark it as awaiting
+   supervisory review.
+9. Persist accepted ratings in the seed catalogue and verify that no current
+   question remains unrated.
 
 This stage changes ratings only. Keeping diagnosis separate from remediation
 preserves an honest baseline and makes the scale easier to calibrate consistently.
 
-Manually recheck:
+The moderator interface should construct a supervisory sample containing:
 
+- every answerability-0 assessment;
 - all specialist-knowledge ratings of 1, 5 or 6;
 - all answerability ratings of 0, 1 or 5;
+- all low-confidence assessments;
+- questions whose ratings differ sharply from analogous questions;
 - every bank with a conspicuously narrow distribution;
 - surprising differences between questions needing similar professional or legal
   knowledge; and
-- strong correlations between importance, specialist knowledge and answerability.
+- strong correlations between importance, specialist knowledge and answerability;
+- a stratified sample from each populated rating combination; and
+- a random sample from every bank.
+
+For each assessment the moderator may accept it, override either rating with a
+note, or request reassessment. These decisions must retain the original AI values
+and be auditable. Moderators are not expected to inspect every ordinary rating
+individually.
 
 ### Stage 5: remediate failures and substantive gaps
 

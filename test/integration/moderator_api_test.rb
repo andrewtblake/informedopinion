@@ -59,6 +59,7 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_equal 1, opinion.fact_questions.count
     assert_equal 3, response.parsed_body.dig("fact_questions", 0, "specialist_knowledge")
     assert_equal 4, response.parsed_body.dig("fact_questions", 0, "answerability")
+    assert_match(/\A[0-9a-f]{64}\z/, response.parsed_body.dig("fact_questions", 0, "content_fingerprint"))
     assert_equal "fact_question.create", ApiAuditEvent.last.action
     assert_not opinion.reload.live?
   end
@@ -77,6 +78,40 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
       params: { fact_questions: [ payload.merge(answerability: 0) ] }.to_json, headers: @headers
     assert_response :unprocessable_entity
     assert_empty opinion.fact_questions
+  end
+
+  test "AI calibration submission is complete, fingerprinted, atomic and audited" do
+    opinion = OpinionQuestion.create!(category: @category, title: "AI calibration", statement: "The policy should be adopted.",
+      slug: "ai-calibration", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    facts = 2.times.map do |index|
+      opinion.fact_questions.create!(fact_payload("Calibration fact #{index}?", [ "Correct", "A", "B", "C" ])
+        .except(:specialist_knowledge, :answerability).merge(display_order: index + 1))
+    end
+    assessments = facts.map { calibration_payload(_1) }
+
+    post calibration_assessments_bulk_api_v1_opinion_question_path(opinion), params: {
+      assessor_name: "Test AI",
+      run_identifier: "test-run-1",
+      assessments: assessments
+    }.to_json, headers: @headers
+
+    assert_response :created
+    assert_equal 2, FactQuestionCalibrationAssessment.count
+    assert facts.all? { _1.reload.specialist_knowledge == 3 && _1.answerability == 4 }
+    assert FactQuestionCalibrationAssessment.all.all?(&:ai_proposed?)
+    assert_equal 2, ApiAuditEvent.where(action: "fact_question_calibration.ai_propose").count
+
+    stale = facts.map { calibration_payload(_1) }
+    facts.first.update!(prompt: "Changed after assessment")
+    assert_no_difference "FactQuestionCalibrationAssessment.count" do
+      post calibration_assessments_bulk_api_v1_opinion_question_path(opinion), params: {
+        assessor_name: "Test AI",
+        run_identifier: "test-run-2",
+        assessments: stale
+      }.to_json, headers: @headers
+    end
+    assert_response :unprocessable_entity
   end
 
   test "API publication is explicit and requires a complete fact bank" do
@@ -146,6 +181,19 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
       evidence_direction: 0,
       specialist_knowledge: 3,
       answerability: 4
+    }
+  end
+
+  def calibration_payload(fact)
+    {
+      fact_question_id: fact.id,
+      content_fingerprint: FactQuestionCalibrationAudit.fingerprint(fact),
+      specialist_knowledge: 3,
+      specialist_knowledge_rationale: "The fact requires focused reading about the issue.",
+      specialist_knowledge_confidence: 4,
+      answerability: 4,
+      answerability_rationale: "The choices are accessible but require substantive reading.",
+      answerability_confidence: 4
     }
   end
 end

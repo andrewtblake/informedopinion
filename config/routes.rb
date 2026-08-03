@@ -41,6 +41,8 @@ Rails.application.routes.draw do
       resources :opinion_questions, only: %i[index show create update destroy] do
         resources :fact_questions, only: %i[index show create update destroy], shallow: true
         post "fact_questions/bulk", to: "fact_questions#bulk_create", on: :member
+        get "calibration_assessments", to: "fact_question_calibration_assessments#index", on: :member
+        post "calibration_assessments/bulk", to: "fact_question_calibration_assessments#bulk_create", on: :member
         resource :publication, only: %i[create destroy], controller: "opinion_question_publications"
       end
       resources :moderation_issues, only: %i[index show update] do

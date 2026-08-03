@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_03_090000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_03_130000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -34,6 +34,38 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_090000) do
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_categories_on_name", unique: true
     t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
+  create_table "fact_question_calibration_assessments", force: :cascade do |t|
+    t.integer "answerability", null: false
+    t.integer "answerability_confidence", null: false
+    t.text "answerability_rationale", null: false
+    t.string "assessor_name", null: false
+    t.string "content_fingerprint", null: false
+    t.datetime "created_at", null: false
+    t.integer "fact_question_id", null: false
+    t.string "failure_category"
+    t.text "remediation"
+    t.text "review_notes"
+    t.datetime "reviewed_at"
+    t.integer "reviewer_id"
+    t.string "run_identifier", null: false
+    t.integer "specialist_knowledge", null: false
+    t.integer "specialist_knowledge_confidence", null: false
+    t.text "specialist_knowledge_rationale", null: false
+    t.integer "status", default: 0, null: false
+    t.integer "submitted_by_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_fingerprint"], name: "idx_on_content_fingerprint_713cc032fe"
+    t.index ["fact_question_id", "created_at"], name: "index_fact_calibrations_on_question_and_created"
+    t.index ["fact_question_id"], name: "idx_on_fact_question_id_929ed16059"
+    t.index ["reviewer_id"], name: "index_fact_question_calibration_assessments_on_reviewer_id"
+    t.index ["run_identifier"], name: "index_fact_question_calibration_assessments_on_run_identifier"
+    t.index ["submitted_by_id"], name: "index_fact_question_calibration_assessments_on_submitted_by_id"
+    t.check_constraint "answerability BETWEEN 0 AND 5", name: "fact_calibrations_answerability_range"
+    t.check_constraint "answerability_confidence BETWEEN 1 AND 5", name: "fact_calibrations_answerability_confidence_range"
+    t.check_constraint "specialist_knowledge BETWEEN 1 AND 6", name: "fact_calibrations_specialist_knowledge_range"
+    t.check_constraint "specialist_knowledge_confidence BETWEEN 1 AND 5", name: "fact_calibrations_specialist_confidence_range"
   end
 
   create_table "fact_question_flags", force: :cascade do |t|
@@ -399,6 +431,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_090000) do
 
   add_foreign_key "api_audit_events", "moderator_api_tokens", on_delete: :nullify
   add_foreign_key "api_audit_events", "users", column: "actor_id", on_delete: :nullify
+  add_foreign_key "fact_question_calibration_assessments", "fact_questions"
+  add_foreign_key "fact_question_calibration_assessments", "users", column: "reviewer_id"
+  add_foreign_key "fact_question_calibration_assessments", "users", column: "submitted_by_id"
   add_foreign_key "fact_question_flags", "fact_questions"
   add_foreign_key "fact_question_flags", "users"
   add_foreign_key "fact_question_flags", "users", column: "reviewer_id"

@@ -30,6 +30,9 @@ class FactQuestion < ApplicationRecord
   belongs_to :opinion_question, touch: true
   has_many :fact_responses, dependent: :destroy
   has_many :fact_question_flags, dependent: :destroy
+  has_many :calibration_assessments,
+    class_name: "FactQuestionCalibrationAssessment",
+    dependent: :destroy
 
   validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true
   validates :source_url, format: { with: %r{\Ahttps?://[^\s]+\z}i }

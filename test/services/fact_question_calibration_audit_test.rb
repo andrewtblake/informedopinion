@@ -42,9 +42,11 @@ class FactQuestionCalibrationAuditTest < ActiveSupport::TestCase
     assessment = worksheet.dig("banks", 0, "questions", 0, "assessment")
     assessment.merge!(
       "specialist_knowledge" => 3,
-      "specialist_knowledge_reason" => "The result requires focused reading about this policy.",
+      "specialist_knowledge_rationale" => "The result requires focused reading about this policy.",
+      "specialist_knowledge_confidence" => 4,
       "answerability" => 4,
-      "answerability_reason" => "The alternatives are credible but the central distinction is accessible."
+      "answerability_rationale" => "The alternatives are credible but the central distinction is accessible.",
+      "answerability_confidence" => 5
     )
 
     assert FactQuestionCalibrationAudit.validate!(worksheet, questions: OpinionQuestion.where(id: @opinion.id))
@@ -61,9 +63,11 @@ class FactQuestionCalibrationAuditTest < ActiveSupport::TestCase
     assessment = worksheet.dig("banks", 0, "questions", 0, "assessment")
     assessment.merge!(
       "specialist_knowledge" => 2,
-      "specialist_knowledge_reason" => "The subject is commonly covered in current affairs.",
+      "specialist_knowledge_rationale" => "The subject is commonly covered in current affairs.",
+      "specialist_knowledge_confidence" => 4,
       "answerability" => 0,
-      "answerability_reason" => "Three choices are conspicuously absurd."
+      "answerability_rationale" => "Three choices are conspicuously absurd.",
+      "answerability_confidence" => 5
     )
 
     error = assert_raises(FactQuestionCalibrationAudit::InvalidWorksheet) do
@@ -95,9 +99,11 @@ class FactQuestionCalibrationAuditTest < ActiveSupport::TestCase
     FactQuestionCalibrationAudit.new(questions: OpinionQuestion.where(id: @opinion.id)).worksheet.tap do |worksheet|
       worksheet.dig("banks", 0, "questions", 0, "assessment").merge!(
         "specialist_knowledge" => 3,
-        "specialist_knowledge_reason" => "The fact requires focused policy reading.",
+        "specialist_knowledge_rationale" => "The fact requires focused policy reading.",
+        "specialist_knowledge_confidence" => 4,
         "answerability" => 3,
-        "answerability_reason" => "Several alternatives are initially credible."
+        "answerability_rationale" => "Several alternatives are initially credible.",
+        "answerability_confidence" => 4
       )
     end
   end

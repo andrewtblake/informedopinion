@@ -11,6 +11,7 @@ class InformedOpinionMcpTest < ActiveSupport::TestCase
     assert_includes tool_names, "decide_moderation_issue"
     assert_includes tool_names, "create_fact_questions"
     assert_includes tool_names, "publish_opinion_question"
+    assert_includes tool_names, "submit_fact_question_calibrations"
     assert_includes server.resources.map(&:uri), "informed-opinion://editorial-standard"
   end
 
