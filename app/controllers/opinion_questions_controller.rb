@@ -6,6 +6,7 @@ class OpinionQuestionsController < ApplicationController
   end
 
   def show
+    @collective = CollectiveOpinion.new(@opinion_question)
     return unless user_signed_in?
 
     @user_opinion = current_user.user_opinions.find_by(opinion_question: @opinion_question)

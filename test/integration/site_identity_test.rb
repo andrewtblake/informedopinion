@@ -82,7 +82,9 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
 
     get opinion_question_path(question)
     assert_response :success
-    assert_select ".topic-hero-card h1", text: "Where do you stand?"
+    assert_select ".topic-hero-card h1", text: "A site journey"
+    assert_select ".topic-aggregate .wdyt-result", text: /Those in the know say.*No.*Yes/m
+    assert_select ".opinion-response-section h2", text: "Where do you stand?"
     assert_select ".text-link", text: "Continue with the facts"
 
     get opinion_question_quiz_path(question)

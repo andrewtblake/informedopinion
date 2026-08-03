@@ -5,10 +5,14 @@
     <%= link_to "← All questions", root_path(anchor: "topics"), class: "back-link" %>
 
     <div class="topic-hero-card ui-sheet ui-sheet-emphasis">
-      <p class="eyebrow ui-kicker"><%= @opinion_question.title %></p>
-      <h1><%= site_copy(:opinion_heading) %></h1>
+      <p class="eyebrow ui-kicker"><%= @opinion_question.category&.name || "Opinion question" %></p>
+      <h1><%= @opinion_question.title %></h1>
       <blockquote><%= @opinion_question.statement %></blockquote>
 
+      <%= render "aggregate_result", collective: @collective %>
+
+      <section class="opinion-response-section" aria-labelledby="opinion-response-heading">
+        <h2 id="opinion-response-heading"><%= site_copy(:opinion_heading) %></h2>
       <% unless user_signed_in? %>
         <div class="signin-gate">
           <p><%= site_copy(:opinion_gate) %></p>
@@ -44,6 +48,7 @@
           </div>
         <% end %>
       <% end %>
+      </section>
     </div>
 
     <% if @user_opinion %>

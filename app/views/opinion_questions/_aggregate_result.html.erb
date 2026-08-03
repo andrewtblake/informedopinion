@@ -1,0 +1,34 @@
+<section class="topic-aggregate" aria-labelledby="aggregate-result-heading">
+  <div class="editorial-result">
+    <p>
+      <span id="aggregate-result-heading">Current informed opinion</span>
+      <strong><%= collective.result_label %></strong>
+    </p>
+    <div
+      class="editorial-opinion-scale <%= "is-empty" unless collective.weighted_score %>"
+      style="--result-position: <%= collective.indicator_position %>%"
+      role="img"
+      aria-label="<%= collective.weighted_score ? "Aggregate informed opinion: #{collective.score_percentage}, from no at minus 100 through neutral at zero to yes at plus 100" : "No weighted opinion result yet" %>"
+    >
+      <div class="editorial-scale-track">
+        <i class="editorial-scale-midpoint" aria-hidden="true"></i>
+        <% if collective.weighted_score %>
+          <i class="editorial-scale-indicator" aria-hidden="true"></i>
+        <% end %>
+      </div>
+      <div class="editorial-scale-labels" aria-hidden="true">
+        <span>No</span>
+        <span>Neutral</span>
+        <span>Yes</span>
+      </div>
+    </div>
+    <small>
+      <% if collective.weighted_score %>
+        Score <%= "+" if collective.score_percentage.positive? %><%= number_with_precision(collective.score_percentage, precision: 1, strip_insignificant_zeros: true) %>
+        ·
+      <% end %>
+      <%= pluralize(collective.respondents, "participant") %>
+      · <%= collective.informed_respondents %> carrying weight
+    </small>
+  </div>
+</section>

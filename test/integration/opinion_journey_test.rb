@@ -34,6 +34,9 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".topic-page.ui-page", count: 1
     assert_select ".topic-hero-card.ui-sheet", count: 1
+    assert_select ".topic-hero-card h1", text: "Evidence test"
+    assert_select ".topic-aggregate .editorial-opinion-scale", count: 1
+    assert_select ".opinion-response-section h2", text: "Which response best reflects your view?"
     assert_select ".opinion-option.ui-choice", count: 5
     assert_select ".opinion-submit.ui-action-footer", count: 1
     assert_select ".topic-page.topic-teal, .topic-page.topic-amber, .topic-page.topic-violet, .topic-page.topic-rose, .topic-page.topic-slate", count: 0
@@ -128,6 +131,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
 
     get opinion_question_path(@topic)
     assert_response :success
+    assert_select ".topic-aggregate", text: /Current informed opinion.*No weighted result.*No.*Neutral.*Yes/m
     assert_select "a", text: "Create account"
 
     post opinion_question_user_opinion_path(@topic),
