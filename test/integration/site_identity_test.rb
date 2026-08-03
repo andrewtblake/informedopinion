@@ -16,13 +16,17 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
   end
 
   test "the explicit local alternative host selects what do you think" do
+    category = Category.create!(name: "Alternative homepage", slug: "alternative-homepage")
+    OpinionQuestion.create!(category: category, title: "Alternative homepage question",
+      slug: "alternative-homepage-question", statement: "This proposition should be considered.",
+      live: true, display_order: 1, response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
     host! "whatdoyouthink.localhost"
     get root_path
 
     assert_response :success
     assert_select "body[data-site='what-do-you-think']"
     assert_select ".brand > span:last-child", text: "What Do You Think?"
-    assert_select "title", text: "What Do You Think? — opinion, informed by the facts"
+    assert_select "title", text: "What Do You Think? — opinion, backed by the facts"
     assert_select "meta[name='application-name'][content='What Do You Think?']", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-icon.svg']", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-favicon.ico']", count: 1
@@ -31,9 +35,17 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select "link[rel='stylesheet']", count: 2
     assert_includes response.body, "/assets/what_do_you_think-"
     assert_select ".wdyt-hero h1", text: "What do people think?"
+    assert_select ".wdyt-kicker", text: "Opinion, backed by the facts"
+    assert_select ".wdyt-result header", text: "Those in the know say"
+    assert_select ".wdyt-result header strong", count: 0
+    assert_select ".wdyt-result-scale > div:last-child span", text: /Neutral/, count: 0
   end
 
   test "moderation retains the editorial presentation on the alternative host" do
+    category = Category.create!(name: "Featured controls", slug: "featured-controls")
+    OpinionQuestion.create!(category: category, title: "Featured control question", slug: "featured-control-question",
+      statement: "This question should be featured.", live: true, display_order: 1,
+      response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
     moderator = create_user!(email: "site-moderator@example.test", password: "password123",
       first_name: "Site", last_name: "Moderator", role: :moderator)
     sign_in moderator, scope: :user
@@ -44,6 +56,10 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "body[data-site='informed-opinion']"
     assert_select ".brand > span:last-child", text: "Informed Opinion"
+    assert_select "#featured-order" do
+      assert_select "button", text: "Promote", minimum: 1
+      assert_select "button", text: "Demote", minimum: 1
+    end
   end
 
   test "the alternative language follows a participant through the public journey" do

@@ -239,7 +239,7 @@ body[data-site="what-do-you-think"] .help-formula { border-left-color: var(--wdy
 .wdyt-result header { margin-bottom: 10px; display: flex; align-items: start; justify-content: space-between; gap: 12px; }
 .wdyt-result header span { color: var(--wdyt-muted); font-size: 9px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; }
 .wdyt-result header strong { color: var(--wdyt-blue-dark); font-size: 13px; text-align: right; }
-.wdyt-result-scale > div:last-child { display: flex; justify-content: space-between; color: #60738c; font-size: 9px; font-weight: 700; }
+.wdyt-result-scale > div:last-child { display: flex; justify-content: space-between; color: #4b607a; font-size: 12px; font-weight: 850; letter-spacing: .06em; text-transform: uppercase; }
 .wdyt-result-track { height: 18px; position: relative; }
 .wdyt-result-track::before { content: ""; position: absolute; left: 4px; right: 4px; top: 7px; height: 5px; border-radius: 3px; background: linear-gradient(90deg, #ee876e, #ccd5df 50%, #4eae8f); }
 .wdyt-result-track i { position: absolute; left: 50%; top: 4px; width: 1px; height: 11px; background: #fff; }

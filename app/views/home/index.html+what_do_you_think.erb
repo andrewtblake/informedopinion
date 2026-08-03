@@ -1,10 +1,10 @@
-<% content_for :title, "What Do You Think? — opinion, informed by the facts" %>
+<% content_for :title, "What Do You Think? — opinion, backed by the facts" %>
 
 <section class="wdyt-home">
   <header class="wdyt-hero">
     <div class="container wdyt-hero-inner">
       <div>
-        <p class="wdyt-kicker">Opinion, informed by the facts</p>
+        <p class="wdyt-kicker">Opinion, backed by the facts</p>
         <h1>What do people think?</h1>
         <p>Explore questions people disagree about. See the current result, give your own view, and answer sourced fact questions to add weight to it.</p>
       </div>
@@ -72,15 +72,14 @@
               </div>
               <div class="wdyt-result">
                 <header>
-                  <span>Knowledge-weighted result</span>
-                  <strong><%= collective.result_label %></strong>
+                  <span>Those in the know say</span>
                 </header>
                 <div class="wdyt-result-scale <%= "is-empty" unless collective.weighted_score %>"
                   style="--result-position: <%= collective.indicator_position %>%"
                   role="img"
                   aria-label="<%= collective.weighted_score ? "Aggregate informed opinion: #{collective.score_percentage}, from no at minus 100 through neutral at zero to yes at plus 100" : "No weighted opinion result yet" %>">
                   <div class="wdyt-result-track"><i></i><% if collective.weighted_score %><b></b><% end %></div>
-                  <div><span>No</span><span>Neutral</span><span>Yes</span></div>
+                  <div><span>No</span><span>Yes</span></div>
                 </div>
                 <small><%= pluralize(collective.respondents, "participant") %> · <%= collective.informed_respondents %> carrying weight</small>
               </div>
