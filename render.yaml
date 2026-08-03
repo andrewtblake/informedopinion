@@ -32,7 +32,7 @@ services:
       - key: ALTERNATE_APP_HOST
         value: whatsyourview.info
       - key: ALTERNATE_SITE_ENABLED
-        value: "false"
+        value: "true"
       - key: MAILER_FROM
         value: Informed Opinion <accounts@informedopinion.info>
       - key: MAILER_REPLY_TO

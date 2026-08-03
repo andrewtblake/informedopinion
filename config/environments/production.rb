@@ -82,7 +82,7 @@ Rails.application.configure do
   # Permit only the public hostname and Render's service hostname. Render uses
   # the latter for health checks and retains it alongside the custom domain.
   public_host = ENV.fetch("APP_HOST", "informedopinion.info")
-  alternative_host = ENV["ALTERNATE_APP_HOST"].presence
+  alternative_host = ENV.fetch("ALTERNATE_APP_HOST", "whatsyourview.info").presence
   config.hosts = [ public_host, "www.#{public_host}", /\A[a-z0-9-]+\.onrender\.com\z/ ]
   config.hosts.concat([ alternative_host, "www.#{alternative_host}" ]) if alternative_host
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
