@@ -206,6 +206,27 @@ Generate per-bank distributions and cross-tabulations. Flag extreme values,
 unrated questions, zero-rated questions, narrow distributions and unusually strong
 relationships between specialist knowledge, answerability and importance.
 
+The repository provides three read-only workflow tasks. They operate on the
+database selected by the Rails environment and never apply ratings:
+
+```sh
+bin/rails fact_questions:calibration:export OUTPUT=tmp/fact-question-calibration.json
+bin/rails fact_questions:calibration:validate INPUT=tmp/fact-question-calibration.json
+bin/rails fact_questions:calibration:report INPUT=tmp/fact-question-calibration.json
+```
+
+The export contains the full question, a content fingerprint and empty reason
+fields. Validation requires both ratings and concise reasons for every item,
+checks the fingerprint against the current database, and requires a recognised
+failure category and remediation proposal for every zero-rated item. Reporting
+works on either a completed worksheet or the current database and emits per-bank
+distributions, cross-tabulations, unused levels, and unrated and unfit IDs.
+
+Export the seed catalogue from a freshly seeded local database. Export production
+from the production environment rather than assuming that it still matches the
+seed catalogue. Rating persistence remains a separate, explicit and audited
+operation.
+
 ### Stage 4: assess every existing question without rewriting it
 
 Review one bank at a time:
@@ -296,4 +317,3 @@ The project is complete when:
 - moderation displays useful per-bank distributions; and
 - sequencing uses the ratings without defeating the existing evidential-valence
   design.
-
