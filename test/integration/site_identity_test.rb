@@ -146,6 +146,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select "#taking-part", text: /Read its exact wording/
     assert_select "#weight", text: /importance rating of Supporting \(1\), Significant \(2\), or Foundational \(3\)/
     assert_select "#weight", text: /deliberately narrow/, count: 0
+    assert_select "#limits", text: /transparent account/, count: 0
     assert_select ".help-article section", minimum: 7
   end
 
