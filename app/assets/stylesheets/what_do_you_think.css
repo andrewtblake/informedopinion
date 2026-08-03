@@ -61,6 +61,71 @@ body[data-site="what-do-you-think"] .editorial-kicker,
 body[data-site="what-do-you-think"] .eyebrow,
 body[data-site="what-do-you-think"] .ui-kicker { color: var(--wdyt-blue); }
 
+/* Moderator workspace */
+body[data-site="what-do-you-think"] .moderation-page,
+body[data-site="what-do-you-think"] .calibration-page { padding: 42px 0 90px; background: var(--wdyt-page); }
+body[data-site="what-do-you-think"] .moderation-masthead,
+body[data-site="what-do-you-think"] .calibration-page .ui-masthead {
+  margin-bottom: 28px; padding: 28px 30px; border: 0; border-radius: 11px;
+  color: #fff; background: linear-gradient(120deg, var(--wdyt-blue-dark), var(--wdyt-blue));
+  box-shadow: 0 7px 22px rgba(31, 62, 101, .14);
+}
+body[data-site="what-do-you-think"] .moderation-masthead h1,
+body[data-site="what-do-you-think"] .calibration-page .ui-masthead h1 { color: #fff; font-size: clamp(38px, 6vw, 58px); }
+body[data-site="what-do-you-think"] .moderation-masthead .editorial-kicker,
+body[data-site="what-do-you-think"] .calibration-page .ui-masthead .editorial-kicker { color: var(--wdyt-yellow); }
+body[data-site="what-do-you-think"] .moderation-masthead > p:last-of-type,
+body[data-site="what-do-you-think"] .calibration-page .ui-masthead > p:last-of-type { color: #e5f0ff; }
+body[data-site="what-do-you-think"] .calibration-page .ui-masthead .back-link { color: #fff; }
+body[data-site="what-do-you-think"] .moderation-section {
+  margin-top: 18px; overflow: hidden; border: 1px solid var(--wdyt-line); border-radius: 10px;
+  background: #fff; box-shadow: 0 5px 18px rgba(31, 62, 101, .06);
+}
+body[data-site="what-do-you-think"] .moderation-section > summary { padding: 17px 50px 15px 18px; border: 0; }
+body[data-site="what-do-you-think"] .moderation-section[open] > summary { border-bottom: 2px solid var(--wdyt-blue); background: #f5f9ff; }
+body[data-site="what-do-you-think"] .moderation-section > summary::after { top: 13px; right: 18px; color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .moderation-section > summary h2 { color: var(--wdyt-blue-dark); font-size: 21px; }
+body[data-site="what-do-you-think"] .moderation-section > .moderation-item,
+body[data-site="what-do-you-think"] .moderation-section > .moderation-empty,
+body[data-site="what-do-you-think"] .moderation-section > .moderation-guidance,
+body[data-site="what-do-you-think"] .moderation-section > .reaction-review { margin-inline: 18px; }
+body[data-site="what-do-you-think"] .featured-order-section > #featured-order-content { padding: 0 18px 18px; }
+body[data-site="what-do-you-think"] .moderation-meta strong,
+body[data-site="what-do-you-think"] .fact-bank-review > summary,
+body[data-site="what-do-you-think"] .fact-bank-review .fact-bank-options strong { color: var(--wdyt-blue-dark); }
+body[data-site="what-do-you-think"] .moderation-form textarea,
+body[data-site="what-do-you-think"] .moderation-editor input[type="text"],
+body[data-site="what-do-you-think"] .moderation-editor input[type="url"],
+body[data-site="what-do-you-think"] .moderation-editor select,
+body[data-site="what-do-you-think"] .moderation-editor textarea,
+body[data-site="what-do-you-think"] .calibration-review-form select,
+body[data-site="what-do-you-think"] .calibration-review-form textarea {
+  border-color: #aebdd0; border-radius: 6px; color: var(--wdyt-ink); background: #fff;
+}
+body[data-site="what-do-you-think"] .moderation-form textarea:focus,
+body[data-site="what-do-you-think"] .moderation-editor input:focus,
+body[data-site="what-do-you-think"] .moderation-editor select:focus,
+body[data-site="what-do-you-think"] .moderation-editor textarea:focus,
+body[data-site="what-do-you-think"] .calibration-review-form select:focus,
+body[data-site="what-do-you-think"] .calibration-review-form textarea:focus { border-color: var(--wdyt-blue); outline: 3px solid rgba(23, 105, 210, .13); }
+body[data-site="what-do-you-think"] .moderation-form .button,
+body[data-site="what-do-you-think"] .draft-question-item .button,
+body[data-site="what-do-you-think"] .editorial-control { border-radius: 6px; }
+body[data-site="what-do-you-think"] .moderation-approve { border-color: var(--wdyt-blue); color: #fff; background: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .moderation-decline { border-color: #d88b7a; color: #8a3826; background: #fff; }
+body[data-site="what-do-you-think"] .moderation-withdraw { border-color: #d6b34f; color: #624a05; background: #fff8dc; }
+body[data-site="what-do-you-think"] .moderation-form-guidance { border-left-color: var(--wdyt-blue); background: #f1f6fc; }
+body[data-site="what-do-you-think"] .editorial-control { border-color: #9ab4d2; color: var(--wdyt-blue-dark); background: #fff; }
+body[data-site="what-do-you-think"] .editorial-control:hover { border-color: var(--wdyt-blue); background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .reaction-reason,
+body[data-site="what-do-you-think"] .calibration-ai-assessment section { border-radius: 7px; background: #f4f8fd; }
+body[data-site="what-do-you-think"] .calibration-bank-list { margin-top: 22px; }
+body[data-site="what-do-you-think"] .calibration-bank,
+body[data-site="what-do-you-think"] .calibration-summary,
+body[data-site="what-do-you-think"] .calibration-assessment { border-color: var(--wdyt-line); border-radius: 10px; }
+body[data-site="what-do-you-think"] .calibration-filters a { border-color: #aebdd0; border-radius: 999px; color: var(--wdyt-blue-dark); background: #fff; }
+body[data-site="what-do-you-think"] .calibration-filters a.is-active { border-color: var(--wdyt-blue); color: #fff; background: var(--wdyt-blue); }
+
 /* Opinion selection */
 body[data-site="what-do-you-think"] .topic-page { --accent: var(--wdyt-blue); padding: 40px 0 76px; }
 body[data-site="what-do-you-think"] .topic-page .narrow-container { width: min(900px, calc(100% - 40px)); }

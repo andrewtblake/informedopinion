@@ -35,11 +35,7 @@ class ApplicationController < ActionController::Base
   private
 
   def select_site_identity
-    @current_site = if controller_path.start_with?("moderator/")
-      SiteIdentity::PRIMARY
-    else
-      SiteIdentity.for_host(request.host)
-    end
+    @current_site = SiteIdentity.for_host(request.host)
     Current.site_key = current_site.key
     Current.site_url_options = { host: request.host, protocol: request.protocol, port: request.optional_port }.compact
     request.variant = current_site.variant if current_site.variant

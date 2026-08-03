@@ -41,7 +41,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select ".wdyt-result-scale > div:last-child span", text: /Neutral/, count: 0
   end
 
-  test "moderation retains the editorial presentation on the alternative host" do
+  test "moderation follows the alternative presentation and retains featured controls" do
     category = Category.create!(name: "Featured controls", slug: "featured-controls")
     OpinionQuestion.create!(category: category, title: "Featured control question", slug: "featured-control-question",
       statement: "This question should be featured.", live: true, display_order: 1,
@@ -54,8 +54,10 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     get moderator_root_path
 
     assert_response :success
-    assert_select "body[data-site='informed-opinion']"
-    assert_select ".brand > span:last-child", text: "Informed Opinion"
+    assert_select "body[data-site='what-do-you-think']"
+    assert_select ".brand > span:last-child", text: "What's Your View?"
+    assert_includes response.body, "/assets/what_do_you_think-"
+    assert_select ".moderation-page"
     assert_select "#featured-order" do
       assert_select "button", text: "Promote", minimum: 1
       assert_select "button", text: "Demote", minimum: 1
