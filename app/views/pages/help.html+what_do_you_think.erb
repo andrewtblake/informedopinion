@@ -33,8 +33,8 @@
         <section id="results">
           <p class="ui-kicker">Browsing</p>
           <h2>Reading the results</h2>
-          <p>Each topic sets out its exact wording and has a result running from <strong>No</strong>, through neutral, to <strong>Yes</strong>. The marker shows the current direction and strength of the knowledge-weighted result.</p>
-          <p>The participant figures matter. A result based on only a few people—or only a few opinions carrying weight—should be treated cautiously. You can search, browse categories and tags, and order questions by popularity, controversy, title or featured position.</p>
+          <p>Each topic sets out its exact wording and has a result running from <strong>No</strong>, through neutral, to <strong>Yes</strong>. The marker shows the direction and strength of the current result, weighted by factual knowledge.</p>
+          <p>The number of participants matters. A result based on only a few people—or only a few opinions carrying weight—should be treated cautiously. You can search, browse categories and tags, and order questions by popularity, controversy, title or featured position.</p>
         </section>
 
         <section id="taking-part">
@@ -61,8 +61,8 @@
         <section id="facts">
           <p class="ui-kicker">The evidence</p>
           <h2>How fact questions are chosen</h2>
-          <p>Facts should be relevant to the opinion, clearly resolvable, supported by an accessible source and likely to matter to somebody deciding where they stand. The three wrong answers should be plausible enough that the question distinguishes knowledge from test-taking technique.</p>
-          <p>Questions initially tend to begin with evidence compatible with a participant's current view, before progressively introducing context and potentially challenging evidence. This changes only the sequence—not the facts available, their answers or their scores.</p>
+          <p>Facts should be relevant to the opinion, have a clear, verifiable answer, be supported by an accessible source and be likely to matter to somebody deciding where they stand. The three wrong answers should be plausible enough that the question distinguishes knowledge from test-taking technique.</p>
+          <p>Questions tend to begin with evidence that supports a participant's current view, before gradually introducing context and evidence that may challenge it. This changes only the sequence—not the facts available, their answers or their scores.</p>
           <p>If a fact appears inaccurate, irrelevant or unclear, a signed-in participant can report it for editorial review.</p>
         </section>
 
@@ -70,7 +70,7 @@
           <p class="ui-kicker">Contributing</p>
           <h2>Suggest a new question</h2>
           <p>Signed-in participants can suggest opinion questions. A suitable proposal states one clear, genuinely disputed proposition that factual evidence could help people assess. Moderators may edit the wording before approval.</p>
-          <p>An approved proposition is not published immediately. It remains in preparation until moderators are satisfied with its fact bank and explicitly make it live. Participants who complete an existing fact bank and score at least <%= number_with_precision(Rails.configuration.x.fact_question_proposals.minimum_correct_percentage, precision: 0) %>% may also propose a fact for that topic.</p>
+          <p>An approved question is not published immediately. It remains in preparation until moderators are satisfied with its set of fact questions and decide that it is ready to publish. Participants who complete an existing set of fact questions and score at least <%= number_with_precision(Rails.configuration.x.fact_question_proposals.minimum_correct_percentage, precision: 0) %>% may also propose a fact for that topic.</p>
         </section>
 
         <section id="limits">
@@ -78,7 +78,7 @@
           <h2>What the result can—and cannot—show</h2>
           <p>This is not automatically a representative opinion poll. People choose whether to participate, so they may differ from the wider public.</p>
           <p>A high weight means somebody answered this site's selected facts correctly. It does not prove general expertise, sound judgement, sincerity or moral authority. Selecting facts and rating their importance still involves editorial judgement.</p>
-          <p>The result is best read as a transparent account of this participating population under the published question bank—not as proof that one position is correct.</p>
+          <p>The result is best read as a transparent account of the people who took part, based on the published set of questions—not as proof that one position is correct.</p>
         </section>
       </article>
     </div>

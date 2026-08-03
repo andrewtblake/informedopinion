@@ -11,8 +11,9 @@ class HelpPageTest < ActionDispatch::IntegrationTest
     assert_select ".help-article section", count: 9
     assert_select "#weight", text: /Supporting.*Significant.*Foundational.*most recent answer/m
     assert_select "#collective", text: /position.*knowledge weight.*total knowledge weight/m
+    assert_select "#collective", text: /adds weight without pushing the result towards either Yes or No/
     assert_select "#ordering", text: /Unseen fact questions.*review round/m
-    assert_select "#limits", text: /not a representative opinion poll/i
+    assert_select "#limits", text: /not a representative opinion poll.*people who took part/m
   end
 
   test "help is linked from the site chrome" do

@@ -5,7 +5,7 @@
     <header class="ui-masthead">
       <p class="ui-kicker">About this project</p>
       <h1>Help</h1>
-      <p>What Informed Opinion is for, how to take part, and how individual answers become a collective knowledge-weighted result.</p>
+      <p>What Informed Opinion is for, how to take part, and how individual answers produce a collective result weighted by factual knowledge.</p>
     </header>
 
     <div class="help-layout">
@@ -29,14 +29,14 @@
           <p class="ui-kicker">Purpose</p>
           <h2>What is Informed Opinion?</h2>
           <p>Informed Opinion records what people think about consequential and disputed propositions. It then gives each registered opinion a weight based on the person's demonstrated knowledge of facts relevant to that particular proposition.</p>
-          <p>The central public result is therefore not simply a count of votes. It is an attempt to show where participating opinion lies after allowing greater influence to people who can correctly answer more of the relevant factual questions.</p>
+          <p>The central public result is therefore not simply a count of votes. It attempts to show what participants think while giving greater influence to people who correctly answer more questions about the relevant facts.</p>
           <p>The site does not require a particular opinion, and knowing more does not guarantee that people will agree. Its purpose is to make the relationship between factual knowledge and public judgement visible.</p>
         </section>
 
         <section id="reading">
           <p class="ui-kicker">Browsing</p>
           <h2>Reading the homepage</h2>
-          <p>Each homepage entry contains a proposition and an informed aggregate running from <strong>No</strong>, through <strong>Neutral</strong>, to <strong>Yes</strong>. The indicator shows the direction and strength of the current knowledge-weighted result.</p>
+          <p>Each homepage entry contains the exact wording and a combined result running from <strong>No</strong>, through <strong>Neutral</strong>, to <strong>Yes</strong>. The indicator shows the direction and strength of the current result, weighted by factual knowledge.</p>
           <p>The accompanying figures state how many people registered an opinion and how many currently carry some knowledge weight. A result based on very few participants should be read cautiously.</p>
           <p>You can search titles, propositions, categories and tags; browse by category or tag; and order the catalogue by featured position, popularity, controversy or title. You do not need an account merely to read the questions and results.</p>
         </section>
@@ -75,7 +75,7 @@
             <span>Collective informed result</span>
             <strong>sum of position × knowledge weight ÷ total knowledge weight</strong>
           </div>
-          <p>The result is bounded between −1 (No) and +1 (Yes), with zero as Neutral. An opinion with zero weight does not move the result. A knowledgeable neutral opinion contributes to the denominator but not the signed numerator, drawing the aggregate toward neutral.</p>
+          <p>The result runs from −1 (No) to +1 (Yes), with zero as Neutral. An opinion with zero weight does not move the result. A knowledgeable neutral opinion adds weight without pushing the result towards either Yes or No, so it draws the combined result towards neutral.</p>
         </section>
 
         <section id="ordering">
@@ -98,7 +98,7 @@
           <p class="ui-kicker">Contributions</p>
           <h2>Proposing opinion and fact questions</h2>
           <p>Signed-in users may propose a new opinion question with a title, exact proposition, category, tags, geographic scope and rationale. A moderator may approve it as submitted, approve edited final wording, or decline it.</p>
-          <p>Approval does not make a question public. It remains in preparation while its fact bank is assembled. Once it has at least <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> approved fact questions, a moderator reviews the bank as a whole and must explicitly mark the opinion question as live.</p>
+          <p>Approval does not make a question public. It remains in preparation while its set of fact questions is assembled. Once it has at least <%= Rails.configuration.x.fact_question_proposals.minimum_existing_questions %> approved fact questions, a moderator reviews the set as a whole and decides whether it is ready to publish.</p>
           <p>A participant may propose a fact question for a live opinion after answering every existing fact and obtaining an unweighted score of at least <%= number_with_precision(Rails.configuration.x.fact_question_proposals.minimum_correct_percentage, precision: 0) %>%. Moderators may add facts while a question is still being prepared. Every proposed fact remains subject to editorial review.</p>
         </section>
 
@@ -107,7 +107,7 @@
           <h2>What the results cannot establish</h2>
           <p>Informed Opinion is not a representative opinion poll unless its participants happen to form a representative sample. Participation is voluntary, and the people who use the site may differ systematically from the wider public.</p>
           <p>A high knowledge weight shows success on this site's selected facts; it does not prove general expertise, good judgement, sincerity or moral authority. The choice, wording, importance and direction of facts involve editorial judgement even when each factual answer is well sourced.</p>
-          <p>The aggregate is best understood as a transparent description of this participating population under this published question bank—not as proof that the resulting position is correct. If a fact, explanation or source appears defective, use the reporting facility so it can be reviewed.</p>
+          <p>The combined result is best understood as a transparent description of the people who took part, based on the published set of questions—not as proof that the resulting position is correct. If a fact, explanation or source appears defective, report it so it can be reviewed.</p>
         </section>
       </article>
     </div>

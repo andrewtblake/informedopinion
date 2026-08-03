@@ -52,6 +52,7 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     follow_redirect!
     assert_response :success
     assert_select "h1", "Proposals"
+    assert_select ".proposal-guidance .editorial-section-label", text: "Before you submit"
     assert_select ".proposal-record", text: /A proposed question/
     assert_select ".proposal-status", text: /Pending/
   end
