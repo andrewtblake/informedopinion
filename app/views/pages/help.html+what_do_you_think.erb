@@ -1,0 +1,86 @@
+<% content_for :title, "How it works — What Do You Think?" %>
+
+<section class="help-page ui-page">
+  <div class="container help-container">
+    <header class="ui-masthead">
+      <p class="ui-kicker">About the site</p>
+      <h1>How it works</h1>
+      <p>What Do You Think? shows where participants stand on disputed questions—and how much knowledge of the relevant facts lies behind the result.</p>
+    </header>
+
+    <div class="help-layout">
+      <nav class="help-contents ui-panel" aria-label="On this page">
+        <strong>On this page</strong>
+        <ol>
+          <li><a href="#idea">The idea</a></li>
+          <li><a href="#results">Reading a result</a></li>
+          <li><a href="#taking-part">Giving your view</a></li>
+          <li><a href="#weight">Opinion weight</a></li>
+          <li><a href="#facts">The fact questions</a></li>
+          <li><a href="#contributing">Suggesting questions</a></li>
+          <li><a href="#limits">What results mean</a></li>
+        </ol>
+      </nav>
+
+      <article class="help-article">
+        <section id="idea">
+          <p class="ui-kicker">The idea</p>
+          <h2>See what people think—and what they know</h2>
+          <p>A normal poll counts every response equally. This site adds a second piece of information: how well each participant answers sourced factual questions relevant to that particular topic.</p>
+          <p>The public result gives more weight to opinions backed by more correct answers. It does not prescribe the right opinion, and it does not assume that well-informed people must agree.</p>
+        </section>
+
+        <section id="results">
+          <p class="ui-kicker">Browsing</p>
+          <h2>Reading the results</h2>
+          <p>Each topic has an exact proposition and a result running from <strong>No</strong>, through <strong>Neutral</strong>, to <strong>Yes</strong>. The marker shows the current direction and strength of the knowledge-weighted result.</p>
+          <p>The participant figures matter. A result based on only a few people—or only a few opinions carrying weight—should be treated cautiously. You can search, browse categories and tags, and order questions by popularity, controversy, title or featured position.</p>
+        </section>
+
+        <section id="taking-part">
+          <p class="ui-kicker">Taking part</p>
+          <h2>Give your view</h2>
+          <ol class="help-steps">
+            <li><strong>Create an account or sign in.</strong> This keeps your views and progress private to your account.</li>
+            <li><strong>Choose a topic.</strong> Read its exact proposition before selecting the response closest to your current view.</li>
+            <li><strong>Answer the fact questions.</strong> Each offers four choices and appears separately.</li>
+            <li><strong>Read the feedback.</strong> You will see the correct answer, an explanation and a link to its source.</li>
+            <li><strong>Stop or revise whenever you choose.</strong> Your opinions page keeps your place, and your opinion itself can be changed later.</li>
+          </ol>
+        </section>
+
+        <section id="weight">
+          <p class="ui-kicker">The calculation</p>
+          <h2>How your opinion gains weight</h2>
+          <p>Your opinion begins at zero weight. Fact questions have a deliberately narrow importance rating of Supporting (1), Significant (2), or Foundational (3). Correct answers earn that question's importance; incorrect answers do not.</p>
+          <div class="help-formula ui-panel"><span>Your opinion weight</span><strong>importance earned from correct answers ÷ total available importance</strong></div>
+          <p>Only your latest answer to each fact counts. Weight belongs to one topic only: knowing the facts behind one question does not increase the weight of an unrelated opinion.</p>
+          <p>For the public result, the five opinion positions are valued from +1 to −1. Each value is multiplied by that participant's topic weight, then combined with the other weighted responses.</p>
+        </section>
+
+        <section id="facts">
+          <p class="ui-kicker">The evidence</p>
+          <h2>How fact questions are chosen</h2>
+          <p>Facts should be relevant to the opinion, clearly resolvable, supported by an accessible source and likely to matter to somebody deciding where they stand. The three wrong answers should be plausible enough that the question distinguishes knowledge from test-taking technique.</p>
+          <p>Questions initially tend to begin with evidence compatible with a participant's current view, before progressively introducing context and potentially challenging evidence. This changes only the sequence—not the facts available, their answers or their scores.</p>
+          <p>If a fact appears inaccurate, irrelevant or unclear, a signed-in participant can report it for editorial review.</p>
+        </section>
+
+        <section id="contributing">
+          <p class="ui-kicker">Contributing</p>
+          <h2>Suggest a new question</h2>
+          <p>Signed-in participants can suggest opinion questions. A suitable proposal states one clear, genuinely disputed proposition that factual evidence could help people assess. Moderators may edit the wording before approval.</p>
+          <p>An approved proposition is not published immediately. It remains in preparation until moderators are satisfied with its fact bank and explicitly make it live. Participants who complete an existing fact bank and score at least <%= number_with_precision(Rails.configuration.x.fact_question_proposals.minimum_correct_percentage, precision: 0) %>% may also propose a fact for that topic.</p>
+        </section>
+
+        <section id="limits">
+          <p class="ui-kicker">Reading with care</p>
+          <h2>What the result can—and cannot—show</h2>
+          <p>This is not automatically a representative opinion poll. People choose whether to participate, so they may differ from the wider public.</p>
+          <p>A high weight means somebody answered this site's selected facts correctly. It does not prove general expertise, sound judgement, sincerity or moral authority. Selecting facts and rating their importance still involves editorial judgement.</p>
+          <p>The result is best read as a transparent account of this participating population under the published question bank—not as proof that one position is correct.</p>
+        </section>
+      </article>
+    </div>
+  </div>
+</section>

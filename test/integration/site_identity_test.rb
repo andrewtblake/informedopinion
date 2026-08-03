@@ -25,6 +25,9 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select "title", text: "What Do You Think? — opinion, informed by the facts"
     assert_select "meta[name='application-name'][content='What Do You Think?']", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-icon.svg']", count: 1
+    assert_select "link[rel='icon'][href='/what-do-you-think-favicon.ico']", count: 1
+    assert_select "link[rel='apple-touch-icon'][href='/what-do-you-think-icon.png']", count: 1
+    assert_select "link[rel='canonical'][href='http://whatdoyouthink.localhost/']", count: 1
     assert_select "link[rel='stylesheet']", count: 2
     assert_includes response.body, "/assets/what_do_you_think-"
     assert_select ".wdyt-hero h1", text: "What do people think?"
@@ -81,5 +84,43 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".account-masthead", text: /Return to your opinions/
     assert_select ".account-switch", text: /New to What Do You Think\?/
+  end
+
+  test "shared topic pages name informed opinion as canonical" do
+    category = Category.create!(name: "Canonical", slug: "canonical")
+    question = OpinionQuestion.create!(category: category, title: "Canonical question", slug: "canonical-question",
+      statement: "This is the canonical proposition.", live: true, display_order: 1,
+      response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    host! "whatdoyouthink.localhost"
+
+    get opinion_question_path(question)
+
+    assert_response :success
+    assert_select "link[rel='canonical'][href='http://informedopinion.localhost/topics/canonical-question']", count: 1
+  end
+
+  test "alternative help is detailed and uses direct language" do
+    host! "whatdoyouthink.localhost"
+
+    get help_path
+
+    assert_response :success
+    assert_select "h1", text: "How it works"
+    assert_select ".help-article", text: /See what people think—and what they know/
+    assert_select ".help-article section", minimum: 7
+  end
+
+  test "password recovery returns the participant to the requesting site" do
+    create_user!(email: "alternative-reset@example.test", password: "password123",
+      first_name: "Reset", last_name: "Participant")
+    host! "whatdoyouthink.localhost"
+
+    assert_difference "ActionMailer::Base.deliveries.size", 1 do
+      post user_password_path, params: { user: { email: "alternative-reset@example.test" } }
+    end
+
+    mail = ActionMailer::Base.deliveries.last
+    assert_equal "What Do You Think? password reset", mail.subject
+    assert_includes mail.body.encoded, "whatdoyouthink.localhost/users/password/edit"
   end
 end

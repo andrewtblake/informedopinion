@@ -169,6 +169,19 @@ body[data-site="what-do-you-think"] .proposal-final-wording,
 body[data-site="what-do-you-think"] .fact-proposition-reference { border-left-color: var(--wdyt-blue); border-radius: 0 7px 7px 0; background: var(--wdyt-blue-pale); }
 body[data-site="what-do-you-think"] .reported-question { border-left-color: var(--wdyt-coral); border-radius: 0 7px 7px 0; box-shadow: 0 4px 14px rgba(31, 62, 101, .05); }
 
+/* Help and formal information retain their detail but use the alternative frame. */
+body[data-site="what-do-you-think"] .help-page { padding: 42px 0 85px; }
+body[data-site="what-do-you-think"] .help-page .ui-masthead { padding: 29px 31px; border-radius: 10px; color: #fff; background: linear-gradient(120deg, var(--wdyt-blue-dark), var(--wdyt-blue)); }
+body[data-site="what-do-you-think"] .help-page .ui-masthead .ui-kicker { color: var(--wdyt-yellow); }
+body[data-site="what-do-you-think"] .help-page .ui-masthead h1 { color: #fff; }
+body[data-site="what-do-you-think"] .help-page .ui-masthead > p:last-child { color: #e7f1ff; }
+body[data-site="what-do-you-think"] .help-contents { border-radius: 8px; box-shadow: 0 4px 14px rgba(31, 62, 101, .05); }
+body[data-site="what-do-you-think"] .help-contents > strong { border-bottom-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .help-contents a,
+body[data-site="what-do-you-think"] .help-article a { color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .help-article > section + section { border-top-color: var(--wdyt-line); }
+body[data-site="what-do-you-think"] .help-formula { border-left-color: var(--wdyt-coral); border-radius: 0 8px 8px 0; background: #fff7f3; }
+
 @media (max-width: 760px) {
   body[data-site="what-do-you-think"] .proposal-workspace { grid-template-columns: 1fr; }
   body[data-site="what-do-you-think"] .proposal-guidance { order: -1; }

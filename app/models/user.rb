@@ -66,6 +66,18 @@ class User < ApplicationRecord
     )
   end
 
+  protected
+
+  def send_reset_password_instructions_notification(token)
+    site = SiteIdentity.fetch(Current.site_key)
+    send_devise_notification(
+      :reset_password_instructions,
+      token,
+      site_name: site.name,
+      site_url_options: Current.site_url_options
+    )
+  end
+
   private
 
   def record_initial_privacy_consent

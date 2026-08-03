@@ -40,6 +40,8 @@ class ApplicationController < ActionController::Base
     else
       SiteIdentity.for_host(request.host)
     end
+    Current.site_key = current_site.key
+    Current.site_url_options = { host: request.host, protocol: request.protocol, port: request.optional_port }.compact
     request.variant = current_site.variant if current_site.variant
   end
 end

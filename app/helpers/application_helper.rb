@@ -61,6 +61,20 @@ module ApplicationHelper
     current_site.copy.fetch(key)
   end
 
+  def site_canonical_url
+    canonical_host = if current_site.alternative? && controller_path == "home"
+      request.host
+    elsif Rails.env.local?
+      "informedopinion.localhost"
+    else
+      ENV.fetch("APP_HOST", "informedopinion.info")
+    end
+    port = request.optional_port
+    authority = port ? "#{canonical_host}:#{port}" : canonical_host
+    protocol = Rails.env.production? ? "https" : request.protocol.delete_suffix("://")
+    "#{protocol}://#{authority}#{request.path}"
+  end
+
   def glossary_text(text)
     safe_join(text.to_s.split(GLOSSARY_PATTERN).map do |segment|
       definition = ORGANISATION_GLOSSARY[segment]

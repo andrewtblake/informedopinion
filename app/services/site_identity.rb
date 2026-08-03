@@ -83,6 +83,10 @@ class SiteIdentity
   LOCAL_ALTERNATIVE_HOSTS = %w[whatdoyouthink.localhost wdyt.localhost].freeze
 
   class << self
+    def fetch(key)
+      key.to_s == ALTERNATIVE.key.to_s ? ALTERNATIVE : PRIMARY
+    end
+
     def for_host(host)
       return ALTERNATIVE if alternative_enabled? && alternative_hosts.include?(host.to_s.downcase)
 

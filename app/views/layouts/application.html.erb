@@ -8,6 +8,7 @@
     <meta name="theme-color" content="<%= current_site.theme_color %>">
     <meta name="description" content="<%= current_site.description %>">
     <meta name="mobile-web-app-capable" content="yes">
+    <link rel="canonical" href="<%= site_canonical_url %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -17,11 +18,9 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="<%= site_asset_path("icon.svg") %>" type="image/svg+xml">
-    <% unless current_site.alternative? %>
-      <link rel="icon" href="<%= site_asset_path("favicon.ico") %>" sizes="any">
-      <link rel="icon" href="<%= site_asset_path("icon-32.png") %>" type="image/png" sizes="32x32">
-      <link rel="apple-touch-icon" href="<%= site_asset_path("icon.png") %>" sizes="512x512">
-    <% end %>
+    <link rel="icon" href="<%= site_asset_path("favicon.ico") %>" sizes="any">
+    <link rel="icon" href="<%= site_asset_path("icon-32.png") %>" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="<%= site_asset_path("icon.png") %>" sizes="512x512">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
