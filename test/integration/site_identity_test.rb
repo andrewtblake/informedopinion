@@ -144,6 +144,8 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select "#idea", text: /does not tell you what the right opinion is/
     assert_select "#results strong", text: "Neutral", count: 0
     assert_select "#taking-part", text: /Read its exact wording/
+    assert_select "#weight", text: /importance rating of Supporting \(1\), Significant \(2\), or Foundational \(3\)/
+    assert_select "#weight", text: /deliberately narrow/, count: 0
     assert_select ".help-article section", minimum: 7
   end
 
