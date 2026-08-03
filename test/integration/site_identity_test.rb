@@ -15,23 +15,23 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     end
   end
 
-  test "the explicit local alternative host selects what do you think" do
+  test "the explicit local alternative host selects what's your view" do
     category = Category.create!(name: "Alternative homepage", slug: "alternative-homepage")
     OpinionQuestion.create!(category: category, title: "Alternative homepage question",
       slug: "alternative-homepage-question", statement: "This proposition should be considered.",
       live: true, display_order: 1, response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
     get root_path
 
     assert_response :success
     assert_select "body[data-site='what-do-you-think']"
-    assert_select ".brand > span:last-child", text: "What Do You Think?"
-    assert_select "title", text: "What Do You Think? — opinion, backed by the facts"
-    assert_select "meta[name='application-name'][content='What Do You Think?']", count: 1
+    assert_select ".brand > span:last-child", text: "What's Your View?"
+    assert_select "title", text: /Your View\? — opinion, backed by the facts/
+    assert_select "meta[name='application-name'][content=\"What's Your View?\"]", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-icon.svg']", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-favicon.ico']", count: 1
     assert_select "link[rel='apple-touch-icon'][href='/what-do-you-think-icon.png']", count: 1
-    assert_select "link[rel='canonical'][href='http://whatdoyouthink.localhost/']", count: 1
+    assert_select "link[rel='canonical'][href='http://whatsyourview.localhost/']", count: 1
     assert_select "link[rel='stylesheet']", count: 2
     assert_includes response.body, "/assets/what_do_you_think-"
     assert_select ".wdyt-hero h1", text: "What do people think?"
@@ -49,7 +49,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     moderator = create_user!(email: "site-moderator@example.test", password: "password123",
       first_name: "Site", last_name: "Moderator", role: :moderator)
     sign_in moderator, scope: :user
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
 
     get moderator_root_path
 
@@ -74,7 +74,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
       first_name: "Site", last_name: "Participant")
     participant.user_opinions.create!(opinion_question: question, position: 0)
     sign_in participant, scope: :user
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
 
     get opinion_question_path(question)
     assert_response :success
@@ -93,13 +93,13 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
   end
 
   test "alternative authentication uses the alternative name and language" do
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
 
     get new_user_session_path
 
     assert_response :success
     assert_select ".account-masthead", text: /Return to your opinions/
-    assert_select ".account-switch", text: /New to What Do You Think\?/
+    assert_select ".account-switch", text: /New to What's Your View\?/
   end
 
   test "shared topic pages name informed opinion as canonical" do
@@ -107,7 +107,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     question = OpinionQuestion.create!(category: category, title: "Canonical question", slug: "canonical-question",
       statement: "This is the canonical proposition.", live: true, display_order: 1,
       response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
 
     get opinion_question_path(question)
 
@@ -116,7 +116,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
   end
 
   test "alternative help is detailed and uses direct language" do
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
 
     get help_path
 
@@ -129,14 +129,14 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
   test "password recovery returns the participant to the requesting site" do
     create_user!(email: "alternative-reset@example.test", password: "password123",
       first_name: "Reset", last_name: "Participant")
-    host! "whatdoyouthink.localhost"
+    host! "whatsyourview.localhost"
 
     assert_difference "ActionMailer::Base.deliveries.size", 1 do
       post user_password_path, params: { user: { email: "alternative-reset@example.test" } }
     end
 
     mail = ActionMailer::Base.deliveries.last
-    assert_equal "What Do You Think? password reset", mail.subject
-    assert_includes mail.body.encoded, "whatdoyouthink.localhost/users/password/edit"
+    assert_equal "What's Your View? password reset", mail.subject
+    assert_includes mail.body.encoded, "whatsyourview.localhost/users/password/edit"
   end
 end

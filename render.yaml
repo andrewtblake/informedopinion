@@ -30,7 +30,7 @@ services:
       - key: APP_PROTOCOL
         value: https
       - key: ALTERNATE_APP_HOST
-        value: whatdoyouthink.info
+        value: whatsyourview.info
       - key: ALTERNATE_SITE_ENABLED
         value: "false"
       - key: MAILER_FROM

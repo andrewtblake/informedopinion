@@ -49,7 +49,7 @@ class SiteIdentity
 
   ALTERNATIVE = Site.new(
     key: :what_do_you_think,
-    name: "What Do You Think?",
+    name: "What's Your View?",
     short_mark: "w?",
     variant: :what_do_you_think,
     theme_color: "#1769d2",
@@ -80,7 +80,7 @@ class SiteIdentity
     }
   )
 
-  LOCAL_ALTERNATIVE_HOSTS = %w[whatdoyouthink.localhost wdyt.localhost].freeze
+  LOCAL_ALTERNATIVE_HOSTS = %w[whatsyourview.localhost wyv.localhost].freeze
 
   class << self
     def fetch(key)

@@ -1,4 +1,4 @@
-/* Central visual system for whatdoyouthink.info. The canonical Informed Opinion
+/* Central visual system for whatsyourview.info. The canonical Informed Opinion
    stylesheet remains unchanged; every rule here is scoped to the alternative site. */
 body[data-site="what-do-you-think"] {
   --wdyt-blue: #1769d2;

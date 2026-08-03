@@ -6,11 +6,11 @@ models, accounts, questions, answers, moderation records, and database.
 | Presentation | Production host | Local host |
 | --- | --- | --- |
 | Informed Opinion (default) | `informedopinion.info` | `informedopinion.localhost:3000` |
-| What Do You Think? | `whatdoyouthink.info` | `whatdoyouthink.localhost:3000` |
+| What's Your View? | `whatsyourview.info` | `whatsyourview.localhost:3000` |
 
 Start the application normally with `bin/rails server`, then open either local
 hostname. Browsers resolve names below `.localhost` to the loopback interface,
-so no `/etc/hosts` change is normally needed. `wdyt.localhost:3000` is also an
+so no `/etc/hosts` change is normally needed. `wyv.localhost:3000` is also an
 accepted shorthand. Unknown hosts deliberately receive the default Informed
 Opinion presentation rather than selecting the alternative.
 
@@ -24,13 +24,13 @@ pages always retain the Informed Opinion editorial presentation.
 
 The Render blueprint defines:
 
-- `ALTERNATE_APP_HOST=whatdoyouthink.info`
+- `ALTERNATE_APP_HOST=whatsyourview.info`
 - `ALTERNATE_SITE_ENABLED=false`
 
 The disabled state is intentional: even if DNS is pointed at Render early, the
 unfinished host falls back to Informed Opinion. To launch it:
 
-1. Add `whatdoyouthink.info` and `www.whatdoyouthink.info` as custom domains on
+1. Add `whatsyourview.info` and `www.whatsyourview.info` as custom domains on
    the existing Render web service.
 2. Point the domain's DNS records at the values Render supplies and wait for its
    TLS certificates to become active.
