@@ -125,6 +125,9 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", text: "How it works"
     assert_select ".help-article", text: /See what people think—and what they know/
+    assert_select "#idea", text: /does not tell you what the right opinion is/
+    assert_select "#results strong", text: "Neutral", count: 0
+    assert_select "#taking-part", text: /Read its exact wording/
     assert_select ".help-article section", minimum: 7
   end
 
