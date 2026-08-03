@@ -136,15 +136,17 @@ class Api::V1::ModerationIssuesController < Api::V1::BaseController
 
   def fact_proposal_attributes
     params.fetch(:fact_question_proposal, {}).permit(:prompt, :correct_option, :explanation, :source_name, :source_url,
-      :importance_weight, :importance_rationale, :evidence_direction, options: []).to_h.presence || issue.attributes.slice(
+      :importance_weight, :importance_rationale, :evidence_direction, :specialist_knowledge, :answerability,
+      options: []).to_h.presence || issue.attributes.slice(
         "prompt", "options", "correct_option", "explanation", "source_name", "source_url",
-        "importance_weight", "importance_rationale", "evidence_direction"
+        "importance_weight", "importance_rationale", "evidence_direction", "specialist_knowledge", "answerability"
       )
   end
 
   def fact_question_attributes
     params.require(:fact_question).permit(:prompt, :correct_option, :explanation, :source_name, :source_url,
-      :importance_weight, :importance_rationale, :evidence_direction, options: [])
+      :importance_weight, :importance_rationale, :evidence_direction, :specialist_knowledge, :answerability,
+      options: [])
   end
 
   def finish_report!(status, resolution)

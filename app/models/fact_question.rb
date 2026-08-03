@@ -10,6 +10,22 @@ class FactQuestion < ApplicationRecord
     2 => "Significant",
     3 => "Foundational"
   }.freeze
+  SPECIALIST_KNOWLEDGE_LEVELS = {
+    1 => "General knowledge",
+    2 => "News-informed",
+    3 => "Issue-focused",
+    4 => "Sustained study",
+    5 => "Professional or postgraduate",
+    6 => "Subfield expert"
+  }.freeze
+  ANSWERABILITY_LEVELS = {
+    0 => "Unfit",
+    1 => "Very demanding",
+    2 => "Demanding",
+    3 => "Moderate",
+    4 => "Accessible",
+    5 => "Straightforward"
+  }.freeze
 
   belongs_to :opinion_question, touch: true
   has_many :fact_responses, dependent: :destroy
@@ -18,6 +34,8 @@ class FactQuestion < ApplicationRecord
   validates :prompt, :explanation, :source_name, :source_url, :importance_rationale, presence: true
   validates :source_url, format: { with: %r{\Ahttps?://[^\s]+\z}i }
   validates :importance_weight, inclusion: { in: IMPORTANCE_LEVELS.keys }
+  validates :specialist_knowledge, inclusion: { in: SPECIALIST_KNOWLEDGE_LEVELS.keys }, allow_nil: true
+  validates :answerability, inclusion: { in: ANSWERABILITY_LEVELS.keys }, allow_nil: true
   validates :options, length: { is: 4 }
   validates :correct_option, numericality: {
     only_integer: true,
@@ -43,6 +61,14 @@ class FactQuestion < ApplicationRecord
 
   def valence_label
     VALENCES.fetch(evidence_direction)
+  end
+
+  def specialist_knowledge_label
+    SPECIALIST_KNOWLEDGE_LEVELS.fetch(specialist_knowledge) if specialist_knowledge
+  end
+
+  def answerability_label
+    ANSWERABILITY_LEVELS.fetch(answerability) unless answerability.nil?
   end
 
   private

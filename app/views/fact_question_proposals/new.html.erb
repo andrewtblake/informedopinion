@@ -68,7 +68,20 @@
             FactQuestion::VALENCES.map { |value, label| [label, value] },
             { prompt: "Choose a direction" }, required: true %>
         </div>
+        <div class="field">
+          <%= form.label :specialist_knowledge, "Specialist knowledge" %>
+          <%= form.select :specialist_knowledge,
+            FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.map { |value, label| ["#{label} (#{value} of 6)", value] },
+            { prompt: "Choose a level" }, required: true %>
+        </div>
+        <div class="field">
+          <%= form.label :answerability, "Answerability" %>
+          <%= form.select :answerability,
+            FactQuestion::ANSWERABILITY_LEVELS.reject { |value, _label| value.zero? }.map { |value, label| ["#{label} (#{value} of 5)", value] },
+            { prompt: "Choose a level" }, required: true %>
+        </div>
       </div>
+      <p class="moderation-form-guidance">Specialist knowledge rates the underlying fact before the choices are shown. Answerability rates this wording and these choices; even a straightforward item must require substantive reading.</p>
       <div class="field">
         <%= form.label :importance_rationale, "Why does this importance rating fit?" %>
         <%= form.text_area :importance_rationale, rows: 3, required: true %>

@@ -57,8 +57,26 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     post fact_questions_bulk_api_v1_opinion_question_path(opinion), params: { fact_questions: [ valid ] }.to_json, headers: @headers
     assert_response :created
     assert_equal 1, opinion.fact_questions.count
+    assert_equal 3, response.parsed_body.dig("fact_questions", 0, "specialist_knowledge")
+    assert_equal 4, response.parsed_body.dig("fact_questions", 0, "answerability")
     assert_equal "fact_question.create", ApiAuditEvent.last.action
     assert_not opinion.reload.live?
+  end
+
+  test "new API fact questions require assessed passing calibration ratings" do
+    opinion = OpinionQuestion.create!(category: @category, title: "Calibration", statement: "The policy should be adopted.",
+      slug: "calibration", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    payload = fact_payload("What does the evidence show?", %w[One Two Three Four])
+
+    post fact_questions_bulk_api_v1_opinion_question_path(opinion),
+      params: { fact_questions: [ payload.except(:specialist_knowledge) ] }.to_json, headers: @headers
+    assert_response :unprocessable_entity
+
+    post fact_questions_bulk_api_v1_opinion_question_path(opinion),
+      params: { fact_questions: [ payload.merge(answerability: 0) ] }.to_json, headers: @headers
+    assert_response :unprocessable_entity
+    assert_empty opinion.fact_questions
   end
 
   test "API publication is explicit and requires a complete fact bank" do
@@ -125,7 +143,9 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
       source_url: "https://example.test/evidence",
       importance_weight: 2,
       importance_rationale: "This bears directly on the proposition.",
-      evidence_direction: 0
+      evidence_direction: 0,
+      specialist_knowledge: 3,
+      answerability: 4
     }
   end
 end

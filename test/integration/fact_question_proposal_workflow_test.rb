@@ -115,6 +115,8 @@ class FactQuestionProposalWorkflowTest < ActionDispatch::IntegrationTest
     assert proposal.approved?
     assert_equal @moderator, proposal.reviewer
     assert_equal "What does the revised primary source establish?", proposal.published_fact_question.prompt
+    assert_equal 3, proposal.published_fact_question.specialist_knowledge
+    assert_equal 4, proposal.published_fact_question.answerability
     assert_equal 11, proposal.published_fact_question.display_order
   end
 
@@ -159,7 +161,9 @@ class FactQuestionProposalWorkflowTest < ActionDispatch::IntegrationTest
       source_url: "https://example.com/proposed-fact",
       importance_weight: 2,
       importance_rationale: "The finding bears directly on a central premise.",
-      evidence_direction: -1
+      evidence_direction: -1,
+      specialist_knowledge: 3,
+      answerability: 4
     }
   end
 

@@ -163,7 +163,9 @@ class OpinionQuestionLifecycleTest < ActionDispatch::IntegrationTest
       source_url: "https://example.com/lifecycle-#{index + 1}",
       importance_weight: 1,
       importance_rationale: "Relevant supporting context.",
-      evidence_direction: 0
+      evidence_direction: 0,
+      specialist_knowledge: 2,
+      answerability: 4
     }
   end
 

@@ -1,9 +1,20 @@
 <% if question.published_fact_questions.any? %>
+  <% specialist_counts = question.published_fact_questions.group_by(&:specialist_knowledge).transform_values(&:count) %>
+  <% answerability_counts = question.published_fact_questions.group_by(&:answerability).transform_values(&:count) %>
+  <div class="fact-bank-calibration-summary">
+    <p><strong>Specialist knowledge:</strong>
+      <%= FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.keys.map { |rating| "#{rating}: #{specialist_counts.fetch(rating, 0)}" }.join(" · ") %>
+    </p>
+    <p><strong>Answerability:</strong>
+      <%= FactQuestion::ANSWERABILITY_LEVELS.keys.map { |rating| "#{rating}: #{answerability_counts.fetch(rating, 0)}" }.join(" · ") %>
+      · Unrated: <%= answerability_counts.fetch(nil, 0) %>
+    </p>
+  </div>
   <ol>
     <% question.published_fact_questions.each do |fact| %>
       <li>
         <span><%= glossary_text(fact.prompt) %></span>
-        <small><%= fact.importance_label %> · <%= fact.valence_label %> · <%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></small>
+        <small><%= fact.importance_label %> · <%= fact.valence_label %> · Specialist knowledge: <%= fact.specialist_knowledge ? "#{fact.specialist_knowledge_label} (#{fact.specialist_knowledge})" : "Not assessed" %> · Answerability: <%= fact.answerability.nil? ? "Not assessed" : "#{fact.answerability_label} (#{fact.answerability})" %> · <%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></small>
         <ol class="fact-bank-options" type="A">
           <% fact.options.each_with_index do |option, index| %>
             <li class="<%= "correct" if index == fact.correct_option %>">

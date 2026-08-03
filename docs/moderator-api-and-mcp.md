@@ -46,7 +46,7 @@ All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 - `POST /moderation_issues/:composite_id/resolve`
 - `GET /editorial_standard`
 
-Fact-question payloads use zero-based `correct_option`, exactly four `options`, `importance_weight` 1–3, and `evidence_direction` -1, 0, or 1. See [editorial-standard.md](editorial-standard.md) for their editorial meaning.
+Fact-question payloads use zero-based `correct_option`, exactly four `options`, `importance_weight` 1–3, `evidence_direction` -1, 0, or 1, `specialist_knowledge` 1–6, and `answerability` 1–5. New questions must have passing ratings. An `answerability` of 0 may be assigned when updating an existing item during an audit to record that it is unfit and cannot be published; it is not the difficult end of the passing scale. See [editorial-standard.md](editorial-standard.md) for the fields' independent editorial meanings.
 
 ## Issue a token
 

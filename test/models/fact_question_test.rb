@@ -36,4 +36,18 @@ class FactQuestionTest < ActiveSupport::TestCase
     assert_includes question.errors[:options], "must all be present"
     assert_includes question.errors[:options], "must be distinct"
   end
+
+  test "calibration ratings use independent published scales and may remain unassessed" do
+    question = FactQuestion.new(specialist_knowledge: 7, answerability: 6)
+
+    question.validate
+
+    assert_includes question.errors[:specialist_knowledge], "is not included in the list"
+    assert_includes question.errors[:answerability], "is not included in the list"
+    unassessed = FactQuestion.new(specialist_knowledge: nil, answerability: nil).tap(&:validate)
+    assert_empty unassessed.errors[:specialist_knowledge]
+    assert_empty unassessed.errors[:answerability]
+    assert_equal "Sustained study", FactQuestion.new(specialist_knowledge: 4).specialist_knowledge_label
+    assert_equal "Unfit", FactQuestion.new(answerability: 0).answerability_label
+  end
 end

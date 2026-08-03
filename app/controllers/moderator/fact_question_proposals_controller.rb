@@ -28,7 +28,7 @@ module Moderator
       @moderation_params ||= params.require(:fact_question_proposal).permit(
         :status, :review_notes, :prompt, :correct_option, :explanation,
         :source_name, :source_url, :importance_weight, :importance_rationale,
-        :evidence_direction, options: []
+        :evidence_direction, :specialist_knowledge, :answerability, options: []
       )
     end
 

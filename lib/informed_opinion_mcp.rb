@@ -106,11 +106,13 @@ module InformedOpinionMcp
     end
 
     def fact_schema
-      { type: "object", required: %w[prompt options correct_option explanation source_name source_url importance_weight importance_rationale evidence_direction],
+      { type: "object", required: %w[prompt options correct_option explanation source_name source_url importance_weight importance_rationale evidence_direction specialist_knowledge answerability],
         properties: { prompt: { type: "string", description: "Self-contained wording that does not refer to any other current or planned fact question." }, options: { type: "array", minItems: 4, maxItems: 4, items: { type: "string" } },
           correct_option: { type: "integer", minimum: 0, maximum: 3 }, explanation: { type: "string" }, source_name: { type: "string" },
           source_url: { type: "string" }, importance_weight: { type: "integer", minimum: 1, maximum: 3 },
-          importance_rationale: { type: "string" }, evidence_direction: { type: "integer", minimum: -1, maximum: 1 } } }
+          importance_rationale: { type: "string" }, evidence_direction: { type: "integer", minimum: -1, maximum: 1 },
+          specialist_knowledge: { type: "integer", minimum: 1, maximum: 6, description: "Prior topic-specific knowledge required before seeing the options." },
+          answerability: { type: "integer", minimum: 1, maximum: 5, description: "Ease of answering the presented item. New questions must pass; use 0 only when auditing an existing item as unfit." } } }
     end
 
     def define_resources(server)

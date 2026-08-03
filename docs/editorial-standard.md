@@ -33,6 +33,15 @@ Each published bank contains at least 30 questions. Every fact question must:
 11. Avoid duplication. Two questions may use the same source only when they test materially different decision-relevant knowledge.
 12. State uncertainty and limits honestly. Observational associations are not described as causal; international evidence is not assumed to transfer unchanged; absence of evidence is not evidence of absence.
 13. Separate evidence from the final moral or political judgement. At least one contextual synthesis item should make clear what remains a matter of values after the facts are understood.
+14. Declare a specialist-knowledge rating from 1 to 6. Assess the underlying fact, before considering the answer choices, relative to a generally well-educated adult in the jurisdiction principally addressed by the opinion question who has no specialist training in the subject:
+    - General knowledge (`1`): ordinary secondary-school, civic or everyday knowledge.
+    - News-informed (`2`): common among educated adults who follow mainstream news.
+    - Issue-focused (`3`): requires attentive reading about the issue or an adjacent policy field.
+    - Sustained study (`4`): requires sustained focused study, an undergraduate course or a professional briefing.
+    - Professional or postgraduate (`5`): normally associated with relevant postgraduate study or professional work.
+    - Subfield expert (`6`): highly specialised subfield expertise.
+15. Declare an answerability rating from 1 to 5 for the complete presented item. Straightforward (`5`) remains substantive; Accessible (`4`) requires understanding the central fact; Moderate (`3`) presents several initially credible alternatives; Demanding (`2`) requires close substantive discrimination; and Very demanding (`1`) is difficult but unequivocal. Linguistic clarity is desirable, but the answer must not be selectable without processing the fact. During an audit, `0` means that an assessed item is unfit, while a missing value means it has not yet been assessed. An unfit item must be revised or withdrawn before publication.
+16. Keep importance, specialist knowledge and answerability conceptually independent. Importance measures how consequential the fact is; specialist knowledge measures prior study; answerability measures the effect of the prompt and choices. Difficulty must arise from decision-relevant distinctions rather than tricks, immaterial precision or technical vocabulary. Distractors should represent credible mistaken factual models.
 
 ## Bank-level review
 
@@ -45,7 +54,10 @@ Before publication, an editor checks the bank as a whole for:
 - duplicated facts, trivia, accidental advocacy and culturally loaded wording;
 - dependencies between questions, including language such as “as established above”, “the previous finding”, “this result”, “the other question” or references to an assumed sequence;
 - plausible distractors and resistance to answer-length guessing;
+- specialist-knowledge and answerability distributions and their cross-tabulation, including unrated or unfit items and suspicious relationships between the ratings;
 - HTML limited to approved clarification markup, never used to conceal qualifications or evidence.
+
+A bank may range from straightforward but substantive questions to demanding but unequivocal ones. It should span the specialist-knowledge levels genuinely needed by the proposition without adding expert trivia to satisfy a quota. No published bank may contain an unrated or answerability-`0` question.
 
 Reaching the configured minimum number of fact questions only makes an opinion question eligible for publication. It remains non-public until a moderator completes this bank-level review and explicitly marks it as live.
 

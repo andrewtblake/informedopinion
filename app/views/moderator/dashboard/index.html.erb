@@ -150,6 +150,18 @@
                   <%= url_field_tag "fact_question[source_url]", flag.fact_question.source_url,
                     id: "fact_question_source_url_#{flag.id}", required: true %>
                 </div>
+                <div class="field">
+                  <%= label_tag "fact_question_specialist_knowledge_#{flag.id}", "Specialist knowledge" %>
+                  <%= select_tag "fact_question[specialist_knowledge]",
+                    options_for_select(FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.map { |value, label| [ label, value ] }, flag.fact_question.specialist_knowledge),
+                    include_blank: "Not assessed", id: "fact_question_specialist_knowledge_#{flag.id}" %>
+                </div>
+                <div class="field">
+                  <%= label_tag "fact_question_answerability_#{flag.id}", "Answerability" %>
+                  <%= select_tag "fact_question[answerability]",
+                    options_for_select(FactQuestion::ANSWERABILITY_LEVELS.map { |value, label| [ label, value ] }, flag.fact_question.answerability),
+                    include_blank: "Not assessed", id: "fact_question_answerability_#{flag.id}" %>
+                </div>
               </div>
               <div class="moderation-inline-fields">
                 <div class="field">
@@ -282,6 +294,18 @@
                 <div class="field">
                   <%= form.label :evidence_direction, "Likely effect" %>
                   <%= form.select :evidence_direction, FactQuestion::VALENCES.map { |value, label| [label, value] } %>
+                </div>
+                <div class="field">
+                  <%= form.label :specialist_knowledge, "Specialist knowledge" %>
+                  <%= form.select :specialist_knowledge,
+                    FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.map { |value, label| [label, value] },
+                    { include_blank: "Not assessed" } %>
+                </div>
+                <div class="field">
+                  <%= form.label :answerability %>
+                  <%= form.select :answerability,
+                    FactQuestion::ANSWERABILITY_LEVELS.map { |value, label| [label, value] },
+                    { include_blank: "Not assessed" } %>
                 </div>
               </div>
               <div class="field">

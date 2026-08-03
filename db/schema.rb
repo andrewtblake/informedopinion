@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_01_230000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_03_090000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_230000) do
   end
 
   create_table "fact_question_proposals", force: :cascade do |t|
+    t.integer "answerability"
     t.integer "correct_option", null: false
     t.datetime "created_at", null: false
     t.integer "evidence_direction", null: false
@@ -72,6 +73,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_230000) do
     t.integer "reviewer_id"
     t.string "source_name", null: false
     t.string "source_url", null: false
+    t.integer "specialist_knowledge"
     t.integer "status", default: 0, null: false
     t.datetime "updated_at", null: false
     t.index ["opinion_question_id"], name: "index_fact_question_proposals_on_opinion_question_id"
@@ -79,12 +81,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_230000) do
     t.index ["published_fact_question_id"], name: "index_fact_question_proposals_on_published_fact_question_id"
     t.index ["reviewer_id"], name: "index_fact_question_proposals_on_reviewer_id"
     t.index ["status"], name: "index_fact_question_proposals_on_status"
+    t.check_constraint "answerability IS NULL OR answerability BETWEEN 0 AND 5", name: "fact_question_proposals_answerability_range"
     t.check_constraint "correct_option BETWEEN 0 AND 3", name: "fact_question_proposals_correct_option_range"
     t.check_constraint "evidence_direction BETWEEN -1 AND 1", name: "fact_question_proposals_evidence_direction_range"
     t.check_constraint "importance_weight BETWEEN 1 AND 3", name: "fact_question_proposals_importance_weight_range"
+    t.check_constraint "specialist_knowledge IS NULL OR specialist_knowledge BETWEEN 1 AND 6", name: "fact_question_proposals_specialist_knowledge_range"
   end
 
   create_table "fact_questions", force: :cascade do |t|
+    t.integer "answerability"
     t.integer "correct_option", null: false
     t.datetime "created_at", null: false
     t.integer "display_order", default: 0, null: false
@@ -97,12 +102,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_01_230000) do
     t.text "prompt", null: false
     t.string "source_name", null: false
     t.string "source_url", null: false
+    t.integer "specialist_knowledge"
     t.datetime "updated_at", null: false
     t.datetime "withdrawn_at"
     t.index ["opinion_question_id", "display_order"], name: "index_fact_questions_on_opinion_and_order", unique: true
     t.index ["opinion_question_id"], name: "index_fact_questions_on_opinion_question_id"
     t.index ["withdrawn_at"], name: "index_fact_questions_on_withdrawn_at"
+    t.check_constraint "answerability IS NULL OR answerability BETWEEN 0 AND 5", name: "fact_questions_answerability_range"
     t.check_constraint "importance_weight BETWEEN 1 AND 3", name: "fact_questions_importance_weight_range"
+    t.check_constraint "specialist_knowledge IS NULL OR specialist_knowledge BETWEEN 1 AND 6", name: "fact_questions_specialist_knowledge_range"
   end
 
   create_table "fact_responses", force: :cascade do |t|

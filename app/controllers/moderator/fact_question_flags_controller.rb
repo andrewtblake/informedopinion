@@ -21,6 +21,7 @@ module Moderator
       @fact_question_params ||= params.require(:fact_question).permit(
         :prompt, :correct_option, :explanation, :source_name, :source_url,
         :importance_weight, :importance_rationale, :evidence_direction,
+        :specialist_knowledge, :answerability,
         options: []
       ).tap { _1[:options] = Array(_1[:options]).map(&:strip) }
     end

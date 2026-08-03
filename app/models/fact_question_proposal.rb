@@ -15,6 +15,8 @@ class FactQuestionProposal < ApplicationRecord
   validates :correct_option, inclusion: { in: 0..3 }
   validates :importance_weight, inclusion: { in: FactQuestion::IMPORTANCE_LEVELS.keys }
   validates :evidence_direction, inclusion: { in: FactQuestion::DIRECTIONS }
+  validates :specialist_knowledge, inclusion: { in: FactQuestion::SPECIALIST_KNOWLEDGE_LEVELS.keys }
+  validates :answerability, inclusion: { in: FactQuestion::ANSWERABILITY_LEVELS.keys }
   validate :options_are_present_and_distinct
 
   def correct_answer

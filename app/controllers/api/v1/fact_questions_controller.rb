@@ -60,7 +60,7 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
 
   def self.serialize(record)
     record.as_json(only: %i[id opinion_question_id prompt options correct_option explanation source_name source_url
-      importance_weight importance_rationale evidence_direction display_order withdrawn_at])
+      importance_weight importance_rationale evidence_direction specialist_knowledge answerability display_order withdrawn_at])
   end
 
   private
@@ -81,10 +81,21 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
   def permitted(attributes)
     attributes = attributes.to_unsafe_h if attributes.respond_to?(:to_unsafe_h)
     ActionController::Parameters.new(attributes).permit(:prompt, :correct_option, :explanation, :source_name, :source_url,
-      :importance_weight, :importance_rationale, :evidence_direction, :withdrawn_at, options: [])
+      :importance_weight, :importance_rationale, :evidence_direction, :specialist_knowledge, :answerability,
+      :withdrawn_at, options: [])
   end
 
   def create_for!(opinion, attributes)
-    opinion.fact_questions.create!(attributes.merge(display_order: opinion.fact_questions.maximum(:display_order).to_i + 1))
+    record = opinion.fact_questions.new(
+      attributes.merge(display_order: opinion.fact_questions.maximum(:display_order).to_i + 1)
+    )
+    record.errors.add(:specialist_knowledge, "must be assessed for a new question") if record.specialist_knowledge.nil?
+    unless (1..5).include?(record.answerability)
+      record.errors.add(:answerability, "must be a passing rating from 1 to 5 for a new question")
+    end
+    raise ActiveRecord::RecordInvalid, record if record.errors.any?
+
+    record.save!
+    record
   end
 end

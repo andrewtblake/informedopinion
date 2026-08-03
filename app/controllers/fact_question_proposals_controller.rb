@@ -48,6 +48,7 @@ class FactQuestionProposalsController < ApplicationController
     permitted = params.require(:fact_question_proposal).permit(
       :prompt, :correct_option, :explanation, :source_name, :source_url,
       :importance_weight, :importance_rationale, :evidence_direction,
+      :specialist_knowledge, :answerability,
       options: []
     )
     permitted[:options] = Array(permitted[:options]).map(&:strip)
