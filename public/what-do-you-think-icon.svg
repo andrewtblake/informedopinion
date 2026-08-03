@@ -1,5 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="What's Your View?">
-  <rect width="64" height="64" rx="15" fill="#1769d2"/>
-  <path d="M13 17h38a6 6 0 0 1 6 6v18a6 6 0 0 1-6 6H34L23 56v-9H13a6 6 0 0 1-6-6V23a6 6 0 0 1 6-6Z" fill="#fff"/>
-  <text x="32" y="39" text-anchor="middle" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#114f9f">w?</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="What's Your View?">
+  <rect width="512" height="512" rx="142" fill="#1769d2"/>
+  <text
+    x="256"
+    y="350"
+    fill="#ffffff"
+    font-family="Inter, Arial, sans-serif"
+    font-size="300"
+    font-weight="800"
+    letter-spacing="-18"
+    text-anchor="middle"
+  >w?</text>
 </svg>
