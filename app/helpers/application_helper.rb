@@ -57,6 +57,10 @@ module ApplicationHelper
     "/#{current_site.favicon_prefix}#{name}"
   end
 
+  def site_copy(key)
+    current_site.copy.fetch(key)
+  end
+
   def glossary_text(text)
     safe_join(text.to_s.split(GLOSSARY_PATTERN).map do |segment|
       definition = ORGANISATION_GLOSSARY[segment]

@@ -1,0 +1,145 @@
+<% content_for :title, "What Do You Think? — opinion, informed by the facts" %>
+
+<section class="wdyt-home">
+  <header class="wdyt-hero">
+    <div class="container wdyt-hero-inner">
+      <div>
+        <p class="wdyt-kicker">Opinion, informed by the facts</p>
+        <h1>What do people think?</h1>
+        <p>Explore questions people disagree about. See the current result, give your own view, and answer sourced fact questions to add weight to it.</p>
+      </div>
+      <aside class="wdyt-hero-note" aria-label="How results work">
+        <strong>More than a vote count</strong>
+        <span>Opinions carry more weight when their holders correctly answer relevant fact questions.</span>
+        <%= link_to "See how it works", help_path %>
+      </aside>
+    </div>
+  </header>
+
+  <div class="container wdyt-home-content">
+    <%= form_with url: root_path, method: :get, class: "wdyt-search", role: "search" do |form| %>
+      <%= form.hidden_field :category, value: params[:category] if params[:category].present? %>
+      <%= form.hidden_field :tag, value: params[:tag] if params[:tag].present? %>
+      <div class="wdyt-search-field">
+        <%= form.label :q, "Search questions", class: "sr-only" %>
+        <%= form.search_field :q, value: params[:q], placeholder: "Search topics and questions", autocomplete: "off" %>
+        <button type="submit" aria-label="Search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m15.5 15.5 5 5"></path></svg>
+        </button>
+      </div>
+      <div class="wdyt-order-field">
+        <%= form.label :sort, "Order by" %>
+        <%= form.select :sort,
+          options_for_select(@sort_options.map { |value, label| [ label, value ] }, @sort), {},
+          data: { controller: "autosubmit", action: "change->autosubmit#submit" } %>
+      </div>
+    <% end %>
+
+    <nav class="wdyt-category-strip" aria-label="Browse by category">
+      <%= link_to "All topics", root_path(sort: @sort), class: ("is-current" if params[:category].blank?) %>
+      <% @categories.each do |category| %>
+        <%= link_to root_path(category: category.slug, sort: @sort), class: ("is-current" if params[:category] == category.slug) do %>
+          <%= category.name %><span><%= category.live_opinion_questions.length %></span>
+        <% end %>
+      <% end %>
+    </nav>
+
+    <div class="wdyt-main-grid">
+      <main>
+        <header class="wdyt-list-heading">
+          <div>
+            <p><%= params[:q].present? || params[:category].present? || params[:tag].present? ? "Matching questions" : "Questions to explore" %></p>
+            <span><%= pluralize(@result_count, "question") %></span>
+          </div>
+          <% if params[:q].present? || params[:category].present? || params[:tag].present? %>
+            <%= link_to "Clear filters", root_path(sort: @sort) %>
+          <% end %>
+        </header>
+
+        <div class="wdyt-topic-grid">
+          <% @opinion_questions.each do |question| %>
+            <% opinion = @user_opinions&.fetch(question.id, nil) %>
+            <% progress = @progress_by_question&.fetch(question, nil) %>
+            <% collective = @collective_by_question.fetch(question) %>
+            <article class="wdyt-topic-card">
+              <div class="wdyt-topic-meta">
+                <% if question.category %><%= link_to question.category.name, root_path(category: question.category.slug) %><% end %>
+                <% question.tags.first(2).each do |tag| %><%= link_to tag.name, root_path(tag: tag.slug) %><% end %>
+              </div>
+              <div class="wdyt-topic-copy">
+                <h2><%= link_to question.title, opinion_question_path(question) %></h2>
+                <p><%= question.statement %></p>
+              </div>
+              <div class="wdyt-result">
+                <header>
+                  <span>Knowledge-weighted result</span>
+                  <strong><%= collective.result_label %></strong>
+                </header>
+                <div class="wdyt-result-scale <%= "is-empty" unless collective.weighted_score %>"
+                  style="--result-position: <%= collective.indicator_position %>%"
+                  role="img"
+                  aria-label="<%= collective.weighted_score ? "Aggregate informed opinion: #{collective.score_percentage}, from no at minus 100 through neutral at zero to yes at plus 100" : "No weighted opinion result yet" %>">
+                  <div class="wdyt-result-track"><i></i><% if collective.weighted_score %><b></b><% end %></div>
+                  <div><span>No</span><span>Neutral</span><span>Yes</span></div>
+                </div>
+                <small><%= pluralize(collective.respondents, "participant") %> · <%= collective.informed_respondents %> carrying weight</small>
+              </div>
+              <footer>
+                <% if opinion %>
+                  <p>Your view: <strong><%= opinion.label %></strong> <span><%= progress.weight %>% weight</span></p>
+                  <%= link_to "Continue with the facts", opinion_question_quiz_path(question), class: "wdyt-card-action" %>
+                <% else %>
+                  <p><%= question.published_fact_questions.length %> sourced fact questions</p>
+                  <%= link_to "See the question", opinion_question_path(question), class: "wdyt-card-action" %>
+                <% end %>
+              </footer>
+            </article>
+          <% end %>
+        </div>
+
+        <% if @opinion_questions.empty? %>
+          <div class="wdyt-empty"><h2>No matching questions</h2><p>Try a broader search or clear the current filters.</p></div>
+        <% end %>
+
+        <% if @total_pages > 1 %>
+          <nav class="wdyt-pagination" aria-label="Question catalogue pages">
+            <% filters = params.permit(:q, :category, :tag, :sort).to_h %>
+            <%= @page > 1 ? link_to("Previous", root_path(filters.merge(page: @page - 1))) : content_tag(:span, "Previous") %>
+            <b>Page <%= @page %> of <%= @total_pages %></b>
+            <%= @page < @total_pages ? link_to("Next", root_path(filters.merge(page: @page + 1))) : content_tag(:span, "Next") %>
+          </nav>
+        <% end %>
+      </main>
+
+      <aside class="wdyt-sidebar" aria-label="More ways to explore">
+        <section>
+          <h2>Popular now</h2>
+          <ol>
+            <% @popular_questions.each do |question| %>
+              <li><%= link_to question.title, opinion_question_path(question) %><span><%= pluralize(@discovery.respondents(question), "participant") %></span></li>
+            <% end %>
+          </ol>
+        </section>
+        <section>
+          <h2>Most debated</h2>
+          <% if @controversial_questions.any? %>
+            <ol><% @controversial_questions.each do |question| %><li><%= link_to question.title, opinion_question_path(question) %></li><% end %></ol>
+          <% else %>
+            <p>There is not enough participation to rank disagreement yet.</p>
+          <% end %>
+        </section>
+        <section>
+          <h2>Browse tags</h2>
+          <% if @selected_tag %>
+            <p class="wdyt-selected-tag">Showing <strong><%= @selected_tag.name %></strong> <%= link_to "Clear", root_path(q: params[:q].presence, category: params[:category].presence, sort: @sort) %></p>
+          <% end %>
+          <div class="wdyt-tag-list">
+            <% @popular_tags.each do |tag| %>
+              <%= link_to tag.name, root_path(q: params[:q].presence, category: params[:category].presence, tag: tag.slug, sort: @sort), class: ("is-current" if tag == @selected_tag) %>
+            <% end %>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -17,12 +17,17 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="<%= site_asset_path("icon.svg") %>" type="image/svg+xml">
-    <link rel="icon" href="<%= site_asset_path("favicon.ico") %>" sizes="any">
-    <link rel="icon" href="<%= site_asset_path("icon-32.png") %>" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="<%= site_asset_path("icon.png") %>" sizes="512x512">
+    <% unless current_site.alternative? %>
+      <link rel="icon" href="<%= site_asset_path("favicon.ico") %>" sizes="any">
+      <link rel="icon" href="<%= site_asset_path("icon-32.png") %>" type="image/png" sizes="32x32">
+      <link rel="apple-touch-icon" href="<%= site_asset_path("icon.png") %>" sizes="512x512">
+    <% end %>
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <% if current_site.alternative? %>
+      <%= stylesheet_link_tag "what_do_you_think", "data-turbo-track": "reload" %>
+    <% end %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -34,11 +39,11 @@
           <span><%= current_site.name %></span>
         <% end %>
         <nav class="site-nav" aria-label="Account">
-          <%= link_to "Help", help_path, class: "nav-link" %>
+          <%= link_to site_copy(:nav_help), help_path, class: "nav-link" %>
           <% if user_signed_in? %>
             <span class="nav-greeting">Hello, <%= current_user.first_name %></span>
-            <%= link_to "My opinions", stats_path, class: "nav-link" %>
-            <%= link_to "Proposals", opinion_question_proposals_path, class: "nav-link" %>
+            <%= link_to site_copy(:nav_opinions), stats_path, class: "nav-link" %>
+            <%= link_to site_copy(:nav_proposals), opinion_question_proposals_path, class: "nav-link" %>
             <%= link_to "Account", account_path, class: "nav-link" %>
             <% if current_user.moderator? %>
               <%= link_to moderator_root_path, class: "nav-link moderation-nav-link" do %>
@@ -49,7 +54,7 @@
             <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link nav-button" %>
           <% else %>
             <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
-            <%= link_to "Create account", new_user_registration_path, class: "button button-small" %>
+            <%= link_to site_copy(:create_account), new_user_registration_path, class: "button button-small" %>
           <% end %>
         </nav>
       </div>
@@ -66,7 +71,7 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><span class="brand-mark brand-mark-small"><%= current_site.short_mark %></span> Evidence gives an opinion weight.</p>
+        <p><span class="brand-mark brand-mark-small"><%= current_site.short_mark %></span> <%= site_copy(:footer_tagline) %></p>
         <p class="footer-links">
           <%= link_to "How it works", help_path %>
           <span>·</span>

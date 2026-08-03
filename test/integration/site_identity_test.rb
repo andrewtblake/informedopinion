@@ -11,6 +11,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
       assert_select ".brand > span:last-child", text: "Informed Opinion"
       assert_select "meta[name='application-name'][content='Informed Opinion']", count: 1
       assert_select "link[rel='icon'][href='/icon.svg']", count: 1
+      assert_not_includes response.body, "/assets/what_do_you_think-"
     end
   end
 
@@ -21,9 +22,12 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "body[data-site='what-do-you-think']"
     assert_select ".brand > span:last-child", text: "What Do You Think?"
-    assert_select "title", text: "What Do You Think? — knowledge-weighted public opinion"
+    assert_select "title", text: "What Do You Think? — opinion, informed by the facts"
     assert_select "meta[name='application-name'][content='What Do You Think?']", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-icon.svg']", count: 1
+    assert_select "link[rel='stylesheet']", count: 2
+    assert_includes response.body, "/assets/what_do_you_think-"
+    assert_select ".wdyt-hero h1", text: "What do people think?"
   end
 
   test "moderation retains the editorial presentation on the alternative host" do

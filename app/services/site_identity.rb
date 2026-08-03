@@ -6,7 +6,8 @@ class SiteIdentity
     :variant,
     :theme_color,
     :description,
-    :favicon_prefix
+    :favicon_prefix,
+    :copy
   ) do
     def alternative?
       key == :what_do_you_think
@@ -20,7 +21,14 @@ class SiteIdentity
     variant: nil,
     theme_color: "#102a2b",
     description: "Discover how well the evidence supports the opinions you hold.",
-    favicon_prefix: ""
+    favicon_prefix: "",
+    copy: {
+      nav_opinions: "My opinions",
+      nav_proposals: "Proposals",
+      nav_help: "Help",
+      create_account: "Create account",
+      footer_tagline: "Evidence gives an opinion weight."
+    }
   )
 
   ALTERNATIVE = Site.new(
@@ -30,7 +38,14 @@ class SiteIdentity
     variant: :what_do_you_think,
     theme_color: "#1769d2",
     description: "See where people stand on disputed questions—and how much factual knowledge lies behind the result.",
-    favicon_prefix: "what-do-you-think-"
+    favicon_prefix: "what-do-you-think-",
+    copy: {
+      nav_opinions: "Your opinions",
+      nav_proposals: "Suggest a question",
+      nav_help: "How it works",
+      create_account: "Join in",
+      footer_tagline: "See what people think—and what they know."
+    }
   )
 
   LOCAL_ALTERNATIVE_HOSTS = %w[whatdoyouthink.localhost wdyt.localhost].freeze
