@@ -69,6 +69,11 @@ class PublicServiceEssentialsTest < ActionDispatch::IntegrationTest
     get root_path
     assert_redirected_to account_path
 
+    get account_path
+    assert_response :success
+    assert_select ".account-masthead", text: /record participation consent/
+    assert_select ".account-consent-review", text: /Review the current participation terms/
+
     patch consent_account_path, params: {
       accept_terms: "1",
       consent_sensitive_data: "1"

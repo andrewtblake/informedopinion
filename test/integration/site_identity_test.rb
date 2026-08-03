@@ -102,6 +102,22 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".account-masthead", text: /Return to your opinions/
     assert_select ".account-switch", text: /New to What's Your View\?/
+    assert_select ".account-note h2", text: "What's retained"
+  end
+
+  test "alternative account uses plain but precise consent language" do
+    participant = User.create!(first_name: "Account", last_name: "Holder",
+      email: "alternative-account@example.test", password: "password123")
+    sign_in participant, scope: :user
+    host! "whatsyourview.localhost"
+
+    get account_path
+
+    assert_response :success
+    assert_select ".account-masthead", text: /confirm your consent to take part/
+    assert_select ".account-consent-review", text: /Review the current terms and your consent/
+    assert_select ".account-consent-review", text: /Some answers may reveal political opinions/
+    assert_select ".account-danger-zone", text: /This cannot be undone/
   end
 
   test "shared topic pages name informed opinion as canonical" do
