@@ -5,7 +5,7 @@
     <header class="account-masthead ui-masthead">
       <p class="editorial-kicker">Account</p>
       <h1>Create an account</h1>
-      <p>An account associates your opinions with your answers and preserves your progress.</p>
+      <p><%= site_copy(:registration_intro) %></p>
     </header>
 
     <div class="account-layout">
@@ -48,7 +48,7 @@
             <div class="account-consent-choice">
               <%= f.check_box :consent_sensitive_data, required: true %>
               <%= f.label :consent_sensitive_data do %>
-                I explicitly consent to Informed Opinion recording and using my topic opinions and knowledge-check answers as described in the privacy notice. I understand that some responses may reveal political opinions or other sensitive beliefs, and that I can withdraw consent by deleting my account.
+                <%= site_copy(:consent_text) %>
               <% end %>
             </div>
           </div>

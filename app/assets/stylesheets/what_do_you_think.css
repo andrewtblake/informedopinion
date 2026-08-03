@@ -39,6 +39,140 @@ body[data-site="what-do-you-think"] .site-nav .button-small {
 }
 body[data-site="what-do-you-think"] .site-nav .button-small:hover { color: #fff; background: var(--wdyt-blue-dark); text-decoration: none; }
 body[data-site="what-do-you-think"] .flash { border-radius: 6px; }
+body[data-site="what-do-you-think"] .ui-page,
+body[data-site="what-do-you-think"] .account-page,
+body[data-site="what-do-you-think"] .editorial-form-page { background: var(--wdyt-page); }
+body[data-site="what-do-you-think"] .ui-sheet,
+body[data-site="what-do-you-think"] .ui-panel {
+  border-color: var(--wdyt-line); border-radius: 10px; background: #fff;
+}
+body[data-site="what-do-you-think"] .ui-sheet { box-shadow: 0 7px 24px rgba(31, 62, 101, .09); }
+body[data-site="what-do-you-think"] .ui-sheet-emphasis { border-top: 5px solid var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .button,
+body[data-site="what-do-you-think"] .ui-button { border-radius: 7px; }
+body[data-site="what-do-you-think"] .button-primary { color: #fff; background: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .button-primary:hover { background: var(--wdyt-blue-dark); }
+body[data-site="what-do-you-think"] .text-link,
+body[data-site="what-do-you-think"] .back-link { color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .ui-choice { border-color: #c5d2e1; border-radius: 7px; }
+body[data-site="what-do-you-think"] .ui-choice:hover { border-color: var(--wdyt-blue); background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .ui-choice:has(input:checked) { border-color: var(--wdyt-blue); background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .editorial-kicker,
+body[data-site="what-do-you-think"] .eyebrow,
+body[data-site="what-do-you-think"] .ui-kicker { color: var(--wdyt-blue); }
+
+/* Opinion selection */
+body[data-site="what-do-you-think"] .topic-page { --accent: var(--wdyt-blue); padding: 40px 0 76px; }
+body[data-site="what-do-you-think"] .topic-page .narrow-container { width: min(900px, calc(100% - 40px)); }
+body[data-site="what-do-you-think"] .topic-hero-card { padding: clamp(25px, 5vw, 42px); }
+body[data-site="what-do-you-think"] .topic-hero-card h1 { margin-bottom: 14px; color: var(--wdyt-blue-dark); font-size: clamp(31px, 5vw, 43px); }
+body[data-site="what-do-you-think"] .topic-hero-card blockquote { border-left: 5px solid var(--wdyt-coral); background: #f8fafc; font-size: clamp(17px, 2.4vw, 20px); }
+body[data-site="what-do-you-think"] .signin-gate { border-radius: 8px; background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .opinion-options { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 7px; }
+body[data-site="what-do-you-think"] .opinion-option { min-height: 78px; padding: 13px 10px; align-items: flex-start; flex-direction: column; justify-content: center; gap: 8px; font-size: 13px; font-weight: 700; }
+body[data-site="what-do-you-think"] .opinion-option input:checked + .radio-dot { border-color: var(--wdyt-blue); background: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .current-weight { border-left: 5px solid var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .weight-ring { background: radial-gradient(circle at center, white 58%, transparent 59%), conic-gradient(var(--wdyt-blue) calc(var(--weight) * 1%), #e2e9f1 0); }
+body[data-site="what-do-you-think"] .topic-reaction-panel { border-radius: 10px; border-color: var(--wdyt-line); box-shadow: 0 4px 16px rgba(31, 62, 101, .05); }
+body[data-site="what-do-you-think"] .reaction-like,
+body[data-site="what-do-you-think"] .reaction-dislike { border-color: #aebdd0; border-radius: 6px; color: var(--wdyt-blue-dark); }
+body[data-site="what-do-you-think"] .reaction-like.is-active,
+body[data-site="what-do-you-think"] .reaction-dislike.is-active { color: #fff; border-color: var(--wdyt-blue); background: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .dislike-form textarea { border-color: #aebdd0; border-radius: 6px; background: #fff; }
+body[data-site="what-do-you-think"] .fact-contribution-panel { padding-inline: 21px; border: 1px solid var(--wdyt-line); border-radius: 10px; background: #fff; }
+body[data-site="what-do-you-think"] .contribution-button { color: #fff; border-color: var(--wdyt-blue); border-radius: 7px; background: var(--wdyt-blue); }
+
+/* Quiz: visually focused, but built from the same alternative-site system. */
+body[data-site="what-do-you-think"] .quiz-page { --accent: var(--wdyt-blue); padding: 35px 0 75px; background: linear-gradient(180deg, #eaf3ff 0, var(--wdyt-page) 280px); }
+body[data-site="what-do-you-think"] .quiz-container { width: min(850px, calc(100% - 40px)); }
+body[data-site="what-do-you-think"] .quiz-weight strong { color: var(--wdyt-blue-dark); }
+body[data-site="what-do-you-think"] .quiz-progress > div { height: 8px; border-radius: 999px; background: #ccd8e6; }
+body[data-site="what-do-you-think"] .quiz-progress > div span { border-radius: inherit; background: var(--wdyt-coral); }
+body[data-site="what-do-you-think"] .quiz-card { border-radius: 12px; border-top-color: var(--wdyt-coral); }
+body[data-site="what-do-you-think"] .question-card { min-height: 700px; }
+body[data-site="what-do-you-think"] .question-meta { color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .question-card h1 { color: var(--wdyt-ink); }
+body[data-site="what-do-you-think"] .fact-importance { border-left: 4px solid var(--wdyt-blue); border-radius: 0 6px 6px 0; background: #f1f6fc; }
+body[data-site="what-do-you-think"] .answer-letter { border-radius: 50%; color: var(--wdyt-blue); background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .answer-option:has(input:checked) .answer-letter { color: #fff; background: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .quiz-action-footer .button { border-radius: 7px; }
+body[data-site="what-do-you-think"] .opinion-reminder { padding-inline: 14px; border: 1px solid var(--wdyt-line); border-radius: 7px; background: #fff; }
+body[data-site="what-do-you-think"] .status-icon { background: #27966f; }
+body[data-site="what-do-you-think"] .feedback-status h1 { color: #167354; }
+body[data-site="what-do-you-think"] .feedback-question,
+body[data-site="what-do-you-think"] .explanation-panel { border-radius: 7px; background: #f3f7fc; }
+body[data-site="what-do-you-think"] .answer-comparison p { border-radius: 7px; }
+body[data-site="what-do-you-think"] .source-link { color: var(--wdyt-blue); }
+
+/* Personal topics */
+body[data-site="what-do-you-think"] .opinions-page { padding: 43px 0 85px; }
+body[data-site="what-do-you-think"] .opinions-masthead { border: 0; }
+body[data-site="what-do-you-think"] .opinions-masthead h1 { color: var(--wdyt-blue-dark); font-size: clamp(39px, 6vw, 58px); }
+body[data-site="what-do-you-think"] .opinions-tools { border-radius: 9px; border-color: var(--wdyt-line); box-shadow: 0 4px 15px rgba(31, 62, 101, .05); }
+body[data-site="what-do-you-think"] .opinions-tools input,
+body[data-site="what-do-you-think"] .opinions-tools select { border-color: #aebdd0; border-radius: 6px; background: #fff; }
+body[data-site="what-do-you-think"] .opinions-index-heading { border-bottom-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .opinions-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+body[data-site="what-do-you-think"] .opinion-card { padding: 19px; border: 1px solid var(--wdyt-line); border-radius: 9px; background: #fff; box-shadow: 0 4px 15px rgba(31, 62, 101, .05); }
+body[data-site="what-do-you-think"] .opinion-card-body { grid-template-columns: minmax(0, 1fr) 108px; gap: 13px; }
+body[data-site="what-do-you-think"] .opinion-card h2 a:hover,
+body[data-site="what-do-you-think"] .compact-opinion-heading strong,
+body[data-site="what-do-you-think"] .compact-result-numbers strong,
+body[data-site="what-do-you-think"] .personal-card-actions a { color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .opinion-card .personal-weight-arrow { stroke: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .opinion-card .personal-arrow-head { fill: var(--wdyt-blue); }
+
+/* Account and authentication */
+body[data-site="what-do-you-think"] .account-page { padding: 43px 0 85px; }
+body[data-site="what-do-you-think"] .account-masthead { padding: 27px 31px; border: 0; border-radius: 10px 10px 0 0; color: #fff; background: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .account-masthead .editorial-kicker { color: var(--wdyt-yellow); }
+body[data-site="what-do-you-think"] .account-masthead h1 { color: #fff; font-size: clamp(37px, 6vw, 53px); }
+body[data-site="what-do-you-think"] .account-masthead > p:last-child { color: #e8f2ff; }
+body[data-site="what-do-you-think"] .account-layout { margin-top: 0; padding: 31px; border: 1px solid var(--wdyt-line); border-top: 0; border-radius: 0 0 10px 10px; background: #fff; }
+body[data-site="what-do-you-think"] .account-form-panel { border-top-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .account-container-narrow .account-form-panel { margin-top: 0; padding: 31px; border: 1px solid var(--wdyt-line); border-top: 0; border-radius: 0 0 10px 10px; background: #fff; }
+body[data-site="what-do-you-think"] .account-switch a,
+body[data-site="what-do-you-think"] .label-line a,
+body[data-site="what-do-you-think"] .account-back-link { color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .account-form .field input { border-color: #aebdd0; border-radius: 6px; }
+body[data-site="what-do-you-think"] .account-form .field input:focus { border-color: var(--wdyt-blue); outline-color: rgba(23, 105, 210, .17); }
+body[data-site="what-do-you-think"] .account-form .button { border-radius: 7px; }
+body[data-site="what-do-you-think"] .account-note { padding: 17px; border: 0; border-radius: 8px; background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .account-consents { border-radius: 8px; background: #f7f9fc; }
+body[data-site="what-do-you-think"] .account-consent-choice input { accent-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .account-consent-choice a { color: var(--wdyt-blue); }
+
+/* Proposals, reports, and contribution forms */
+body[data-site="what-do-you-think"] .proposal-page,
+body[data-site="what-do-you-think"] .editorial-form-page { padding: 40px 0 84px; }
+body[data-site="what-do-you-think"] .proposal-masthead,
+body[data-site="what-do-you-think"] .form-page-container > header { padding-bottom: 22px; border-bottom: 4px solid var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .proposal-masthead h1,
+body[data-site="what-do-you-think"] .form-page-container > header h1 { color: var(--wdyt-blue-dark); font-size: clamp(37px, 6vw, 54px); }
+body[data-site="what-do-you-think"] .proposal-workspace { gap: 34px; }
+body[data-site="what-do-you-think"] .proposal-section-heading { border-top-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .proposal-guidance { padding: 18px; border: 0; border-radius: 8px; background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .editorial-form { border-color: var(--wdyt-line); border-radius: 9px; box-shadow: 0 4px 16px rgba(31, 62, 101, .05); }
+body[data-site="what-do-you-think"] .editorial-form input[type="text"],
+body[data-site="what-do-you-think"] .editorial-form input[type="url"],
+body[data-site="what-do-you-think"] .editorial-form select,
+body[data-site="what-do-you-think"] .editorial-form textarea,
+body[data-site="what-do-you-think"] .proposal-answer-row input[type="text"] { border-color: #aebdd0; border-radius: 6px; background: #fff; }
+body[data-site="what-do-you-think"] .editorial-form input:focus,
+body[data-site="what-do-you-think"] .editorial-form select:focus,
+body[data-site="what-do-you-think"] .editorial-form textarea:focus { border-color: var(--wdyt-blue); outline-color: rgba(23, 105, 210, .16); }
+body[data-site="what-do-you-think"] .editorial-form .button { border-radius: 7px; }
+body[data-site="what-do-you-think"] .proposal-history > header,
+body[data-site="what-do-you-think"] .fact-proposal-history h2 { border-bottom-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .proposal-record { margin-top: 11px; padding: 19px; border: 1px solid var(--wdyt-line); border-radius: 8px; background: #fff; }
+body[data-site="what-do-you-think"] .proposal-final-wording,
+body[data-site="what-do-you-think"] .fact-proposition-reference { border-left-color: var(--wdyt-blue); border-radius: 0 7px 7px 0; background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .reported-question { border-left-color: var(--wdyt-coral); border-radius: 0 7px 7px 0; box-shadow: 0 4px 14px rgba(31, 62, 101, .05); }
+
+@media (max-width: 760px) {
+  body[data-site="what-do-you-think"] .proposal-workspace { grid-template-columns: 1fr; }
+  body[data-site="what-do-you-think"] .proposal-guidance { order: -1; }
+}
 
 .wdyt-home { min-height: calc(100vh - 68px); background: var(--wdyt-page); }
 .wdyt-hero { color: #fff; background: linear-gradient(118deg, #0e4e9f 0%, #1769d2 62%, #2784ed 100%); }
@@ -136,6 +270,7 @@ body[data-site="what-do-you-think"] .footer-links a { color: #fff; }
   body[data-site="what-do-you-think"] .site-nav { justify-content: flex-end; flex-wrap: wrap; }
   .wdyt-main-grid { grid-template-columns: minmax(0, 1fr) 225px; gap: 22px; }
   .wdyt-topic-grid { grid-template-columns: 1fr; }
+  body[data-site="what-do-you-think"] .opinion-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
@@ -150,6 +285,8 @@ body[data-site="what-do-you-think"] .footer-links a { color: #fff; }
   .wdyt-main-grid { grid-template-columns: 1fr; }
   .wdyt-sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wdyt-sidebar section:last-child { grid-column: 1 / -1; }
+  body[data-site="what-do-you-think"] .opinions-grid { grid-template-columns: 1fr; }
+  body[data-site="what-do-you-think"] .account-layout { grid-template-columns: 1fr; gap: 28px; }
 }
 
 @media (max-width: 480px) {
@@ -159,6 +296,13 @@ body[data-site="what-do-you-think"] .footer-links a { color: #fff; }
   .wdyt-home-content { padding-top: 20px; }
   .wdyt-topic-grid, .wdyt-sidebar { grid-template-columns: 1fr; }
   .wdyt-sidebar section:last-child { grid-column: auto; }
+  body[data-site="what-do-you-think"] .opinion-options { grid-template-columns: 1fr; }
+  body[data-site="what-do-you-think"] .opinion-option { min-height: 0; align-items: center; flex-direction: row; justify-content: flex-start; }
+  body[data-site="what-do-you-think"] .opinion-card-body { grid-template-columns: 1fr; }
+  body[data-site="what-do-you-think"] .compact-choice-dial { margin-top: 10px; }
+  body[data-site="what-do-you-think"] .account-masthead,
+  body[data-site="what-do-you-think"] .account-layout,
+  body[data-site="what-do-you-think"] .account-container-narrow .account-form-panel { padding-inline: 20px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

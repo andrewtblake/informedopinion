@@ -3,9 +3,9 @@
 <section class="editorial-home opinions-page ui-page">
   <div class="container">
     <header class="editorial-masthead opinions-masthead ui-masthead">
-      <p class="editorial-kicker">Personal record</p>
-      <h1>My opinions</h1>
-      <p>Your registered positions and the knowledge weight currently assigned to each.</p>
+      <p class="editorial-kicker"><%= site_copy(:opinions_kicker) %></p>
+      <h1><%= site_copy(:opinions_heading) %></h1>
+      <p><%= site_copy(:opinions_intro) %></p>
     </header>
 
     <%= form_with url: stats_path, method: :get, class: "opinions-tools", role: "search" do |form| %>

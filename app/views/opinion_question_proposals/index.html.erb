@@ -4,9 +4,9 @@
   <div class="container proposal-page-container">
     <%= link_to "← All questions", root_path, class: "back-link" %>
     <header class="proposal-masthead ui-masthead">
-      <p class="editorial-kicker">Reader proposals</p>
-      <h1>Proposals</h1>
-      <p>Suggest a new opinion question and follow the status of questions you have already proposed.</p>
+      <p class="editorial-kicker"><%= site_copy(:proposals_kicker) %></p>
+      <h1><%= site_copy(:proposals_heading) %></h1>
+      <p><%= site_copy(:proposals_intro) %></p>
     </header>
 
     <div class="proposal-workspace">

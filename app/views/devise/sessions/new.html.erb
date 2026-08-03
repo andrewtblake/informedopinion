@@ -5,12 +5,12 @@
     <header class="account-masthead ui-masthead">
       <p class="editorial-kicker">Account</p>
       <h1>Sign in</h1>
-      <p>Return to your registered opinions and knowledge checks.</p>
+      <p><%= site_copy(:sign_in_intro) %></p>
     </header>
 
     <div class="account-layout">
       <main class="account-form-panel">
-        <p class="account-switch">New to Informed Opinion? <%= link_to "Create an account", new_user_registration_path %></p>
+        <p class="account-switch">New to <%= current_site.name %>? <%= link_to site_copy(:create_account), new_user_registration_path %></p>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "account-form" }) do |f| %>
           <div class="field">

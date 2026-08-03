@@ -4,8 +4,8 @@
   <div class="container quiz-container">
     <div class="quiz-header">
       <div>
-        <%= link_to "← Leave quiz", root_path(anchor: "topics"), class: "back-link" %>
-        <p class="eyebrow"><%= @opinion_question.title %> · knowledge check</p>
+        <%= link_to site_copy(:quiz_leave), root_path(anchor: "topics"), class: "back-link" %>
+        <p class="eyebrow"><%= @opinion_question.title %> · <%= site_copy(:quiz_label) %></p>
       </div>
       <div class="quiz-weight">
         <span>Opinion weight</span>

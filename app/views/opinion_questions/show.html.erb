@@ -6,14 +6,14 @@
 
     <div class="topic-hero-card ui-sheet ui-sheet-emphasis">
       <p class="eyebrow ui-kicker"><%= @opinion_question.title %></p>
-      <h1>Which response best reflects your view?</h1>
+      <h1><%= site_copy(:opinion_heading) %></h1>
       <blockquote><%= @opinion_question.statement %></blockquote>
 
       <% unless user_signed_in? %>
         <div class="signin-gate">
-          <p>Create a free account to register your response and keep your knowledge score.</p>
+          <p><%= site_copy(:opinion_gate) %></p>
           <div>
-            <%= link_to "Create account", new_user_registration_path, class: "button button-primary" %>
+            <%= link_to site_copy(:create_account), new_user_registration_path, class: "button button-primary" %>
             <%= link_to "I already have an account", new_user_session_path, class: "text-link" %>
           </div>
         </div>
@@ -35,11 +35,11 @@
             </div>
           </fieldset>
           <div class="opinion-submit ui-action-footer">
-            <%= form.submit @user_opinion ? "Revise my opinion" : "Register my opinion", class: "button button-primary" %>
+            <%= form.submit @user_opinion ? "Revise my opinion" : site_copy(:opinion_register), class: "button button-primary" %>
             <% if @user_opinion %>
-              <%= link_to "Continue knowledge check →", opinion_question_quiz_path(@opinion_question), class: "text-link" %>
+              <%= link_to site_copy(:continue_quiz), opinion_question_quiz_path(@opinion_question), class: "text-link" %>
             <% else %>
-              <small>Your starting weight will be 0% until you answer facts.</small>
+              <small><%= site_copy(:initial_weight) %></small>
             <% end %>
           </div>
         <% end %>
