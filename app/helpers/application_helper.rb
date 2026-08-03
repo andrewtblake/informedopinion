@@ -50,7 +50,8 @@ module ApplicationHelper
   )
 
   def site_page_title(title = nil)
-    title.to_s.presence&.sub("Informed Opinion", current_site.name) || current_site.name
+    decoded_title = CGI.unescapeHTML(title.to_s).presence
+    decoded_title&.sub("Informed Opinion", current_site.name) || current_site.name
   end
 
   def site_asset_path(name)

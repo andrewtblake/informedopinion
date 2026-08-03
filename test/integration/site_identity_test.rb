@@ -27,6 +27,8 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select "body[data-site='what-do-you-think']"
     assert_select ".brand > span:last-child", text: "What's Your View?"
     assert_select "title", text: /Your View\? — opinion, backed by the facts/
+    assert_includes response.body, "<title>What&#39;s Your View? — opinion, backed by the facts</title>"
+    assert_not_includes response.body, "What&amp;#39;s Your View?"
     assert_select "meta[name='application-name'][content=\"What's Your View?\"]", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-icon.svg']", count: 1
     assert_select "link[rel='icon'][href='/what-do-you-think-favicon.ico']", count: 1
