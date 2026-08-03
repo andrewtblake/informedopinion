@@ -49,6 +49,14 @@ module ApplicationHelper
     "(?<![[:alnum:]_])(#{Regexp.union(ORGANISATION_GLOSSARY.keys.sort_by { -_1.length })})(?![[:alnum:]_])"
   )
 
+  def site_page_title(title = nil)
+    title.to_s.presence&.sub("Informed Opinion", current_site.name) || current_site.name
+  end
+
+  def site_asset_path(name)
+    "/#{current_site.favicon_prefix}#{name}"
+  end
+
   def glossary_text(text)
     safe_join(text.to_s.split(GLOSSARY_PATTERN).map do |segment|
       definition = ORGANISATION_GLOSSARY[segment]

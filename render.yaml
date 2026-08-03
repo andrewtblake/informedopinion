@@ -29,6 +29,10 @@ services:
         value: informedopinion.info
       - key: APP_PROTOCOL
         value: https
+      - key: ALTERNATE_APP_HOST
+        value: whatdoyouthink.info
+      - key: ALTERNATE_SITE_ENABLED
+        value: "false"
       - key: MAILER_FROM
         value: Informed Opinion <accounts@informedopinion.info>
       - key: MAILER_REPLY_TO

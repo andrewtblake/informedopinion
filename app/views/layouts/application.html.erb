@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Informed Opinion" %></title>
+    <title><%= site_page_title(content_for(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Informed Opinion">
-    <meta name="theme-color" content="#102a2b">
-    <meta name="description" content="Discover how well the evidence supports the opinions you hold.">
+    <meta name="application-name" content="<%= current_site.name %>">
+    <meta name="theme-color" content="<%= current_site.theme_color %>">
+    <meta name="description" content="<%= current_site.description %>">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,22 +16,22 @@
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" href="/icon-32.png" type="image/png" sizes="32x32">
-    <link rel="apple-touch-icon" href="/icon.png" sizes="512x512">
+    <link rel="icon" href="<%= site_asset_path("icon.svg") %>" type="image/svg+xml">
+    <link rel="icon" href="<%= site_asset_path("favicon.ico") %>" sizes="any">
+    <link rel="icon" href="<%= site_asset_path("icon-32.png") %>" type="image/png" sizes="32x32">
+    <link rel="apple-touch-icon" href="<%= site_asset_path("icon.png") %>" sizes="512x512">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body<% if user_signed_in? && current_user.moderator? %> data-controller="moderation-heartbeat" data-moderation-heartbeat-heartbeat-url-value="<%= moderator_heartbeat_path %>" data-moderation-heartbeat-mark-url-value="<%= moderator_moderation_views_path %>" data-moderation-heartbeat-moderation-url-value="<%= moderator_root_path %>"<% end %>>
+  <body data-site="<%= current_site.key.to_s.dasherize %>"<% if user_signed_in? && current_user.moderator? %> data-controller="moderation-heartbeat" data-moderation-heartbeat-heartbeat-url-value="<%= moderator_heartbeat_path %>" data-moderation-heartbeat-mark-url-value="<%= moderator_moderation_views_path %>" data-moderation-heartbeat-moderation-url-value="<%= moderator_root_path %>"<% end %>>
     <header class="site-header">
       <div class="container header-inner">
-        <%= link_to root_path, class: "brand", aria: { label: "Informed Opinion home" } do %>
-          <span class="brand-mark" aria-hidden="true">io</span>
-          <span>Informed Opinion</span>
+        <%= link_to root_path, class: "brand", aria: { label: "#{current_site.name} home" } do %>
+          <span class="brand-mark" aria-hidden="true"><%= current_site.short_mark %></span>
+          <span><%= current_site.name %></span>
         <% end %>
         <nav class="site-nav" aria-label="Account">
           <%= link_to "Help", help_path, class: "nav-link" %>
@@ -66,7 +66,7 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><span class="brand-mark brand-mark-small">io</span> Evidence gives an opinion weight.</p>
+        <p><span class="brand-mark brand-mark-small"><%= current_site.short_mark %></span> Evidence gives an opinion weight.</p>
         <p class="footer-links">
           <%= link_to "How it works", help_path %>
           <span>·</span>
