@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_03_150000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_04_090000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -188,6 +188,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_150000) do
     t.integer "user_id", null: false
     t.index ["token_digest"], name: "index_moderator_api_tokens_on_token_digest", unique: true
     t.index ["user_id"], name: "index_moderator_api_tokens_on_user_id"
+  end
+
+  create_table "opinion_histories", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "event_type", null: false
+    t.integer "facts_answered"
+    t.integer "facts_available"
+    t.integer "facts_correct"
+    t.integer "from_position"
+    t.decimal "knowledge_weight", precision: 5, scale: 2
+    t.decimal "raw_knowledge_weight", precision: 5, scale: 2
+    t.integer "to_position", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_opinion_id", null: false
+    t.index ["event_type"], name: "index_opinion_histories_on_event_type"
+    t.index ["user_opinion_id", "created_at"], name: "index_opinion_histories_on_user_opinion_id_and_created_at"
+    t.index ["user_opinion_id"], name: "index_opinion_histories_on_user_opinion_id"
+    t.check_constraint "from_position IS NULL OR from_position BETWEEN 0 AND 4", name: "opinion_histories_from_position_range"
+    t.check_constraint "to_position BETWEEN 0 AND 4", name: "opinion_histories_to_position_range"
   end
 
   create_table "opinion_question_proposals", force: :cascade do |t|
@@ -450,6 +469,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_03_150000) do
   add_foreign_key "fact_responses", "users"
   add_foreign_key "moderation_item_views", "users", column: "moderator_id", on_delete: :cascade
   add_foreign_key "moderator_api_tokens", "users"
+  add_foreign_key "opinion_histories", "user_opinions"
   add_foreign_key "opinion_question_proposals", "categories"
   add_foreign_key "opinion_question_proposals", "opinion_questions", column: "published_opinion_question_id"
   add_foreign_key "opinion_question_proposals", "users", column: "proposer_id"
