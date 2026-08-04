@@ -135,7 +135,7 @@ GAZA_FACTS = FactBank.build([
     [ "Yes, because the first violation suspends humanitarian law", "No; each party remains responsible for its own conduct", "Only the larger party retains obligations", "Only conduct after a ceasefire can be examined" ], 1,
     "International humanitarian law binds all parties independently. Hamas's attacks, hostage-taking or use of civilian areas cannot legalize an unlawful Israeli attack; Israeli violations cannot legalize attacks on Israeli civilians.", :unga, 0, 3,
     "Independent responsibility is foundational to an informed judgement that neither minimizes 7 October nor treats it as unlimited authorization." ],
-  [ "Which conclusion is factual evidence alone capable of establishing about the proposition on this page?",
+  [ "What can factual evidence alone establish when assessing whether Israel's military and security gains in Gaza justified the resulting harm to Palestinian civilians?",
     [ "That every reasonable person must select the same opinion", "That moral judgement is unnecessary once casualty totals are known", "The relevant gains, harms, uncertainties and legal constraints—not a uniquely compelled moral weighting of them", "That none of the documented events can inform an opinion" ], 2,
     "Evidence can correct false premises and clarify consequences, causal claims and legal constraints. Whether the gains justified the civilian harm also requires a moral and political judgement about necessity, alternatives, risk and proportionality in the broader ordinary-language sense.", :icrc_conduct, 0, 1,
     "The final supporting question makes the boundary between demonstrated knowledge and legitimate value judgement explicit." ]

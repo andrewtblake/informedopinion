@@ -98,7 +98,7 @@ MINIMUM_WAGE_FACTS = FactBank.build([
     [ "$4.25 per hour", "$2.13 per hour", "$7.25 plus tips", "$15 per hour" ], 0,
     "Federal law permits $4.25 in limited circumstances and prohibits displacing other workers to use it.", :dol_guide, 0, 1,
     "A youth exception is narrower than the approved proposition's adult-worker scope." ],
-  [ "Which workers are generally covered by the approved proposition's wording?",
+  [ "Which workers would be directly covered by the proposed increase of the standard US federal minimum wage to at least $15 within five years?",
     [ "Only tipped workers", "Non-tipped adult workers covered by federal minimum-wage law", "Every self-employed contractor", "Only federal employees" ], 1,
     "The wording deliberately excludes tipped and youth subminimum categories and does not convert independent contractors into employees.", :dol_guide, 0, 3,
     "Precisely identifying the covered population is foundational to interpreting the proposition." ],

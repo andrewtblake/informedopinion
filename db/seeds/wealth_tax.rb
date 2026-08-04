@@ -63,7 +63,7 @@ WEALTH_TAX_FACTS = [
     evidence_direction: 0
   },
   {
-    prompt: "If an individual's taxable wealth stayed unchanged, what would make the proposed charge recur?",
+    prompt: "If an individual's taxable wealth stayed unchanged, why would a comprehensive annual net wealth tax create another liability the following year?",
     options: [ "Selling an asset", "Receiving a dividend", "Dying or making a gift", "The arrival of each new annual assessment" ],
     correct_option: 3,
     explanation: "The proposed tax is on the stock of wealth each year, not only on a disposal, return or transfer.",

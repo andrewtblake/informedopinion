@@ -91,7 +91,7 @@ module OriginalCalibration
         evidence_direction: 1
       },
       14 => {
-        prompt: "What gross annual revenue did the same modelling associate with a rate near 1% above £10 million before administration costs?",
+        prompt: "In the Institute for Fiscal Studies Deaton Review modelling of a UK wealth tax, what gross annual revenue was associated with a rate near 1% above £10 million before administration costs?",
         options: [ "About £100 million", "About £1 billion", "About £10 billion", "About £100 billion" ],
         correct_option: 2,
         explanation: "The modelling targeted approximately £10 billion of gross annual revenue with a rate close to the proposed rate, after an assumed low avoidance response but before administration costs.",

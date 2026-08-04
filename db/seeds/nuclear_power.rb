@@ -130,7 +130,7 @@ NUCLEAR_POWER_FACTS = FactBank.build([
     [ "Its whole-system cost and risk against feasible low-carbon alternatives", "Only its fuel price", "Only its cooling-tower height", "Its nameplate capacity alone" ], 0,
     "A fair comparison includes construction, finance, operation, networks, balancing, firm capacity, waste and decommissioning.", :naa, 0, 3,
     "Cost-effectiveness depends on the full alternative system, not a single headline price." ],
-  [ "What is the most defensible synthesis of the evidence?",
+  [ "What is the most defensible synthesis of evidence about building new UK nuclear stations to replace retiring nuclear capacity?",
     [ "Nuclear is costless and risk-free", "Nuclear supplies firm low-carbon power, but projects carry material cost, delivery, accident and waste obligations", "Nuclear has lifecycle emissions identical to coal", "Retiring capacity needs no replacement decision" ], 1,
     "Nuclear can contribute reliable low-carbon electricity and energy security; whether new plants are advisable turns on delivery, finance, safety, waste and alternatives.", :iea, 0, 3,
     "A balanced synthesis of the principal benefits and burdens is foundational to an informed opinion." ]

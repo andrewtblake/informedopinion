@@ -99,7 +99,7 @@ ECHR_WITHDRAWAL_FACTS = FactBank.build([
   [ "What control would withdrawal most directly restore?",
     [ "Freedom from binding Strasbourg adjudication under this treaty", "Freedom from all domestic courts", "Power to leave the UN without notice", "Power to abolish common law automatically" ], 0,
     "Withdrawal would end future binding Strasbourg jurisdiction under the Convention after transition, subject to past cases and other international obligations.", :commons, 1, 3, "Ending external judicial supervision is the foundational benefit claimed by proponents." ],
-  [ "What is the central policy trade-off?",
+  [ "For possible UK withdrawal from the European Convention on Human Rights, what is the central policy trade-off?",
     [ "Choosing between Europe and the Atlantic", "Greater national control versus common external rights supervision and associated constitutional cooperation", "Choosing whether courts should exist", "Choosing whether rights have definitions" ], 1,
     "Withdrawal would increase freedom from this treaty and Court, while reducing an external rights guarantee and creating consequences for Northern Ireland, devolution and European cooperation.", :commons, 0, 1, "The synthesis identifies the judgement evidence informs without deciding it." ]
 ], ECHR_SOURCES)

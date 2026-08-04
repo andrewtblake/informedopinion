@@ -124,11 +124,11 @@ VOTING_REFORM_FACTS = FactBank.build([
     [ "No", "Only ballot colour changes", "Only incumbent MPs notice", "Yes; incentives follow the votes and places that can affect seats" ], 3,
     "FPTP focuses effort on marginal seats; proportional systems can make votes across broader areas electorally consequential.", :post, 1, 3,
     "Campaign incentives affect political attention received by different voters." ],
-  [ "What question must be settled before implementing the approved proposition?",
+  [ "Before replacing first past the post with proportional representation for UK House of Commons elections, what design question must be settled?",
     [ "Which proportional design, districts and thresholds to use", "Whether elections should count votes", "Whether Parliament has MPs", "Whether parties may publish names" ], 0,
     "PR's consequences depend materially on system design; the proposition establishes direction, not a complete statute.", :commons, 0, 3,
     "Unspecified design choices are foundational to judging feasibility and likely outcomes." ],
-  [ "What is the fairest overall conclusion from comparative evidence?",
+  [ "What is the fairest overall conclusion from comparative evidence about replacing first past the post with proportional representation?",
     [ "FPTP dominates PR on every criterion", "PR improves vote-seat proportionality but trades against features such as simplicity, local linkage or single-party government depending on design", "Every PR system is identical", "Electoral systems have no behavioural effects" ], 1,
     "Electoral systems optimise different values; no design maximises proportionality, simplicity, local representation and decisive government simultaneously.", :ipu, 0, 3,
     "A balanced synthesis of the principal benefit and trade-offs is foundational to an informed opinion." ]

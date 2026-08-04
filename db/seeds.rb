@@ -172,7 +172,7 @@ topics = [
   {
     slug: "assisted-dying",
     title: "Assisted dying",
-    statement: "Adults in England and Wales who have mental capacity and are reasonably expected to die within six months should be legally permitted to obtain medical assistance to end their lives, subject to approval by two independent doctors and an independent review panel.",
+    statement: "As proposed in the 2025 Terminally Ill Adults (End of Life) Bill, adults in England and Wales who have mental capacity and are reasonably expected to die within six months should be legally permitted to obtain medical assistance to end their lives, subject to approval by two independent doctors and an independent review panel.",
     response_options: [ "Strongly agree", "Somewhat agree", "Neither agree nor disagree", "Somewhat disagree", "Strongly disagree" ],
     display_order: 11,
     accent: "rose",

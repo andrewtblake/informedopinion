@@ -134,7 +134,7 @@ DEATH_PENALTY_FACTS = FactBank.build([
     [ "No; most countries have abolished it in law or practice", "Yes; every UN member executes", "Only Europe retains it", "International practice is unknown" ], 0,
     "A majority of states worldwide no longer execute, though populous retentionist countries remain.", :un, 1, 2,
     "Comparative practice informs claims about necessity and human-rights standards." ],
-  [ "What is the most defensible synthesis of the evidence?",
+  [ "What is the most defensible synthesis of evidence about abolishing the death penalty throughout the United States?",
     [ "Execution is proven to deter every murder", "Capital punishment expresses severe retribution, but deterrence is unproven and irreversibility, error, disparity and cost are material concerns", "Capital cases contain no safeguards", "Abolition means releasing murderers" ], 1,
     "An informed judgement distinguishes the moral case for retribution from uncertain deterrence evidence and weighs safeguards against documented error and unequal application.", :nas, 0, 3,
     "A balanced synthesis of the central justification, evidence and risks is foundational." ]

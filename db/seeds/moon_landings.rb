@@ -112,10 +112,10 @@ MOON_LANDING_FACTS = FactBank.build([
   [ "Did the Soviet Union return its own lunar samples robotically during the Apollo era?",
     [ "No country returned any lunar material", "Yes, but only before Apollo 11", "Yes, and in a larger mass than Apollo", "Yes; Luna missions returned much smaller samples" ], 3,
     "Soviet Luna missions returned small robotic samples, showing that sample return alone need not be crewed while providing material for comparison.", :luna, -1, 2, "The robotic alternative is significant when judging exactly what samples do and do not prove." ],
-  [ "Which overall account best fits the samples, tracking, surface equipment, photographs and later site images together?",
+  [ "Which overall account best fits the Apollo samples, tracking, surface equipment, photographs and later landing-site images together?",
     [ "Six crewed landings produced the mutually consistent records", "Every record independently establishes a crewed landing on its own", "The evidence identifies only an uncrewed mission", "No physical prediction differs between landing and fabrication" ], 0,
     "No single item carries the whole conclusion. The crewed-landing account explains many different records, while limitations such as robotic reflectors should be kept explicit.", :report, 1, 3, "Coherence across independent evidence, with limits acknowledged, is foundational to the proposition." ],
-  [ "What remains a legitimate limitation of the present evidence available to most people?",
+  [ "What remains a legitimate limitation of the evidence currently available to most people about the crewed Apollo Moon landings?",
     [ "No Apollo mission generated telemetry", "No later crew from an independent programme has revisited an Apollo site", "No lunar sample has been studied since 1972", "No spacecraft has imaged any landing site" ], 1,
     "Later orbiters and laboratories provide corroboration, but no independent human expedition has yet revisited and inspected an Apollo site in person.", :lro, -1, 3, "The strongest genuine verification limit is foundational to avoiding an appeal to authority." ]
 ], MOON_LANDING_SOURCES)
