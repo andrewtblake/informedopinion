@@ -247,6 +247,80 @@ concession. An equally important follow-up is:
 Asking both avoids implying that only one direction deserves examination. The
 answers should be optional and private.
 
+#### A record the participant can revisit
+
+It may be useful to record the participant's answer and return it to them after
+they have completed some or all of the fact bank. This could reveal a meaningful
+difference between what someone expected to matter and what actually mattered,
+without treating opinion change as the required result.
+
+The question should not offer a loaded contrast such as:
+
+- “Nothing, I know I'm right”; or
+- “Enough evidence against it.”
+
+The first answer caricatures confidence as arrogance, while the second signals
+the answer the site regards as intellectually respectable. It would measure
+willingness to select the socially approved response at least as much as
+receptivity.
+
+A more neutral prompt is:
+
+> What, if anything, could lead you to reconsider your current view or become
+> less certain of it?
+
+The response could allow more than one selection:
+
+- Evidence that an important factual assumption is wrong.
+- Evidence that the likely consequences differ from what I expect.
+- Independent confirmation from sources I consider credible.
+- A convincing account of costs or risks I have underestimated.
+- A different way of balancing the relevant values or rights.
+- A change in the circumstances to which the question applies.
+- A better practical alternative.
+- Direct personal experience relevant to the issue.
+- I cannot presently identify anything that would change my view.
+- I do not think factual evidence alone could resolve my view.
+- I am not sure.
+- Prefer not to answer.
+
+These options distinguish several positions that a binary answer would
+collapse. “I do not think factual evidence alone could resolve my view” may be
+entirely coherent where the disagreement is principally moral. “I cannot
+presently identify anything” records a closed position without assigning a
+boastful motive to it.
+
+An optional short text field could capture an answer the categories miss, but
+free text brings additional privacy, safeguarding and retention obligations.
+The first implementation should use structured choices plus “Other” and should
+not expose the response to moderators unless it has been anonymised and grouped
+for research.
+
+After the quiz, the site could show the original response privately and ask:
+
+> Is that still an accurate account of what might lead you to reconsider?
+
+The participant could retain it, revise it or delete it. A further optional
+question could ask whether any fact affected their confidence, without asking
+which opinion the site wanted them to adopt.
+
+If retained, this record should:
+
+- belong to the participant and opinion question;
+- store the opinion position and knowledge weight at the time;
+- distinguish before-quiz and later reflections;
+- be visible and deletable by the participant;
+- be removed with the account;
+- have no effect on knowledge weight or question ordering;
+- never appear in the public individual record; and
+- be reported in aggregate only above the configured privacy threshold.
+
+The project should evaluate whether recording the answer changes how people
+respond. A private prompt may encourage useful forethought; a permanent record
+may instead make a participant defend what they wrote. It would therefore be
+sensible to compare a saved version with an unsaved reflection prompt before
+making retention the default.
+
 ### Confidence separate from position
 
 The five opinion choices describe direction and strength, but they do not fully
