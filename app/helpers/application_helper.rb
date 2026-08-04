@@ -62,6 +62,22 @@ module ApplicationHelper
     current_site.copy.fetch(key)
   end
 
+  def public_statistics_enabled?
+    FeatureFlags.public_statistics?
+  end
+
+  def signed_percentage(value)
+    number = number_with_precision(value, precision: 1, strip_insignificant_zeros: true)
+    "#{'+' if value.positive?}#{number}"
+  end
+
+  def privacy_safe_count(count, minimum: Rails.configuration.x.statistics.minimum_group_size)
+    return "0" if count.zero?
+    return "Fewer than #{minimum}" if count < minimum
+
+    number_with_delimiter(count)
+  end
+
   def site_canonical_url
     canonical_host = if current_site.alternative? && controller_path == "home"
       request.host

@@ -33,6 +33,10 @@ services:
         value: whatsyourview.info
       - key: ALTERNATE_SITE_ENABLED
         value: "true"
+      - key: PUBLIC_STATISTICS_ENABLED
+        value: "false"
+      - key: PUBLIC_STATISTICS_MINIMUM_GROUP_SIZE
+        value: "5"
       - key: MAILER_FROM
         value: Informed Opinion <accounts@informedopinion.info>
       - key: MAILER_REPLY_TO

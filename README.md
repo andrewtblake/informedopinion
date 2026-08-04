@@ -55,6 +55,13 @@ bin/brakeman --no-pager
 The test suite covers scoring from the latest response and the complete
 opinion → quiz → feedback → revision journey.
 
+## Feature flags
+
+The public statistics page is disabled by default. Set
+`PUBLIC_STATISTICS_ENABLED=true` to expose `/statistics` and its navigation
+links. `PUBLIC_STATISTICS_MINIMUM_GROUP_SIZE` controls the smallest published
+mind-change group and defaults to `5`.
+
 ## Domain model
 
 - `OpinionQuestion` owns the proposition and its five balanced responses.

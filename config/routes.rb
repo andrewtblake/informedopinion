@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get "methodology", to: "pages#methodology"
   get "privacy", to: "pages#privacy"
   get "terms", to: "pages#terms"
+  get "statistics", to: "public_statistics#show", as: :public_statistics
   resource :account, only: %i[show destroy] do
     patch :consent
   end

@@ -47,5 +47,8 @@ module InformedOpinion
     config.x.privacy.notice_version = "2026-08-01"
     config.x.privacy.contact_email = ENV.fetch("PRIVACY_CONTACT_EMAIL", "hello@informedopinion.info")
     config.x.privacy.operator_name = ENV.fetch("SITE_OPERATOR_NAME", "Informed Opinion")
+
+    config.x.statistics.minimum_group_size =
+      ENV.fetch("PUBLIC_STATISTICS_MINIMUM_GROUP_SIZE", 5).to_i.clamp(2, 100)
   end
 end

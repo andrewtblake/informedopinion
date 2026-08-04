@@ -157,6 +157,24 @@ body[data-site="what-do-you-think"] .dislike-form textarea { border-color: #aebd
 body[data-site="what-do-you-think"] .fact-contribution-panel { padding-inline: 21px; border: 1px solid var(--wdyt-line); border-radius: 10px; background: #fff; }
 body[data-site="what-do-you-think"] .contribution-button { color: #fff; border-color: var(--wdyt-blue); border-radius: 7px; background: var(--wdyt-blue); }
 
+/* Public statistics */
+body[data-site="what-do-you-think"] .statistics-masthead { padding: 29px 31px; border: 0; border-radius: 10px; color: #fff; background: linear-gradient(120deg, var(--wdyt-blue-dark), var(--wdyt-blue)); }
+body[data-site="what-do-you-think"] .statistics-masthead .editorial-kicker { color: var(--wdyt-yellow); }
+body[data-site="what-do-you-think"] .statistics-masthead h1 { color: #fff; }
+body[data-site="what-do-you-think"] .statistics-masthead > p:last-child { color: #e7f1ff; }
+body[data-site="what-do-you-think"] .statistics-section { border-top-color: var(--wdyt-line); }
+body[data-site="what-do-you-think"] .statistics-metric,
+body[data-site="what-do-you-think"] .transition-table-wrap,
+body[data-site="what-do-you-think"] .statistics-method-note { border-color: var(--wdyt-line); border-radius: 9px; background: #fff; box-shadow: 0 4px 15px rgba(31, 62, 101, .05); }
+body[data-site="what-do-you-think"] .statistics-metric strong,
+body[data-site="what-do-you-think"] .topic-statistics-row h3 a,
+body[data-site="what-do-you-think"] .statistics-method-note a { color: var(--wdyt-blue-dark); }
+body[data-site="what-do-you-think"] .transition-table thead th,
+body[data-site="what-do-you-think"] .transition-table tbody th { background: #f3f7fc; }
+body[data-site="what-do-you-think"] .transition-table td.has-count { background: var(--wdyt-blue-pale); }
+body[data-site="what-do-you-think"] .topic-statistics-list { border-top-color: var(--wdyt-blue); }
+body[data-site="what-do-you-think"] .topic-statistics-row { border-bottom-color: var(--wdyt-line); }
+
 /* Quiz: visually focused, but built from the same alternative-site system. */
 body[data-site="what-do-you-think"] .quiz-page { --accent: var(--wdyt-blue); padding: 35px 0 75px; background: linear-gradient(180deg, #eaf3ff 0, var(--wdyt-page) 280px); }
 body[data-site="what-do-you-think"] .quiz-container { width: min(850px, calc(100% - 40px)); }

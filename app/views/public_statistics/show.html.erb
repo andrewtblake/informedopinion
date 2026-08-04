@@ -1,0 +1,121 @@
+<% content_for :title, "Statistics — Informed Opinion" %>
+
+<section class="statistics-page ui-page">
+  <div class="container">
+    <header class="statistics-masthead ui-masthead">
+      <p class="editorial-kicker ui-kicker">Public record</p>
+      <h1>Statistics</h1>
+      <p><%= site_copy(:statistics_intro) %></p>
+    </header>
+
+    <section class="statistics-overview" aria-labelledby="participation-heading">
+      <div class="statistics-section-heading">
+        <div>
+          <p class="editorial-kicker">Participation</p>
+          <h2 id="participation-heading">Participation so far</h2>
+        </div>
+      </div>
+      <div class="statistics-metric-grid">
+        <article class="statistics-metric ui-panel">
+          <strong><%= number_with_delimiter(@statistics.participants) %></strong>
+          <span>participants with a published-topic opinion</span>
+        </article>
+        <article class="statistics-metric ui-panel">
+          <strong><%= number_with_delimiter(@statistics.registered_opinions) %></strong>
+          <span>registered opinions</span>
+        </article>
+        <article class="statistics-metric ui-panel">
+          <strong><%= number_with_delimiter(@statistics.informed_opinions) %></strong>
+          <span>opinions carrying knowledge weight</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="statistics-section" aria-labelledby="change-heading">
+      <div class="statistics-section-heading">
+        <div>
+          <p class="editorial-kicker">Recorded revisions</p>
+          <h2 id="change-heading">Changes of opinion</h2>
+        </div>
+        <p>History begins when opinion tracking was introduced. Earlier changes cannot be reconstructed.</p>
+      </div>
+
+      <div class="statistics-metric-grid statistics-change-metrics">
+        <article class="statistics-metric ui-panel">
+          <strong><%= privacy_safe_count(@statistics.people_who_changed) %></strong>
+          <span>people who have changed at least one opinion</span>
+        </article>
+        <article class="statistics-metric ui-panel">
+          <strong><%= privacy_safe_count(@statistics.opinions_changed) %></strong>
+          <span>topic opinions changed</span>
+        </article>
+        <article class="statistics-metric ui-panel">
+          <strong><%= privacy_safe_count(@statistics.side_crossings) %></strong>
+          <span>revisions crossing from agreement to disagreement, or back</span>
+        </article>
+      </div>
+
+      <div class="transition-table-wrap ui-panel">
+        <h3>From one response to another</h3>
+        <p>Small groups are hidden until at least <%= @statistics.minimum_group_size %> revisions share the same transition.</p>
+        <div class="table-scroll">
+          <table class="transition-table">
+            <thead>
+              <tr>
+                <th scope="col">From \ To</th>
+                <% @response_labels.each do |label| %><th scope="col"><%= label %></th><% end %>
+              </tr>
+            </thead>
+            <tbody>
+              <% @response_labels.each_with_index do |from_label, from_position| %>
+                <tr>
+                  <th scope="row"><%= from_label %></th>
+                  <% @response_labels.each_index do |to_position| %>
+                    <% count = @statistics.transition_counts.fetch([from_position, to_position], 0) %>
+                    <td class="<%= "has-count" if count >= @statistics.minimum_group_size %>">
+                      <%= count >= @statistics.minimum_group_size ? number_with_delimiter(count) : "—" %>
+                    </td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="statistics-section" aria-labelledby="topic-statistics-heading">
+      <div class="statistics-section-heading">
+        <div>
+          <p class="editorial-kicker">Published questions</p>
+          <h2 id="topic-statistics-heading">Results by topic</h2>
+        </div>
+        <p>The unweighted figure treats every registered response equally. The informed figure weights each response by its topic-specific fact score.</p>
+      </div>
+
+      <div class="topic-statistics-list">
+        <% @statistics.topic_results.each do |result| %>
+          <article class="topic-statistics-row">
+            <div>
+              <h3><%= link_to result.question.title, opinion_question_path(result.question) %></h3>
+              <p><%= result.question.statement %></p>
+            </div>
+            <dl>
+              <div><dt>Participants</dt><dd><%= result.collective.respondents %></dd></div>
+              <div><dt>Carrying weight</dt><dd><%= result.collective.informed_respondents %></dd></div>
+              <div><dt>Unweighted</dt><dd><%= result.unweighted_score ? signed_percentage(result.unweighted_score) : "—" %></dd></div>
+              <div><dt>Informed</dt><dd><%= result.collective.score_percentage ? signed_percentage(result.collective.score_percentage) : "—" %></dd></div>
+              <div><dt>Changed opinions</dt><dd><%= privacy_safe_count(result.changed_opinions) %></dd></div>
+            </dl>
+          </article>
+        <% end %>
+      </div>
+    </section>
+
+    <aside class="statistics-method-note ui-panel">
+      <h2>How to read these figures</h2>
+      <p>Positive opinion scores point toward agreement and negative scores toward disagreement; zero is neutral. Counts concern published questions only. Imported baseline records establish a starting point and are not counted as changes.</p>
+      <%= link_to "Read the full methodology", methodology_path %>
+    </aside>
+  </div>
+</section>
