@@ -103,7 +103,7 @@ module InformedOpinionMcp
     def tool(server, name, description, properties, required: [], read_only: false, &block)
       server.define_tool(name: name, description: description,
         input_schema: { type: "object", properties: properties, required: required },
-        annotations: { read_only_hint: read_only }) do |args, server_context:|
+        annotations: { read_only_hint: read_only }) do |server_context: nil, **args|
         result = block.call(args)
         MCP::Tool::Response.new([ { type: "text", text: JSON.pretty_generate(result) } ])
       rescue StandardError => error

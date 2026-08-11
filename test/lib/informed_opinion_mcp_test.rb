@@ -24,4 +24,18 @@ class InformedOpinionMcpTest < ActiveSupport::TestCase
     assert_includes required, "specialist_knowledge"
     assert_includes required, "answerability"
   end
+
+  test "tool handlers accept keyword arguments from the MCP server" do
+    received = nil
+    server = MCP::Server.new(name: "test", version: "1")
+    InformedOpinionMcp.send(:tool, server, "example", "Example", {}) do |args|
+      received = args
+      { "ok" => true }
+    end
+
+    response = server.tools.fetch("example").call(status: "pending", server_context: nil)
+
+    assert_instance_of MCP::Tool::Response, response
+    assert_equal({ status: "pending" }, received)
+  end
 end
