@@ -105,6 +105,7 @@ h1, h2, h3 {
 .editorial-kicker, .editorial-section-label { margin-bottom: 8px; color: #536462; font-size: 11px; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
 .editorial-masthead h1 { margin-bottom: 10px; font: 700 clamp(42px, 6vw, 66px)/1.02 Inter, "Avenir Next", "Segoe UI", sans-serif; letter-spacing: -.045em; }
 .editorial-masthead > p:last-child { max-width: 760px; margin: 0; color: #52615f; font: 18px/1.55 Inter, "Avenir Next", "Segoe UI", sans-serif; }
+.editorial-home .editorial-masthead > p:last-child { max-width: none; }
 .topic-search { margin: 26px 0 42px; padding-bottom: 26px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid #bdc5c1; }
 .catalogue-search-field { position: relative; min-width: 240px; flex: 1 1 auto; }
 .catalogue-order-field { flex: 0 1 310px; display: flex; align-items: center; gap: 10px; }
