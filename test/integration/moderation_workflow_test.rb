@@ -187,6 +187,16 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
 
   test "moderator corrects a fact and resolves its report" do
     flag = create_flag(:inaccurate)
+    @fact.update!(correct_option: 2)
+    response = @participant.fact_responses.create!(
+      fact_question: @fact,
+      selected_option: 0,
+      attempt_count: 1,
+      weight_before: 0,
+      weight_after: 0,
+      answered_at: Time.current
+    )
+    refute response.correct?
     sign_in @moderator, scope: :user
 
     patch moderator_fact_question_flag_path(flag), params: {
@@ -210,6 +220,7 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_equal "Is the corrected fact question clear?", @fact.reload.prompt
     assert_equal "Corrected source", @fact.source_name
     assert_nil @fact.withdrawn_at
+    assert response.reload.correct?
   end
 
   test "moderator withdraws a fact and resolves its report" do

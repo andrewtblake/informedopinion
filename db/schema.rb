@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_12_090000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_12_170000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"

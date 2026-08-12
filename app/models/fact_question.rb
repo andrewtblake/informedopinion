@@ -47,6 +47,7 @@ class FactQuestion < ApplicationRecord
   validates :evidence_direction, inclusion: { in: DIRECTIONS }
   validate :correct_option_is_available
   validate :options_are_present_and_distinct
+  after_update :recalculate_response_correctness, if: :saved_change_to_correct_option?
 
   scope :published, -> { where(withdrawn_at: nil) }
 
@@ -75,6 +76,11 @@ class FactQuestion < ApplicationRecord
   end
 
   private
+
+  def recalculate_response_correctness
+    fact_responses.where(selected_option: correct_option).update_all(correct: true)
+    fact_responses.where.not(selected_option: correct_option).update_all(correct: false)
+  end
 
   def correct_option_is_available
     return if correct_option.blank? || correct_option < options.length
