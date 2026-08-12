@@ -6,7 +6,7 @@ class User < ApplicationRecord
   enum :role, { participant: 0, moderator: 1 }
 
   devise :database_authenticatable, :registerable,
-    :recoverable, :rememberable, :validatable
+    :confirmable, :recoverable, :rememberable, :validatable
 
   has_many :user_opinions, dependent: :destroy
   has_many :opinion_questions, through: :user_opinions
@@ -63,6 +63,22 @@ class User < ApplicationRecord
       terms_accepted_at: Time.current,
       special_category_consent_at: Time.current,
       privacy_notice_version: Rails.configuration.x.privacy.notice_version
+    )
+  end
+
+  def send_confirmation_instructions
+    generate_confirmation_token! unless @raw_confirmation_token
+    site = SiteIdentity.fetch(Current.site_key)
+    options = pending_reconfirmation? ? { to: unconfirmed_email } : {}
+    options.merge!(
+      site_key: site.key,
+      site_name: site.name,
+      site_url_options: Current.site_url_options
+    )
+    send_devise_notification(
+      :confirmation_instructions,
+      @raw_confirmation_token,
+      options
     )
   end
 

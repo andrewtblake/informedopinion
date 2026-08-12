@@ -32,6 +32,7 @@
           <% end %>
           <%= f.submit "Sign in", class: "button button-primary" %>
         <% end %>
+        <p class="account-back-link"><%= link_to "Didn't receive a verification email?", new_user_confirmation_path %></p>
       </div>
 
       <aside class="account-note">

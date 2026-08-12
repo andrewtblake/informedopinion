@@ -1,0 +1,21 @@
+<% content_for :title, "Resend verification email — #{current_site.name}" %>
+
+<section class="account-page ui-page">
+  <div class="container account-container account-container-narrow">
+    <header class="account-masthead ui-masthead">
+      <p class="editorial-kicker">Account</p>
+      <h1>Resend verification email</h1>
+      <p>Enter the address you used to create your account.</p>
+    </header>
+    <div class="account-form-panel">
+      <%= render "devise/shared/errors", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "account-form" }) do |form| %>
+        <div class="field">
+          <%= form.label :email %>
+          <%= form.email_field :email, autofocus: true, autocomplete: "email", required: true %>
+        </div>
+        <%= form.submit "Send verification email", class: "button button-primary" %>
+      <% end %>
+    </div>
+  </div>
+</section>

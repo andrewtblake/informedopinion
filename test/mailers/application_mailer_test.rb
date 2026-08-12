@@ -30,6 +30,21 @@ class ApplicationMailerTest < ActionMailer::TestCase
     assert_equal [ "hello@informedopinion.info" ], mail.reply_to
   end
 
+  test "confirmation email uses the requested identity and host" do
+    user = User.new(first_name: "New", last_name: "Participant", email: "new@example.test")
+    mail = DeviseMailer.confirmation_instructions(
+      user,
+      "confirmation-token",
+      site_key: :what_do_you_think,
+      site_url_options: { host: "whatsyourview.info", protocol: "https" }
+    )
+
+    assert_equal "What's Your View? confirm your email", mail.subject
+    assert_equal [ "What's Your View?" ], mail[:from].display_names
+    assert_includes mail.text_part.body.decoded,
+      "https://whatsyourview.info/users/confirmation?confirmation_token=confirmation-token"
+  end
+
   test "alternative password recovery uses its own identity and reply address" do
     user = create_user!(
       first_name: "Alternative",

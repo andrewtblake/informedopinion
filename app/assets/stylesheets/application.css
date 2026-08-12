@@ -774,6 +774,11 @@ body[data-site="informed-opinion"] :where(a, button, input, select, textarea, su
 .label-line { display: flex; justify-content: space-between; font-size: 12px; }
 .check-field { display: flex; gap: 9px; color: var(--muted); font-size: 13px; }
 .account-form .button { width: auto; justify-self: start; border-radius: 2px; box-shadow: none; }
+.confirmation-waiting h2 { margin-bottom: 10px; }
+.confirmation-waiting > p { color: var(--muted); }
+.confirmation-resend { margin-top: 25px; padding-top: 18px; border-top: 1px solid var(--ui-border); }
+.confirmation-resend > summary { font-weight: 750; cursor: pointer; }
+.confirmation-resend .account-form { margin-top: 18px; }
 .account-note { padding-top: 13px; border-top: 1px solid #263536; }
 .account-note h2 { margin-bottom: 11px; font-size: 19px; }
 .account-note ul { margin: 0; padding: 0; list-style: none; }

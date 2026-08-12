@@ -7,6 +7,8 @@ Devise.setup do |config|
   config.skip_session_storage = [ :http_auth ]
   config.stretches = Rails.env.test? ? 1 : 12
   config.reconfirmable = true
+  config.confirm_within = 3.days
+  config.allow_unconfirmed_access_for = 0.days
   config.expire_all_remember_me_on_sign_out = true
   config.paranoid = true
   config.password_length = 8..128

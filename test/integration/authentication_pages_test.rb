@@ -10,6 +10,7 @@ class AuthenticationPagesTest < ActionDispatch::IntegrationTest
     assert_select "form.account-form"
     assert_select "input[type=email][autocomplete=email]"
     assert_select "input[type=password][autocomplete=current-password]"
+    assert_select "a[href='#{new_user_confirmation_path}']", text: /verification email/
     assert_select ".account-note h2", "What is retained"
     assert_select ".auth-intro", count: 0
     assert_not_includes response.body, "270 sourced facts"

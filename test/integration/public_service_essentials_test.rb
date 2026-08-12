@@ -62,7 +62,8 @@ class PublicServiceEssentialsTest < ActionDispatch::IntegrationTest
       first_name: "Existing",
       last_name: "Participant",
       email: "existing@example.com",
-      password: "password123"
+      password: "password123",
+      confirmed_at: Time.current
     )
     sign_in user, scope: :user
 

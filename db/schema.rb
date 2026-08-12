@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_04_090000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_12_090000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -434,6 +434,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_090000) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.datetime "confirmation_sent_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
     t.datetime "created_at", null: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -446,7 +449,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_04_090000) do
     t.integer "role", default: 0, null: false
     t.datetime "special_category_consent_at"
     t.datetime "terms_accepted_at"
+    t.string "unconfirmed_email"
     t.datetime "updated_at", null: false
+    t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["role"], name: "index_users_on_role"

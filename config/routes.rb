@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    confirmations: "users/confirmations"
+  }
+  get "users/confirmation/pending", to: "users/confirmation_status#show", as: :pending_user_confirmation
+  get "users/confirmation/status", to: "users/confirmation_status#status", as: :user_confirmation_status
 
   root "home#index"
   get "help", to: "pages#help"

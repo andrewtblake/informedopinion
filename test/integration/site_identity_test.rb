@@ -120,7 +120,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
 
   test "alternative account uses plain but precise consent language" do
     participant = User.create!(first_name: "Account", last_name: "Holder",
-      email: "alternative-account@example.test", password: "password123")
+      email: "alternative-account@example.test", password: "password123", confirmed_at: Time.current)
     sign_in participant, scope: :user
     host! "whatsyourview.localhost"
 

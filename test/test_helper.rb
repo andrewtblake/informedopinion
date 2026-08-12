@@ -13,6 +13,7 @@ module ActiveSupport
     def create_user!(attributes)
       accepted_at = Time.current
       User.create!({
+        confirmed_at: accepted_at,
         terms_accepted_at: accepted_at,
         special_category_consent_at: accepted_at,
         privacy_notice_version: Rails.configuration.x.privacy.notice_version
