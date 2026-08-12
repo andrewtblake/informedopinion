@@ -52,7 +52,7 @@
           <% end %>
         </ol>
         <p><strong>Explanation:</strong> <%= glossary_text(fact.explanation) %></p>
-        <p><%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></p>
+        <p><%= link_to "#{fact.source_name} (opens in a new tab)", fact.source_url, target: "_blank", rel: "noopener" %></p>
 
         <div class="calibration-ai-assessment">
           <section>

@@ -9,40 +9,40 @@
     </header>
 
     <div class="account-layout">
-      <main class="account-form-panel">
+      <div class="account-form-panel">
         <p class="account-switch">Already registered? <%= link_to "Sign in", new_user_session_path %></p>
         <%= render "devise/shared/errors", resource: resource %>
 
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "account-form" }) do |f| %>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "account-form", aria: ({ describedby: "form-errors" } if resource.errors.any?) }) do |f| %>
           <div class="account-field-row">
             <div class="field">
               <%= f.label :first_name %>
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", required: true %>
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "given-name", required: true, aria: { invalid: resource.errors[:first_name].any? } %>
             </div>
             <div class="field">
               <%= f.label :last_name %>
-              <%= f.text_field :last_name, autocomplete: "family-name", required: true %>
+              <%= f.text_field :last_name, autocomplete: "family-name", required: true, aria: { invalid: resource.errors[:last_name].any? } %>
             </div>
           </div>
           <div class="field">
             <%= f.label :email %>
-            <%= f.email_field :email, autocomplete: "email", required: true %>
+            <%= f.email_field :email, autocomplete: "email", required: true, aria: { invalid: resource.errors[:email].any? } %>
           </div>
           <div class="field">
             <%= f.label :password %>
-            <%= f.password_field :password, autocomplete: "new-password", required: true, minlength: 8 %>
+            <%= f.password_field :password, autocomplete: "new-password", required: true, minlength: 8, aria: { invalid: resource.errors[:password].any? } %>
             <small>At least 8 characters</small>
           </div>
           <div class="field">
             <%= f.label :password_confirmation, "Confirm password" %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, aria: { invalid: resource.errors[:password_confirmation].any? } %>
           </div>
           <div class="account-consents ui-panel">
             <div class="account-consent-choice">
               <%= f.check_box :accept_terms, required: true %>
               <%= f.label :accept_terms do %>
-                I have read and agree to the <%= link_to "participation terms", terms_path, target: "_blank", rel: "noopener" %>
-                and have read the <%= link_to "privacy notice", privacy_path, target: "_blank", rel: "noopener" %>.
+                I have read and agree to the <%= link_to "participation terms (opens in a new tab)", terms_path, target: "_blank", rel: "noopener" %>
+                and have read the <%= link_to "privacy notice (opens in a new tab)", privacy_path, target: "_blank", rel: "noopener" %>.
               <% end %>
             </div>
             <div class="account-consent-choice">
@@ -54,7 +54,7 @@
           </div>
           <%= f.submit "Create account", class: "button button-primary" %>
         <% end %>
-      </main>
+      </div>
 
       <aside class="account-note">
         <p class="editorial-section-label">Participation</p>

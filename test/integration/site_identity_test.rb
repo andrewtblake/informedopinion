@@ -7,8 +7,14 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
       get root_path
 
       assert_response :success
+      assert_select "html[lang='en']", count: 1
       assert_select "body[data-site='informed-opinion']"
+      assert_select "a.skip-link[href='#main-content']", text: "Skip to main content"
+      assert_select "main#main-content[tabindex='-1']", count: 1
+      assert_select "main#main-content main", count: 0
+      assert_select "nav.site-nav[aria-label='Primary']", count: 1
       assert_select ".brand > span:last-child", text: "Informed Opinion"
+      assert_select ".site-footer .brand-mark[aria-hidden='true']", count: 1
       assert_select "meta[name='application-name'][content='Informed Opinion']", count: 1
       assert_select "link[rel='icon'][href='/icon.svg']", count: 1
       assert_not_includes response.body, "/assets/what_do_you_think-"

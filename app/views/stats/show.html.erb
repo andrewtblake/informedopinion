@@ -66,7 +66,7 @@
               </p>
 
               <p class="compact-result-numbers">
-                <strong><%= number_with_precision(progress.weight, precision: 1, strip_insignificant_zeros: true) %>% weight</strong>
+                <strong><%= whole_percentage(progress.weight) %>% weight</strong>
                 <span><%= progress.correct %>/<%= progress.answered %> correct · <%= progress.remaining %> unseen</span>
               </p>
 
@@ -83,27 +83,41 @@
               class="personal-choice-dial compact-choice-dial"
               viewBox="0 0 400 225"
               role="img"
-              aria-label="Your opinion: <%= opinion.label %>; weight <%= progress.weight %>%"
+              aria-label="Your opinion: <%= opinion.label %>; weight <%= whole_percentage(progress.weight) %>%"
             >
+              <title><%= opinion.label %>: <%= whole_percentage(progress.weight) %>% weight</title>
               <defs>
                 <marker id="arrowhead-<%= question.id %>" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
                   <path d="M0,0 L0,6 L6,3 z" class="personal-arrow-head"></path>
                 </marker>
+                <% unless current_site.alternative? %>
+                  <linearGradient id="opinion-arc-<%= question.id %>" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" class="personal-dial-stop-no"></stop>
+                    <stop offset="50%" class="personal-dial-stop-neutral"></stop>
+                    <stop offset="100%" class="personal-dial-stop-yes"></stop>
+                  </linearGradient>
+                <% end %>
               </defs>
 
-              <% [
-                [ 35, 25, 167, 158 ],
-                [ 70, 50, 134, 146 ],
-                [ 105, 75, 101, 134 ]
-              ].each do |radius, percentage, label_x, label_y| %>
-                <path
-                  d="M<%= 200 - radius %> 170 A<%= radius %> <%= radius %> 0 0 1 <%= 200 + radius %> 170"
-                  class="personal-weight-guide"
-                ></path>
-                <text x="<%= label_x %>" y="<%= label_y %>" class="personal-weight-guide-label"><%= percentage %>%</text>
+              <% if current_site.alternative? %>
+                <% [
+                  [ 35, 25, 167, 158 ],
+                  [ 70, 50, 134, 146 ],
+                  [ 105, 75, 101, 134 ]
+                ].each do |radius, percentage, label_x, label_y| %>
+                  <path
+                    d="M<%= 200 - radius %> 170 A<%= radius %> <%= radius %> 0 0 1 <%= 200 + radius %> 170"
+                    class="personal-weight-guide"
+                  ></path>
+                  <text x="<%= label_x %>" y="<%= label_y %>" class="personal-weight-guide-label"><%= percentage %>%</text>
+                <% end %>
               <% end %>
 
-              <path d="M55 170 A145 145 0 0 1 345 170" class="personal-dial-arc"></path>
+              <path
+                d="M55 170 A145 145 0 0 1 345 170"
+                class="personal-dial-arc"
+                <% unless current_site.alternative? %>style="stroke: url(#opinion-arc-<%= question.id %>)"<% end %>
+              ></path>
 
               <% if progress.weight.positive? %>
                 <line
@@ -115,8 +129,10 @@
                   marker-end="url(#arrowhead-<%= question.id %>)"
                 ></line>
               <% end %>
-              <circle cx="200" cy="170" r="7" class="personal-dial-hub"></circle>
-              <circle cx="200" cy="170" r="2.5" class="personal-dial-hub-centre"></circle>
+              <% if current_site.alternative? %>
+                <circle cx="200" cy="170" r="7" class="personal-dial-hub"></circle>
+                <circle cx="200" cy="170" r="2.5" class="personal-dial-hub-centre"></circle>
+              <% end %>
             </svg>
           </div>
         </article>

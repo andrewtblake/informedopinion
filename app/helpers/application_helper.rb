@@ -71,6 +71,10 @@ module ApplicationHelper
     "#{'+' if value.positive?}#{number}"
   end
 
+  def whole_percentage(value)
+    number_with_precision(value, precision: 0)
+  end
+
   def privacy_safe_count(count, minimum: Rails.configuration.x.statistics.minimum_group_size)
     return "0" if count.zero?
     return "Fewer than #{minimum}" if count < minimum

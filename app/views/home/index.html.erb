@@ -34,7 +34,7 @@
     <% end %>
 
     <div class="editorial-layout">
-      <main class="question-index">
+      <div class="question-index">
         <header class="question-index-heading">
           <div>
             <p class="editorial-section-label">
@@ -105,7 +105,7 @@
 
               <footer class="editorial-topic-footer">
                 <% if opinion %>
-                  <p>Your position: <strong><%= opinion.label %></strong> · <%= progress.weight %>% weight</p>
+                  <p>Your position: <strong><%= opinion.label %></strong> · <%= whole_percentage(progress.weight) %>% weight</p>
                   <%= link_to "Continue knowledge check", opinion_question_quiz_path(question) %>
                 <% else %>
                   <p><%= question.published_fact_questions.length %> sourced fact questions</p>
@@ -139,7 +139,7 @@
             <% end %>
           </nav>
         <% end %>
-      </main>
+      </div>
 
       <aside class="editorial-sidebar" aria-label="Browse opinion questions">
         <section>

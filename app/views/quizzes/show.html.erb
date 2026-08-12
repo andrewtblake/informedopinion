@@ -9,7 +9,7 @@
       </div>
       <div class="quiz-weight">
         <span>Opinion weight</span>
-        <strong><%= number_with_precision(@progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+        <strong><%= whole_percentage(@progress.weight) %>%</strong>
       </div>
     </div>
 
@@ -47,7 +47,7 @@
             <p><%= glossary_text(@fact_question.explanation) %></p>
           </div>
           <%= link_to @fact_question.source_url, target: "_blank", rel: "noopener", class: "source-link" do %>
-            Read the source: <%= @fact_question.source_name %> <span aria-hidden="true">↗</span>
+            Read the source: <%= @fact_question.source_name %> <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
           <% end %>
           <%= link_to "Report this fact question",
             new_fact_question_flag_path(fact_question_id: @fact_question.id),

@@ -59,7 +59,7 @@
           <p><%= @progress.correct %> correct from <%= @progress.total %> available facts</p>
         </div>
         <div class="weight-ring" style="--weight: <%= @progress.weight %>">
-          <strong><%= number_with_precision(@progress.weight, precision: 1, strip_insignificant_zeros: true) %>%</strong>
+          <strong><%= whole_percentage(@progress.weight) %>%</strong>
           <span>weight</span>
         </div>
       </div>
@@ -83,6 +83,7 @@
               opinion_question_reaction_path(@opinion_question),
               method: :post,
               params: { opinion_question_reaction: { kind: "like" } },
+              aria: { pressed: @reaction&.like? ? "true" : "false" },
               class: "reaction-like ui-button #{'is-active' if @reaction&.like?}" %>
           </div>
           <%= form_with url: opinion_question_reaction_path(@opinion_question), method: :post, class: "dislike-form" do |form| %>
@@ -94,7 +95,9 @@
               rows: 2,
               required: true,
               placeholder: "What makes the question unsuitable or poorly framed?" %>
-            <%= form.submit "Dislike", class: "reaction-dislike ui-button #{'is-active' if @reaction&.dislike?}" %>
+            <%= form.submit "Dislike",
+              aria: { pressed: @reaction&.dislike? ? "true" : "false" },
+              class: "reaction-dislike ui-button #{'is-active' if @reaction&.dislike?}" %>
           <% end %>
           <% if @reaction %>
             <%= button_to "Remove response",

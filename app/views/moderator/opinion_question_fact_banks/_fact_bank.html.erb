@@ -14,7 +14,7 @@
     <% question.published_fact_questions.each do |fact| %>
       <li>
         <span><%= glossary_text(fact.prompt) %></span>
-        <small><%= fact.importance_label %> · <%= fact.valence_label %> · Specialist knowledge: <%= fact.specialist_knowledge ? "#{fact.specialist_knowledge_label} (#{fact.specialist_knowledge})" : "Not assessed" %> · Answerability: <%= fact.answerability.nil? ? "Not assessed" : "#{fact.answerability_label} (#{fact.answerability})" %> · <%= link_to fact.source_name, fact.source_url, target: "_blank", rel: "noopener" %></small>
+        <small><%= fact.importance_label %> · <%= fact.valence_label %> · Specialist knowledge: <%= fact.specialist_knowledge ? "#{fact.specialist_knowledge_label} (#{fact.specialist_knowledge})" : "Not assessed" %> · Answerability: <%= fact.answerability.nil? ? "Not assessed" : "#{fact.answerability_label} (#{fact.answerability})" %> · <%= link_to "#{fact.source_name} (opens in a new tab)", fact.source_url, target: "_blank", rel: "noopener" %></small>
         <ol class="fact-bank-options" type="A">
           <% fact.options.each_with_index do |option, index| %>
             <li class="<%= "correct" if index == fact.correct_option %>">

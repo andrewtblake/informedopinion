@@ -40,6 +40,8 @@ class PublicStatisticsTest < ActionDispatch::IntegrationTest
       assert_select ".statistics-metric", text: /Fewer than 5.*people who have changed/m
       assert_select ".statistics-metric", text: /Fewer than 5.*revisions crossing/m
       assert_select ".transition-table", text: /Small groups/, count: 0
+      assert_select ".table-scroll[tabindex='0'][role='region'] .transition-table caption",
+        text: "Recorded changes from one response to another"
       assert_select ".topic-statistics-row", text: /Public statistics test.*Participants.*2.*Unweighted.*-100/m
       assert_select "a[href='#{public_statistics_path}']", minimum: 1
     end

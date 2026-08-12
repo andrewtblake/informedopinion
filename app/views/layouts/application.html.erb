@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title><%= site_page_title(content_for(:title)) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -31,13 +31,14 @@
   </head>
 
   <body data-site="<%= current_site.key.to_s.dasherize %>"<% if user_signed_in? && current_user.moderator? %> data-controller="moderation-heartbeat" data-moderation-heartbeat-heartbeat-url-value="<%= moderator_heartbeat_path %>" data-moderation-heartbeat-mark-url-value="<%= moderator_moderation_views_path %>" data-moderation-heartbeat-moderation-url-value="<%= moderator_root_path %>"<% end %>>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="site-header">
       <div class="container header-inner">
         <%= link_to root_path, class: "brand", aria: { label: "#{current_site.name} home" } do %>
           <span class="brand-mark" aria-hidden="true"><%= current_site.short_mark %></span>
           <span><%= current_site.name %></span>
         <% end %>
-        <nav class="site-nav" aria-label="Account">
+        <nav class="site-nav" aria-label="Primary">
           <% if public_statistics_enabled? %>
             <%= link_to "Statistics", public_statistics_path, class: "nav-link" %>
           <% end %>
@@ -63,17 +64,17 @@
     </header>
 
     <% if notice.present? || alert.present? %>
-      <div class="container flash-wrap" aria-live="polite">
-        <% if notice.present? %><div class="flash flash-notice"><%= notice %></div><% end %>
-        <% if alert.present? %><div class="flash flash-alert"><%= alert %></div><% end %>
+      <div class="container flash-wrap">
+        <% if notice.present? %><div class="flash flash-notice" role="status"><%= notice %></div><% end %>
+        <% if alert.present? %><div class="flash flash-alert" role="alert"><%= alert %></div><% end %>
       </div>
     <% end %>
 
-    <main><%= yield %></main>
+    <main id="main-content" tabindex="-1"><%= yield %></main>
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <p><span class="brand-mark brand-mark-small"><%= current_site.short_mark %></span> <%= site_copy(:footer_tagline) %></p>
+        <p><span class="brand-mark brand-mark-small" aria-hidden="true"><%= current_site.short_mark %></span> <%= site_copy(:footer_tagline) %></p>
         <p class="footer-links">
           <%= link_to "How it works", help_path %>
           <span>·</span>

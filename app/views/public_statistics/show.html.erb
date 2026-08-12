@@ -57,8 +57,9 @@
       <div class="transition-table-wrap ui-panel">
         <h3>From one response to another</h3>
         <p>Small groups are hidden until at least <%= @statistics.minimum_group_size %> revisions share the same transition.</p>
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Opinion response transition table; scroll horizontally to see all columns">
           <table class="transition-table">
+            <caption>Recorded changes from one response to another</caption>
             <thead>
               <tr>
                 <th scope="col">From \ To</th>

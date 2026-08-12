@@ -9,7 +9,7 @@
     </header>
 
     <div class="account-layout">
-      <main class="account-form-panel">
+      <div class="account-form-panel">
         <p class="account-switch">New to <%= current_site.name %>? <%= link_to site_copy(:create_account), new_user_registration_path %></p>
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "account-form" }) do |f| %>
@@ -32,7 +32,7 @@
           <% end %>
           <%= f.submit "Sign in", class: "button button-primary" %>
         <% end %>
-      </main>
+      </div>
 
       <aside class="account-note">
         <p class="editorial-section-label">Your account</p>

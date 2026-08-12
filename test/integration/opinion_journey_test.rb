@@ -46,7 +46,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_redirected_to opinion_question_quiz_path(@topic)
 
     get root_path
-    assert_select ".editorial-topic-footer", text: /Your position:.*Agree.*0.0% weight/m
+    assert_select ".editorial-topic-footer", text: /Your position:.*Agree.*0% weight/m
     assert_select ".editorial-topic-footer a[href='#{opinion_question_quiz_path(@topic)}']",
       text: "Continue knowledge check"
 
@@ -81,7 +81,7 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select ".quiz-progress", text: /unweighted score 100%/
     assert_select ".fact-importance", text: /Importance: Supporting \(1 of 3\)/
     assert_not_includes response.body, @fact.importance_rationale
-    assert_select "a[href='https://example.com/evidence']"
+    assert_select "a[href='https://example.com/evidence']", text: /opens in a new tab/
 
     patch opinion_question_user_opinion_path(@topic),
       params: { user_opinion: { position: 3 } }

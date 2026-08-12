@@ -59,11 +59,16 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     assert_select ".opinions-tools select[name='sort'] option", count: 4
     assert_select ".opinion-card", count: 1, text: /Stats test.*Agree.*50% weight.*1\/1 correct.*1 unseen/m
     assert_select ".compact-choice-dial", count: 1
+    assert_select ".compact-choice-dial title", text: "Agree: 50% weight"
     assert_select ".personal-dial-arc", count: 1
-    assert_select ".personal-weight-guide", count: 3
-    %w[25% 50% 75%].each do |label|
-      assert_select ".personal-weight-guide-label", text: label
-    end
+    assert_select ".personal-dial-arc[style^='stroke: url(#opinion-arc-']", count: 1
+    assert_select ".personal-dial-stop-no", count: 1
+    assert_select ".personal-dial-stop-neutral", count: 1
+    assert_select ".personal-dial-stop-yes", count: 1
+    assert_select ".personal-weight-guide", count: 0
+    assert_select ".personal-weight-guide-label", count: 0
+    assert_select ".personal-dial-hub", count: 0
+    assert_select ".personal-dial-hub-centre", count: 0
     assert_select ".personal-choice-dial line[x2='249.5'][y2='120.5']"
     assert_select ".personal-card-actions a[href='#{opinion_question_quiz_path(@topic)}']", text: "Resume quiz"
     assert_select ".personal-card-actions a[href='#{opinion_question_path(@topic)}']", text: "Revise opinion"

@@ -8,20 +8,20 @@
       <p>Use at least eight characters.</p>
     </header>
 
-    <main class="account-form-panel">
+    <div class="account-form-panel">
       <%= render "devise/shared/errors", resource: resource %>
-      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "account-form" }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "account-form", aria: ({ describedby: "form-errors" } if resource.errors.any?) }) do |f| %>
         <%= f.hidden_field :reset_password_token %>
         <div class="field">
           <%= f.label :password, "New password" %>
-          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, minlength: 8 %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password", required: true, minlength: 8, aria: { invalid: resource.errors[:password].any? } %>
         </div>
         <div class="field">
           <%= f.label :password_confirmation, "Confirm new password" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, aria: { invalid: resource.errors[:password_confirmation].any? } %>
         </div>
         <%= f.submit "Change password", class: "button button-primary" %>
       <% end %>
-    </main>
+    </div>
   </div>
 </section>

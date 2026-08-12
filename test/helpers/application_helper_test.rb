@@ -1,6 +1,11 @@
 require "test_helper"
 
 class ApplicationHelperTest < ActionView::TestCase
+  test "knowledge weights are displayed as whole percentages" do
+    assert_equal "33%", "#{whole_percentage(33.333)}%"
+    assert_equal "67%", "#{whole_percentage(66.667)}%"
+  end
+
   test "organisation initialisms receive accessible definitions" do
     rendered = glossary_text("The ICC considered evidence cited by the OECD.")
     fragment = Nokogiri::HTML.fragment(rendered)

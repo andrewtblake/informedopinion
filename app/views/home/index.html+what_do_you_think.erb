@@ -85,7 +85,7 @@
               </div>
               <footer>
                 <% if opinion %>
-                  <p>Your view: <strong><%= opinion.label %></strong> <span><%= progress.weight %>% weight</span></p>
+                  <p>Your view: <strong><%= opinion.label %></strong> <span><%= whole_percentage(progress.weight) %>% weight</span></p>
                   <%= link_to "Continue with the facts", opinion_question_quiz_path(question), class: "wdyt-card-action" %>
                 <% else %>
                   <p><%= question.published_fact_questions.length %> sourced fact questions</p>
