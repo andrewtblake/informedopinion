@@ -9,6 +9,7 @@ class HelpPageTest < ActionDispatch::IntegrationTest
     assert_select ".help-page.ui-page .ui-masthead", count: 1
     assert_select ".help-contents.ui-panel", count: 1
     assert_select ".help-article section", count: 9
+    assert_select "#reading", text: /running from No to Yes.*middle are neutral/m
     assert_select "#weight", text: /Supporting.*Significant.*Foundational.*most recent answer/m
     assert_select "#collective", text: /position.*knowledge weight.*total knowledge weight/m
     assert_select "#collective", text: /adds weight without pushing the result towards either Yes or No/

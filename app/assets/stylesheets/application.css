@@ -158,11 +158,9 @@ body[data-site="informed-opinion"] :where(a, button, input, select, textarea, su
 .editorial-result p strong { font-size: 13px; }
 .editorial-opinion-scale { margin-top: 14px; }
 .editorial-scale-track { position: relative; height: 6px; border-radius: 1px; background: linear-gradient(90deg, #92665c 0%, #d8d7d1 50%, #477c76 100%); }
-.editorial-scale-midpoint { position: absolute; top: -3px; bottom: -3px; left: 50%; width: 1px; background: #596966; }
 .editorial-scale-indicator { position: absolute; top: -6px; left: var(--result-position); width: 2px; height: 18px; background: #172d2e; transform: translateX(-1px); }
 .editorial-scale-indicator::before { content: ""; position: absolute; top: -3px; left: -3px; width: 8px; height: 8px; border-radius: 50%; background: #172d2e; }
-.editorial-scale-labels { margin-top: 7px; display: grid; grid-template-columns: 1fr 1fr 1fr; color: #6d7b79; font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
-.editorial-scale-labels span:nth-child(2) { text-align: center; }
+.editorial-scale-labels { margin-top: 7px; display: grid; grid-template-columns: 1fr 1fr; color: #6d7b79; font-size: 8px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
 .editorial-scale-labels span:last-child { text-align: right; }
 .editorial-opinion-scale.is-empty .editorial-scale-track { background: #dfe3df; }
 .editorial-result small { display: block; margin-top: 7px; color: #7a8785; font-size: 9px; }

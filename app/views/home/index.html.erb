@@ -81,14 +81,12 @@
                     aria-label="<%= collective.weighted_score ? "Aggregate informed opinion: #{collective.score_percentage}, from no at minus 100 through neutral at zero to yes at plus 100" : "No weighted opinion result yet" %>"
                   >
                     <div class="editorial-scale-track">
-                      <i class="editorial-scale-midpoint" aria-hidden="true"></i>
                       <% if collective.weighted_score %>
                         <i class="editorial-scale-indicator" aria-hidden="true"></i>
                       <% end %>
                     </div>
                     <div class="editorial-scale-labels" aria-hidden="true">
                       <span>No</span>
-                      <span>Neutral</span>
                       <span>Yes</span>
                     </div>
                   </div>

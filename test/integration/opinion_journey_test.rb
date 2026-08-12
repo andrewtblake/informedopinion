@@ -123,15 +123,19 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select ".editorial-masthead", text: /Current informed opinion/
     assert_select ".editorial-topic", text: /Evidence test.*Evidence matters/m
-    assert_select ".editorial-result", text: /Informed aggregate.*No weighted result.*No.*Neutral.*Yes/m
+    assert_select ".editorial-result", text: /Informed aggregate.*No weighted result.*No.*Yes/m
     assert_select ".editorial-opinion-scale", count: 1
+    assert_select ".editorial-scale-midpoint", count: 0
+    assert_select ".editorial-scale-labels span", text: "Neutral", count: 0
     assert_select ".editorial-result-bar", count: 0
     assert_select ".public-result-summary", count: 0
     assert_select ".topic-number", count: 0
 
     get opinion_question_path(@topic)
     assert_response :success
-    assert_select ".topic-aggregate", text: /Current informed opinion.*No weighted result.*No.*Neutral.*Yes/m
+    assert_select ".topic-aggregate", text: /Current informed opinion.*No weighted result.*No.*Yes/m
+    assert_select ".topic-aggregate .editorial-scale-midpoint", count: 0
+    assert_select ".topic-aggregate .editorial-scale-labels span", text: "Neutral", count: 0
     assert_select "a", text: "Create account"
 
     post opinion_question_user_opinion_path(@topic),
