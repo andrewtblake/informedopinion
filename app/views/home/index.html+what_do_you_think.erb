@@ -45,7 +45,7 @@
     </nav>
 
     <div class="wdyt-main-grid">
-      <main>
+      <div>
         <header class="wdyt-list-heading">
           <div>
             <p><%= params[:q].present? || params[:category].present? || params[:tag].present? ? "Matching questions" : "Questions to explore" %></p>
@@ -72,7 +72,7 @@
               </div>
               <div class="wdyt-result">
                 <header>
-                  <span>Those in the know say</span>
+                  <span>Community view</span>
                 </header>
                 <div class="wdyt-result-scale <%= "is-empty" unless collective.weighted_score %>"
                   style="--result-position: <%= collective.indicator_position %>%"
@@ -108,7 +108,7 @@
             <%= @page < @total_pages ? link_to("Next", root_path(filters.merge(page: @page + 1))) : content_tag(:span, "Next") %>
           </nav>
         <% end %>
-      </main>
+      </div>
 
       <aside class="wdyt-sidebar" aria-label="More ways to explore">
         <section>

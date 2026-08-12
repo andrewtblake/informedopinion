@@ -31,6 +31,9 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select "body[data-site='what-do-you-think']"
+    assert_select "main#main-content", count: 1
+    assert_select "main#main-content main", count: 0
+    assert_select "nav.site-nav[aria-label='Primary']", count: 1
     assert_select ".brand > span:last-child", text: "What's Your View?"
     assert_select "title", text: /Your View\? — opinion, backed by the facts/
     assert_includes response.body, "<title>What&#39;s Your View? — opinion, backed by the facts</title>"
@@ -44,7 +47,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "/assets/what_do_you_think-"
     assert_select ".wdyt-hero h1", text: "What do people think?"
     assert_select ".wdyt-kicker", text: "Opinion, backed by the facts"
-    assert_select ".wdyt-result header", text: "Those in the know say"
+    assert_select ".wdyt-result header", text: "Community view"
     assert_select ".wdyt-result header strong", count: 0
     assert_select ".wdyt-result-scale > div:last-child span", text: /Neutral/, count: 0
   end
@@ -89,7 +92,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     get opinion_question_path(question)
     assert_response :success
     assert_select ".topic-hero-card h1", text: "A site journey"
-    assert_select ".topic-aggregate .wdyt-result", text: /Those in the know say.*No.*Yes/m
+    assert_select ".topic-aggregate .wdyt-result", text: /Community view.*No.*Yes/m
     assert_select ".opinion-response-section h2", text: "Where do you stand?"
     assert_select ".text-link", text: "Continue with the facts"
 

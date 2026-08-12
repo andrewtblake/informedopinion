@@ -77,6 +77,22 @@ class StatsDashboardTest < ActionDispatch::IntegrationTest
     assert_select "a[href='#{stats_path}']", text: "My opinions"
   end
 
+  test "alternative site shares the simplified compact dial" do
+    @user.user_opinions.create!(opinion_question: @topic, position: 1)
+    sign_in @user, scope: :user
+    host! "whatsyourview.localhost"
+
+    get stats_path
+
+    assert_response :success
+    assert_select ".personal-dial-arc[style^='stroke: url(#opinion-arc-']", count: 1
+    assert_select ".personal-dial-stop-no", count: 1
+    assert_select ".personal-dial-stop-neutral", count: 1
+    assert_select ".personal-dial-stop-yes", count: 1
+    assert_select ".personal-weight-guide, .personal-weight-guide-label", count: 0
+    assert_select ".personal-dial-hub, .personal-dial-hub-centre", count: 0
+  end
+
   test "user can search and order their registered opinions" do
     other_topic = OpinionQuestion.create!(
       slug: "another-opinion",
