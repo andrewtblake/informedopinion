@@ -23,6 +23,7 @@ class InformedOpinionMcpTest < ActiveSupport::TestCase
 
     assert_includes required, "specialist_knowledge"
     assert_includes required, "answerability"
+    assert_equal 100, schema.dig(:properties, :fact_questions, :maxItems)
   end
 
   test "tool handlers accept keyword arguments from the MCP server" do

@@ -75,8 +75,8 @@ module InformedOpinionMcp
         { id: { type: "integer" }, opinion_question: { type: "object" } }, required: %w[id opinion_question]) do |args|
         client.request("patch", "opinion_questions/#{args.delete(:id)}", args)
       end
-      tool(server, "create_fact_questions", "Atomically create 1–30 calibrated, completely self-contained four-option fact questions. No item may refer or allude to another item in the bank or assume a presentation order.",
-        { opinion_question_id: { type: "integer" }, fact_questions: { type: "array", minItems: 1, maxItems: 30, items: fact_schema } },
+      tool(server, "create_fact_questions", "Atomically create up to 100 calibrated, completely self-contained four-option fact questions. No item may refer or allude to another item in the bank or assume a presentation order.",
+        { opinion_question_id: { type: "integer" }, fact_questions: { type: "array", minItems: 1, maxItems: 100, items: fact_schema } },
         required: %w[opinion_question_id fact_questions]) do |args|
         client.request("post", "opinion_questions/#{args.delete(:opinion_question_id)}/fact_questions/bulk", args)
       end

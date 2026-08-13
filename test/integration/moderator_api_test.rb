@@ -91,6 +91,22 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_not opinion.reload.live?
   end
 
+  test "bulk fact creation accepts a bank larger than thirty questions in one request" do
+    opinion = OpinionQuestion.create!(category: @category, title: "A larger bank", statement: "The policy should be considered.",
+      slug: "a-larger-bank", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    facts = 31.times.map do |index|
+      fact_payload("What did measured outcome #{index + 1} show?", %w[One Two Three Four])
+    end
+
+    post fact_questions_bulk_api_v1_opinion_question_path(opinion),
+      params: { fact_questions: facts }.to_json, headers: @headers
+
+    assert_response :created
+    assert_equal 31, opinion.fact_questions.count
+    assert_equal 31, response.parsed_body.fetch("fact_questions").length
+  end
+
   test "new API fact questions require assessed passing calibration ratings" do
     opinion = OpinionQuestion.create!(category: @category, title: "Calibration", statement: "The policy should be adopted.",
       slug: "calibration", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,

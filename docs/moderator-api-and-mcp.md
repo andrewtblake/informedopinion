@@ -9,7 +9,7 @@ The versioned moderator API is the authoritative interface for agent-assisted ed
 - Every API write creates an append-only `ApiAuditEvent` with actor, token, request ID, action, target, and changed values.
 - User identities are deliberately omitted from moderation-issue responses.
 - Saving an amended candidate does not approve it. Approval and decline are separate, explicit operations.
-- Creating a batch of fact questions is transactional. A batch contains at most 30 questions and either all pass validation or none are retained.
+- Creating a batch of fact questions is transactional. A request may contain up to 100 questions as an operational safeguard, and either all pass validation or none are retained. This is a transport limit, not an editorial target or a limit on the size of a fact bank.
 - A question with participation cannot be deleted. Withdraw or unpublish it instead; answered fact questions likewise cannot be deleted.
 
 ## Issue IDs and workflow

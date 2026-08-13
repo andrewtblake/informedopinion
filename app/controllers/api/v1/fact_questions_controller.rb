@@ -1,5 +1,5 @@
 class Api::V1::FactQuestionsController < Api::V1::BaseController
-  MAXIMUM_BULK_SIZE = 30
+  MAXIMUM_BULK_SIZE = 100
 
   def index
     render json: { fact_questions: parent.fact_questions.map { self.class.serialize(_1) } }
