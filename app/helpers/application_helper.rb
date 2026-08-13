@@ -1,6 +1,7 @@
 module ApplicationHelper
   ORGANISATION_GLOSSARY = {
     "ATF" => "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+    "APA" => "American Psychological Association",
     "BLS" => "Bureau of Labor Statistics",
     "CBO" => "Congressional Budget Office",
     "CDC" => "Centers for Disease Control and Prevention",
@@ -46,11 +47,15 @@ module ApplicationHelper
     "POST" => "Parliamentary Office of Science and Technology",
     "PR" => "Proportional Representation",
     "RAND" => "RAND Corporation",
+    "RCOG" => "Royal College of Obstetricians and Gynaecologists",
     "SOE" => "State-Owned Enterprise",
     "STV" => "Single Transferable Vote",
     "TVA" => "Tennessee Valley Authority",
     "UK" => "United Kingdom",
     "UN" => "United Nations",
+    "UNFPA" => "United Nations Population Fund",
+    "US" => "United States",
+    "WHO" => "World Health Organization",
     "USGS" => "United States Geological Survey"
   }.freeze
 

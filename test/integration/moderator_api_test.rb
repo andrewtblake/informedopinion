@@ -17,6 +17,33 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_not participant_token.valid?
   end
 
+  test "creating an opinion question assigns the next display order despite the database default" do
+    existing = OpinionQuestion.create!(
+      category: @category,
+      title: "Existing question",
+      statement: "This question already exists.",
+      slug: "existing-question",
+      display_order: 7,
+      accent: "slate",
+      response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS
+    )
+
+    post api_v1_opinion_questions_path, params: {
+      opinion_question: {
+        title: "New question",
+        statement: "This question should be created as an unpublished draft.",
+        category_id: @category.id,
+        tag_names: [ "Global" ]
+      }
+    }.to_json, headers: @headers
+
+    assert_response :created
+    created = OpinionQuestion.find(response.parsed_body.fetch("id"))
+    assert_equal existing.display_order + 1, created.display_order
+    assert_not created.live?
+    assert_equal [ "Global" ], created.tags.pluck(:name)
+  end
+
   test "pending issues omit participant identity and candidate edit does not approve" do
     proposal = OpinionQuestionProposal.create!(proposer: @participant, category: @category, title: "Legalise drugs",
       statement: "Drugs should be legal.", geographic_scope: "United Kingdom", tags_text: "UK, drugs",

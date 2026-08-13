@@ -51,6 +51,21 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
   end
 
+  test "reproductive-health initialisms receive accessible definitions" do
+    rendered = glossary_text("WHO, RCOG, APA and UNFPA publish evidence used in the US.")
+    fragment = Nokogiri::HTML.fragment(rendered)
+
+    expected_definitions = {
+      "WHO" => "World Health Organization",
+      "RCOG" => "Royal College of Obstetricians and Gynaecologists",
+      "APA" => "American Psychological Association",
+      "UNFPA" => "United Nations Population Fund",
+      "US" => "United States"
+    }
+
+    assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
+  end
+
   test "glossary rendering continues to escape arbitrary HTML" do
     rendered = glossary_text("<script>alert('x')</script> ICC")
     fragment = Nokogiri::HTML.fragment(rendered)
