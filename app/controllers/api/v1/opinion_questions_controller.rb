@@ -12,7 +12,7 @@ class Api::V1::OpinionQuestionsController < Api::V1::BaseController
 
   def create
     record = OpinionQuestion.new(question_attributes)
-    record.display_order ||= OpinionQuestion.maximum(:display_order).to_i + 1
+    record.display_order = OpinionQuestion.maximum(:display_order).to_i + 1
     record.accent ||= "slate"
     record.live = false
     record.response_options = PublishOpinionQuestionProposal::RESPONSE_OPTIONS if record.response_options.blank?
