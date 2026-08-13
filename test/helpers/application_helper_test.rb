@@ -33,6 +33,24 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
   end
 
+  test "electoral-system initialisms receive accessible definitions" do
+    rendered = glossary_text("UK MPs are elected by FPTP; IDEA and POST describe alternatives including PR, STV and MMP.")
+    fragment = Nokogiri::HTML.fragment(rendered)
+
+    expected_definitions = {
+      "UK" => "United Kingdom",
+      "MPs" => "Members of Parliament",
+      "FPTP" => "First Past the Post",
+      "IDEA" => "International Institute for Democracy and Electoral Assistance",
+      "POST" => "Parliamentary Office of Science and Technology",
+      "PR" => "Proportional Representation",
+      "STV" => "Single Transferable Vote",
+      "MMP" => "Mixed-Member Proportional"
+    }
+
+    assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
+  end
+
   test "glossary rendering continues to escape arbitrary HTML" do
     rendered = glossary_text("<script>alert('x')</script> ICC")
     fragment = Nokogiri::HTML.fragment(rendered)

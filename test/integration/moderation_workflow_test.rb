@@ -220,7 +220,31 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_equal "Is the corrected fact question clear?", @fact.reload.prompt
     assert_equal "Corrected source", @fact.source_name
     assert_nil @fact.withdrawn_at
-    assert response.reload.correct?
+    assert_not FactResponse.exists?(response.id)
+  end
+
+  test "moderator wording changes discard responses to the obsolete question" do
+    flag = create_flag(:unclear)
+    response = @participant.fact_responses.create!(
+      fact_question: @fact,
+      selected_option: 0,
+      attempt_count: 1,
+      weight_before: 0,
+      weight_after: 100,
+      answered_at: Time.current
+    )
+    sign_in @moderator, scope: :user
+
+    patch moderator_fact_question_flag_path(flag), params: {
+      fact_question_flag: {
+        outcome: "corrected",
+        resolution_notes: "Made the question self-contained."
+      },
+      fact_question: fact_attributes(prompt: "Which answer is supported by the source?")
+    }
+
+    assert_redirected_to moderator_root_path
+    assert_not FactResponse.exists?(response.id)
   end
 
   test "moderator withdraws a fact and resolves its report" do

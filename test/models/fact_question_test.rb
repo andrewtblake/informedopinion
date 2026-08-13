@@ -1,6 +1,44 @@
 require "test_helper"
 
 class FactQuestionTest < ActiveSupport::TestCase
+  test "changing only the answer key recalculates existing responses" do
+    category = Category.create!(name: "Answer correction", slug: "answer-correction")
+    opinion = OpinionQuestion.create!(
+      category: category,
+      slug: "answer-correction",
+      title: "Answer correction",
+      statement: "This answer should be corrected.",
+      response_options: [ "Strongly agree", "Agree", "Neutral", "Disagree", "Strongly disagree" ]
+    )
+    question = opinion.fact_questions.create!(
+      prompt: "Which answer is correct?",
+      options: [ "Actually correct", "Wrong", "Incorrectly keyed", "Also wrong" ],
+      correct_option: 2,
+      explanation: "The first answer is correct.",
+      source_name: "Source",
+      source_url: "https://example.com/source"
+    )
+    user = create_user!(
+      email: "answer-correction@example.com",
+      password: "password123",
+      first_name: "Answer",
+      last_name: "Correction"
+    )
+    response = user.fact_responses.create!(
+      fact_question: question,
+      selected_option: 0,
+      attempt_count: 1,
+      weight_before: 0,
+      weight_after: 0,
+      answered_at: Time.current
+    )
+    refute response.correct?
+
+    question.update!(correct_option: 0)
+
+    assert response.reload.correct?
+  end
+
   test "correct option must point to an available answer" do
     question = FactQuestion.new(
       options: [ "One", "Two", "Three", "Four" ],

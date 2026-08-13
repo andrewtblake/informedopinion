@@ -47,7 +47,8 @@ class FactQuestion < ApplicationRecord
   validates :evidence_direction, inclusion: { in: DIRECTIONS }
   validate :correct_option_is_available
   validate :options_are_present_and_distinct
-  after_update :recalculate_response_correctness, if: :saved_change_to_correct_option?
+  after_update :discard_responses_after_question_revision, if: :saved_change_to_question_content?
+  after_update :recalculate_response_correctness, if: :answer_key_only_change?
 
   scope :published, -> { where(withdrawn_at: nil) }
 
@@ -76,6 +77,18 @@ class FactQuestion < ApplicationRecord
   end
 
   private
+
+  def saved_change_to_question_content?
+    saved_change_to_prompt? || saved_change_to_options?
+  end
+
+  def answer_key_only_change?
+    saved_change_to_correct_option? && !saved_change_to_question_content?
+  end
+
+  def discard_responses_after_question_revision
+    fact_responses.destroy_all
+  end
 
   def recalculate_response_correctness
     fact_responses.where(selected_option: correct_option).update_all(correct: true)
