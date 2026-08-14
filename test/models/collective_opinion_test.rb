@@ -100,6 +100,20 @@ class CollectiveOpinionTest < ActiveSupport::TestCase
     assert_equal 1, result.informed_respondents
   end
 
+  test "rounds only the final aggregate rather than its component weights" do
+    user = create_user("fractional")
+    user.user_opinions.create!(opinion_question: @topic, position: 0)
+    @facts.first.update!(importance_weight: 2, importance_rationale: "Significant evidence.")
+    answer(user, @facts.first, 0)
+
+    result = CollectiveOpinion.new(@topic)
+
+    assert_in_delta 2.0 / 3, result.weighted_total
+    assert_equal 1.0, result.weighted_score
+    assert_equal 100.0, result.score_percentage
+    assert_equal 100.0, result.indicator_position
+  end
+
   test "an informed neutral opinion pulls the normalized result toward neutral" do
     yes_user = create_user("yes")
     neutral_user = create_user("neutral")

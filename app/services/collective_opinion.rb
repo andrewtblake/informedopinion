@@ -41,8 +41,8 @@ class CollectiveOpinion
   def weighted_score
     return if weighted_total.zero?
 
-    weighted_sum = distribution.each_with_index.sum do |bucket, position|
-      bucket[:weighted_total] * POSITION_SCORES.fetch(position)
+    weighted_sum = weighted_totals.sum do |position, total|
+      total * POSITION_SCORES.fetch(position)
     end
 
     (weighted_sum / weighted_total).round(3)
