@@ -16,11 +16,23 @@ class OpinionProgress
   end
 
   def answered
-    @answered ||= loaded? ? responses.size : responses.count
+    @answered ||= loaded? ? current_responses.size : current_responses.count
   end
 
   def correct
-    @correct ||= loaded? ? correct_responses.size : responses.where(correct: true).count
+    @correct ||= loaded? ? correct_responses.size : current_responses.where(correct: true).count
+  end
+
+  def retired_answered
+    @retired_answered ||= loaded? ? retired_responses.size : retired_responses.count
+  end
+
+  def retired_correct
+    @retired_correct ||= loaded? ? retired_responses.count(&:correct?) : retired_responses.where(correct: true).count
+  end
+
+  def retired_answers?
+    retired_answered.positive?
   end
 
   def weight
@@ -39,7 +51,7 @@ class OpinionProgress
     @earned_importance ||= if loaded?
       correct_responses.sum { _1.fact_question.importance_weight }
     else
-      responses.where(correct: true).sum("fact_questions.importance_weight")
+      current_responses.where(correct: true).sum("fact_questions.importance_weight")
     end
   end
 
@@ -66,15 +78,25 @@ class OpinionProgress
   end
 
   def correct_responses
-    @correct_responses ||= responses.select(&:correct?)
+    @correct_responses ||= current_responses.select(&:correct?)
   end
 
-  def responses
-    return @loaded_responses if loaded?
+  def current_responses
+    return @loaded_responses.reject { _1.fact_question.withdrawn? } if loaded?
 
     FactResponse
       .where(user: user)
       .joins(:fact_question)
       .where(fact_questions: { opinion_question_id: opinion_question.id, withdrawn_at: nil })
+  end
+
+  def retired_responses
+    return @loaded_responses.select { _1.fact_question.withdrawn? } if loaded?
+
+    FactResponse
+      .where(user: user)
+      .joins(:fact_question)
+      .where.not(fact_questions: { withdrawn_at: nil })
+      .where(fact_questions: { opinion_question_id: opinion_question.id })
   end
 end

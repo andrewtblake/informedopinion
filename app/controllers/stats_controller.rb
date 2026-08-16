@@ -17,12 +17,13 @@ class StatsController < ApplicationController
     opinions = current_user.user_opinions
       .joins(:opinion_question)
       .merge(OpinionQuestion.live)
-      .includes(opinion_question: [ :category, :tags, :published_fact_questions ])
+      .includes(opinion_question: [ :category, :tags, :fact_questions ])
       .to_a
-    fact_question_ids = opinions.flat_map { _1.opinion_question.published_fact_questions.map(&:id) }
+    opinion_question_ids = opinions.map(&:opinion_question_id)
     responses_by_question = current_user.fact_responses
       .includes(:fact_question)
-      .where(fact_question_id: fact_question_ids)
+      .joins(:fact_question)
+      .where(fact_questions: { opinion_question_id: opinion_question_ids })
       .group_by { _1.fact_question.opinion_question_id }
 
     records = opinions.map do |opinion|

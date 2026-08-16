@@ -57,6 +57,7 @@
           <p class="eyebrow">Your current position</p>
           <h2><%= @user_opinion.label %></h2>
           <p><%= @progress.correct %> correct from <%= @progress.total %> available facts</p>
+          <%= render "shared/score_history", progress: @progress %>
         </div>
         <div class="weight-ring" style="--weight: <%= @progress.weight %>">
           <strong><%= whole_percentage(@progress.weight) %>%</strong>

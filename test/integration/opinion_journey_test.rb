@@ -118,6 +118,36 @@ class OpinionJourneyTest < ActionDispatch::IntegrationTest
     assert_select ".weight-change", count: 0
   end
 
+  test "retired answers are available in collapsed score history but excluded from the current score" do
+    sign_in @user, scope: :user
+    @user.user_opinions.create!(opinion_question: @topic, position: 1)
+    @user.fact_responses.create!(
+      fact_question: @fact,
+      selected_option: 0,
+      weight_before: 0,
+      weight_after: 100,
+      answered_at: Time.current
+    )
+    @fact.update!(withdrawn_at: Time.current)
+    replacement = @topic.fact_questions.create!(
+      prompt: "What is the replacement fact?",
+      options: [ "Replacement", "Distractor", "Alternative", "Unknown" ],
+      correct_option: 0,
+      explanation: "The replacement is supported.",
+      source_name: "Replacement source",
+      source_url: "https://example.com/replacement"
+    )
+
+    get opinion_question_path(@topic)
+
+    assert_select ".current-weight", text: /0 correct from 1 available facts/
+    assert_select "details.score-history:not([open])", count: 1 do
+      assert_select "summary", text: "Score history"
+      assert_select "p", text: /1 answer came from a fact question that has since been retired.*Of these, 1 was recorded as correct.*do not affect your current score/m
+    end
+    assert_equal replacement, @topic.published_fact_questions.first
+  end
+
   test "visitor can browse a topic but must sign in to register a response" do
     get root_path
     assert_response :success

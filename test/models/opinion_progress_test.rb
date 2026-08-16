@@ -73,6 +73,25 @@ class OpinionProgressTest < ActiveSupport::TestCase
     assert_equal 1, progress.answered
     assert_equal 0, progress.correct
     assert_equal 0.0, progress.weight
+    assert_equal 1, progress.retired_answered
+    assert_equal 1, progress.retired_correct
+    assert progress.retired_answers?
+  end
+
+  test "loaded responses separate current scores from retired answer history" do
+    first, second = @opinion.fact_questions
+    active_response = create_response(first, 0)
+    retired_response = create_response(second, 1)
+    second.update!(withdrawn_at: Time.current)
+
+    progress = OpinionProgress.new(@user, @opinion, responses: [ active_response, retired_response ])
+
+    assert_equal 1, progress.total
+    assert_equal 1, progress.answered
+    assert_equal 1, progress.correct
+    assert_equal 1, progress.retired_answered
+    assert_equal 0, progress.retired_correct
+    assert_equal 100.0, progress.weight
   end
 
   private

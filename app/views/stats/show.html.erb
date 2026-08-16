@@ -69,6 +69,7 @@
                 <strong><%= whole_percentage(progress.weight) %>% weight</strong>
                 <span><%= progress.correct %>/<%= progress.answered %> correct · <%= progress.remaining %> unseen</span>
               </p>
+              <%= render "shared/score_history", progress: progress %>
 
               <nav class="personal-card-actions" aria-label="<%= question.title %> actions">
                 <%= link_to(

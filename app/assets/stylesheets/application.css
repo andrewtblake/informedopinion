@@ -464,6 +464,10 @@ body[data-site="informed-opinion"] :where(a, button, input, select, textarea, su
   opacity: 1; transform: translate(-50%, 0);
 }
 .glossary-term:focus-visible { border-radius: 2px; outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.score-history { margin-top: 8px; color: var(--muted); font-size: 12px; }
+.score-history summary { width: fit-content; cursor: pointer; color: var(--accent); font-weight: 700; }
+.score-history p { max-width: 62ch; margin: 6px 0 0; }
 .quiz-hint { margin: 14px 0 0; color: var(--muted); text-align: center; font-size: 11px; }
 .opinion-reminder { margin-top: 20px; padding: 15px 0; display: flex; align-items: center; gap: 12px; border-top: 1px solid #cbd3cf; border-bottom: 1px solid #cbd3cf; border-radius: 0; color: var(--muted); background: transparent; font-size: 12px; }
 .opinion-reminder strong { color: var(--ink); }

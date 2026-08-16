@@ -1,0 +1,12 @@
+<% if progress.retired_answers? %>
+  <details class="score-history">
+    <summary>Score history</summary>
+    <p>
+      <%= pluralize(progress.retired_answered, "answer") %> came from
+      <%= progress.retired_answered == 1 ? "a fact question that has" : "fact questions that have" %>
+      since been retired. Of these, <%= progress.retired_correct %>
+      <%= progress.retired_correct == 1 ? "was" : "were" %> recorded as correct at the time.
+      Retired questions do not affect your current score or opinion weight.
+    </p>
+  </details>
+<% end %>

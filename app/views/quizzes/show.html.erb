@@ -16,6 +16,7 @@
     <div class="quiz-progress" aria-label="<%= @progress.answered %> of <%= @progress.total %> questions answered">
       <div><span style="width: <%= @progress.answered.fdiv(@progress.total) * 100 %>%"></span></div>
       <p><strong><%= @progress.answered %></strong> answered <span>·</span> <strong><%= @progress.correct %></strong> correct <span>·</span> <%= @progress.remaining %> unseen <span>·</span> unweighted score <%= number_with_precision(@progress.raw_weight, precision: 1, strip_insignificant_zeros: true) %>%</p>
+      <%= render "shared/score_history", progress: @progress %>
     </div>
 
     <% if @feedback %>
