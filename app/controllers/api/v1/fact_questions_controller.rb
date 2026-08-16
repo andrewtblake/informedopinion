@@ -31,6 +31,8 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
 
   def update
     before = fact_question.attributes
+    fact_question.response_handling = requested_response_handling
+    fact_question.revision_rationale = requested_revision_rationale
     FactQuestion.transaction do
       fact_question.update!(fact_attributes)
       fact_question.opinion_question.tap do |opinion|
@@ -39,6 +41,12 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
       changes = fact_question.attributes.filter_map do |key, value|
         [ key, { "from" => before[key], "to" => value } ] if before[key] != value
       end.to_h
+      if fact_question.saved_change_to_prompt? || fact_question.saved_change_to_options? || fact_question.saved_change_to_correct_option?
+        changes["revision_policy"] = {
+          "response_handling" => effective_response_handling,
+          "rationale" => requested_revision_rationale
+        }
+      end
       audit!(action: "fact_question.update", resource: fact_question, changes: changes)
     end
     render json: self.class.serialize(fact_question.reload)
@@ -76,14 +84,29 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
   end
 
   def fact_attributes
-    permitted(params.require(:fact_question))
+    permitted(params.require(:fact_question)).except(:response_handling, :revision_rationale)
   end
 
   def permitted(attributes)
     attributes = attributes.to_unsafe_h if attributes.respond_to?(:to_unsafe_h)
     ActionController::Parameters.new(attributes).permit(:prompt, :correct_option, :explanation, :source_name, :source_url,
       :importance_weight, :importance_rationale, :evidence_direction, :specialist_knowledge, :answerability,
-      :withdrawn_at, options: [])
+      :withdrawn_at, :response_handling, :revision_rationale, options: [])
+  end
+
+  def requested_response_handling
+    params.require(:fact_question)[:response_handling].presence || "substantive_reset"
+  end
+
+  def requested_revision_rationale
+    params.require(:fact_question)[:revision_rationale].to_s.strip.presence
+  end
+
+  def effective_response_handling
+    return "answer_key_recalculate" if fact_question.saved_change_to_correct_option? &&
+      !fact_question.saved_change_to_prompt? && !fact_question.saved_change_to_options?
+
+    requested_response_handling
   end
 
   def create_for!(opinion, attributes)

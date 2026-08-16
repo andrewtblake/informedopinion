@@ -1,6 +1,36 @@
 require "test_helper"
 
 class FactQuestionTest < ActiveSupport::TestCase
+  test "a justified non-material clarification preserves existing responses" do
+    question, response = question_with_response
+    question.response_handling = "clarification_preserve"
+    question.revision_rationale = "The expanded institution name does not change the tested fact or any choice."
+
+    question.update!(prompt: "According to the Example Institute, which answer is correct?")
+
+    assert_equal response, question.fact_responses.reload.sole
+  end
+
+  test "a substantive wording revision resets existing responses" do
+    question, = question_with_response
+
+    question.update!(prompt: "Which revised claim is supported?")
+
+    assert_empty question.fact_responses.reload
+  end
+
+  test "response preservation requires a rationale and an unchanged answer key" do
+    question, = question_with_response
+    question.response_handling = "cosmetic_preserve"
+
+    assert_not question.update(prompt: "Which answer is supported?")
+    assert_includes question.errors[:revision_rationale], "must explain why existing responses remain valid"
+
+    question.revision_rationale = "Typographical correction only."
+    assert_not question.update(correct_option: 1)
+    assert_includes question.errors[:response_handling], "cannot preserve responses when the correct option changes"
+  end
+
   test "changing only the answer key recalculates existing responses" do
     category = Category.create!(name: "Answer correction", slug: "answer-correction")
     opinion = OpinionQuestion.create!(
@@ -87,5 +117,38 @@ class FactQuestionTest < ActiveSupport::TestCase
     assert_empty unassessed.errors[:answerability]
     assert_equal "Sustained study", FactQuestion.new(specialist_knowledge: 4).specialist_knowledge_label
     assert_equal "Unfit", FactQuestion.new(answerability: 0).answerability_label
+  end
+
+  private
+
+  def question_with_response
+    opinion = OpinionQuestion.create!(
+      slug: "revision-#{SecureRandom.hex(3)}",
+      title: "Revision handling",
+      statement: "This revision should be audited.",
+      response_options: [ "A", "B", "C", "D", "E" ]
+    )
+    question = opinion.fact_questions.create!(
+      prompt: "According to the Institute, which answer is correct?",
+      options: [ "Correct", "Wrong", "Unsupported", "Unknown" ],
+      correct_option: 0,
+      explanation: "The first answer is correct.",
+      source_name: "Source",
+      source_url: "https://example.com/revision"
+    )
+    user = create_user!(
+      email: "revision-#{SecureRandom.hex(3)}@example.com",
+      password: "password123",
+      first_name: "Revision",
+      last_name: "Tester"
+    )
+    response = user.fact_responses.create!(
+      fact_question: question,
+      selected_option: 0,
+      weight_before: 0,
+      weight_after: 100,
+      answered_at: Time.current
+    )
+    [ question, response ]
   end
 end

@@ -123,6 +123,52 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_empty opinion.fact_questions
   end
 
+  test "fact revision handling preserves responses only with an audited justification" do
+    opinion = OpinionQuestion.create!(category: @category, title: "Revision policy", statement: "The policy should be adopted.",
+      slug: "revision-policy", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    fact = opinion.fact_questions.create!(fact_payload("According to IFS, what happened?", %w[One Two Three Four]))
+    retained = @participant.fact_responses.create!(fact_question: fact, selected_option: 0,
+      weight_before: 0, weight_after: 100, answered_at: Time.current)
+
+    patch api_v1_fact_question_path(fact), params: { fact_question: {
+      prompt: "According to the Institute for Fiscal Studies, what happened?",
+      response_handling: "clarification_preserve",
+      revision_rationale: "Expanding the institution name leaves the tested fact and all choices unchanged."
+    } }.to_json, headers: @headers
+
+    assert_response :success
+    assert_equal retained, fact.fact_responses.reload.sole
+    policy = ApiAuditEvent.last.change_data.fetch("revision_policy")
+    assert_equal "clarification_preserve", policy.fetch("response_handling")
+    assert_match(/institution name/, policy.fetch("rationale"))
+
+    patch api_v1_fact_question_path(fact), params: { fact_question: {
+      prompt: "What did the revised analysis find?",
+      response_handling: "substantive_reset",
+      revision_rationale: "The evidence tested by the prompt has changed."
+    } }.to_json, headers: @headers
+
+    assert_response :success
+    assert_empty fact.fact_responses.reload
+    assert_equal "substantive_reset", ApiAuditEvent.last.change_data.dig("revision_policy", "response_handling")
+  end
+
+  test "API rejects score preservation without a rationale" do
+    opinion = OpinionQuestion.create!(category: @category, title: "Revision validation", statement: "The policy should be adopted.",
+      slug: "revision-validation", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    fact = opinion.fact_questions.create!(fact_payload("Which result was reported?", %w[One Two Three Four]))
+
+    patch api_v1_fact_question_path(fact), params: { fact_question: {
+      prompt: "Which result did the report identify?",
+      response_handling: "cosmetic_preserve"
+    } }.to_json, headers: @headers
+
+    assert_response :unprocessable_entity
+    assert response.parsed_body.fetch("details").key?("revision_rationale")
+  end
+
   test "AI calibration submission is complete, fingerprinted, atomic and audited" do
     opinion = OpinionQuestion.create!(category: @category, title: "AI calibration", statement: "The policy should be adopted.",
       slug: "ai-calibration", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,

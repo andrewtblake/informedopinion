@@ -50,6 +50,8 @@ All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 
 Fact-question payloads use zero-based `correct_option`, exactly four `options`, `importance_weight` 1–3, `evidence_direction` -1, 0, or 1, `specialist_knowledge` 1–6, and `answerability` 1–5. New questions must have passing ratings. An `answerability` of 0 may be assigned when updating an existing item during an audit to record that it is unfit and cannot be published; it is not the difficult end of the passing scale. See [editorial-standard.md](editorial-standard.md) for the fields' independent editorial meanings.
 
+Updates that change a prompt or choices default to `response_handling: substantive_reset`. An editor may instead send `cosmetic_preserve` or `clarification_preserve` with a specific `revision_rationale` only when every score-preservation condition in the editorial standard is met. The handling and rationale are written to the API audit event. A correct-key-only change recalculates correctness from the retained selected option; a changed key cannot be combined with response preservation.
+
 An AI calibration submission is atomic at bank level and must contain exactly one
 fingerprinted assessment for every fact question in the bank. Each assessment
 includes both ratings, concise rationales, confidence values from 1 to 5, and—when

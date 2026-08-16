@@ -88,7 +88,7 @@ module InformedOpinionMcp
         { opinion_question_id: { type: "integer" } }, required: %w[opinion_question_id]) do |args|
         client.request("delete", "opinion_questions/#{args[:opinion_question_id]}/publication")
       end
-      tool(server, "update_fact_question", "Correct, recalibrate, or withdraw a fact question.",
+      tool(server, "update_fact_question", "Correct, recalibrate, or withdraw a fact question. For prompt or option changes, choose substantive_reset unless every score-preservation condition in the editorial standard is satisfied and documented.",
         { id: { type: "integer" }, fact_question: { type: "object" } }, required: %w[id fact_question]) do |args|
         client.request("patch", "fact_questions/#{args.delete(:id)}", args)
       end
@@ -118,7 +118,9 @@ module InformedOpinionMcp
           source_url: { type: "string" }, importance_weight: { type: "integer", minimum: 1, maximum: 3 },
           importance_rationale: { type: "string" }, evidence_direction: { type: "integer", minimum: -1, maximum: 1 },
           specialist_knowledge: { type: "integer", minimum: 1, maximum: 6, description: "Prior topic-specific knowledge required before seeing the options." },
-          answerability: { type: "integer", minimum: 1, maximum: 5, description: "Ease of answering the presented item. New questions must pass; use 0 only when auditing an existing item as unfit." } } }
+          answerability: { type: "integer", minimum: 1, maximum: 5, description: "Ease of answering the presented item. New questions must pass; use 0 only when auditing an existing item as unfit." },
+          response_handling: { type: "string", enum: FactQuestion::RESPONSE_HANDLINGS, description: "For prompt or option revisions: preserve only for a qualifying cosmetic or non-material clarification; otherwise reset." },
+          revision_rationale: { type: "string", description: "Required when response_handling preserves existing responses." } } }
     end
 
     def calibration_schema
