@@ -3,12 +3,15 @@ module ApplicationHelper
     "ATF" => "Bureau of Alcohol, Tobacco, Firearms and Explosives",
     "APA" => "American Psychological Association",
     "BLS" => "Bureau of Labor Statistics",
+    "BMC" => "BioMed Central",
+    "BMJ" => "British Medical Journal",
     "CBO" => "Congressional Budget Office",
     "CDC" => "Centers for Disease Control and Prevention",
     "COVID-19" => "Coronavirus Disease 2019",
     "CPS" => "Crown Prosecution Service",
     "DESNZ" => "Department for Energy Security and Net Zero",
     "EPA" => "Environmental Protection Agency",
+    "EPIC" => "European Prospective Investigation into Cancer and Nutrition",
     "ECHR" => "European Convention on Human Rights",
     "ERISA" => "Employee Retirement Income Security Act",
     "ESOP" => "Employee Stock Ownership Plan",
@@ -55,6 +58,7 @@ module ApplicationHelper
     "UN" => "United Nations",
     "UNFPA" => "United Nations Population Fund",
     "US" => "United States",
+    "VARSS" => "Veterinary Antimicrobial Resistance and Sales Surveillance",
     "WHO" => "World Health Organization",
     "USGS" => "United States Geological Survey"
   }.freeze

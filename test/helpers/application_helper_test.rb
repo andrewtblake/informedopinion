@@ -66,6 +66,20 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
   end
 
+  test "animal-products evidence initialisms receive accessible definitions" do
+    rendered = glossary_text("EPIC evidence appeared in BMC Medicine and The BMJ; VARSS covers antimicrobial surveillance.")
+    fragment = Nokogiri::HTML.fragment(rendered)
+
+    expected_definitions = {
+      "EPIC" => "European Prospective Investigation into Cancer and Nutrition",
+      "BMC" => "BioMed Central",
+      "BMJ" => "British Medical Journal",
+      "VARSS" => "Veterinary Antimicrobial Resistance and Sales Surveillance"
+    }
+
+    assert_equal expected_definitions, fragment.css("abbr").to_h { [ _1.text, _1["title"] ] }
+  end
+
   test "glossary rendering continues to escape arbitrary HTML" do
     rendered = glossary_text("<script>alert('x')</script> ICC")
     fragment = Nokogiri::HTML.fragment(rendered)
