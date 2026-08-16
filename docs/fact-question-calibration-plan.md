@@ -340,14 +340,28 @@ The current sequencing service prioritises evidential direction relative to the
 user's opinion. Do not replace that with a simple easy-to-hard sort. Combine:
 
 - the existing valence progression;
+- an editorial gateway assessment identifying the small set of facts that
+  establish the proposition's principal considerations;
 - a gradual introduction of more specialist knowledge;
 - answerability pacing;
 - avoidance of long runs of demanding questions; and
 - controlled variation so the sequence does not become mechanical.
 
-Opening questions should normally favour specialist ratings 1–3 and answerability
-ratings 3–5. More specialised and demanding questions can be introduced
-progressively while counter-attitudinal evidence follows the existing pattern.
+Gateway status must not be inferred mechanically from the numeric ratings: an
+easy fact can be peripheral, while an important orientation fact may require
+moderate difficulty. Editors should record the designation during whole-bank
+review, with a concise rationale. Opening questions should normally favour
+gateway facts with specialist ratings 1–3 and answerability ratings 3–5. More
+specialised and demanding questions can be introduced progressively while
+counter-attitudinal evidence follows the existing pattern. A gateway item below
+answerability 3 may still appear within the first third when it supplies material
+counterevidence, but should not normally occupy an opening slot.
+
+Within the direction required for a sequence position, gateway status should be
+a bounded preference rather than an absolute order. Once the opening phase has
+passed, unanswered gateway facts should return to the ordinary candidate pool.
+The design must avoid making later questions dependent upon having seen a
+gateway item.
 
 Do not expose rating labels to participants without a separate product decision.
 Labels such as "expert-level" or "easy" could change confidence, effort and answer
@@ -370,4 +384,6 @@ The project is complete when:
 - remediated questions have been reassessed and source-checked;
 - moderation displays useful per-bank distributions; and
 - sequencing uses the ratings without defeating the existing evidential-valence
-  design.
+  design; and
+- editors can designate gateway facts and the opening sequence gives them a
+  bounded preference within the required evidential direction.

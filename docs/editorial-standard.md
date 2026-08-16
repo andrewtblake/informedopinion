@@ -61,6 +61,26 @@ A bank may range from straightforward but substantive questions to demanding but
 
 Reaching the configured minimum number of fact questions only makes an opinion question eligible for publication. It remains non-public until a moderator completes this bank-level review and explicitly marks it as live.
 
+## Gateway facts and sequence
+
+A bank should identify a small set of gateway facts that quickly establish the
+principal considerations at stake. A gateway fact is decision-relevant,
+important, understandable without specialist preparation and suitable for early
+presentation. It is not merely an easy or familiar question. Importance,
+specialist knowledge and answerability inform this judgement but do not determine
+it mechanically.
+
+Opening questions should normally favour gateway facts with specialist-knowledge
+ratings 1–3 and answerability ratings 3–5. The sequence should then introduce
+more specialised and demanding distinctions progressively, avoid long runs of
+demanding items, and retain controlled variation. This preference must remain
+compatible with balanced evidential sequencing: contextual and materially
+counter-attitudinal evidence must not be withheld until the end.
+
+Every question remains self-contained and must work if encountered first. A
+gateway designation must never be used to make later questions dependent on an
+assumed introduction.
+
 Content is revised when law, data or the cited evidence changes. Existing responses are handled according to the amendment classification below.
 
 ## Revisions and existing responses
