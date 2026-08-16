@@ -61,4 +61,26 @@ A bank may range from straightforward but substantive questions to demanding but
 
 Reaching the configured minimum number of fact questions only makes an opinion question eligible for publication. It remains non-public until a moderator completes this bank-level review and explicitly marks it as live.
 
-Content is revised when law, data or the cited evidence changes. The most recent answer to a revised fact is discarded whenever its prompt, choices or correct answer changes.
+Content is revised when law, data or the cited evidence changes. Existing responses are handled according to the amendment classification below.
+
+## Revisions and existing responses
+
+An editor must classify every amendment to a fact question that already has responses. The controlling question is not whether an edit looks small, but whether it could reasonably change a respondent's selection or the difficulty of identifying the answer.
+
+- **Cosmetic amendment — preserve responses.** Spelling, punctuation, grammar, typography, expanded initialisms and other presentation-only corrections may preserve responses when the factual proposition and all four choices remain semantically identical.
+- **Non-material clarification — preserve responses after explicit review.** A wording clarification may preserve responses only when the tested fact, population, jurisdiction, date, measurement basis, four choice meanings, correct choice and effective difficulty are unchanged. It must not repair an ambiguity that could reasonably have changed an answer or add or remove a factual qualification.
+- **Substantive revision — reset responses.** Responses are reset when an edit changes the tested fact, any choice's substantive meaning, a material qualification, answerability or the evidence needed to distinguish the choices. Replacing weak distractors with materially more credible ones is substantive even when the correct choice remains in the same position.
+- **Answer-key correction — recalculate or invalidate.** When the unchanged prompt and choices had one clearly correct answer but the stored key was wrong, correctness may be recalculated from each retained selection. If the old item did not have one unambiguously best answer, it is withdrawn and excluded from current scoring instead.
+- **Retirement — preserve history, exclude from current scoring.** A response to a withdrawn question remains part of the user's private answer history but contributes to neither the current numerator nor denominator, weighted or unweighted. A replacement is a new question and must be answered separately.
+
+Before preserving responses to changed prompt or choice text, an editor records a specific rationale and confirms all of the following:
+
+1. Exactly the same factual proposition is tested.
+2. Each old choice has a one-to-one semantic equivalent in the same stored position.
+3. The uniquely correct choice is unchanged in meaning and position.
+4. No reasonable respondent would change their selection because of the amendment.
+5. Effective difficulty and answer cues are not materially changed.
+6. No population, jurisdiction, date, threshold, denominator or other factual qualification is added, removed or changed.
+7. The cited evidence continues to support the answer.
+
+If any condition is not met, or the editor is genuinely uncertain, the revision resets current responses. Changes only to the explanation, source metadata, importance, valence or calibration do not themselves reset responses, provided they do not reveal that the presented item was substantively defective.
