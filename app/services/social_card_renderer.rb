@@ -3,16 +3,16 @@ require "digest"
 class SocialCardRenderer
   WIDTH = 1200
   HEIGHT = 630
-  TEMPLATE_VERSION = 1
+  TEMPLATE_VERSION = 2
 
   THEMES = {
     "informed_opinion" => {
       background: "#fbfaf3", ink: "#103536", accent: "#b7e52f", border: "#d7f4d0",
-      pattern: "#e9e5d9", mark: "io", name: "Informed Opinion", title_font: "DejaVu Serif Bold"
+      pattern: "#e9e5d9", mark: "io", name: "Informed Opinion", title_font: "DejaVu Serif"
     },
     "whats_your_view" => {
-      background: "#f7faff", ink: "#172b4d", accent: "#ee6c4d", border: "#d9e9ff",
-      pattern: "#dfebf8", mark: "w?", name: "What's Your View?", title_font: "DejaVu Sans Bold"
+      background: "#fffaf2", ink: "#172b4d", accent: "#e76549", border: "#eee5d8",
+      pattern: "#e9e1d6", mark: "w?", name: "What's Your View?", title_font: "DejaVu Sans"
     }
   }.freeze
 

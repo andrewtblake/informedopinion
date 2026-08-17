@@ -21,6 +21,16 @@ class SocialCardRendererTest < ActiveSupport::TestCase
       SocialCardRenderer.fingerprint("Brexit", "whats_your_view")
   end
 
+  test "uses serif for IO and a warm neutral ground for What's Your View" do
+    io_theme = SocialCardRenderer::THEMES.fetch("informed_opinion")
+    wyv_theme = SocialCardRenderer::THEMES.fetch("whats_your_view")
+
+    assert_equal "DejaVu Serif", io_theme.fetch(:title_font)
+    assert_equal "DejaVu Sans", wyv_theme.fetch(:title_font)
+    assert_equal "#fffaf2", wyv_theme.fetch(:background)
+    assert_equal "#eee5d8", wyv_theme.fetch(:border)
+  end
+
   test "changing a title changes the cache fingerprint" do
     before = SocialCardRenderer.fingerprint("Legalisation of drugs", "informed_opinion")
     after = SocialCardRenderer.fingerprint("Legalising drugs", "informed_opinion")
