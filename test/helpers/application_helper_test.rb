@@ -7,11 +7,12 @@ class ApplicationHelperTest < ActionView::TestCase
   end
 
   test "organisation initialisms receive accessible definitions" do
-    rendered = glossary_text("The ICC considered evidence cited by the OECD.")
+    rendered = glossary_text("The ICC considered evidence cited by the OECD and discussed by BRICS.")
     fragment = Nokogiri::HTML.fragment(rendered)
 
     assert_equal "ICC", fragment.at_css("abbr[title='International Criminal Court'][tabindex='0']").text
     assert_equal "OECD", fragment.at_css("abbr[title='Organisation for Economic Co-operation and Development']").text
+    assert_equal "BRICS", fragment.at_css("abbr[title='Intergovernmental group originally named for Brazil, Russia, India, China and South Africa']").text
     assert_equal "glossary", fragment.at_css("abbr")["data-controller"]
   end
 

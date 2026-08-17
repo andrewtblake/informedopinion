@@ -5,6 +5,7 @@ module ApplicationHelper
     "BLS" => "Bureau of Labor Statistics",
     "BMC" => "BioMed Central",
     "BMJ" => "British Medical Journal",
+    "BRICS" => "Intergovernmental group originally named for Brazil, Russia, India, China and South Africa",
     "CBO" => "Congressional Budget Office",
     "CDC" => "Centers for Disease Control and Prevention",
     "COVID-19" => "Coronavirus Disease 2019",
