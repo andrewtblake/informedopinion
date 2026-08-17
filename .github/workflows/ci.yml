@@ -78,6 +78,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - name: Install image rendering dependencies
+        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y fonts-dejavu-core libvips42t64
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
