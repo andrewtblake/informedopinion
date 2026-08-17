@@ -1,5 +1,4 @@
 require "digest"
-require "vips"
 
 class SocialCardRenderer
   WIDTH = 1200
@@ -28,6 +27,7 @@ class SocialCardRenderer
   end
 
   def render
+    require "vips"
     image = Vips::Image.svgload_buffer(svg)
     image.pngsave_buffer(compression: 9, strip: true)
   end
