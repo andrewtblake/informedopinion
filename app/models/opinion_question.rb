@@ -8,6 +8,7 @@ class OpinionQuestion < ApplicationRecord
   has_many :opinion_question_reactions, dependent: :destroy
   has_many :opinion_question_tags, dependent: :destroy
   has_many :fact_question_proposals, dependent: :destroy
+  has_many :social_cards, dependent: :destroy
   has_many :tags, through: :opinion_question_tags
 
   validates :slug, :title, :statement, :accent, presence: true
@@ -20,6 +21,7 @@ class OpinionQuestion < ApplicationRecord
   scope :live, -> { where(live: true) }
 
   before_create :record_initial_publication
+  after_commit :regenerate_social_cards, on: %i[create update], if: :title_previously_changed?
 
   def eligible_for_publication?
     published_fact_questions.count >= minimum_fact_questions
@@ -54,5 +56,13 @@ class OpinionQuestion < ApplicationRecord
 
   def record_initial_publication
     self.published_at ||= Time.current if live?
+  end
+
+  def title_previously_changed?
+    previous_changes.key?("title")
+  end
+
+  def regenerate_social_cards
+    GenerateSocialCardsJob.perform_later(id)
   end
 end

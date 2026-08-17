@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :fact_responses, only: :create, path: "answers"
     resources :fact_question_proposals, only: %i[new create], path: "fact-proposals"
   end
+  get "topics/:slug/social-card/:site_key/:fingerprint.png", to: "social_cards#show", as: :social_card
 
   namespace :moderator do
     root "dashboard#index"

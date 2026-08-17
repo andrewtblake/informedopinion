@@ -14,7 +14,7 @@ services:
     plan: starter
     region: frankfurt
     healthCheckPath: /up
-    preDeployCommand: ./bin/rails db:prepare
+    preDeployCommand: ./bin/rails db:prepare social_cards:generate
     autoDeployTrigger: checksPass
     envVars:
       - key: DATABASE_URL

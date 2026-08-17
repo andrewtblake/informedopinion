@@ -40,6 +40,9 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 gem "solid_cache"
 gem "solid_queue"
 
+# Render deterministic Open Graph cards without browser or external-service dependencies.
+gem "ruby-vips", "~> 2.2"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 

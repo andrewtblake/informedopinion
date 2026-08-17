@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_17_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_17_190000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -284,6 +284,22 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_17_120000) do
     t.check_constraint "featured_priority BETWEEN -10 AND 10", name: "opinion_questions_featured_priority_range"
   end
 
+  create_table "social_cards", force: :cascade do |t|
+    t.integer "byte_size", null: false
+    t.string "content_fingerprint", null: false
+    t.string "content_type", default: "image/png", null: false
+    t.datetime "created_at", null: false
+    t.datetime "generated_at", null: false
+    t.binary "image_data", null: false
+    t.integer "opinion_question_id", null: false
+    t.string "site_key", null: false
+    t.integer "template_version", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_fingerprint"], name: "index_social_cards_on_content_fingerprint"
+    t.index ["opinion_question_id", "site_key"], name: "index_social_cards_on_opinion_question_id_and_site_key", unique: true
+    t.index ["opinion_question_id"], name: "index_social_cards_on_opinion_question_id"
+  end
+
   create_table "solid_cache_entries", force: :cascade do |t|
     t.integer "byte_size", limit: 4, null: false
     t.datetime "created_at", null: false
@@ -488,6 +504,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_17_120000) do
   add_foreign_key "opinion_question_tags", "opinion_questions"
   add_foreign_key "opinion_question_tags", "tags"
   add_foreign_key "opinion_questions", "categories"
+  add_foreign_key "social_cards", "opinion_questions"
   add_foreign_key "solid_queue_blocked_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_claimed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
   add_foreign_key "solid_queue_failed_executions", "solid_queue_jobs", column: "job_id", on_delete: :cascade
