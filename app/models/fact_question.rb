@@ -43,6 +43,7 @@ class FactQuestion < ApplicationRecord
   validates :importance_weight, inclusion: { in: IMPORTANCE_LEVELS.keys }
   validates :specialist_knowledge, inclusion: { in: SPECIALIST_KNOWLEDGE_LEVELS.keys }, allow_nil: true
   validates :answerability, inclusion: { in: ANSWERABILITY_LEVELS.keys }, allow_nil: true
+  validates :gateway_rationale, presence: true, if: :gateway?
   validates :response_handling, inclusion: { in: RESPONSE_HANDLINGS }, allow_nil: true
   validates :options, length: { is: 4 }
   validates :correct_option, numericality: {

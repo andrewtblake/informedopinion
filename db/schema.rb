@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_17_120000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -131,6 +131,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_100000) do
     t.integer "display_order", default: 0, null: false
     t.integer "evidence_direction", default: 0, null: false
     t.text "explanation", null: false
+    t.boolean "gateway", default: false, null: false
+    t.text "gateway_rationale"
     t.text "importance_rationale", default: "This question currently has the standard importance weight; unequal weights will only be assigned after review.", null: false
     t.integer "importance_weight", default: 1, null: false
     t.integer "opinion_question_id", null: false
@@ -142,6 +144,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_100000) do
     t.datetime "updated_at", null: false
     t.datetime "withdrawn_at"
     t.index ["opinion_question_id", "display_order"], name: "index_fact_questions_on_opinion_and_order", unique: true
+    t.index ["opinion_question_id", "gateway"], name: "index_fact_questions_on_opinion_question_id_and_gateway"
     t.index ["opinion_question_id"], name: "index_fact_questions_on_opinion_question_id"
     t.index ["withdrawn_at"], name: "index_fact_questions_on_withdrawn_at"
     t.check_constraint "answerability IS NULL OR answerability BETWEEN 0 AND 5", name: "fact_questions_answerability_range"

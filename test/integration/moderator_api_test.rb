@@ -86,9 +86,26 @@ class ModeratorApiTest < ActionDispatch::IntegrationTest
     assert_equal 1, opinion.fact_questions.count
     assert_equal 3, response.parsed_body.dig("fact_questions", 0, "specialist_knowledge")
     assert_equal 4, response.parsed_body.dig("fact_questions", 0, "answerability")
+    assert_equal false, response.parsed_body.dig("fact_questions", 0, "gateway")
     assert_match(/\A[0-9a-f]{64}\z/, response.parsed_body.dig("fact_questions", 0, "content_fingerprint"))
     assert_equal "fact_question.create", ApiAuditEvent.last.action
     assert_not opinion.reload.live?
+  end
+
+  test "moderator API records and serializes a gateway assessment" do
+    opinion = OpinionQuestion.create!(category: @category, title: "Gateway", statement: "The policy should be considered.",
+      slug: "gateway", live: false, display_order: OpinionQuestion.maximum(:display_order).to_i + 1,
+      accent: "slate", response_options: PublishOpinionQuestionProposal::RESPONSE_OPTIONS)
+    payload = fact_payload("What central fact frames the policy?", %w[One Two Three Four]).merge(
+      gateway: true, gateway_rationale: "It establishes the scale of the principal policy trade-off."
+    )
+
+    post fact_questions_bulk_api_v1_opinion_question_path(opinion),
+      params: { fact_questions: [ payload ] }.to_json, headers: @headers
+
+    assert_response :created
+    assert_equal true, response.parsed_body.dig("fact_questions", 0, "gateway")
+    assert_equal payload[:gateway_rationale], response.parsed_body.dig("fact_questions", 0, "gateway_rationale")
   end
 
   test "bulk fact creation accepts a bank larger than thirty questions in one request" do

@@ -1,4 +1,6 @@
 class NextFactQuestion
+  GATEWAY_OPENING_LENGTH = 8
+
   # The opening questions affirm the user's present position. Contextual facts
   # are introduced almost immediately, and counter-attitudinal evidence begins
   # in the first third before becoming progressively more frequent.
@@ -36,20 +38,32 @@ class NextFactQuestion
   def ordered_questions
     priorities = direction_priorities
 
+    ordering = "CASE WHEN evidence_direction = ? THEN 0 " \
+      "WHEN evidence_direction = ? THEN 1 ELSE 2 END, "
+    ordering += "CASE WHEN gateway THEN 0 ELSE 1 END, " if opening_phase?
+    ordering += "RANDOM()"
+
     opinion_question.published_fact_questions
       .reorder(
         Arel.sql(
           ActiveRecord::Base.sanitize_sql_array(
-            [ "CASE WHEN evidence_direction = ? THEN 0 " \
-             "WHEN evidence_direction = ? THEN 1 ELSE 2 END, RANDOM()", *priorities.first(2) ]
+            [ ordering, *priorities.first(2) ]
           )
         )
       )
   end
 
+  def opening_phase?
+    sequence_position < GATEWAY_OPENING_LENGTH
+  end
+
+  def sequence_position
+    @sequence_position ||= response_question_ids.count
+  end
+
   def direction_priorities
     stance = user_opinion.stance <=> 0
-    position = [ response_question_ids.count, VALENCE_PATTERN.length - 1 ].min
+    position = [ sequence_position, VALENCE_PATTERN.length - 1 ].min
 
     if stance.zero?
       neutral_priorities(position)

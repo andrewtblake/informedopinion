@@ -68,7 +68,8 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
 
   def self.serialize(record)
     record.as_json(only: %i[id opinion_question_id prompt options correct_option explanation source_name source_url
-      importance_weight importance_rationale evidence_direction specialist_knowledge answerability display_order withdrawn_at])
+      importance_weight importance_rationale evidence_direction specialist_knowledge answerability gateway gateway_rationale
+      display_order withdrawn_at])
       .merge("content_fingerprint" => FactQuestionCalibrationAudit.fingerprint(record))
   end
 
@@ -91,6 +92,7 @@ class Api::V1::FactQuestionsController < Api::V1::BaseController
     attributes = attributes.to_unsafe_h if attributes.respond_to?(:to_unsafe_h)
     ActionController::Parameters.new(attributes).permit(:prompt, :correct_option, :explanation, :source_name, :source_url,
       :importance_weight, :importance_rationale, :evidence_direction, :specialist_knowledge, :answerability,
+      :gateway, :gateway_rationale,
       :withdrawn_at, :response_handling, :revision_rationale, options: [])
   end
 

@@ -119,6 +119,8 @@ module InformedOpinionMcp
           importance_rationale: { type: "string" }, evidence_direction: { type: "integer", minimum: -1, maximum: 1 },
           specialist_knowledge: { type: "integer", minimum: 1, maximum: 6, description: "Prior topic-specific knowledge required before seeing the options." },
           answerability: { type: "integer", minimum: 1, maximum: 5, description: "Ease of answering the presented item. New questions must pass; use 0 only when auditing an existing item as unfit." },
+          gateway: { type: "boolean", description: "Whether whole-bank editorial review identifies this as an important, accessible fact suitable for early presentation." },
+          gateway_rationale: { type: "string", description: "Required when gateway is true; explain which principal consideration the item establishes." },
           response_handling: { type: "string", enum: FactQuestion::RESPONSE_HANDLINGS, description: "For prompt or option revisions: preserve only for a qualifying cosmetic or non-material clarification; otherwise reset." },
           revision_rationale: { type: "string", description: "Required when response_handling preserves existing responses." } } }
     end

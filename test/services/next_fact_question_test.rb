@@ -54,6 +54,26 @@ class NextFactQuestionTest < ActiveSupport::TestCase
     assert_equal [ -1, -1, 0, -1, 0, -1, 0, 1 ], observed
   end
 
+  test "prefers an unanswered gateway within the required opening valence" do
+    gateway = @topic.fact_questions.find_by!(evidence_direction: 1, prompt: "Fact 9 direction 1?")
+    gateway.update!(gateway: true, gateway_rationale: "It establishes a principal consideration early.")
+
+    assert_equal gateway, service.call
+  end
+
+  test "gateway designation requires an editorial rationale" do
+    question = @topic.fact_questions.first
+
+    assert_not question.update(gateway: true)
+    assert_includes question.errors[:gateway_rationale], "can't be blank"
+  end
+
+  test "gateway preference ends after the opening phase" do
+    @topic.fact_questions.first(NextFactQuestion::GATEWAY_OPENING_LENGTH).each { create_response(_1) }
+
+    assert_not_includes service.send(:ordered_questions).to_sql, "CASE WHEN gateway"
+  end
+
   test "reviews every question once before repeating one" do
     @topic.fact_questions.each { |question| create_response(question) }
 
