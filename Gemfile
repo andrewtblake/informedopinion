@@ -41,7 +41,7 @@ gem "solid_cache"
 gem "solid_queue"
 
 # Render deterministic Open Graph cards without browser or external-service dependencies.
-gem "ruby-vips", "~> 2.2"
+gem "ruby-vips", "~> 2.2", require: false
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
