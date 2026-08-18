@@ -80,7 +80,7 @@ class SocialCardsTest < ActionDispatch::IntegrationTest
       host: "whatsyourview.localhost")
     assert_response :success
     assert_select "meta[property='og:title'][content=?]", "Suggest a question — What's Your View?"
-    assert_select "meta[property='og:description'][content='What should we ask people about next?']"
+    assert_select "meta[property='og:description'][content='What should we explore next?']"
     assert_select "meta[property='og:image'][content='#{expected}']"
   end
 

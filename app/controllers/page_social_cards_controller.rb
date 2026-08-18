@@ -9,7 +9,7 @@ class PageSocialCardsController < ApplicationController
       },
       "whats_your_view" => {
         title: "Suggest a question",
-        subtitle: "What should we ask people about next?"
+        subtitle: "What should we explore next?"
       }
     }
   }.freeze

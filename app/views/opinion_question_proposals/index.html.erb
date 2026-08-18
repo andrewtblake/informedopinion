@@ -1,7 +1,7 @@
 <% content_for :title, "Proposals — Informed Opinion" %>
 <% content_for :head do %>
   <% share_title = current_site.alternative? ? "Suggest a question" : "Propose a question" %>
-  <% share_description = current_site.alternative? ? "What should we ask people about next?" : "Help shape what Informed Opinion examines next." %>
+  <% share_description = current_site.alternative? ? "What should we explore next?" : "Help shape what Informed Opinion examines next." %>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="<%= current_site.name %>">
   <meta property="og:title" content="<%= share_title %> — <%= current_site.name %>">
