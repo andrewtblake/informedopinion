@@ -1,4 +1,21 @@
 <% content_for :title, "Proposals — Informed Opinion" %>
+<% content_for :head do %>
+  <% share_title = current_site.alternative? ? "Suggest a question" : "Propose a question" %>
+  <% share_description = current_site.alternative? ? "What should we ask people about next?" : "Help shape what Informed Opinion examines next." %>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="<%= current_site.name %>">
+  <meta property="og:title" content="<%= share_title %> — <%= current_site.name %>">
+  <meta property="og:description" content="<%= share_description %>">
+  <meta property="og:url" content="<%= site_canonical_url %>">
+  <meta property="og:image" content="<%= branded_page_social_card_url("proposals") %>">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="<%= share_title %> — <%= current_site.name %>">
+  <meta name="twitter:description" content="<%= share_description %>">
+  <meta name="twitter:image" content="<%= branded_page_social_card_url("proposals") %>">
+<% end %>
 
 <section class="proposal-page ui-page">
   <div class="container proposal-page-container">

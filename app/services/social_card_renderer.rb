@@ -20,8 +20,9 @@ class SocialCardRenderer
     Digest::SHA256.hexdigest([ TEMPLATE_VERSION, site_key, title ].join("\0"))
   end
 
-  def initialize(title:, site_key:)
+  def initialize(title:, site_key:, subtitle: nil)
     @title = title.to_s.strip
+    @subtitle = subtitle.to_s.strip.presence
     @site_key = site_key.to_s
     @theme = THEMES.fetch(@site_key)
   end
@@ -40,6 +41,7 @@ class SocialCardRenderer
     title_height = line_height * lines.length
     title_y = [ 128, 305 - (title_height / 2) ].max
     brand_y = 525
+    subtitle_y = title_y + title_height + 42
 
     <<~SVG
       <svg xmlns="http://www.w3.org/2000/svg" width="#{WIDTH}" height="#{HEIGHT}" viewBox="0 0 #{WIDTH} #{HEIGHT}">
@@ -51,6 +53,7 @@ class SocialCardRenderer
             #{lines.each_with_index.map { |line, index| %(<tspan x="92" dy="#{index.zero? ? 0 : line_height}">#{escape(line)}</tspan>) }.join}
           </text>
         </g>
+        #{@subtitle ? subtitle_svg(subtitle_y) : ""}
         <rect x="92" y="#{brand_y - 62}" width="178" height="5" rx="2.5" fill="#{@theme[:accent]}"/>
         <text x="92" y="#{brand_y}" fill="#{@theme[:accent]}" font-family="DejaVu Sans" font-size="52" font-weight="700">#{escape(@theme[:mark])}</text>
         <circle cx="#{@site_key == "informed_opinion" ? 174 : 185}" cy="#{brand_y - 17}" r="4" fill="#{@theme[:ink]}"/>
@@ -98,6 +101,10 @@ class SocialCardRenderer
         <path d="M55 430c38-45 75-6 49 28-20 27-49 43-49 43s-29-16-49-43c-26-34 11-73 49-28z"/>
       </g>
     PATTERN
+  end
+
+  def subtitle_svg(y)
+    %(<text x="92" y="#{y}" fill="#{@theme[:ink]}" opacity="0.78" font-family="DejaVu Sans" font-size="34">#{escape(@subtitle)}</text>)
   end
 
   def escape(value)

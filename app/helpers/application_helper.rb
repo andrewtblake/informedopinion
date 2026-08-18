@@ -131,6 +131,16 @@ module ApplicationHelper
     )
   end
 
+  def branded_page_social_card_url(page_key)
+    page_social_card_url(
+      page_key: page_key,
+      site_key: social_card_site_key,
+      host: request.host,
+      protocol: request.protocol,
+      port: request.optional_port
+    )
+  end
+
   def glossary_text(text)
     safe_join(text.to_s.split(GLOSSARY_PATTERN).map do |segment|
       definition = ORGANISATION_GLOSSARY[segment]

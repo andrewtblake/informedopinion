@@ -59,4 +59,37 @@ class SocialCardsTest < ActionDispatch::IntegrationTest
 
     assert_response :not_found
   end
+
+  test "proposals metadata selects the Informed Opinion page card" do
+    host! "informedopinion.localhost"
+    get opinion_question_proposals_path
+
+    expected = page_social_card_url(page_key: "proposals", site_key: "informed_opinion",
+      host: "informedopinion.localhost")
+    assert_response :success
+    assert_select "meta[property='og:title'][content='Propose a question — Informed Opinion']"
+    assert_select "meta[property='og:description'][content='Help shape what Informed Opinion examines next.']"
+    assert_select "meta[property='og:image'][content='#{expected}']"
+  end
+
+  test "proposals metadata selects the What's Your View page card" do
+    host! "whatsyourview.localhost"
+    get opinion_question_proposals_path
+
+    expected = page_social_card_url(page_key: "proposals", site_key: "whats_your_view",
+      host: "whatsyourview.localhost")
+    assert_response :success
+    assert_select "meta[property='og:title'][content=?]", "Suggest a question — What's Your View?"
+    assert_select "meta[property='og:description'][content='What should we ask people about next?']"
+    assert_select "meta[property='og:image'][content='#{expected}']"
+  end
+
+  test "a versioned page card endpoint serves a PNG" do
+    get page_social_card_path(page_key: "proposals", site_key: "informed_opinion")
+
+    assert_response :success
+    assert_equal "image/png", response.media_type
+    assert response.body.b.start_with?("\x89PNG".b)
+    assert_match(/max-age=#{1.year.to_i}/, response.headers.fetch("cache-control"))
+  end
 end
