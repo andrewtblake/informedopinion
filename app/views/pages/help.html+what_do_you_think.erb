@@ -12,6 +12,7 @@
       <nav class="help-contents ui-panel" aria-label="On this page">
         <strong>On this page</strong>
         <ol>
+          <li><a href="#idea">The idea</a></li>
           <li><a href="#start">Start by browsing</a></li>
           <li><a href="#view">Give your view</a></li>
           <li><a href="#facts">Learn from the facts</a></li>
@@ -23,6 +24,13 @@
       </nav>
 
       <article class="help-article">
+        <section id="idea">
+          <p class="ui-kicker">The idea</p>
+          <h2>See what people think—and what they know</h2>
+          <p>A normal poll counts every response equally. This site adds a second piece of information: how well each participant answers sourced factual questions relevant to that particular topic.</p>
+          <p>The public result gives more weight to opinions backed by more correct answers. It does not tell you what the right opinion is, and it does not assume that well-informed people must agree.</p>
+        </section>
+
         <section id="start">
           <p class="ui-kicker">Getting started</p>
           <h2>Look around before you take part</h2>
@@ -41,7 +49,7 @@
           <p class="ui-kicker">Learning</p>
           <h2>Use the questions as a tour of the issue</h2>
           <p>After every answer you see what was correct, why, and where the information came from. Open the source when you want the context behind a number or claim.</p>
-          <p>The quiz normally starts with facts that quickly establish the main issues, then brings in qualifications and evidence that may challenge your starting view. A wrong answer simply shows you something worth learning; only your latest answer counts.</p>
+          <p>The quiz normally starts with facts that quickly establish the main issues, then brings in qualifications and evidence that may challenge your starting view. A wrong answer simply shows you something worth learning. If you answer that fact again, the new response replaces your earlier response to that fact; all your other answers still count.</p>
         </section>
 
         <section id="results">
@@ -61,8 +69,7 @@
         <section id="contributing">
           <p class="ui-kicker">Contributing</p>
           <h2>Suggest something worth asking</h2>
-          <p>The <%= link_to "Proposals page", opinion_question_proposals_path %> lets anyone see exactly what a submission involves and draft the complete form. You will be asked to sign in or create an account only when you are ready to send it.</p>
-          <p>A strong proposal asks about one clear, genuinely disputed idea that evidence could help people assess. Moderators may refine its wording and will not publish it until its supporting fact questions have been reviewed.</p>
+          <p>Use the <%= link_to "Proposals page", opinion_question_proposals_path %> to suggest one clear, genuinely disputed idea that evidence could help people assess. You need an account to send it; moderators may refine the wording and will review the supporting facts before publication.</p>
         </section>
 
         <section id="limits">

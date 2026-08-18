@@ -12,6 +12,7 @@
       <nav class="help-contents ui-panel" aria-label="On this page">
         <strong>On this page</strong>
         <ol>
+          <li><a href="#purpose">What the site is for</a></li>
           <li><a href="#start">A useful way to start</a></li>
           <li><a href="#question">Read the proposition</a></li>
           <li><a href="#facts">Use the fact questions</a></li>
@@ -24,6 +25,14 @@
       </nav>
 
       <article class="help-article">
+        <section id="purpose">
+          <p class="ui-kicker">The idea</p>
+          <h2>What is Informed Opinion?</h2>
+          <p>Informed Opinion records what people think about consequential and disputed propositions. It then gives each registered opinion a weight based on the person's demonstrated knowledge of facts relevant to that particular proposition.</p>
+          <p>The public result is therefore not simply a count of votes. It shows what participants think while giving greater influence to opinions backed by more correct answers about the relevant facts.</p>
+          <p>The site does not require a particular opinion, and knowing more does not guarantee that people will agree. Its purpose is to make the relationship between factual knowledge and public judgement visible.</p>
+        </section>
+
         <section id="start">
           <p class="ui-kicker">Getting started</p>
           <h2>You can browse before deciding whether to take part</h2>
@@ -43,7 +52,7 @@
           <h2>Treat the quiz as a guided tour of the evidence</h2>
           <p>Each question tests a fact that may help someone judge the proposition. After answering, you see the correct answer, a short explanation and a link to the source. Following a source is worthwhile when a figure surprises you or a qualification matters to your view.</p>
           <p>The opening questions usually put the main issues on the table quickly. Later questions may introduce uncertainty, limits and evidence that challenges your starting position. Every question stands alone, so you can stop and resume without losing the thread.</p>
-          <p>A wrong answer is not a penalty or a verdict on your judgement. It identifies something useful to learn, and only your latest answer to that fact counts.</p>
+          <p>A wrong answer is not a penalty or a verdict on your judgement. It identifies something useful to learn. If you answer the same fact again, the new response replaces your earlier response to that fact; your answers to all the other facts continue to count.</p>
         </section>
 
         <section id="progress">
@@ -72,8 +81,7 @@
         <section id="contributing">
           <p class="ui-kicker">Contributing</p>
           <h2>Propose a question you think the site should examine</h2>
-          <p>The <%= link_to "Proposals page", opinion_question_proposals_path %> shows the complete submission form to everyone. A useful proposal is one clear, genuinely disputed proposition whose underlying facts could influence people's views.</p>
-          <p>You need an account to send it, but you can draft it before signing in. Moderators may refine the wording, research a fact bank and publish it only after the complete material has been reviewed.</p>
+          <p>You can use the <%= link_to "Proposals page", opinion_question_proposals_path %> to suggest one clear, genuinely disputed proposition whose underlying facts could influence people's views. You need an account to send a proposal; moderators may refine its wording and will review the supporting material before publication.</p>
         </section>
 
         <section id="limits">

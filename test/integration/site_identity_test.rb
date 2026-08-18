@@ -154,12 +154,13 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", text: "How it works"
     assert_select ".help-article", text: /See what people think—and what they know/
+    assert_select "#idea", text: /normal poll.*does not tell you what the right opinion is/im
     assert_select "#start", text: /Look around before you take part.*full proposition/im
-    assert_select "#facts", text: /tour of the issue.*wrong answer simply shows/im
+    assert_select "#facts", text: /tour of the issue.*new response replaces your earlier response to that fact.*other answers still count/im
     assert_select "#results", text: /does not make a knowledgeable person's opinion automatically right/
-    assert_select "#contributing", text: /see exactly what a submission involves.*sign in or create an account/im
+    assert_select "#contributing", text: /one clear, genuinely disputed idea.*need an account to send/im
     assert_select "#limits", text: /prompt for thought, not a final verdict/
-    assert_select ".help-article section", count: 7
+    assert_select ".help-article section", count: 8
   end
 
   test "password recovery returns the participant to the requesting site" do

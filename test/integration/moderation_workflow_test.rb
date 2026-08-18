@@ -61,7 +61,7 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     get opinion_question_proposals_path
 
     assert_response :success
-    assert_select ".proposal-sign-in-notice", text: /account required to send.*whole form.*keep your draft/im
+    assert_select ".proposal-sign-in-notice", text: /sign in to submit.*draft your proposal.*saved in this browser as you type/im
     assert_select "form.proposal-form[data-controller='proposal-draft']"
     assert_select "input[name='opinion_question_proposal[title]']"
     assert_select "textarea[name='opinion_question_proposal[statement]']"
