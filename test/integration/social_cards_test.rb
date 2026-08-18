@@ -94,7 +94,7 @@ class SocialCardsTest < ActionDispatch::IntegrationTest
   end
 
   test "the superseded page card URL is not routed" do
-    get "/social-cards/proposals/informed_opinion/v1.png"
+    get "/social-cards/proposals/informed_opinion/v2.png"
 
     assert_response :not_found
   end

@@ -43,7 +43,7 @@ class SocialCardRenderer
     title_height = line_height * lines.length
     title_y = [ 128, 305 - (title_height / 2) ].max
     brand_y = 525
-    subtitle_y = title_y + title_height + 42
+    subtitle_y = title_y + title_height - 38
 
     <<~SVG
       <svg xmlns="http://www.w3.org/2000/svg" width="#{WIDTH}" height="#{HEIGHT}" viewBox="0 0 #{WIDTH} #{HEIGHT}">

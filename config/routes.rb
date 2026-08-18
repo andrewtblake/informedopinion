@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   get "proposals/sign-in", to: "opinion_question_proposals#sign_in", as: :sign_in_to_propose
   get "proposals/register", to: "opinion_question_proposals#register", as: :register_to_propose
   resources :opinion_question_proposals, only: %i[index new create], path: "proposals"
-  get "social-cards/:page_key/:site_key/v2.png", to: "page_social_cards#show", as: :page_social_card
+  get "social-cards/:page_key/:site_key/v3.png", to: "page_social_cards#show", as: :page_social_card
 
   resources :opinion_questions, only: %i[index show], param: :slug, path: "topics" do
     resource :user_opinion, only: %i[create update], path: "opinion"
