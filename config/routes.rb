@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   end
   resource :stats, only: :show
   resources :fact_question_flags, only: %i[new create], path: "fact-reports"
+  get "proposals/sign-in", to: "opinion_question_proposals#sign_in", as: :sign_in_to_propose
+  get "proposals/register", to: "opinion_question_proposals#register", as: :register_to_propose
   resources :opinion_question_proposals, only: %i[index new create], path: "proposals"
 
   resources :opinion_questions, only: %i[index show], param: :slug, path: "topics" do

@@ -259,6 +259,7 @@ body[data-site="what-do-you-think"] .form-page-container > header { padding-bott
 body[data-site="what-do-you-think"] .proposal-masthead h1,
 body[data-site="what-do-you-think"] .form-page-container > header h1 { color: var(--wdyt-blue-dark); font-size: clamp(37px, 6vw, 54px); }
 body[data-site="what-do-you-think"] .proposal-workspace { gap: 34px; }
+body[data-site="what-do-you-think"] .proposal-sign-in-notice { border-left-color: var(--wdyt-blue); border-radius: 8px; background: var(--wdyt-blue-pale); }
 body[data-site="what-do-you-think"] .proposal-section-heading { border-top-color: var(--wdyt-blue); }
 body[data-site="what-do-you-think"] .proposal-guidance { padding: 18px; border: 0; border-radius: 8px; background: var(--wdyt-blue-pale); }
 body[data-site="what-do-you-think"] .editorial-form { border-color: var(--wdyt-line); border-radius: 9px; box-shadow: 0 4px 16px rgba(31, 62, 101, .05); }

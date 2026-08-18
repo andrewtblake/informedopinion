@@ -9,6 +9,20 @@
       <p><%= site_copy(:proposals_intro) %></p>
     </header>
 
+    <% unless user_signed_in? %>
+      <section class="proposal-sign-in-notice ui-panel" aria-labelledby="proposal-sign-in-title">
+        <div>
+          <p class="editorial-section-label">Account required to send</p>
+          <h2 id="proposal-sign-in-title">See the whole form and draft your proposal now</h2>
+          <p>You can complete every field below before signing in. When you continue, this browser will keep your draft while you sign in or create an account.</p>
+        </div>
+        <div class="proposal-sign-in-actions">
+          <%= link_to "Sign in", sign_in_to_propose_path, class: "button button-primary" %>
+          <%= link_to site_copy(:create_account), register_to_propose_path, class: "button" %>
+        </div>
+      </section>
+    <% end %>
+
     <div class="proposal-workspace">
       <div>
         <header class="proposal-section-heading">
@@ -17,7 +31,9 @@
           <p>State one contestable proposition clearly enough that a respondent can agree or disagree with it.</p>
         </header>
 
-        <%= form_with model: @proposal, class: "editorial-form proposal-form" do |form| %>
+        <%= form_with model: @proposal, class: "editorial-form proposal-form",
+          data: { controller: "proposal-draft", proposal_draft_authenticated_value: user_signed_in?,
+            action: "input->proposal-draft#save change->proposal-draft#save turbo:submit-end->proposal-draft#submitted" } do |form| %>
           <%= render "devise/shared/errors", resource: @proposal %>
 
           <div class="field">
@@ -54,7 +70,7 @@
               placeholder: "Explain its public importance, genuine controversy, and the factual issues likely to inform opinion.",
               required: true %>
           </div>
-          <%= form.submit "Send proposal", class: "button button-primary" %>
+          <%= form.submit(user_signed_in? ? "Send proposal" : "Continue to sign in", class: "button button-primary") %>
         <% end %>
       </div>
 
@@ -71,7 +87,8 @@
       </aside>
     </div>
 
-    <section class="proposal-history" aria-labelledby="proposal-history-title">
+    <% if user_signed_in? %>
+      <section class="proposal-history" aria-labelledby="proposal-history-title">
       <header>
         <div>
           <p class="editorial-section-label">Personal record</p>
@@ -108,6 +125,7 @@
       <% if @proposals.empty? %>
         <p class="proposal-history-empty">You have not submitted an opinion-question proposal.</p>
       <% end %>
-    </section>
+      </section>
+    <% end %>
   </div>
 </section>

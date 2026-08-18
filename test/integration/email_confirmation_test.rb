@@ -46,6 +46,22 @@ class EmailConfirmationTest < ActionDispatch::IntegrationTest
     assert_select ".flash-notice", text: /What's Your View\?/
   end
 
+  test "confirmation returns a new participant to their proposal draft" do
+    get register_to_propose_path
+    assert_redirected_to new_user_registration_path
+
+    assert_difference "ActionMailer::Base.deliveries.size", 1 do
+      register(email: "proposal-verify@example.test")
+    end
+
+    get confirmation_path_from(ActionMailer::Base.deliveries.last)
+
+    assert_redirected_to opinion_question_proposals_path
+    follow_redirect!
+    assert_select "form.proposal-form[data-proposal-draft-authenticated-value='true']"
+    assert_select "input[type='submit'][value='Send proposal']"
+  end
+
   test "confirmed participants can request another message without account disclosure" do
     create_user!(first_name: "Existing", last_name: "Participant",
       email: "existing-confirmed@example.test", password: "password123")

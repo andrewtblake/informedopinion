@@ -12,7 +12,8 @@ module Users
       if resource.errors.empty?
         session.delete(:pending_confirmation_user_id)
         sign_in(resource_name, resource)
-        redirect_to root_path, notice: "Email verified. Welcome to #{current_site.name}."
+        redirect_to stored_location_for(resource_name) || root_path,
+          notice: "Email verified. Welcome to #{current_site.name}."
       else
         respond_with_navigational(resource.errors, status: :unprocessable_content) { render :new }
       end

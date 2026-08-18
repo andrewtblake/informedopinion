@@ -154,13 +154,12 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select "h1", text: "How it works"
     assert_select ".help-article", text: /See what people think—and what they know/
-    assert_select "#idea", text: /does not tell you what the right opinion is/
-    assert_select "#results strong", text: "Neutral", count: 0
-    assert_select "#taking-part", text: /Read its exact wording/
-    assert_select "#weight", text: /importance rating of Supporting \(1\), Significant \(2\), or Foundational \(3\)/
-    assert_select "#weight", text: /deliberately narrow/, count: 0
-    assert_select "#limits", text: /transparent account/, count: 0
-    assert_select ".help-article section", minimum: 7
+    assert_select "#start", text: /Look around before you take part.*full proposition/im
+    assert_select "#facts", text: /tour of the issue.*wrong answer simply shows/im
+    assert_select "#results", text: /does not make a knowledgeable person's opinion automatically right/
+    assert_select "#contributing", text: /see exactly what a submission involves.*sign in or create an account/im
+    assert_select "#limits", text: /prompt for thought, not a final verdict/
+    assert_select ".help-article section", count: 7
   end
 
   test "password recovery returns the participant to the requesting site" do

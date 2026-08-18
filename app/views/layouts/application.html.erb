@@ -43,10 +43,10 @@
             <%= link_to "Statistics", public_statistics_path, class: "nav-link" %>
           <% end %>
           <%= link_to site_copy(:nav_help), help_path, class: "nav-link" %>
+          <%= link_to site_copy(:nav_proposals), opinion_question_proposals_path, class: "nav-link" %>
           <% if user_signed_in? %>
             <span class="nav-greeting">Hello, <%= current_user.first_name %></span>
             <%= link_to site_copy(:nav_opinions), stats_path, class: "nav-link" %>
-            <%= link_to site_copy(:nav_proposals), opinion_question_proposals_path, class: "nav-link" %>
             <%= link_to "Account", account_path, class: "nav-link" %>
             <% if current_user.moderator? %>
               <%= link_to moderator_root_path, class: "nav-link moderation-nav-link" do %>

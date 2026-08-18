@@ -57,6 +57,49 @@ class ModerationWorkflowTest < ActionDispatch::IntegrationTest
     assert_select ".proposal-status", text: /Pending/
   end
 
+  test "a visitor can inspect and complete the proposal form before signing in" do
+    get opinion_question_proposals_path
+
+    assert_response :success
+    assert_select ".proposal-sign-in-notice", text: /account required to send.*whole form.*keep your draft/im
+    assert_select "form.proposal-form[data-controller='proposal-draft']"
+    assert_select "input[name='opinion_question_proposal[title]']"
+    assert_select "textarea[name='opinion_question_proposal[statement]']"
+    assert_select "select[name='opinion_question_proposal[category_id]']"
+    assert_select "input[name='opinion_question_proposal[tags_text]']"
+    assert_select "input[name='opinion_question_proposal[geographic_scope]']"
+    assert_select "textarea[name='opinion_question_proposal[rationale]']"
+    assert_select "input[type='submit'][value='Continue to sign in']"
+    assert_select ".proposal-history", count: 0
+  end
+
+  test "sending a visitor draft starts sign-in and returns to proposals afterward" do
+    assert_no_difference "OpinionQuestionProposal.count" do
+      post opinion_question_proposals_path, params: {
+        opinion_question_proposal: {
+          title: "A visitor draft",
+          statement: "The United Kingdom should adopt this defined policy.",
+          category_id: @category.id,
+          tags_text: "United Kingdom, Public policy",
+          geographic_scope: "United Kingdom",
+          rationale: "This is a consequential and disputed question."
+        }
+      }
+    end
+    assert_redirected_to new_user_session_path
+
+    post user_session_path, params: {
+      user: { email: @participant.email, password: "password123" }
+    }
+    assert_redirected_to opinion_question_proposals_path
+  end
+
+  test "proposals are linked for signed-out visitors" do
+    get root_path
+
+    assert_select ".site-nav a[href='#{opinion_question_proposals_path}']", text: "Proposals"
+  end
+
   test "a user sees only their own proposal history and its statuses" do
     approved = @participant.opinion_question_proposals.create!(
       title: "An approved proposal",

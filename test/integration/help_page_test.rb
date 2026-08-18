@@ -8,13 +8,13 @@ class HelpPageTest < ActionDispatch::IntegrationTest
     assert_select "title", text: "Help — Informed Opinion"
     assert_select ".help-page.ui-page .ui-masthead", count: 1
     assert_select ".help-contents.ui-panel", count: 1
-    assert_select ".help-article section", count: 9
-    assert_select "#reading", text: /running from No to Yes.*middle are neutral/m
-    assert_select "#weight", text: /Supporting.*Significant.*Foundational.*most recent answer/m
-    assert_select "#collective", text: /position.*knowledge weight.*total knowledge weight/m
-    assert_select "#collective", text: /adds weight without pushing the result towards either Yes or No/
-    assert_select "#ordering", text: /Unseen fact questions.*review round/m
-    assert_select "#limits", text: /not a representative opinion poll.*people who took part/m
+    assert_select ".help-article section", count: 8
+    assert_select "#question", text: /proposition, not only the title.*present view/im
+    assert_select "#facts", text: /guided tour of the evidence.*wrong answer is not a penalty/im
+    assert_select "#progress", text: /view, answers and weight can change.*not displayed publicly/im
+    assert_select "#results", text: /direction, strength and participation.*methodology page/im
+    assert_select "#contributing a[href='#{opinion_question_proposals_path}']"
+    assert_select "#limits", text: /does not settle the issue.*changed—or failed to change—my view/im
   end
 
   test "help is linked from the site chrome" do
