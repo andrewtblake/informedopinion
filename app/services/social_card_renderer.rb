@@ -20,9 +20,11 @@ class SocialCardRenderer
     Digest::SHA256.hexdigest([ TEMPLATE_VERSION, site_key, title ].join("\0"))
   end
 
-  def initialize(title:, site_key:, subtitle: nil)
+  def initialize(title:, site_key:, subtitle: nil, decorative: true, brand_rule: true)
     @title = title.to_s.strip
     @subtitle = subtitle.to_s.strip.presence
+    @decorative = decorative
+    @brand_rule = brand_rule
     @site_key = site_key.to_s
     @theme = THEMES.fetch(@site_key)
   end
@@ -47,14 +49,14 @@ class SocialCardRenderer
       <svg xmlns="http://www.w3.org/2000/svg" width="#{WIDTH}" height="#{HEIGHT}" viewBox="0 0 #{WIDTH} #{HEIGHT}">
         <rect width="#{WIDTH}" height="#{HEIGHT}" fill="#{@theme[:border]}"/>
         <rect x="18" y="18" width="1164" height="594" rx="34" fill="#{@theme[:background]}"/>
-        #{pattern_svg}
+        #{@decorative ? pattern_svg : ""}
         <g fill="#{@theme[:ink]}" font-family="#{@theme[:title_font]}">
           <text x="92" y="#{title_y}" font-size="#{font_size}" font-weight="700">
             #{lines.each_with_index.map { |line, index| %(<tspan x="92" dy="#{index.zero? ? 0 : line_height}">#{escape(line)}</tspan>) }.join}
           </text>
         </g>
         #{@subtitle ? subtitle_svg(subtitle_y) : ""}
-        <rect x="92" y="#{brand_y - 62}" width="178" height="5" rx="2.5" fill="#{@theme[:accent]}"/>
+        #{@brand_rule ? brand_rule_svg(brand_y) : ""}
         <text x="92" y="#{brand_y}" fill="#{@theme[:accent]}" font-family="DejaVu Sans" font-size="52" font-weight="700">#{escape(@theme[:mark])}</text>
         <circle cx="#{@site_key == "informed_opinion" ? 174 : 185}" cy="#{brand_y - 17}" r="4" fill="#{@theme[:ink]}"/>
         <text x="#{@site_key == "informed_opinion" ? 194 : 205}" y="#{brand_y}" fill="#{@theme[:ink]}" font-family="DejaVu Sans" font-size="34">#{escape(@theme[:name])}</text>
@@ -105,6 +107,10 @@ class SocialCardRenderer
 
   def subtitle_svg(y)
     %(<text x="92" y="#{y}" fill="#{@theme[:ink]}" opacity="0.78" font-family="DejaVu Sans" font-size="34">#{escape(@subtitle)}</text>)
+  end
+
+  def brand_rule_svg(brand_y)
+    %(<rect x="92" y="#{brand_y - 62}" width="178" height="5" rx="2.5" fill="#{@theme[:accent]}"/>)
   end
 
   def escape(value)

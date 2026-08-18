@@ -92,4 +92,10 @@ class SocialCardsTest < ActionDispatch::IntegrationTest
     assert response.body.b.start_with?("\x89PNG".b)
     assert_match(/max-age=#{1.year.to_i}/, response.headers.fetch("cache-control"))
   end
+
+  test "the superseded page card URL is not routed" do
+    get "/social-cards/proposals/informed_opinion/v1.png"
+
+    assert_response :not_found
+  end
 end

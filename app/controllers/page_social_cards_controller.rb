@@ -18,7 +18,12 @@ class PageSocialCardsController < ApplicationController
     card = CARDS.dig(params[:page_key], params[:site_key])
     raise ActiveRecord::RecordNotFound unless card
 
-    image_data = SocialCardRenderer.new(**card, site_key: params[:site_key]).render
+    image_data = SocialCardRenderer.new(
+      **card,
+      site_key: params[:site_key],
+      decorative: false,
+      brand_rule: false
+    ).render
     expires_in 1.year, public: true, immutable: true
     send_data image_data, type: "image/png", disposition: "inline"
   end
