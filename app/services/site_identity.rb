@@ -10,7 +10,7 @@ class SiteIdentity
     :copy
   ) do
     def alternative?
-      key == :what_do_you_think
+      key == :whats_your_view
     end
   end
 
@@ -63,13 +63,13 @@ class SiteIdentity
   )
 
   ALTERNATIVE = Site.new(
-    key: :what_do_you_think,
+    key: :whats_your_view,
     name: "What's Your View?",
     short_mark: "w?",
-    variant: :what_do_you_think,
+    variant: :whats_your_view,
     theme_color: "#1769d2",
     description: "See where people stand on disputed questions—and how much factual knowledge lies behind the result.",
-    favicon_prefix: "what-do-you-think-",
+    favicon_prefix: "whats-your-view-",
     copy: {
       nav_opinions: "Your opinions",
       nav_proposals: "Suggest a question",

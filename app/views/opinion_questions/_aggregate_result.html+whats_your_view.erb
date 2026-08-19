@@ -1,13 +1,13 @@
 <section class="topic-aggregate" aria-labelledby="aggregate-result-heading">
-  <div class="wdyt-result">
+  <div class="wyv-result">
     <header><span id="aggregate-result-heading">Community view</span></header>
     <div
-      class="wdyt-result-scale <%= "is-empty" unless collective.weighted_score %>"
+      class="wyv-result-scale <%= "is-empty" unless collective.weighted_score %>"
       style="--result-position: <%= collective.indicator_position %>%"
       role="img"
       aria-label="<%= collective.weighted_score ? "Aggregate informed opinion: #{collective.score_percentage}, from no at minus 100 through neutral at zero to yes at plus 100" : "No weighted opinion result yet" %>"
     >
-      <div class="wdyt-result-track">
+      <div class="wyv-result-track">
         <i aria-hidden="true"></i>
         <% if collective.weighted_score %><b aria-hidden="true"></b><% end %>
       </div>

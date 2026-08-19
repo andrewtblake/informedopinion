@@ -42,7 +42,7 @@ class EmailConfirmationTest < ActionDispatch::IntegrationTest
     get confirmation_path_from(mail)
     follow_redirect!
 
-    assert_select "body[data-site='what-do-you-think']"
+    assert_select "body[data-site='whats-your-view']"
     assert_select ".flash-notice", text: /What's Your View\?/
   end
 

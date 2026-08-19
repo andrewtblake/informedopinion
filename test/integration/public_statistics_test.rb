@@ -63,9 +63,9 @@ class PublicStatisticsTest < ActionDispatch::IntegrationTest
       get public_statistics_path
 
       assert_response :success
-      assert_select "body[data-site='what-do-you-think']"
+      assert_select "body[data-site='whats-your-view']"
       assert_select ".statistics-masthead", text: /See how many people have taken part/
-      assert_includes response.body, "/assets/what_do_you_think-"
+      assert_includes response.body, "/assets/whats_your_view-"
     end
   end
 

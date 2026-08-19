@@ -15,7 +15,7 @@ accepted shorthand. Unknown hosts deliberately receive the default Informed
 Opinion presentation rather than selecting the alternative.
 
 `SiteIdentity` resolves the request host. The alternative identity sets Rails'
-`what_do_you_think` view variant, loads the alternative central stylesheet, and
+`whats_your_view` view variant, loads the alternative central stylesheet, and
 selects the alternative metadata, interface language, and favicon. Templates
 without an alternative variant fall back to the shared template. Moderator
 pages always retain the Informed Opinion editorial presentation.

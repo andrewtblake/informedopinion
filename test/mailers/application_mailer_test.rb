@@ -35,7 +35,7 @@ class ApplicationMailerTest < ActionMailer::TestCase
     mail = DeviseMailer.confirmation_instructions(
       user,
       "confirmation-token",
-      site_key: :what_do_you_think,
+      site_key: :whats_your_view,
       site_url_options: { host: "whatsyourview.info", protocol: "https" }
     )
 
@@ -56,7 +56,7 @@ class ApplicationMailerTest < ActionMailer::TestCase
     mail = DeviseMailer.reset_password_instructions(
       user,
       "alternative-reset-token",
-      site_key: :what_do_you_think,
+      site_key: :whats_your_view,
       site_url_options: { host: "whatsyourview.info", protocol: "https" }
     )
 

@@ -17,7 +17,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
       assert_select ".site-footer .brand-mark[aria-hidden='true']", count: 1
       assert_select "meta[name='application-name'][content='Informed Opinion']", count: 1
       assert_select "link[rel='icon'][href='/icon.svg']", count: 1
-      assert_not_includes response.body, "/assets/what_do_you_think-"
+      assert_not_includes response.body, "/assets/whats_your_view-"
     end
   end
 
@@ -30,7 +30,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     get root_path
 
     assert_response :success
-    assert_select "body[data-site='what-do-you-think']"
+    assert_select "body[data-site='whats-your-view']"
     assert_select "main#main-content", count: 1
     assert_select "main#main-content main", count: 0
     assert_select "nav.site-nav[aria-label='Primary']", count: 1
@@ -39,17 +39,17 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_includes response.body, "<title>What&#39;s Your View? — opinion, backed by the facts</title>"
     assert_not_includes response.body, "What&amp;#39;s Your View?"
     assert_select "meta[name='application-name'][content=\"What's Your View?\"]", count: 1
-    assert_select "link[rel='icon'][href='/what-do-you-think-icon.svg']", count: 1
-    assert_select "link[rel='icon'][href='/what-do-you-think-favicon.ico']", count: 1
-    assert_select "link[rel='apple-touch-icon'][href='/what-do-you-think-icon.png']", count: 1
+    assert_select "link[rel='icon'][href='/whats-your-view-icon.svg']", count: 1
+    assert_select "link[rel='icon'][href='/whats-your-view-favicon.ico']", count: 1
+    assert_select "link[rel='apple-touch-icon'][href='/whats-your-view-icon.png']", count: 1
     assert_select "link[rel='canonical'][href='http://whatsyourview.localhost/']", count: 1
     assert_select "link[rel='stylesheet']", count: 2
-    assert_includes response.body, "/assets/what_do_you_think-"
-    assert_select ".wdyt-hero h1", text: "What do people think?"
-    assert_select ".wdyt-kicker", text: "Opinion, backed by the facts"
-    assert_select ".wdyt-result header", text: "Community view"
-    assert_select ".wdyt-result header strong", count: 0
-    assert_select ".wdyt-result-scale > div:last-child span", text: /Neutral/, count: 0
+    assert_includes response.body, "/assets/whats_your_view-"
+    assert_select ".wyv-hero h1", text: "What do people think?"
+    assert_select ".wyv-kicker", text: "Opinion, backed by the facts"
+    assert_select ".wyv-result header", text: "Community view"
+    assert_select ".wyv-result header strong", count: 0
+    assert_select ".wyv-result-scale > div:last-child span", text: /Neutral/, count: 0
   end
 
   test "moderation follows the alternative presentation and retains featured controls" do
@@ -65,9 +65,9 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     get moderator_root_path
 
     assert_response :success
-    assert_select "body[data-site='what-do-you-think']"
+    assert_select "body[data-site='whats-your-view']"
     assert_select ".brand > span:last-child", text: "What's Your View?"
-    assert_includes response.body, "/assets/what_do_you_think-"
+    assert_includes response.body, "/assets/whats_your_view-"
     assert_select ".moderation-page"
     assert_select "#featured-order" do
       assert_select "button", text: "Promote", minimum: 1
@@ -92,7 +92,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     get opinion_question_path(question)
     assert_response :success
     assert_select ".topic-hero-card h1", text: "A site journey"
-    assert_select ".topic-aggregate .wdyt-result", text: /Community view.*No.*Yes/m
+    assert_select ".topic-aggregate .wyv-result", text: /Community view.*No.*Yes/m
     assert_select ".opinion-response-section h2", text: "Where do you stand?"
     assert_select ".text-link", text: "Continue with the facts"
 
