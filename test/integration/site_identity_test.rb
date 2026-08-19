@@ -45,7 +45,7 @@ class SiteIdentityTest < ActionDispatch::IntegrationTest
     assert_select "link[rel='canonical'][href='http://whatsyourview.localhost/']", count: 1
     assert_select "link[rel='stylesheet']", count: 2
     assert_includes response.body, "/assets/whats_your_view-"
-    assert_select ".wyv-hero h1", text: "See where people stand"
+    assert_select ".wyv-hero h1", text: "Where do we stand?"
     assert_select ".wyv-kicker", text: "Opinion, backed by the facts"
     assert_select ".wyv-result header", text: "Community view"
     assert_select ".wyv-result header strong", count: 0
