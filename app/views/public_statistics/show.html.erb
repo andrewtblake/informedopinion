@@ -17,6 +17,10 @@
       </div>
       <div class="statistics-metric-grid">
         <article class="statistics-metric ui-panel">
+          <strong><%= number_with_delimiter(@statistics.user_accounts) %></strong>
+          <span>user accounts</span>
+        </article>
+        <article class="statistics-metric ui-panel">
           <strong><%= number_with_delimiter(@statistics.participants) %></strong>
           <span>participants with a published-topic opinion</span>
         </article>
@@ -114,7 +118,7 @@
 
     <aside class="statistics-method-note ui-panel">
       <h2>How to read these figures</h2>
-      <p>Positive opinion scores point toward agreement and negative scores toward disagreement; zero is neutral. Counts concern published questions only.</p>
+      <p>Positive opinion scores point toward agreement and negative scores toward disagreement; zero is neutral. The user-account total includes all accounts, including unconfirmed accounts and people who have not expressed an opinion. Opinion and revision counts concern published questions only.</p>
       <%= link_to "Read the full methodology", methodology_path %>
     </aside>
   </div>

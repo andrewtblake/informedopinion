@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  ADMIN_EMAIL = "blakethomasandrew@gmail.com".freeze
+
   attribute :accept_terms, :boolean
   attribute :consent_sensitive_data, :boolean
   attr_accessor :require_participation_consent
@@ -51,6 +53,10 @@ class User < ApplicationRecord
 
   def name
     [ first_name, last_name ].join(" ")
+  end
+
+  def admin?
+    confirmed? && moderator? && email == ADMIN_EMAIL
   end
 
   def privacy_consent_current?

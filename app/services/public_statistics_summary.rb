@@ -17,6 +17,10 @@ class PublicStatisticsSummary
     public_opinions.distinct.count(:user_id)
   end
 
+  def user_accounts
+    User.count
+  end
+
   def registered_opinions
     public_opinions.count
   end

@@ -57,7 +57,15 @@ opinion → quiz → feedback → revision journey.
 
 ## Feature flags
 
-The public statistics page is disabled by default. Set
+The statistics page and its navigation links are always available to the admin:
+the confirmed moderator account `blakethomasandrew@gmail.com`. `User#admin?`
+identifies this single account; admin is a restricted subset of moderators, not
+a separate database role. Other moderators do not receive admin access.
+The page includes a total of all user accounts, including unconfirmed accounts
+and accounts without opinions, separately from participants in published topics.
+
+Public access is disabled by default. Keep `PUBLIC_STATISTICS_ENABLED=false`
+for admin-only access. Set
 `PUBLIC_STATISTICS_ENABLED=true` to expose `/statistics` and its navigation
 links. `PUBLIC_STATISTICS_MINIMUM_GROUP_SIZE` controls the smallest published
 mind-change group and defaults to `5`.

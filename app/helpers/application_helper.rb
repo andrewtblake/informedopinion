@@ -82,7 +82,7 @@ module ApplicationHelper
   end
 
   def public_statistics_enabled?
-    FeatureFlags.public_statistics?
+    FeatureFlags.public_statistics?(current_user)
   end
 
   def signed_percentage(value)
