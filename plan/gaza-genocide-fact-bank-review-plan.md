@@ -1,6 +1,6 @@
 # Gaza genocide fact-bank review plan
 
-Status: proposed editorial plan, 17 October 2026. The live moderator API was
+Status: proposed editorial plan, extended on 17 October 2026. The live API was
 read for topic 26 and its 40 facts. The topic remains unpublished. This plan
 does not authorize applying replacements or publishing the topic.
 
@@ -153,9 +153,9 @@ depend on source verification. Each item must work in isolation.
 
 | Coverage | Slots | Required distinctions |
 | --- | ---: | --- |
-| Legal elements and proof | 8 | Group and substantial part; acts; specific intent; inference standard; mixed purposes; other crimes; lawful attack rules; procedural thresholds |
+| Legal elements and inference | 10 | Acts and intent; protected group and substantial part; specific intent versus foresight; mixed purposes; reasonable alternatives; proof versus disproof; attribution; other crimes; lawful attack rules; procedural thresholds |
 | Historical applications | 4 | Established genocide with military context; partial destruction; failure to prove intent; displacement distinguished from destruction |
-| Deaths and evidentiary limits | 6 | Provenance; civilian status; verification; mortality estimation; combatant estimates; observed deaths versus projections |
+| Deaths and evidentiary limits | 4 | Provenance and civilian status; verification and mortality estimation; combatant estimates; observed deaths versus projections |
 | Survival conditions and policy | 8 | Food; water; health; reproductive survival; displacement; infrastructure; repeated restrictions; implementation and reversals |
 | Military context and attribution | 6 | Armed-group operations; substantiated use of civilian sites; particular targets; official statements; authority and orders; accountability |
 | Precautions and humanitarian action | 4 | Warning effectiveness; safe destinations; relief reach and adequacy; changes to operations or access |
@@ -240,6 +240,157 @@ including UN Watch, becomes authoritative merely because it criticizes the UN.
   handling before applying changes. Use substantive resets or retirement
   where required; preserve historical records and audit provenance.
 - Keep topic 26 unpublished unless separately instructed to publish it.
+
+## Extension: testing explanations deeply enough
+
+### What success means
+
+A well-informed respondent should be able to distinguish:
+
+- A prohibited act from the additional intent needed for genocide.
+- A military objective from a claim that destructive intent was absent.
+- Indifference to civilian harm from an intention to destroy the group.
+- A hypothetical possibility from a reasonable, evidence-supported account.
+- Compatibility with an explanation from evidence favouring that explanation.
+- Failure to prove genocidal intent from proof that it was absent.
+- The same visible outcome from the same total evidence about decisions.
+- A pattern supporting inference from proof supplied by other evidence.
+- An overall military purpose from additional purposes or intended means.
+- An allegation about a state from an allegation about a particular actor.
+
+These distinctions should be illustrated through sourced law and actual cases,
+with most space devoted to the Gaza evidence. Do not turn the bank into a
+general logic examination, an abstract legal course or institutional trivia.
+
+### Research the counterfactual as a competing explanation
+
+Define H0 for research as an objective of defeating Hamas, accepting extreme
+civilian harm, but without intending physical or biological destruction of
+Palestinians as a protected group. This is a hypothesis, not a finding that
+such conduct occurred or would be lawful.
+
+Define H1 as relevant prohibited acts committed with group-destructive intent,
+including the possibility that military aims also existed. Do not substitute
+an unrealistically exclusive extermination objective for the actual allegation.
+
+Keep other supported explanations visible, including coercion, expulsion,
+collective punishment, local misconduct and combinations. Do not assume that
+each excludes H1 or that failure of H0 proves H1.
+
+For each explanation, identify expectations before choosing the examples.
+An account that can accommodate every possible outcome through unverified
+auxiliary assumptions is not a useful discriminator. However, no explanation
+must predict every detail perfectly to remain reasonable.
+
+Use the actual extent and timing of armed-group resistance. Do not assume
+last-man resistance everywhere or classify every civilian site as militarily
+used. Conversely, do not assume that civilian damage establishes the absence
+of a military objective.
+
+For each selected episode, prepare an editorial comparison containing:
+
+1. What each explanation would lead us to expect, and why.
+2. The observed decisions, actions and outcomes, with dates and attribution.
+3. Evidence available to decision-makers at the time.
+4. Evidence fitting both explanations, which may have limited distinguishing
+   power while remaining necessary to establish physical acts or scale.
+5. Evidence that fits one explanation better, and the strongest rebuttal.
+6. Assumptions required to preserve either explanation and their support.
+7. What the record cannot establish and what further evidence would matter.
+
+Do not assign numerical likelihoods without a defensible empirical basis.
+Do not ask the quiz-taker to endorse the editor's preferred hypothesis.
+
+### Select connected evidence without dependent questions
+
+Research a small number of policy sequences in depth, rather than accumulating
+unrelated dramatic incidents. Candidate sequences include civilian necessities
+and access decisions, attacks and destruction of infrastructure, evacuation
+and return, and responses to documented errors or warnings. Select only after
+checking evidence availability; these are areas to investigate, not findings.
+
+Cover changing military conditions and humanitarian outcomes within those
+sequences. Include episodes that challenge each interpretation and identify
+correlated evidence, so several reports about one event do not masquerade as
+independent confirmation of a policy.
+
+Questions may concern different aspects of a shared research sequence only
+when they test distinct facts. Every presented item must repeat sufficient
+date, place and policy context to work independently. No references to other
+questions, fixed presentation order or combined multi-part answers are allowed.
+
+An explanation should identify the fact's relevance and limits concisely.
+It should not bury several untested central propositions in a long essay.
+
+### Workflow and reviewable outputs
+
+1. Fix the opinion's scope and evidence cut-off. Record which interpretation
+   of the proposition is being tested and the legal status of cited findings.
+2. Build a research inventory of roughly 60 to 70 candidate facts. An inventory
+   entry is not yet a question and need not survive review.
+3. Complete the competing-explanation records and dated policy sequences.
+   Include original documents, corroboration, counterevidence and uncertainties.
+4. Draft the strongest opposing accounts using that common record. Identify
+   precisely where the disagreement concerns facts, law or interpretation.
+   Conduct both perspective reviews without presuming either reviewer is right.
+5. Select a 40-item draft using the revised coverage allocation. Give every
+   item a reason for inclusion, its inferential role and a reason it cannot
+   be replaced by a less consequential fact. The allocation is provisional.
+6. Produce four plausible choices, direct sources and concise explanations.
+   Apply importance, valence, specialist knowledge, answerability and glossary
+   rules. Flag genuinely contested premises instead of forcing a correct key.
+7. Audit the draft for missing decisive evidence and misleading inferences.
+   Attempt a 40-item version and an expanded version if needed; record exactly
+   which essential distinctions the shorter version loses.
+8. Present the replacement map and unresolved issues before site changes.
+   Applying this plan and publishing the topic remain separate actions.
+
+### Tests that determine whether 40 questions suffice
+
+The draft passes only if a respondent who knows the tested facts can:
+
+- Explain why prohibited conduct and specific intent are both necessary,
+  without treating mental elements as punishment for thoughts alone.
+- Explain why the mere existence of a non-genocidal scenario does not prove
+  that it is a reasonable account of the full evidence.
+- Recognize that a reasonable explanation without genocidal intent matters
+  to inference, and distinguish that from an unsupported assertion of intent.
+- Identify the strongest actual evidence challenging each explanation.
+- Separate civilian-harm totals from military context, intent and attribution.
+- Assess humanitarian action alongside its scope, outcomes and timing.
+- Distinguish an incident, a policy sequence and a campaign-wide allegation.
+- Reach either position without losing quiz marks for the position itself.
+
+Run these as qualitative editorial checks, with documented reasons and
+examples from the draft. They are not additional scored opinion questions.
+If reader or independent subject-expert review is available, use it to test
+comprehension and identify ambiguity. Do not describe a desk review as proof
+of effectiveness with readers, or a perspective exercise as independent review.
+
+### Capacity assessment and expansion rule
+
+Forty questions is a credible target for a strong introduction to the central
+inquiry, including material evidence and limitations. It is a tight budget for
+comprehensive treatment of legal interpretation, several years of conduct,
+historical applications, mortality methods and competing explanations.
+
+The revised allocation reserves 10 places for legal and inferential tools,
+four for history and 26 for Gaza-specific evidence. This requires replacing
+overlap, not merely adding new material. It must not compress several distinct
+facts into one difficult question to preserve an arbitrary total.
+
+Start with 40. Expand in small groups if the omission audit identifies material
+gaps that cannot be repaired by replacing weaker items. A 50 to 60 item bank
+is a reasonable contingency, not a promised requirement or evidence threshold.
+Do not expand for completeness alone, for equal partisan counts or to achieve
+a preferred distribution of opinion responses.
+
+Even a larger bank cannot reconstruct undisclosed intelligence, internal
+deliberations or every incident, nor resolve genuinely disputed law by quiz.
+Confidence in feasibility is qualitative: good for an informed framework,
+more limited for comprehensive evidential coverage, and no guarantee of
+consensus or a determinate verdict. Validate the 40-item draft before claiming
+that the target has been achieved.
 
 The intended result is a bank that equips readers to assess a cumulative
 inference, while distinguishing verified facts from contested attribution and
