@@ -1,0 +1,25 @@
+{
+  "questions": 50,
+  "correct_positions": {
+    "1": 13,
+    "3": 12,
+    "0": 13,
+    "2": 12
+  },
+  "importance": {
+    "3": 7,
+    "1": 12,
+    "2": 31
+  },
+  "evidence_direction": {
+    "0": 23,
+    "1": 17,
+    "-1": 10
+  },
+  "longest_answer_raw": 0.06,
+  "longest_answer_weighted": 0.031578947368421054,
+  "gateway_count": 8,
+  "candidate_count": 70,
+  "evidence_sequences": 12,
+  "limitations": "Mechanical checks do not establish source accuracy, reader difficulty or independent expert agreement."
+}

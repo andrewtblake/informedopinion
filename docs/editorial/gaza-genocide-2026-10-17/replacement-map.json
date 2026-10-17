@@ -1,0 +1,461 @@
+[
+  {
+    "previous_fact_id": 795,
+    "previous_fingerprint": "18d9f4e71e16adce95b22c06198cd26a703d4298b5bbc1f537709f25756553bf",
+    "previous_prompt": "Under Article II of the Genocide Convention, what intent distinguishes genocide from other atrocities?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L01"
+    ],
+    "replacement_key": "L01"
+  },
+  {
+    "previous_fact_id": 796,
+    "previous_fingerprint": "7754510ee13563e64796af48e0d2828fe9a0ee98a3b48bff312d57b191fc0604",
+    "previous_prompt": "In its January 2024 Gaza order, how did the ICJ treat Palestinians when considering the Genocide Convention’s protected-group requirement?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L11"
+    ],
+    "replacement_key": "P01"
+  },
+  {
+    "previous_fact_id": 797,
+    "previous_fingerprint": "e0b6876fa8cb291627ed5c20b4a176c3b8f450d56339836f71f8195fc48115f0",
+    "previous_prompt": "Can deliberately imposing starvation or other destructive living conditions constitute genocide without directly shooting or bombing every victim?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L02"
+    ],
+    "replacement_key": "D01"
+  },
+  {
+    "previous_fact_id": 798,
+    "previous_fingerprint": "d66f287b3454f36ff38b3508d231b6e9f2958e2c756c158368e9bdf28635880b",
+    "previous_prompt": "What happened to stored reproductive material at Gaza’s Al-Basma fertility centre, according to the UN Commission of Inquiry’s March 2025 report?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P04"
+    ],
+    "replacement_key": "M01"
+  },
+  {
+    "previous_fact_id": 799,
+    "previous_fingerprint": "e3a7721864367bb6ab095ecf5bb97e77a683be626a495a7d405f1933dc4e2f6e",
+    "previous_prompt": "What minimum death toll does the Genocide Convention prescribe before conduct can count as genocide?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L01",
+      "L11",
+      "H01"
+    ],
+    "replacement_key": "L02"
+  },
+  {
+    "previous_fact_id": 800,
+    "previous_fingerprint": "4671cce590561eb492722929eaa1618d2f865def645bcb2d639673c1f091a1a6",
+    "previous_prompt": "According to ICJ case law, is forced removal of an ethnic population automatically genocide?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L03"
+    ],
+    "replacement_key": "R01"
+  },
+  {
+    "previous_fact_id": 801,
+    "previous_fingerprint": "0ebc207ac034bcb8ebc65f1056791073a7ab18472192746db8e02c1c91fb2ca1",
+    "previous_prompt": "What distinguishes the legal category of crimes against humanity from genocide?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H03",
+      "C08"
+    ],
+    "replacement_key": "L04"
+  },
+  {
+    "previous_fact_id": 802,
+    "previous_fingerprint": "9f1a6963621f804c871923ad9dc604a677a29b357813ea16248be9264597a009",
+    "previous_prompt": "When inferring genocidal intent solely from a pattern of conduct, what test did the ICJ apply in Croatia v. Serbia in 2015?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L04"
+    ],
+    "replacement_key": "C01"
+  },
+  {
+    "previous_fact_id": 803,
+    "previous_fingerprint": "579a3db7cfb2dee92ab06c5430f1441057d593fdebc5ac221f30a6daf104a356",
+    "previous_prompt": "At Auschwitz, what happened to some Jewish deportees whom the Nazis selected as fit for work?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H01"
+    ],
+    "replacement_key": "D02"
+  },
+  {
+    "previous_fact_id": 804,
+    "previous_fingerprint": "9406c44c98dd8c122278a265fcc0d8487b1e26743cefbb137e7c2d0b6c54b1a6",
+    "previous_prompt": "How did the 1994 genocide against Tutsi civilians in Rwanda relate to the war against the Tutsi-led Rwandan Patriotic Front (RPF)?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H02"
+    ],
+    "replacement_key": "L08"
+  },
+  {
+    "previous_fact_id": 805,
+    "previous_fingerprint": "399911db5e924220a113cf5888939b59c50be4c770068f282405fe70b153da14",
+    "previous_prompt": "Why did the international tribunal recognize Srebrenica as genocide although women and children were expelled and the mass executions mainly targeted men and boys?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H01"
+    ],
+    "replacement_key": "M02"
+  },
+  {
+    "previous_fact_id": 806,
+    "previous_fingerprint": "16f16f2f9607bd4b7049822a0ef0a030e357a4430d7d033250e4848e623e1830",
+    "previous_prompt": "Why did the ICJ reject Croatia’s genocide claim against Serbia in 2015 despite findings of killings and serious harm?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H03"
+    ],
+    "replacement_key": "P06"
+  },
+  {
+    "previous_fact_id": 807,
+    "previous_fingerprint": "219743a42f217118dac68a3fa8e706e102a54314e961dbe62b3e90ca284d7da9",
+    "previous_prompt": "In the Cambodian tribunal’s 2018 judgment, why were genocide findings tied to the Vietnamese and Cham groups rather than automatically to every Khmer Rouge killing?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L11",
+      "H04"
+    ],
+    "replacement_key": "L03"
+  },
+  {
+    "previous_fact_id": 808,
+    "previous_fingerprint": "ec9d69fe1f2a982a90d4570cfa9a40777128967f4b3525d40d13522eb521f3ae",
+    "previous_prompt": "In its 2007 Bosnia judgment, how did the ICJ distinguish Srebrenica from atrocities elsewhere in the Bosnian war?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H01",
+      "H03"
+    ],
+    "replacement_key": "C02"
+  },
+  {
+    "previous_fact_id": 809,
+    "previous_fingerprint": "666d8f262521ae5bad6fc2fb2f03f6c1e0429ab05005f62c0f86aa95c37b058b",
+    "previous_prompt": "What purpose did the International Criminal Tribunal for the former Yugoslavia (ICTY) find behind the 1999 campaign of violence and displacement against Kosovo Albanians in the Šainović case?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "H04"
+    ],
+    "replacement_key": "P07"
+  },
+  {
+    "previous_fact_id": 810,
+    "previous_fingerprint": "4d81f96ee2d4e6124066983f72ff6f5ec16794d2b2fbae82510209d414a9f25f",
+    "previous_prompt": "What institution produces the commonly quoted running death toll from Gaza during the war that began in October 2023?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M01"
+    ],
+    "replacement_key": "H03"
+  },
+  {
+    "previous_fact_id": 811,
+    "previous_fingerprint": "078da8a7ab4a7da486db9d49a7ed43ccd4d876bf6777b46d7acd5ca191875326",
+    "previous_prompt": "Does the Gaza Health Ministry’s headline war-death total distinguish civilian deaths from combatant deaths?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M01"
+    ],
+    "replacement_key": "L06"
+  },
+  {
+    "previous_fact_id": 812,
+    "previous_fingerprint": "1f27096e654c24d3ed152b1fe1136e62d021016ee4697f712a06a1053d0a9042",
+    "previous_prompt": "Under international humanitarian law, does being an adult man establish that a person killed in Gaza was a combatant?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M02",
+      "H01"
+    ],
+    "replacement_key": "P02"
+  },
+  {
+    "previous_fact_id": 813,
+    "previous_fingerprint": "6530016a45258ec83e7b3f6b22c6b34691ea88021cf3f0ba43fff17088bc29f4",
+    "previous_prompt": "What did the OHCHR’s November 2024 Gaza report mean by 8,119 verified deaths in its six-month reporting period?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M03"
+    ],
+    "replacement_key": "R02"
+  },
+  {
+    "previous_fact_id": 814,
+    "previous_fingerprint": "13a0153969ef2650065e228cf9bead63ca48e15905a4fdfc70e689951b897bee",
+    "previous_prompt": "What did the 2025 Lancet capture–recapture study estimate about traumatic-injury deaths in Gaza from 7 October 2023 to 30 June 2024?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M04"
+    ],
+    "replacement_key": "M05"
+  },
+  {
+    "previous_fact_id": 815,
+    "previous_fingerprint": "23dfbaffce51d58a915024f604b4f1f871c8acf8067991a59cecbbd3b6bcbb09",
+    "previous_prompt": "What did the population-representative Gaza mortality survey published in 2026 add beyond the Health Ministry’s running records?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M05"
+    ],
+    "replacement_key": "D05"
+  },
+  {
+    "previous_fact_id": 816,
+    "previous_fingerprint": "5cd3ada1127777cab477f33c2ec8d2719b275ad73733df40b23336d5a5c54ac5",
+    "previous_prompt": "What was the widely circulated figure of 186,000 Gaza deaths in a July 2024 Lancet correspondence?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "M06"
+    ],
+    "replacement_key": "L07"
+  },
+  {
+    "previous_fact_id": 817,
+    "previous_fingerprint": "20b319a6cdd05fbcc32d994d1ed8b0fa99cdd7328daefa0d0f5302cde754c319",
+    "previous_prompt": "What policy did Israeli Defence Minister Yoav Gallant announce for Gaza on 9 October 2023, as recorded in the ICJ’s January 2024 order?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P01"
+    ],
+    "replacement_key": "P03"
+  },
+  {
+    "previous_fact_id": 818,
+    "previous_fingerprint": "cad9228af39246b960514131c87c15689d9524019ed78db1c2a7946fd2bb8993",
+    "previous_prompt": "What war aims did Prime Minister Benjamin Netanyahu publicly state on 6 January 2024?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "D01"
+    ],
+    "replacement_key": "D03"
+  },
+  {
+    "previous_fact_id": 819,
+    "previous_fingerprint": "f6c9ef03984b1843ef0e95c3aa3abb736b69345719698edccfa0c3d8453453bc",
+    "previous_prompt": "What did the United Nations Satellite Centre (UNOSAT)’s assessment based on imagery from 8 July 2025 estimate about structures in Gaza?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P02",
+      "P03",
+      "D08"
+    ],
+    "replacement_key": "L09"
+  },
+  {
+    "previous_fact_id": 820,
+    "previous_fingerprint": "13369f09bf4450c65f81f6e79c7333d72cafaf31b07cdc10296deb77204f4893",
+    "previous_prompt": "What policy and infrastructure evidence underlay Human Rights Watch (HRW)’s December 2024 report on water deprivation in Gaza?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P02",
+      "C05"
+    ],
+    "replacement_key": "P09"
+  },
+  {
+    "previous_fact_id": 821,
+    "previous_fingerprint": "8765754014aa810715647e76fe5ed76b62ec073ea32a7c7af2e7b773c9e271cd",
+    "previous_prompt": "What happened to humanitarian supplies after Israel suspended entry of goods into Gaza on 2 March 2025?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P06",
+      "P07",
+      "C02",
+      "C06"
+    ],
+    "replacement_key": "H01"
+  },
+  {
+    "previous_fact_id": 822,
+    "previous_fingerprint": "2fd0caa53e4760db12d825496cef0a2926c317112f0ccebf6c7870dccc310cac",
+    "previous_prompt": "What did the IPC conclude in August 2025 about famine in Gaza?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P08"
+    ],
+    "replacement_key": "C05"
+  },
+  {
+    "previous_fact_id": 823,
+    "previous_fingerprint": "8759c7faa1279ff9d341c3995b355364399edbe004cbaccef1729c0dfb3885cd",
+    "previous_prompt": "How did the IPC’s December 2025 analysis describe Gaza after the October ceasefire and increased assistance?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "R04"
+    ],
+    "replacement_key": "C06"
+  },
+  {
+    "previous_fact_id": 824,
+    "previous_fingerprint": "1a9919e7ca12ca1ed310abc8dae52e600a4e052d3d26f502a3eead9a533495cc",
+    "previous_prompt": "What enabled area-specific polio vaccination campaigns in Gaza in September–November 2024?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "R01"
+    ],
+    "replacement_key": "M04"
+  },
+  {
+    "previous_fact_id": 825,
+    "previous_fingerprint": "059ab18379661501b17eb4bcf800a4a6e560b069e09639ede577f859c6be7d12",
+    "previous_prompt": "What did the Israeli military’s April 2024 investigation acknowledge about the strikes that killed seven World Central Kitchen (WCK) aid workers?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "C03"
+    ],
+    "replacement_key": "C03"
+  },
+  {
+    "previous_fact_id": 826,
+    "previous_fingerprint": "cefffccdf4f211c5de3097d2caa1b0551bb685e0b966e7b3cf925ceb61328ccd",
+    "previous_prompt": "What did Human Rights Watch (HRW)’s November 2024 Gaza displacement investigation find about evacuation routes and designated safe areas?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P09"
+    ],
+    "replacement_key": "L05"
+  },
+  {
+    "previous_fact_id": 827,
+    "previous_fingerprint": "7cf5511c9f53d87c41d82054c80bdce9462e183a64a734354f0588ace9d21166",
+    "previous_prompt": "Did the ICJ’s 26 January 2024 Gaza order finally decide that Israel had committed genocide?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L10"
+    ],
+    "replacement_key": "P08"
+  },
+  {
+    "previous_fact_id": 828,
+    "previous_fingerprint": "72ea57387aa438ff9f221a98d39339386412bb152a0572f0f293fdd517522df0",
+    "previous_prompt": "What did ICC judges find reasonable grounds to believe about deprivation in Gaza when issuing the November 2024 Netanyahu and Gallant warrants?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "C08"
+    ],
+    "replacement_key": "R04"
+  },
+  {
+    "previous_fact_id": 829,
+    "previous_fingerprint": "c983634d785908195c03a5d092faca2af94fd9b5496753419a8d5fa9f3e543b2",
+    "previous_prompt": "In fifteen Gaza air strikes investigated for its December 2024 report, what did Amnesty International find about military objectives?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "C07",
+      "D07"
+    ],
+    "replacement_key": "D06"
+  },
+  {
+    "previous_fact_id": 830,
+    "previous_fingerprint": "2a92387c0e1b992aadd3383dbc5720667f99f236ab2479b33258959a506fbe87",
+    "previous_prompt": "How did the WHO describe Gaza’s hospital system when the January 2025 ceasefire began?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "P03",
+      "D02"
+    ],
+    "replacement_key": "H04"
+  },
+  {
+    "previous_fact_id": 831,
+    "previous_fingerprint": "3b0edc5d3da44aed6c9defe0695fbbaa0d5ee1852cb61b7d78e59087847c6b55",
+    "previous_prompt": "What disagreement over Gaza’s population did the US State Department describe in January 2024?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "D04",
+      "L07"
+    ],
+    "replacement_key": "M06"
+  },
+  {
+    "previous_fact_id": 832,
+    "previous_fingerprint": "7a4fcdcb424ed8af6395483fb1ff1101fbe19439e02f57150436f53fdf9473fc",
+    "previous_prompt": "In Israel’s January 2024 defence against the genocide allegation, how did its lawyers characterize inflammatory quotations from officials?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "D05",
+      "D06",
+      "D07"
+    ],
+    "replacement_key": "P04"
+  },
+  {
+    "previous_fact_id": 833,
+    "previous_fingerprint": "11ddad53b88f846bf27745bd01dd00012dc54e7580da7aed572d58fe45766931",
+    "previous_prompt": "If Palestinian armed groups unlawfully use civilian areas to shield military operations, what happens to Israel’s obligations toward civilians there?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "L09",
+      "D02",
+      "D03"
+    ],
+    "replacement_key": "D04"
+  },
+  {
+    "previous_fact_id": 834,
+    "previous_fingerprint": "ea6cc084fe4722d1b8a2f7b8804a11e50007b9e467f2f3cc5e9d434cb9fabef0",
+    "previous_prompt": "What did the World Food Programme (WFP) report about the additional route, Erez crossing and Ashdod port used to supply northern Gaza in April 2024?",
+    "action": "substantive_reset",
+    "reason": "User confirms there are no answers: update existing unpublished record with revised content and calibration; retain API revision audit and before snapshot.",
+    "coverage_replacement_keys": [
+      "R02"
+    ],
+    "replacement_key": "L11"
+  }
+]

@@ -1,0 +1,337 @@
+{
+  "convention": {
+    "name": "United Nations — Genocide Convention, Article II",
+    "url": "https://www.un.org/en/genocide-prevention/1948-convention",
+    "locator": "Article II",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "croatia": {
+    "name": "International Court of Justice — Summary of judgment, 3 February 2015",
+    "url": "https://www.icj-cij.org/node/103932",
+    "locator": "Judgment paragraphs 132–148 and 407–440",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Finding concerns the evidence and parties in that case, not Gaza."
+  },
+  "expulsion": {
+    "name": "International Court of Justice — Croatia v. Serbia, 2015 judgment",
+    "url": "https://www.icj-cij.org/node/103223",
+    "locator": "Judgment paragraphs 134–139",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "group": {
+    "name": "International Court of Justice — Summary of order, 26 January 2024",
+    "url": "https://www.icj-cij.org/node/203454",
+    "locator": "Order of 26 January 2024, paragraph 45",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "interim": {
+    "name": "International Court of Justice — Order of 26 January 2024",
+    "url": "https://www.icj-cij.org/node/203454",
+    "locator": "Order of 26 January 2024, paragraphs 35–36, 54 and 84",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "jelisic": {
+    "name": "International tribunal — Jelisić appeal judgment, 5 July 2001",
+    "url": "https://www.icty.org/x/cases/jelisic/acjug/en/jel-aj010705e.htm",
+    "locator": "Paragraphs 47–49",
+    "basis": "Judicial legal reasoning",
+    "limitations": "The appeal concerns an individual; do not turn every military objective into a personal motive or treat mixed intent as proved."
+  },
+  "state": {
+    "name": "International Law Commission — Articles on State Responsibility",
+    "url": "https://legal.un.org/ilc/texts/instruments/english/draft_articles/9_6_2001.pdf",
+    "locator": "Articles 4 and 7",
+    "basis": "Official codification of attribution rules",
+    "limitations": "Attribution of conduct does not itself establish genocidal intent."
+  },
+  "targeting": {
+    "name": "ICRC — Targeting under international humanitarian law",
+    "url": "https://casebook.icrc.org/highlight/targeting-under-international-humanitarian-law",
+    "locator": "Distinction, proportionality and precautions",
+    "basis": "Authoritative explanation of targeting rules",
+    "limitations": "Not a factual finding about any particular Gaza attack."
+  },
+  "shields": {
+    "name": "International Committee of the Red Cross — How humanitarian law applies in Israel and the occupied territories",
+    "url": "https://blogs.icrc.org/law-and-policy/2023/12/19/israel-and-the-occupied-territories-how-international-humanitarian-law-applies/",
+    "locator": "Continuing obligations of the attacking party",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "srebrenica": {
+    "name": "International Criminal Tribunal for the former Yugoslavia — Krstić appeal summary",
+    "url": "https://www.icty.org/en/press/appeals-chamber-judgement-case-prosecutor-v-radislav-krstic",
+    "locator": "Krstić appeal, group destruction and targeting of men",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "rwanda": {
+    "name": "United States Holocaust Memorial Museum — The Rwanda genocide",
+    "url": "https://encyclopedia.ushmm.org/content/en/article/the-rwanda-genocide",
+    "locator": "Civil war and genocide against Tutsi civilians",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "croatia_result": {
+    "name": "International Court of Justice — Croatia v. Serbia case overview",
+    "url": "https://www.icj-cij.org/case/118",
+    "locator": "2015 merits judgment: acts and intent",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "kosovo": {
+    "name": "International Criminal Tribunal for the former Yugoslavia — Kosovo judgment summary, 26 February 2009",
+    "url": "https://www.icty.org/x/cases/milutinovic/tjug/en/090226summary.pdf",
+    "locator": "Judgment summary: common purpose and convictions",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "ministry": {
+    "name": "Associated Press — How Gaza’s Health Ministry calculates the death toll",
+    "url": "https://apnews.com/article/israel-hamas-war-gaza-health-ministry-health-death-toll-59470820308b31f1faf73c703400b033",
+    "locator": "Medical and registration records within Hamas-run administration",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Institutional affiliation does not authenticate or discredit every individual record."
+  },
+  "combatants": {
+    "name": "Associated Press — Gaza school strike report, 3 April 2025",
+    "url": "https://www.ap.org/news-highlights/spotlights/2025/israeli-strike-on-a-school-in-gaza-kills-at-least-27-people-palestinian-health-officials-say/",
+    "locator": "Israeli claim of around 20,000 militants killed",
+    "basis": "Secondary synthesis of competing official claims",
+    "limitations": "No independently verified civilian-combatant ratio; do not subtract incompatible estimates as if both were audited."
+  },
+  "verified": {
+    "name": "Office of the UN High Commissioner for Human Rights — Six-month Gaza report, November 2024",
+    "url": "https://www.ohchr.org/sites/default/files/documents/countries/opt/20241106-Gaza-Update-Report-OPT.pdf",
+    "locator": "Verified subset for November 2023–April 2024",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Case verification is not a random sample; sources can overlap with ministry records."
+  },
+  "capture": {
+    "name": "Jamaluddine and colleagues — Traumatic injury mortality, The Lancet, 2025",
+    "url": "https://doi.org/10.1016/S0140-6736(24)02678-3",
+    "locator": "Methods and estimated traumatic deaths to 30 June 2024",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Model depends on overlapping lists, including ministry inputs; no combatant classification."
+  },
+  "survey": {
+    "name": "Spagat and colleagues — Population-representative Gaza mortality survey, The Lancet Global Health, 2026",
+    "url": "https://doi.org/10.1016/S2214-109X(25)00522-4",
+    "locator": "Methods and findings of survey conducted 30 December 2024–5 January 2025",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Accessible-area household sampling with displaced populations representing inaccessible governorates; raking uses official demographic frames. Separate from ministry death enumeration, not independent of every official input. Recall and missing or entirely lost households remain limitations.",
+    "correction_notice": "https://doi.org/10.1016/j.langlo.2026.104002",
+    "verification_note": "Publisher and PubMed indexed abstracts rechecked on 17 October 2026 and agree on the tested estimate and interval. A correction notice exists; no question tests the corrected supervision detail or appendix."
+  },
+  "projection": {
+    "name": "Khatib, McKee and Yusuf — Counting the dead in Gaza, The Lancet correspondence, 2024",
+    "url": "https://doi.org/10.1016/S0140-6736(24)01169-3",
+    "locator": "Correspondence, not an observed count",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "siege": {
+    "name": "International Court of Justice — Order of 26 January 2024, recorded official statements",
+    "url": "https://www.icj-cij.org/sites/default/files/case-related/192/192-20240126-ord-01-00-en.pdf",
+    "locator": "Order of 26 January 2024: recorded announcement of 9 October 2023",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "water": {
+    "name": "Human Rights Watch — Extermination and Acts of Genocide, December 2024",
+    "url": "https://www.hrw.org/report/2024/12/19/extermination-and-acts-genocide/israel-deliberately-depriving-palestinians-gaza",
+    "locator": "Summary, policy mechanisms, imagery and water access",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Human Rights Watch investigation; legal conclusions attributed, not treated as court findings."
+  },
+  "health": {
+    "name": "World Health Organization — Gaza health-system assessment, 19 January 2025",
+    "url": "https://www.who.int/news/item/19-01-2025-the-ceasefire-in-gaza-brings-hope--but-immense-challenges-lie-ahead-to-restore-the-health-system",
+    "locator": "WHO release of 19 January 2025",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Operational and damage assessment; not an attack-by-attack attribution or legality audit."
+  },
+  "reproduction": {
+    "name": "UN Commission of Inquiry — Sexual and reproductive violence report, 13 March 2025",
+    "url": "https://www.un.org/unispal/wp-content/uploads/2025/03/Report-of-Independent-International-Commission-of-Inquiry-on-the-Occupied-Palestinian-Territory-13-March-2025.pdf",
+    "locator": "Commission report of March 2025, reproductive healthcare",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Reported destruction and consequences do not themselves establish deliberate embryo targeting."
+  },
+  "structures": {
+    "name": "United Nations Satellite Centre — Gaza damage assessment, 8 July 2025",
+    "url": "https://unosat.org/static/unosat_filesystem/4165/OCHA-OPT-027_UNOSAT_A3_Gaza_Strip_OPT_CDA_08072025.pdf",
+    "locator": "Imagery dated 8 July 2025, damage categories",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Satellite damage assessment cannot determine military use or intention at each structure."
+  },
+  "march_policy": {
+    "name": "Israeli Prime Minister’s Office — announcement, 2 March 2025",
+    "url": "https://www.gov.il/en/pages/spoke-parta020325",
+    "locator": "Decision to halt entry of goods and supplies; ceasefire-extension dispute",
+    "basis": "Primary statement of policy; corroborated by UN operational records",
+    "limitations": "Official rationale is evidence of a stated purpose, not proof that it was the sole purpose."
+  },
+  "march_delivery": {
+    "name": "UN Office for Project Services — Gaza aid mechanism, March 2025 overview",
+    "url": "https://www.un.org/unispal/document/monthly-overview-march-2025-un2720-mechanism-for-gaza-unops/",
+    "locator": "March 2025 monthly overview, deliveries",
+    "basis": "Original source rechecked during revision",
+    "limitations": "The UN mechanism does not enumerate every possible stock or non-mechanism transfer."
+  },
+  "famine": {
+    "name": "Integrated Food Security Phase Classification — Gaza analysis, August 2025",
+    "url": "https://www.ipcinfo.org/fileadmin/user_upload/ipcinfo/docs/IPC_Gaza_Strip_Acute_Food_Insecurity_Malnutrition_July_Sept2025_Special_Snapshot.pdf",
+    "locator": "August 2025 assessment and geographical scope",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Technical classification, disputed by Israel; classification is not a genocide judgment."
+  },
+  "evacuation": {
+    "name": "Human Rights Watch — Hopeless, Starving, and Besieged, November 2024",
+    "url": "https://www.hrw.org/report/2024/11/14/hopeless-starving-and-besieged/israels-forced-displacement-palestinians-gaza",
+    "locator": "Report methodology and findings on routes and safe areas",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Selected investigated cases; not an audit of every evacuation order."
+  },
+  "detention": {
+    "name": "OHCHR — detention report release, 31 July 2024",
+    "url": "https://www.ohchr.org/en/press-releases/2024/07/un-report-palestinian-detainees-held-arbitrarily-and-secretly-subjected",
+    "locator": "Accounts of detention, torture and sexual violence",
+    "basis": "UN investigation, also reproduced by UNISPAL",
+    "limitations": "Reports concern detainees from Gaza and the West Bank, including East Jerusalem; do not generalize to all detainees or infer genocidal purpose automatically."
+  },
+  "aims": {
+    "name": "Israeli Prime Minister’s Office — Statement of 6 January 2024",
+    "url": "https://www.gov.il/en/pages/statement-by-pm-netanyahu-6-jan-2023",
+    "locator": "Prime minister’s statement, 6 January 2024",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Source URL contains 2023 but the statement is dated 6 January 2024; declared aims do not settle actual intent."
+  },
+  "shifa": {
+    "name": "US State Department — briefing, 18 December 2023",
+    "url": "https://2021-2025.state.gov/briefings/department-press-briefing-december-18-2023/",
+    "locator": "Exchange about al-Shifa command and control",
+    "basis": "Primary public statement of an allied intelligence assessment",
+    "limitations": "Underlying intelligence not fully public; neither a neutral court finding nor validation of every Israeli claim about hospitals."
+  },
+  "tunnel": {
+    "name": "Associated Press — journalists visit tunnel below Gaza cemetery, 29 January 2024",
+    "url": "https://apnews.com/article/israel-palestinians-gaza-cemetery-mosque-tunnel-idf-fb609916b0d5251ea6f7c0ea2a2c2b3f",
+    "locator": "Journalists’ visit and military explanation",
+    "basis": "Reporter observation on an Israeli-organized visit",
+    "limitations": "Access was military-controlled; observing a tunnel does not prove every claimed connection or justify the entire surrounding destruction."
+  },
+  "resettlement": {
+    "name": "US Department of State — Press briefing, 3 January 2024",
+    "url": "https://2021-2025.state.gov/briefings/department-press-briefing-january-3-2024/",
+    "locator": "State Department briefing, 3 January 2024",
+    "basis": "Original source rechecked during revision",
+    "limitations": "US account of represented policy and ministerial statements; not proof of implementation."
+  },
+  "coi": {
+    "name": "UN Commission of Inquiry — legal analysis, September 2025",
+    "url": "https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session60/advance-version/a-hrc-60-crp-3.pdf",
+    "locator": "Paragraphs 158–162, 192–203, 230–231 and 252–255",
+    "basis": "Full 72-page primary report downloaded and read",
+    "limitations": "Commission applies reasonable grounds; no court verdict. Access constraints, overlapping underlying reports and contested inferences remain material."
+  },
+  "amnesty": {
+    "name": "Amnesty International — December 2024 investigation",
+    "url": "https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/",
+    "locator": "Intent to destroy; alternatives; selected 15 strikes",
+    "basis": "Primary explanation of Amnesty’s investigation and reasoning",
+    "limitations": "Not a court verdict; its treatment of disregard as evidence of intent must not be presented as a binding legal rule."
+  },
+  "polio": {
+    "name": "World Health Organization — Completion of second polio vaccination round, 6 November 2024",
+    "url": "https://www.who.int/news/item/06-11-2024-second-round-of-polio-campaign-in-gaza-completed-amid-ongoing-conflict-and-attacks--unicef-and-who",
+    "locator": "WHO release, 6 November 2024, campaign coverage and pauses",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "relief_routes": {
+    "name": "World Food Programme — Gaza update, 17 May 2024",
+    "url": "https://www.wfp.org/stories/gaza-updates-wfp-responds-hunger-crisis-rafah-incursion-cuts-access-warehouse",
+    "locator": "World Food Programme update, May 2024, April deliveries",
+    "basis": "Original source rechecked during revision",
+    "limitations": ""
+  },
+  "looting": {
+    "name": "OCHA — Humanitarian Situation Update 239, 19 November 2024",
+    "url": "https://www.ochaopt.org/content/humanitarian-situation-update-239-gaza-strip",
+    "locator": "Convoy of 16 November: 97 of 109 truckloads lost",
+    "basis": "UN operational reporting",
+    "limitations": "Other updates report 98 trucks; do not quiz the disputed last digit or assume a specific armed group was responsible."
+  },
+  "december": {
+    "name": "Integrated Food Security Phase Classification — Gaza analysis, December 2025",
+    "url": "https://www.ipcinfo.org/ipcinfo-website/countries-in-focus-archive/issue-142/en/",
+    "locator": "December 2025 assessment; conditions observed in October–November",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Improvement after ceasefire does not retrospectively disprove earlier famine; ongoing needs and access conditions remain."
+  },
+  "warning": {
+    "name": "ICJ — order of 28 March 2024",
+    "url": "https://www.icj-cij.org/node/203847",
+    "locator": "Paragraphs 18–23 and 51",
+    "basis": "Court’s contemporaneous warning and binding interim measures",
+    "limitations": "Interim decision, not a finding of genocidal intent; famine observation differs from a later technical classification."
+  },
+  "ceasefire": {
+    "name": "OCHA — phase-one ceasefire response report, 17 March 2025",
+    "url": "https://www.ochaopt.org/content/report-humanitarian-response-un-and-humanitarian-partners-during-phase-one-ceasefire",
+    "locator": "19 January–1 March 2025: food distribution",
+    "basis": "UN operational reporting",
+    "limitations": "Observed improvement does not establish adequacy everywhere or explain every decision."
+  },
+  "kitchen": {
+    "name": "Israel Defense Forces — World Central Kitchen investigation, 5 April 2024",
+    "url": "https://www.idf.il/en/mini-sites/israel-at-war/all-articles/conclusion-of-the-investigation-into-the-incident-in-which-wck-employees-were-killed-during-a-humanitarian-operation-in-gaza",
+    "locator": "Internal investigation released 5 April 2024",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Military account of intent and discipline is not independent criminal adjudication."
+  },
+  "medics": {
+    "name": "Sky News — verified medic footage, 5 April 2025",
+    "url": "https://news.sky.com/video/new-video-contradicts-israeli-account-of-gaza-aid-convoy-attack-13342389",
+    "locator": "Video report and verification statement, 5 April 2025",
+    "basis": "Publisher verification of footage supplied by the Palestine Red Crescent Society",
+    "limitations": "Shows the signals and vehicles; does not itself settle all surrounding circumstances or wider intent.",
+    "corroborating_sources": [
+      "https://www.idf.il/286233",
+      "https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session60/advance-version/a-hrc-60-crp-3.pdf"
+    ]
+  },
+  "power": {
+    "name": "OCHA — humanitarian response update, 2–15 March 2025",
+    "url": "https://www.ochaopt.org/content/gaza-humanitarian-response-update-2-15-march-2025",
+    "locator": "Water, sanitation and hygiene: feeder line disconnected on 9 March",
+    "basis": "UN operational reporting",
+    "limitations": "The line supplied a desalination plant; do not call it the only source of all drinking water in Gaza."
+  },
+  "may_access": {
+    "name": "OCHA — Humanitarian Situation Update 292, 28 May 2025",
+    "url": "https://www.ochaopt.org/content/humanitarian-situation-update-292-gaza-strip",
+    "locator": "19–27 May: clearance, offloading and collection",
+    "basis": "UN operational reporting",
+    "limitations": "Counts refer to different stages, not three independent measures of household consumption."
+  },
+  "warrants": {
+    "name": "International Criminal Court — Reasons for warrants, 21 November 2024",
+    "url": "https://www.icc-cpi.int/news/situation-state-palestine-icc-pre-trial-chamber-i-rejects-state-israels-challenges",
+    "locator": "Judges’ reasonable-grounds findings, 21 November 2024",
+    "basis": "Original source rechecked during revision",
+    "limitations": "Arrest warrants are not convictions or genocide findings; question is historical and does not assert their current procedural status."
+  },
+  "rockets": {
+    "name": "Associated Press — Gaza rocket attack, 26 May 2024, via PBS",
+    "url": "https://www.pbs.org/newshour/amp/world/rocket-fire-by-hamas-from-gaza-sets-off-air-raid-sirens-in-tel-aviv-for-first-time-in-months",
+    "locator": "Opening account of rocket barrage more than seven months into the war",
+    "basis": "Contemporaneous Associated Press reporting, reproduced by PBS",
+    "limitations": "Establishes a continuing armed capability, not military necessity for every Israeli action or absence of additional intent."
+  }
+}

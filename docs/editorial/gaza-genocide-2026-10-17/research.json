@@ -1,0 +1,1129 @@
+{
+  "hypotheses": {
+    "H0": "Military defeat of Hamas, accepting extreme civilian harm, without intent to destroy Palestinians as a protected group. This is not a finding of lawful conduct.",
+    "H1": "Relevant prohibited acts committed with group-destructive intent, including as an additional purpose or intended means."
+  },
+  "sequences": [
+    {
+      "key": "S1",
+      "name": "Acts, intent and competing explanations",
+      "facts": [
+        "L01",
+        "L02",
+        "L03",
+        "L04",
+        "L05",
+        "L06",
+        "L07",
+        "L08",
+        "L09",
+        "L10",
+        "L11",
+        "H01",
+        "H02",
+        "H03",
+        "H04"
+      ],
+      "expectations_without_genocidal_intent": "A real military purpose can explain conduct without group-destructive intent, but must fit the full evidence rather than only aggregate destruction.",
+      "expectations_with_genocidal_intent": "Qualifying conduct and attributable group-destructive intent must both be established; other purposes can coexist. Neither a further motive nor a written order is a universal shortcut.",
+      "observed": "The legal texts and historical judgments distinguish acts, intent, attribution, inference and procedural thresholds.",
+      "challenge_to_non_genocidal_account": "A declared military aim does not establish that group destruction was not also intended as an end or means.",
+      "challenge_to_genocidal_account": "A reasonable evidence-supported explanation without destructive intent defeats exclusivity of inference from the pattern; actual harms do not establish intent by themselves.",
+      "unknown": "Application to Gaza requires additional factual evidence and assessment. Individual-criminal and state-responsibility standards must not be collapsed."
+    },
+    {
+      "key": "S2",
+      "name": "Initial siege, warning and expanded relief",
+      "facts": [
+        "P01",
+        "P02",
+        "C01",
+        "R02"
+      ],
+      "expectations_without_genocidal_intent": "Supply restrictions would need an evidenced relationship to military defeat, coercion or another purpose without group destruction. Correction when access can improve would matter.",
+      "expectations_with_genocidal_intent": "Population-wide deprivation and deliberate destruction of survival systems could implement group destruction; meaningful reversal and sustained adequate relief would challenge a simple continuous-destruction account.",
+      "observed": "A senior minister announced a complete siege; the ICJ later required relief at scale. Verified reservoir-demolition evidence and a separate increase in northern aid are included.",
+      "challenge_to_non_genocidal_account": "The connection between particular civilian restrictions or demolitions and military objectives is not established by the existence of Hamas alone.",
+      "challenge_to_genocidal_account": "Actual increases in access must be assessed as evidence; their existence cannot simply be assumed irrelevant or token.",
+      "unknown": "Each measure’s operational justification, actual reach and decision-makers’ purposes are not fully public. HRW’s legal inference remains attributed."
+    },
+    {
+      "key": "S3",
+      "name": "Ceasefire relief and renewed restriction",
+      "facts": [
+        "C02",
+        "P06",
+        "P07",
+        "C05"
+      ],
+      "expectations_without_genocidal_intent": "A coercion account predicts a relationship to negotiations or military strategy, but does not itself establish absence of an additional destructive intent.",
+      "expectations_with_genocidal_intent": "Renewed population-wide restriction after demonstrated relief and warnings can support intentional destructive conditions; substantial earlier relief and its purpose must also be accounted for.",
+      "observed": "OCHA recorded food parcels reaching over two million people during the first ceasefire phase. Israel then announced an all-goods suspension; the UN mechanism recorded no March deliveries and OCHA recorded the desalination feeder cutoff.",
+      "challenge_to_non_genocidal_account": "Negotiating pressure does not automatically explain or justify the chosen scope, duration and civilian consequences without destructive intent.",
+      "challenge_to_genocidal_account": "Relief reaching millions is material counterevidence to an unqualified claim of uninterrupted total deprivation.",
+      "unknown": "A coercive purpose and genocidal intent are not assumed mutually exclusive. Stocks, alternative water sources and the limits of the UN mechanism matter."
+    },
+    {
+      "key": "S4",
+      "name": "Aid permission, collection and distribution",
+      "facts": [
+        "C06",
+        "R03"
+      ],
+      "expectations_without_genocidal_intent": "Insecurity, armed looting and delivery-stage failures can contribute to shortages even after entry is permitted.",
+      "expectations_with_genocidal_intent": "Restrictive choices can contribute to destructive conditions even when some aid is admitted; responsibility cannot be inferred from entry counts alone.",
+      "observed": "A convoy was looted after crossing in November 2024. In May 2025, approval, offloading and collection counts diverged materially.",
+      "challenge_to_non_genocidal_account": "Some distribution failure does not establish that all deprivation came from Hamas or absolve restrictions elsewhere.",
+      "challenge_to_genocidal_account": "A shortage cannot automatically be attributed entirely to a denial of entry; the actual supply chain and actors require examination.",
+      "unknown": "The sources do not identify Hamas as the convoy looters or quantify diversion as a cause of all shortages."
+    },
+    {
+      "key": "S5",
+      "name": "Famine and changing conditions",
+      "facts": [
+        "P08",
+        "R04"
+      ],
+      "expectations_without_genocidal_intent": "Less fighting and better access could improve food security; prior destructive conditions still need explanation.",
+      "expectations_with_genocidal_intent": "Observed famine is relevant to destructive conditions but not direct proof of purpose. Improvement can constrain scope and timing of a destructive-policy allegation.",
+      "observed": "The IPC classified famine in Gaza Governorate in August 2025 and described improvement after the October ceasefire in its December analysis.",
+      "challenge_to_non_genocidal_account": "Later improvement does not erase earlier conditions or the decisions that contributed to them.",
+      "challenge_to_genocidal_account": "Famine and access cannot be treated as constant across all phases. The findings are geographically bounded and distinguish observations from projections.",
+      "unknown": "Food-security classification does not establish individual intent or the legal classification of the campaign. Israel contested the technical assessment."
+    },
+    {
+      "key": "S6",
+      "name": "Military infrastructure and civilian survival systems",
+      "facts": [
+        "D01",
+        "D02",
+        "D03",
+        "P03",
+        "P04",
+        "D08",
+        "C07"
+      ],
+      "expectations_without_genocidal_intent": "Military infrastructure and resistance can explain some destructive operations; site-specific evidence and the relationship to each decision matter.",
+      "expectations_with_genocidal_intent": "Military targets can coexist with a destructive policy. System loss and selected attacks without identified objectives can support that allegation but require careful attribution.",
+      "observed": "The bank includes stated war aims, an allied al-Shifa assessment, reporter observation of a tunnel, continued rocket fire in May 2024, hospital capacity loss, reproductive material destruction and Amnesty’s selected-strike findings.",
+      "challenge_to_non_genocidal_account": "One observed tunnel or intelligence assessment cannot explain every attack on hospitals, homes and other facilities.",
+      "challenge_to_genocidal_account": "Damage does not prove absence of military use; selected investigations cannot be treated as a representative strike sample.",
+      "unknown": "Much intelligence is not public; journalistic tours are selected; military use, proportionality and specific intent are different issues."
+    },
+    {
+      "key": "S7",
+      "name": "Evacuation and substantive protection",
+      "facts": [
+        "L03",
+        "L09",
+        "P09",
+        "R01",
+        "H01"
+      ],
+      "expectations_without_genocidal_intent": "Protective arrangements can reduce civilian harm, but their feasibility, outcomes and limits must be assessed rather than assuming declarations were fulfilled.",
+      "expectations_with_genocidal_intent": "Some protection or survival can coexist with partial destruction; substantial effective protection still deserves weight, not automatic dismissal.",
+      "observed": "The bank contrasts investigated evacuation failures with a vaccination campaign that reached over 550,000 children while missing inaccessible areas.",
+      "challenge_to_non_genocidal_account": "Issuing a warning does not establish safe movement or adequate conditions at the destination.",
+      "challenge_to_genocidal_account": "An effective large-scale health intervention is material evidence about conduct even though it is not logical disproof of genocide.",
+      "unknown": "Neither source covers all locations and periods. The plan does not infer that every evacuation failed or every protection measure was effective."
+    },
+    {
+      "key": "S8",
+      "name": "Statements, authority and implementation",
+      "facts": [
+        "D04",
+        "D05",
+        "L07",
+        "D06"
+      ],
+      "expectations_without_genocidal_intent": "Contextual qualifications, differences among officials and contrary represented policy may weaken an inference from selected quotations.",
+      "expectations_with_genocidal_intent": "Statements by relevant authorities linked to implementation and persistent harmful policy may support intent, including alongside military goals.",
+      "observed": "The record distinguishes ministerial resettlement advocacy from represented policy, includes Herzog’s qualification, and tests the Commission’s persistence argument.",
+      "challenge_to_non_genocidal_account": "A disclaimer or alternative declared goal cannot substitute for investigating actual decisions and implementation.",
+      "challenge_to_genocidal_account": "A quotation must be interpreted with context, authority and contrary evidence; every official’s statement is not an operational order.",
+      "unknown": "The Commission’s interpretation is contested. It is not treated as a binding ruling, and state attribution is not proof of intent."
+    },
+    {
+      "key": "S9",
+      "name": "Accountability, errors and corrected accounts",
+      "facts": [
+        "C03",
+        "C04"
+      ],
+      "expectations_without_genocidal_intent": "Error, misidentification and local misconduct can explain particular killings; actual correction and disciplinary action are relevant.",
+      "expectations_with_genocidal_intent": "Recurring incidents and unreliable initial accounts can challenge an isolated-error explanation, but require evidence connecting incidents to policy.",
+      "observed": "The military acknowledged errors and discipline in the World Central Kitchen case; verified rescue footage contradicted an initial Rafah account.",
+      "challenge_to_non_genocidal_account": "Internal explanations require scrutiny against independent evidence; one instance of discipline cannot establish campaign-wide accountability.",
+      "challenge_to_genocidal_account": "A contradiction or negligent killing does not alone establish group-destructive purpose, and discipline must not be omitted.",
+      "unknown": "Two incidents do not provide a representative frequency estimate or substitute for a full accountability audit."
+    },
+    {
+      "key": "S10",
+      "name": "Harm outside battlefield targeting",
+      "facts": [
+        "P10",
+        "P04"
+      ],
+      "expectations_without_genocidal_intent": "Detention abuse can arise from torture, persecution, retaliation or local crimes without a purpose to destroy the protected group.",
+      "expectations_with_genocidal_intent": "Serious physical, mental or reproductive harm may be part of destructive conduct if the necessary additional intent is established.",
+      "observed": "The bank includes attributed detention findings and documented loss of stored reproductive material.",
+      "challenge_to_non_genocidal_account": "A military-targeting account cannot simply omit harms occurring in detention or their relation to authority and policy.",
+      "challenge_to_genocidal_account": "Cruelty or reproductive loss does not establish genocidal purpose automatically; targeting and attribution must be proved.",
+      "unknown": "Reports do not establish that all detainees were abused or that embryo destruction was the deliberate target of the attack."
+    },
+    {
+      "key": "S11",
+      "name": "Mortality and missing denominators",
+      "facts": [
+        "M01",
+        "M02",
+        "M03",
+        "M04",
+        "M05",
+        "M06"
+      ],
+      "expectations_without_genocidal_intent": "A destructive war can produce severe mortality, and combatants form an unknown part of aggregate deaths; both totals and military claims require scrutiny.",
+      "expectations_with_genocidal_intent": "Severe and potentially under-recorded mortality is relevant to acts and scale, but mortality alone does not establish purpose.",
+      "observed": "The record distinguishes ministry enumeration, Israeli claims, verified cases, capture-recapture estimation, a household survey and an indirect-death illustration.",
+      "challenge_to_non_genocidal_account": "The claim that all evidence is simply Hamas reporting is contradicted by separate household field evidence.",
+      "challenge_to_genocidal_account": "A total is not an audited civilian count; a verified subset is not a random sample, and estimates are not exact censuses.",
+      "unknown": "No reliable exact civilian-combatant ratio is established. Source overlap and survey coverage limits remain explicit."
+    },
+    {
+      "key": "S12",
+      "name": "The disputed inferential step and judicial findings",
+      "facts": [
+        "D07",
+        "C08",
+        "L01",
+        "L04",
+        "L06"
+      ],
+      "expectations_without_genocidal_intent": "Deliberate deprivation or extreme disregard can be criminal without establishing the additional group-destructive intent; the alternative must fit the evidence.",
+      "expectations_with_genocidal_intent": "The acts and policy can support destructive intent as an additional purpose or means; an extra motive is not automatic disproof.",
+      "observed": "Amnesty’s treatment of disposability as evidence of intent is presented as its reasoning. ICC reasonable-grounds findings concern intentional deprivation and other alleged crimes, not a genocide conviction.",
+      "challenge_to_non_genocidal_account": "Simply naming Hamas defeat does not establish absence of a further intent or explain every relevant decision.",
+      "challenge_to_genocidal_account": "Neither Amnesty’s reasoning nor intentional deprivation supplies a legal rule that disregard alone equals genocidal intent.",
+      "unknown": "The final inference remains outside the quiz; the record does not supply numerical probabilities or undisclosed deliberations."
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "L01",
+      "status": "selected",
+      "proposed_fact": "Under the Genocide Convention, what must be established for conduct to constitute genocide?",
+      "answer": "A listed prohibited act committed with intent to destroy a protected group, in whole or in part",
+      "source_keys": [
+        "convention"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S12"
+      ],
+      "decision_reason": "Establishes both necessary elements and distinguishes specific intent from foresight of civilian harm.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "P01",
+      "status": "selected",
+      "proposed_fact": "What did Defence Minister Yoav Gallant announce for Gaza on 9 October 2023, as recorded by the ICJ?",
+      "answer": "A complete siege cutting electricity, food and fuel supplies",
+      "source_keys": [
+        "siege"
+      ],
+      "evidence_sequences": [
+        "S2"
+      ],
+      "decision_reason": "Links an authoritative announcement to population-wide survival conditions and the inquiry into purpose.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "D01",
+      "status": "selected",
+      "proposed_fact": "What objectives did Netanyahu publicly state for the Gaza war on 6 January 2024?",
+      "answer": "Eliminating Hamas, returning hostages and preventing future threats from Gaza",
+      "source_keys": [
+        "aims"
+      ],
+      "evidence_sequences": [
+        "S6"
+      ],
+      "decision_reason": "States the substantive competing account while distinguishing a declaration from its evidential verification.",
+      "uncertainty": "Source URL contains 2023 but the statement is dated 6 January 2024; declared aims do not settle actual intent."
+    },
+    {
+      "candidate_id": "M01",
+      "status": "selected",
+      "proposed_fact": "What does Gaza’s Health Ministry’s headline war-death total measure?",
+      "answer": "Recorded deaths within a Hamas-run administration, without a civilian-combatant breakdown",
+      "source_keys": [
+        "ministry"
+      ],
+      "evidence_sequences": [
+        "S11"
+      ],
+      "decision_reason": "Establishes provenance and the missing combatant denominator without prejudging every underlying record.",
+      "uncertainty": "Institutional affiliation does not authenticate or discredit every individual record."
+    },
+    {
+      "candidate_id": "L02",
+      "status": "selected",
+      "proposed_fact": "Which method of destruction is expressly included in Article II of the Genocide Convention?",
+      "answer": "Deliberately imposing living conditions calculated to bring about the group’s physical destruction",
+      "source_keys": [
+        "convention"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Makes the survival-conditions allegation legible without equating every deprivation with genocide.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "R01",
+      "status": "selected",
+      "proposed_fact": "What did WHO report about the second round of Gaza’s polio campaign completed in November 2024?",
+      "answer": "Over 550,000 children received a second dose under local pauses, while some northern areas remained inaccessible",
+      "source_keys": [
+        "polio"
+      ],
+      "evidence_sequences": [
+        "S7"
+      ],
+      "decision_reason": "Tests effective humanitarian conduct and its limits as evidence relevant to competing accounts of intent.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "L04",
+      "status": "selected",
+      "proposed_fact": "When genocidal intent is inferred from a pattern of conduct, what merits test did the ICJ apply in Croatia v. Serbia?",
+      "answer": "It must be the only reasonable inference from the pattern",
+      "source_keys": [
+        "croatia"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S12"
+      ],
+      "decision_reason": "Directly establishes the standard against which the competing-explanation exercise must be assessed.",
+      "uncertainty": "Finding concerns the evidence and parties in that case, not Gaza."
+    },
+    {
+      "candidate_id": "C01",
+      "status": "selected",
+      "proposed_fact": "What did the ICJ require in its 28 March 2024 Gaza order after warning that famine was setting in?",
+      "answer": "Unhindered provision at scale of urgently needed basic services and humanitarian assistance",
+      "source_keys": [
+        "warning"
+      ],
+      "evidence_sequences": [
+        "S2"
+      ],
+      "decision_reason": "Establishes the warning-and-response baseline needed to assess persistence rather than unforeseeable consequences.",
+      "uncertainty": "Interim decision, not a finding of genocidal intent; famine observation differs from a later technical classification."
+    },
+    {
+      "candidate_id": "D02",
+      "status": "selected",
+      "proposed_fact": "What assessment of al-Shifa Hospital did the US State Department publicly maintain in December 2023?",
+      "answer": "That Hamas had used it for command and control, based on intelligence the US said it possessed",
+      "source_keys": [
+        "shifa"
+      ],
+      "evidence_sequences": [
+        "S6"
+      ],
+      "decision_reason": "Includes substantive military counterevidence beyond Israel’s own statements without overstating corroboration.",
+      "uncertainty": "Underlying intelligence not fully public; neither a neutral court finding nor validation of every Israeli claim about hospitals."
+    },
+    {
+      "candidate_id": "L08",
+      "status": "selected",
+      "proposed_fact": "Under the ICRC’s explanation of targeting law, how is anticipated civilian harm assessed in an attack on a military objective?",
+      "answer": "Against the concrete and direct military advantage anticipated, alongside precautionary duties",
+      "source_keys": [
+        "targeting"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Allows a genuine military explanation to be examined without treating all civilian deaths as crimes or all targets as lawful.",
+      "uncertainty": "Not a factual finding about any particular Gaza attack."
+    },
+    {
+      "candidate_id": "M02",
+      "status": "selected",
+      "proposed_fact": "How did Associated Press qualify Israel’s claim of around 20,000 militants killed in Gaza in its 3 April 2025 report?",
+      "answer": "It reported the claim and noted that Israel had not provided evidence for it",
+      "source_keys": [
+        "combatants"
+      ],
+      "evidence_sequences": [
+        "S11"
+      ],
+      "decision_reason": "Applies scrutiny to the other side of the civilian-combatant ratio, rather than auditing ministry totals alone.",
+      "uncertainty": "No independently verified civilian-combatant ratio; do not subtract incompatible estimates as if both were audited."
+    },
+    {
+      "candidate_id": "P06",
+      "status": "selected",
+      "proposed_fact": "What policy did Israel’s Prime Minister’s Office announce on 2 March 2025 amid the ceasefire-extension dispute?",
+      "answer": "Halting entry of all goods and supplies into Gaza",
+      "source_keys": [
+        "march_policy"
+      ],
+      "evidence_sequences": [
+        "S3"
+      ],
+      "decision_reason": "Tests a deliberate decision over civilian necessities after a period of increased relief, rather than attributing all deprivation to battlefield damage.",
+      "uncertainty": "Official rationale is evidence of a stated purpose, not proof that it was the sole purpose."
+    },
+    {
+      "candidate_id": "L03",
+      "status": "selected",
+      "proposed_fact": "According to the ICJ’s genocide case law, how does forced displacement relate to destruction of a protected group?",
+      "answer": "Expulsion and physical or biological destruction are distinct, although displacement can contribute to genocide",
+      "source_keys": [
+        "expulsion"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S7"
+      ],
+      "decision_reason": "Separates removal, an important competing explanation, from the Convention’s destruction requirement.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "C02",
+      "status": "selected",
+      "proposed_fact": "What did OCHA report about the reach of food-parcel distributions during the first phase of the January–March 2025 ceasefire?",
+      "answer": "Partners reached over two million people with large household food parcels",
+      "source_keys": [
+        "ceasefire"
+      ],
+      "evidence_sequences": [
+        "S3"
+      ],
+      "decision_reason": "Provides the observed relief baseline before the renewed March entry suspension.",
+      "uncertainty": "Observed improvement does not establish adequacy everywhere or explain every decision."
+    },
+    {
+      "candidate_id": "P07",
+      "status": "selected",
+      "proposed_fact": "What did the UN’s Gaza aid mechanism report about deliveries during March 2025 after Israel’s suspension?",
+      "answer": "No aid processed through that mechanism was delivered during the month",
+      "source_keys": [
+        "march_delivery"
+      ],
+      "evidence_sequences": [
+        "S3"
+      ],
+      "decision_reason": "Checks implementation of the announced restriction through a dated operational record.",
+      "uncertainty": "The UN mechanism does not enumerate every possible stock or non-mechanism transfer."
+    },
+    {
+      "candidate_id": "H03",
+      "status": "selected",
+      "proposed_fact": "Why did the ICJ reject Croatia’s genocide claim against Serbia in 2015 despite finding killings and serious harm?",
+      "answer": "The required specific intent to destroy the Croat group had not been proved",
+      "source_keys": [
+        "croatia_result"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Shows a real merits dismissal despite atrocities, rather than an assumed classification of a different war.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "L06",
+      "status": "selected",
+      "proposed_fact": "What distinction did the Jelisić Appeals Chamber draw between a perpetrator’s motive and genocidal intent?",
+      "answer": "A personal motive can coexist with the specific intent to destroy a protected group",
+      "source_keys": [
+        "jelisic"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S12"
+      ],
+      "decision_reason": "Explains why an additional objective does not settle whether group destruction was also intended.",
+      "uncertainty": "The appeal concerns an individual; do not turn every military objective into a personal motive or treat mixed intent as proved."
+    },
+    {
+      "candidate_id": "P02",
+      "status": "selected",
+      "proposed_fact": "What evidence did Human Rights Watch cite for the deliberate demolition of a water reservoir serving Rafah in July 2024?",
+      "answer": "Verified footage posted by a soldier showing explosives being laid and the reservoir demolished",
+      "source_keys": [
+        "water"
+      ],
+      "evidence_sequences": [
+        "S2"
+      ],
+      "decision_reason": "Tests concrete evidence of deliberate infrastructure destruction, rather than inferring intention from damage alone.",
+      "uncertainty": "Human Rights Watch investigation; legal conclusions attributed, not treated as court findings."
+    },
+    {
+      "candidate_id": "R02",
+      "status": "selected",
+      "proposed_fact": "What did the World Food Programme report about new routes, Erez and Ashdod in its account of April 2024 aid to northern Gaza?",
+      "answer": "They helped double its aid deliveries to the north, although access problems and high prices remained",
+      "source_keys": [
+        "relief_routes"
+      ],
+      "evidence_sequences": [
+        "S2"
+      ],
+      "decision_reason": "Includes measured implementation of expanded relief without equating improvement with adequacy.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "M05",
+      "status": "selected",
+      "proposed_fact": "What new evidence did the Gaza Mortality Survey, published in February 2026, use to estimate deaths through early January 2025?",
+      "answer": "A field survey of 2,000 households, yielding about 75,200 violent deaths with a confidence interval",
+      "source_keys": [
+        "survey"
+      ],
+      "evidence_sequences": [
+        "S11"
+      ],
+      "decision_reason": "Tests whether the mortality evidence extends beyond the Hamas-run ministry’s running records.",
+      "uncertainty": "Accessible-area household sampling with displaced populations representing inaccessible governorates; raking uses official demographic frames. Separate from ministry death enumeration, not independent of every official input. Recall and missing or entirely lost households remain limitations."
+    },
+    {
+      "candidate_id": "D05",
+      "status": "selected",
+      "proposed_fact": "What qualification did the UN Commission record when discussing Herzog’s October 2023 collective-responsibility statement?",
+      "answer": "He also acknowledged innocent Palestinians who disagreed with Hamas’s actions",
+      "source_keys": [
+        "coi"
+      ],
+      "evidence_sequences": [
+        "S8"
+      ],
+      "decision_reason": "Requires consideration of contextual counterevidence within a prominent allegation about official speech.",
+      "uncertainty": "Commission applies reasonable grounds; no court verdict. Access constraints, overlapping underlying reports and contested inferences remain material."
+    },
+    {
+      "candidate_id": "L07",
+      "status": "selected",
+      "proposed_fact": "Under the international rules of state responsibility, how is conduct by military units acting as state organs generally treated?",
+      "answer": "As conduct attributable to the state, including when official action exceeds their authority",
+      "source_keys": [
+        "state"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S8"
+      ],
+      "decision_reason": "Connects evidence about actors and authority to the proposition about state responsibility.",
+      "uncertainty": "Attribution of conduct does not itself establish genocidal intent."
+    },
+    {
+      "candidate_id": "P03",
+      "status": "selected",
+      "proposed_fact": "How did WHO describe Gaza’s hospital system at the start of the January 2025 ceasefire?",
+      "answer": "Half of 36 hospitals were partially operational, with nearly all damaged or partly destroyed",
+      "source_keys": [
+        "health"
+      ],
+      "evidence_sequences": [
+        "S6"
+      ],
+      "decision_reason": "Establishes loss of a civilian survival system without pretending to resolve every individual attack.",
+      "uncertainty": "Operational and damage assessment; not an attack-by-attack attribution or legality audit."
+    },
+    {
+      "candidate_id": "D03",
+      "status": "selected",
+      "proposed_fact": "What did Associated Press journalists visit during an Israeli-organized tour in Khan Younis in January 2024?",
+      "answer": "A tunnel beneath a demolished cemetery area that Israel described as Hamas infrastructure",
+      "source_keys": [
+        "tunnel"
+      ],
+      "evidence_sequences": [
+        "S6"
+      ],
+      "decision_reason": "Distinguishes observed military infrastructure from unverified assertions and from broader legal conclusions.",
+      "uncertainty": "Access was military-controlled; observing a tunnel does not prove every claimed connection or justify the entire surrounding destruction."
+    },
+    {
+      "candidate_id": "L09",
+      "status": "selected",
+      "proposed_fact": "If Hamas unlawfully uses civilians to shield military operations, what happens to Israel’s obligations toward those civilians?",
+      "answer": "The obligations of distinction, proportionality and feasible precautions continue to apply",
+      "source_keys": [
+        "shields"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S7"
+      ],
+      "decision_reason": "Preserves military context without converting an adversary’s violation into a blanket exemption.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "P09",
+      "status": "selected",
+      "proposed_fact": "What did Human Rights Watch’s November 2024 displacement investigation find about evacuation routes and designated safe areas?",
+      "answer": "Repeated attacks and inadequate conditions undermined the protection offered to evacuees",
+      "source_keys": [
+        "evacuation"
+      ],
+      "evidence_sequences": [
+        "S7"
+      ],
+      "decision_reason": "Tests the effectiveness of a central protective-measure defence, rather than merely counting warnings.",
+      "uncertainty": "Selected investigated cases; not an audit of every evacuation order."
+    },
+    {
+      "candidate_id": "H01",
+      "status": "selected",
+      "proposed_fact": "Why was the Srebrenica massacre recognized as genocide although the executions mainly targeted men and boys and women and children were expelled?",
+      "answer": "The killings were intended to destroy the Bosnian Muslim community of Srebrenica",
+      "source_keys": [
+        "srebrenica"
+      ],
+      "evidence_sequences": [
+        "S1",
+        "S7"
+      ],
+      "decision_reason": "Tests the significance of partial destruction and victim demographics in an established genocide.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "C05",
+      "status": "selected",
+      "proposed_fact": "What did OCHA report happened to the electricity feeder serving the Southern Gaza Desalination Plant on 9 March 2025?",
+      "answer": "Israeli authorities disconnected the line after it had recently been repaired",
+      "source_keys": [
+        "power"
+      ],
+      "evidence_sequences": [
+        "S3"
+      ],
+      "decision_reason": "Connects a discrete policy decision to civilian survival infrastructure during the renewed restrictions.",
+      "uncertainty": "The line supplied a desalination plant; do not call it the only source of all drinking water in Gaza."
+    },
+    {
+      "candidate_id": "C06",
+      "status": "selected",
+      "proposed_fact": "Why did OCHA’s 19–27 May 2025 figures distinguish approved truckloads, offloaded cargo and aid collected inside Gaza?",
+      "answer": "Clearance did not ensure collection: insecurity and restricted access left much offloaded aid uncollected",
+      "source_keys": [
+        "may_access"
+      ],
+      "evidence_sequences": [
+        "S4"
+      ],
+      "decision_reason": "Tests implementation after policy reversal and distinguishes entry statistics from actual humanitarian reach.",
+      "uncertainty": "Counts refer to different stages, not three independent measures of household consumption."
+    },
+    {
+      "candidate_id": "M04",
+      "status": "selected",
+      "proposed_fact": "What did the 2025 capture–recapture study estimate for traumatic-injury deaths in Gaza up to 30 June 2024?",
+      "answer": "About 64,260, with uncertainty, suggesting under-recording in the ministry’s total",
+      "source_keys": [
+        "capture"
+      ],
+      "evidence_sequences": [
+        "S11"
+      ],
+      "decision_reason": "Tests the direction and uncertainty of recording error with an explicit method and scope.",
+      "uncertainty": "Model depends on overlapping lists, including ministry inputs; no combatant classification."
+    },
+    {
+      "candidate_id": "C03",
+      "status": "selected",
+      "proposed_fact": "What did the IDF’s April 2024 investigation acknowledge about the strikes killing seven World Central Kitchen aid workers?",
+      "answer": "Misidentification and serious procedural failures, followed by dismissals and reprimands",
+      "source_keys": [
+        "kitchen"
+      ],
+      "evidence_sequences": [
+        "S9"
+      ],
+      "decision_reason": "Tests an admitted failure and actual corrective action without preassigning campaign-wide intent.",
+      "uncertainty": "Military account of intent and discipline is not independent criminal adjudication."
+    },
+    {
+      "candidate_id": "L05",
+      "status": "selected",
+      "proposed_fact": "In the Jelisić appeal judgment, did proving genocidal intent require proof of an explicit plan or policy?",
+      "answer": "No; a plan can be evidence, but intent may also be inferred from the circumstances",
+      "source_keys": [
+        "jelisic"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Prevents both demanding an indispensable written order and treating intent as an unsupported assumption.",
+      "uncertainty": "The appeal concerns an individual; do not turn every military objective into a personal motive or treat mixed intent as proved."
+    },
+    {
+      "candidate_id": "P08",
+      "status": "selected",
+      "proposed_fact": "What did the IPC classify in August 2025 concerning famine in Gaza?",
+      "answer": "Famine in Gaza Governorate, with reasonable evidence, and projected expansion elsewhere",
+      "source_keys": [
+        "famine"
+      ],
+      "evidence_sequences": [
+        "S5"
+      ],
+      "decision_reason": "Establishes the technical finding, its geographic limits and the difference from a legal conclusion.",
+      "uncertainty": "Technical classification, disputed by Israel; classification is not a genocide judgment."
+    },
+    {
+      "candidate_id": "R04",
+      "status": "selected",
+      "proposed_fact": "How did the IPC’s December 2025 assessment describe conditions following the October ceasefire?",
+      "answer": "Food security improved and famine conditions were offset, but severe insecurity persisted",
+      "source_keys": [
+        "december"
+      ],
+      "evidence_sequences": [
+        "S5"
+      ],
+      "decision_reason": "Tests change over time rather than portraying humanitarian access or famine as constant.",
+      "uncertainty": "Improvement after ceasefire does not retrospectively disprove earlier famine; ongoing needs and access conditions remain."
+    },
+    {
+      "candidate_id": "D06",
+      "status": "selected",
+      "proposed_fact": "What significance did the UN Commission’s September 2025 siege analysis attach to continuing restrictions despite warnings about civilian survival?",
+      "answer": "It treated persistence despite warnings as evidence supporting an intention to bring about destructive conditions",
+      "source_keys": [
+        "coi"
+      ],
+      "evidence_sequences": [
+        "S8"
+      ],
+      "decision_reason": "Presents the strongest cumulative policy argument as reasoning to scrutinize, not a quiz endorsement of genocide.",
+      "uncertainty": "Commission applies reasonable grounds; no court verdict. Access constraints, overlapping underlying reports and contested inferences remain material."
+    },
+    {
+      "candidate_id": "H04",
+      "status": "selected",
+      "proposed_fact": "What common purpose did the international tribunal find behind the 1999 Kosovo campaign in the Šainović case?",
+      "answer": "Changing the ethnic balance through violence and displacement to preserve Serbian control",
+      "source_keys": [
+        "kosovo"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Demonstrates how a brutal campaign can have an established criminal purpose distinct from group destruction.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "M06",
+      "status": "selected",
+      "proposed_fact": "What was the figure of 186,000 Gaza deaths discussed in a July 2024 Lancet correspondence?",
+      "answer": "An illustrative estimate including possible indirect deaths, rather than an observed death count",
+      "source_keys": [
+        "projection"
+      ],
+      "evidence_sequences": [
+        "S11"
+      ],
+      "decision_reason": "Prevents a prominent projected figure being mistaken for measured mortality.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "P04",
+      "status": "selected",
+      "proposed_fact": "What did the UN Commission’s March 2025 report record at Gaza’s Al-Basma fertility centre?",
+      "answer": "Destruction by shelling of around 4,000 embryos and other stored reproductive material",
+      "source_keys": [
+        "reproduction"
+      ],
+      "evidence_sequences": [
+        "S6",
+        "S10"
+      ],
+      "decision_reason": "Preserves a distinct reproductive-harm allegation while separating consequences from proof of targeting and intent.",
+      "uncertainty": "Reported destruction and consequences do not themselves establish deliberate embryo targeting."
+    },
+    {
+      "candidate_id": "D04",
+      "status": "selected",
+      "proposed_fact": "What disagreement about Gaza’s population did the US State Department describe in January 2024?",
+      "answer": "Smotrich and Ben-Gvir advocated outside resettlement; other officials represented that this was not government policy",
+      "source_keys": [
+        "resettlement"
+      ],
+      "evidence_sequences": [
+        "S8"
+      ],
+      "decision_reason": "Makes authority and policy attribution concrete without treating every official statement as an implemented state objective.",
+      "uncertainty": "US account of represented policy and ministerial statements; not proof of implementation."
+    },
+    {
+      "candidate_id": "L11",
+      "status": "selected",
+      "proposed_fact": "In its January 2024 Gaza order, how did the ICJ address Palestinians in Gaza under the protected-group requirement?",
+      "answer": "It treated Palestinians as a protected group and those in Gaza as a substantial part",
+      "source_keys": [
+        "group"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Defines the group and geographical scope without requiring total destruction.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "C04",
+      "status": "selected",
+      "proposed_fact": "What evidence contradicted the initial Israeli account that rescue vehicles approached without emergency signals in the March 2025 Rafah killings?",
+      "answer": "A medic’s video showed marked rescue vehicles with lights operating before the shooting",
+      "source_keys": [
+        "medics"
+      ],
+      "evidence_sequences": [
+        "S9"
+      ],
+      "decision_reason": "Tests an account against contemporaneous evidence instead of accepting either allegation or military explanation uncritically.",
+      "uncertainty": "Shows the signals and vehicles; does not itself settle all surrounding circumstances or wider intent."
+    },
+    {
+      "candidate_id": "R03",
+      "status": "selected",
+      "proposed_fact": "What happened to the large UN food convoy of 16 November 2024 after it crossed into Gaza, according to OCHA?",
+      "answer": "Most of its truckloads were violently looted after entry",
+      "source_keys": [
+        "looting"
+      ],
+      "evidence_sequences": [
+        "S4"
+      ],
+      "decision_reason": "Tests an actual non-entry mechanism of aid failure without assigning unsupported responsibility.",
+      "uncertainty": "Other updates report 98 trucks; do not quiz the disputed last digit or assume a specific armed group was responsible."
+    },
+    {
+      "candidate_id": "P10",
+      "status": "selected",
+      "proposed_fact": "What kinds of treatment did OHCHR’s July 2024 detention report describe from accounts of Palestinian detainees, including people taken from Gaza?",
+      "answer": "Torture and other ill-treatment during detention, including sexual violence and humiliation",
+      "source_keys": [
+        "detention"
+      ],
+      "evidence_sequences": [
+        "S10"
+      ],
+      "decision_reason": "Includes a distinct alleged prohibited act that a battlefield-only explanation must not simply omit.",
+      "uncertainty": "Reports concern detainees from Gaza and the West Bank, including East Jerusalem; do not generalize to all detainees or infer genocidal purpose automatically."
+    },
+    {
+      "candidate_id": "M03",
+      "status": "selected",
+      "proposed_fact": "What did the 8,119 deaths individually verified in OHCHR’s November 2024 Gaza report represent?",
+      "answer": "A verified subset for the reporting period, rather than a representative sample of all deaths",
+      "source_keys": [
+        "verified"
+      ],
+      "evidence_sequences": [
+        "S11"
+      ],
+      "decision_reason": "Distinguishes case verification, source independence and representative sampling.",
+      "uncertainty": "Case verification is not a random sample; sources can overlap with ministry records."
+    },
+    {
+      "candidate_id": "L10",
+      "status": "selected",
+      "proposed_fact": "What did the ICJ’s 26 January 2024 Gaza order decide about whether Israel had committed genocide?",
+      "answer": "It protected plausible Convention rights provisionally, without deciding the merits",
+      "source_keys": [
+        "interim"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Prevents both using provisional measures as a verdict and treating their limited scope as exoneration.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "D07",
+      "status": "selected",
+      "proposed_fact": "How did Amnesty’s December 2024 explanation treat the alternative that Israel sought to destroy Hamas while disregarding Palestinian lives?",
+      "answer": "It treated regarding Palestinians as disposable as evidence supporting genocidal intent",
+      "source_keys": [
+        "amnesty"
+      ],
+      "evidence_sequences": [
+        "S12"
+      ],
+      "decision_reason": "Exposes the exact contested inferential step central to the non-genocidal counterfactual, rather than hiding it in a conclusion.",
+      "uncertainty": "Not a court verdict; its treatment of disregard as evidence of intent must not be presented as a binding legal rule."
+    },
+    {
+      "candidate_id": "C07",
+      "status": "selected",
+      "proposed_fact": "In the fifteen strikes investigated for its December 2024 Gaza report, what did Amnesty say it found about military objectives?",
+      "answer": "No evidence that those particular strikes were directed at military objectives",
+      "source_keys": [
+        "amnesty"
+      ],
+      "evidence_sequences": [
+        "S6"
+      ],
+      "decision_reason": "Tests attack-level evidence challenging a military-only explanation while making selection and access limitations explicit.",
+      "uncertainty": "Not a court verdict; its treatment of disregard as evidence of intent must not be presented as a binding legal rule."
+    },
+    {
+      "candidate_id": "C08",
+      "status": "selected",
+      "proposed_fact": "What did ICC judges find reasonable grounds to believe about deprivation when issuing the November 2024 Netanyahu and Gallant warrants?",
+      "answer": "That the leaders knowingly and intentionally deprived civilians of necessities including food and medical supplies",
+      "source_keys": [
+        "warrants"
+      ],
+      "evidence_sequences": [
+        "S12"
+      ],
+      "decision_reason": "Includes judicial scrutiny linking policy and leaders while preserving the distinction between deprivation and genocidal intent.",
+      "uncertainty": "Arrest warrants are not convictions or genocide findings; question is historical and does not assert their current procedural status."
+    },
+    {
+      "candidate_id": "H02",
+      "status": "selected",
+      "proposed_fact": "How did the 1994 genocide against Tutsi civilians in Rwanda relate to the government’s war against the Tutsi-led rebel movement?",
+      "answer": "The genocide and the military conflict occurred during the same period",
+      "source_keys": [
+        "rwanda"
+      ],
+      "evidence_sequences": [
+        "S1"
+      ],
+      "decision_reason": "Provides an established example testing the claim that genuine warfare excludes genocide.",
+      "uncertainty": "Scope and limits are recorded in the question explanation."
+    },
+    {
+      "candidate_id": "D08",
+      "status": "selected",
+      "proposed_fact": "What armed capability did Hamas demonstrate from Gaza in late May 2024, after more than seven months of war?",
+      "answer": "It fired rockets from Gaza toward central Israel, triggering sirens in the Tel Aviv area",
+      "source_keys": [
+        "rockets"
+      ],
+      "evidence_sequences": [
+        "S6"
+      ],
+      "decision_reason": "Tests continuing armed resistance using an observed attack, rather than assuming either complete military defeat or last-man resistance everywhere.",
+      "uncertainty": "Establishes a continuing armed capability, not military necessity for every Israeli action or absence of additional intent."
+    },
+    {
+      "candidate_id": "R01",
+      "status": "not_selected",
+      "proposed_fact": "A separate question recalling that the Convention sets no fixed death toll.",
+      "source_keys": [
+        "convention"
+      ],
+      "decision_reason": "Omit standalone item; preserve the act-and-intent test and substantial-part distinction in L01, L11 and H01.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 799
+    },
+    {
+      "candidate_id": "R02",
+      "status": "not_selected",
+      "proposed_fact": "A separate question listing the elements of crimes against humanity.",
+      "source_keys": [
+        "croatia_result"
+      ],
+      "decision_reason": "Use the concrete Croatia result and the ICC deprivation finding rather than another abstract offence-label question.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 801
+    },
+    {
+      "candidate_id": "R03",
+      "status": "not_selected",
+      "proposed_fact": "Auschwitz selection for forced labour.",
+      "source_keys": [
+        "srebrenica"
+      ],
+      "decision_reason": "Valid historical evidence, but the relevant point about survival alongside partial destruction is covered by Srebrenica.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 803
+    },
+    {
+      "candidate_id": "R04",
+      "status": "not_selected",
+      "proposed_fact": "Cambodian protected-group findings versus other Khmer Rouge killings.",
+      "source_keys": [
+        "kosovo"
+      ],
+      "decision_reason": "Valid but additional historical detail displaces Gaza-specific evidence; retain two genocide and two other-atrocity applications.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 807
+    },
+    {
+      "candidate_id": "R05",
+      "status": "not_selected",
+      "proposed_fact": "Genocide at Srebrenica versus atrocities elsewhere in Bosnia.",
+      "source_keys": [
+        "croatia_result"
+      ],
+      "decision_reason": "Overlaps the retained Srebrenica and Croatia intent distinctions.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 808
+    },
+    {
+      "candidate_id": "R06",
+      "status": "not_selected",
+      "proposed_fact": "A standalone question on whether the ministry separates civilians and combatants.",
+      "source_keys": [
+        "ministry"
+      ],
+      "decision_reason": "Merge the measurement limitation and provenance into the coherent headline-total item M01.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 811
+    },
+    {
+      "candidate_id": "R07",
+      "status": "not_selected",
+      "proposed_fact": "A standalone question treating adult men as automatically combatants.",
+      "source_keys": [
+        "combatants"
+      ],
+      "decision_reason": "Reject the shortcut explicitly in M02 and H01; use the available slot to scrutinize an actual combatant claim.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 812
+    },
+    {
+      "candidate_id": "R08",
+      "status": "not_selected",
+      "proposed_fact": "What Israel’s lawyers generally said about inflammatory quotations.",
+      "source_keys": [
+        "coi"
+      ],
+      "decision_reason": "Replace generic denial recall with contextual speech, represented policy and actual evidentiary reasoning in D04–D07.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true.",
+      "previous_fact_id": 832
+    },
+    {
+      "candidate_id": "R09",
+      "status": "not_selected",
+      "proposed_fact": "Exact recall of 556,774 polio second doses.",
+      "source_keys": [
+        "polio"
+      ],
+      "decision_reason": "Use rounded substantive reach with access limits in R01, rather than immaterial precision.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R10",
+      "status": "not_selected",
+      "proposed_fact": "Exact recall of a projected December 2025 Phase 5 population.",
+      "source_keys": [
+        "december"
+      ],
+      "decision_reason": "Forecast precision is less relevant than observed improvement and the conditional access warning.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R11",
+      "status": "not_selected",
+      "proposed_fact": "The claim that all reported Palestinian mortality evidence comes from Hamas.",
+      "source_keys": [
+        "survey"
+      ],
+      "decision_reason": "Not supportable as a blanket factual answer: separate household evidence exists, with its own limitations.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R12",
+      "status": "not_selected",
+      "proposed_fact": "A precise civilian-combatant ratio derived by subtracting the Israeli claim from a ministry total.",
+      "source_keys": [
+        "combatants"
+      ],
+      "decision_reason": "Not supported by compatible independently audited components and common dates.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R13",
+      "status": "not_selected",
+      "proposed_fact": "Whether an allied intelligence assessment verifies every published hospital diagram.",
+      "source_keys": [
+        "shifa"
+      ],
+      "decision_reason": "The public assessment does not supply that level of independent validation; retain its actual limited claim.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R14",
+      "status": "not_selected",
+      "proposed_fact": "Whether the March power cutoff removed the only possible drinking-water source for all Gaza residents.",
+      "source_keys": [
+        "power"
+      ],
+      "decision_reason": "Overgeneralizes an effect on a particular plant; use the actual facility and reporting period in C05.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R15",
+      "status": "not_selected",
+      "proposed_fact": "Recall that the UN Commission concluded genocide occurred.",
+      "source_keys": [
+        "coi"
+      ],
+      "decision_reason": "Replace institutional conclusion recall with its specific persistence-and-warning argument D06.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R16",
+      "status": "not_selected",
+      "proposed_fact": "Recall that Amnesty concluded genocide occurred.",
+      "source_keys": [
+        "amnesty"
+      ],
+      "decision_reason": "Replace institutional conclusion recall with the contested inference D07 and selected-strike evidence C07.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R17",
+      "status": "not_selected",
+      "proposed_fact": "The May 2026 ICJ pleading timetable as evidence of genocide or exoneration.",
+      "source_keys": [
+        "interim"
+      ],
+      "decision_reason": "Procedural scheduling does not establish the merits; keep the precise historical provisional-measures distinction.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R18",
+      "status": "not_selected",
+      "proposed_fact": "Whether some surviving people or births automatically disprove genocide.",
+      "source_keys": [
+        "srebrenica"
+      ],
+      "decision_reason": "A demographic shortcut does not establish absence of intent to destroy a substantial part; use the historical and legal distinctions.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R19",
+      "status": "not_selected",
+      "proposed_fact": "Whether a raw casualty-ratio comparison with another urban war proves Gaza lawful or genocidal.",
+      "source_keys": [
+        "targeting"
+      ],
+      "decision_reason": "No compatible comparative dataset established; different settings and the targeting rule prevent the proposed shortcut.",
+      "uncertainty": "A proposed topic, not an assertion that the proposition is true."
+    },
+    {
+      "candidate_id": "R20",
+      "status": "not_selected",
+      "proposed_fact": "What did the UN satellite assessment based on 8 July 2025 imagery estimate about Gaza’s structures?",
+      "source_keys": [
+        "structures"
+      ],
+      "decision_reason": "Valid satellite evidence remains in the research record, but a general damage percentage adds less to distinguishing explanations than continuing armed capability; hospital, water, reproductive and attack evidence already establish physical harms.",
+      "uncertainty": "Satellite damage assessment cannot determine military use or intention at each structure.",
+      "previous_fact_id": 819
+    }
+  ]
+}

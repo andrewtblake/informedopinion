@@ -1,0 +1,559 @@
+{
+  "convention": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.un.org/en/genocide-prevention/1948-convention",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 80457,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.un.org/en/genocide-prevention/1948-convention",
+      "sha256": "70747d51bf22b93faca5b74d34460e1d565feb486517e0aa46b854a4123779bf"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "croatia": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/node/103932",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 237755,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.icj-cij.org/node/103932",
+      "sha256": "6e16c4b933157baaecc41873880e6c749f7ccf6a021c2d8873359f4a874b90cb"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Finding concerns the evidence and parties in that case, not Gaza."
+  },
+  "expulsion": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/node/103223",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 1991363,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.icj-cij.org/node/103223",
+      "sha256": "2eae67d9c761e9f942aee790a090458cf97e06e0405e5ab5a48ef3f901abe79f"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "group": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/node/203454",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 105311,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.icj-cij.org/node/203454",
+      "sha256": "5dfcdca106bfd588ca00d116ec5f310f1eca279cf953d53e9db90047c0f5a80a"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "interim": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/node/203454",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "ICJ summary of the same January order downloaded; historical order also checked in official indexed text.",
+    "limitations": ""
+  },
+  "jelisic": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icty.org/x/cases/jelisic/acjug/en/jel-aj010705e.htm",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 120177,
+      "content_type": "text/html",
+      "final_url": "https://www.icty.org/x/cases/jelisic/acjug/en/jel-aj010705e.htm",
+      "sha256": "dc75e9d9c3c3b2db5266d6926ac0973c6da0fe48fe6c1f227e5e8a9ca41a4684"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "The appeal concerns an individual; do not turn every military objective into a personal motive or treat mixed intent as proved."
+  },
+  "state": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://legal.un.org/ilc/texts/instruments/english/draft_articles/9_6_2001.pdf",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 78369,
+      "content_type": "application/pdf",
+      "final_url": "https://legal.un.org/ilc/texts/instruments/english/draft_articles/9_6_2001.pdf",
+      "sha256": "1052e509f6b9c501c4cd758f4408afe2e4ccd9302b57a096db87612baa4d03be"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Attribution of conduct does not itself establish genocidal intent."
+  },
+  "targeting": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://casebook.icrc.org/highlight/targeting-under-international-humanitarian-law",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "ICRC primary page read through web retrieval.",
+    "limitations": "Not a factual finding about any particular Gaza attack."
+  },
+  "shields": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://blogs.icrc.org/law-and-policy/2023/12/19/israel-and-the-occupied-territories-how-international-humanitarian-law-applies/",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 109834,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://blogs.icrc.org/law-and-policy/2023/12/19/israel-and-the-occupied-territories-how-international-humanitarian-law-applies/",
+      "sha256": "43ace6620084f5b4e8e87582d6a1d1eaafa874ce4ed91cac3a50f059bdee869a"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "srebrenica": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icty.org/en/press/appeals-chamber-judgement-case-prosecutor-v-radislav-krstic",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 84799,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.icty.org/en/press/appeals-chamber-judgement-case-prosecutor-v-radislav-krstic",
+      "sha256": "d6b31ea13a9637ee921cad9f43b25a167bd0f01f0647dffa66e03a7ccf6254f2"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "rwanda": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://encyclopedia.ushmm.org/content/en/article/the-rwanda-genocide",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 1014530,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://encyclopedia.ushmm.org/content/en/article/the-rwanda-genocide",
+      "sha256": "eb1d592813e4ea81d68c366ae92dc3f406e6cdcad05e7c1a097e39be74fd2281"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "croatia_result": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/case/118",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 187044,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.icj-cij.org/case/118",
+      "sha256": "6c92bd97611ac65edc8b45f03933770e4165f62d03922d444841869d08e0cffc"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "kosovo": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icty.org/x/cases/milutinovic/tjug/en/090226summary.pdf",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 140411,
+      "content_type": "application/pdf",
+      "final_url": "https://www.icty.org/x/cases/milutinovic/tjug/en/090226summary.pdf",
+      "sha256": "ee5924ad0465f8c28a9c49e6ef2104aaf4d97b301c1edb74e1da13c4f7dd2f98"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "ministry": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://apnews.com/article/israel-hamas-war-gaza-health-ministry-health-death-toll-59470820308b31f1faf73c703400b033",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "Full canonical Associated Press article read through web retrieval.",
+    "limitations": "Institutional affiliation does not authenticate or discredit every individual record."
+  },
+  "combatants": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ap.org/news-highlights/spotlights/2025/israeli-strike-on-a-school-in-gaza-kills-at-least-27-people-palestinian-health-officials-say/",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 184245,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.ap.org/news-highlights/spotlights/2025/israeli-strike-on-a-school-in-gaza-kills-at-least-27-people-palestinian-health-officials-say/",
+      "sha256": "4c53597f95a5b94e44f1977bc8200e27ac36a6f721a9a994b588e0719c6e6175"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "No independently verified civilian-combatant ratio; do not subtract incompatible estimates as if both were audited."
+  },
+  "verified": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ohchr.org/sites/default/files/documents/countries/opt/20241106-Gaza-Update-Report-OPT.pdf",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 1766016,
+      "sha256": "ca826df600cf7a276355416eb5b0f5ec38b37f31f0173ce5d97124b81ecd263a"
+    },
+    "verification_basis": "Primary PDF downloaded and paragraph 12 and footnote 19 checked: 8,119 verified deaths; verification requires at least three independent sources and has selection limitations."
+  },
+  "capture": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://doi.org/10.1016/S0140-6736(24)02678-3",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 2665,
+      "content_type": "text/html;charset=UTF-8",
+      "final_url": "https://linkinghub.elsevier.com/retrieve/pii/S0140673624026783",
+      "sha256": "02238cba3327b0fb7f3a42b5945e58e64b89d7f3ae98acca96e5673aba4d53f7"
+    },
+    "verification_basis": "Publisher and PubMed indexed abstract, including estimate, interval and list method. DOI fetch itself returned a redirect stub.",
+    "limitations": "Model depends on overlapping lists, including ministry inputs; no combatant classification."
+  },
+  "survey": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://doi.org/10.1016/S2214-109X(25)00522-4",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 2675,
+      "content_type": "text/html;charset=UTF-8",
+      "final_url": "https://linkinghub.elsevier.com/retrieve/pii/S2214109X25005224",
+      "sha256": "e1759dd04f7544b039ed62d9e9835be79e2cea28bcac19e156f69154cb126221"
+    },
+    "verification_basis": "Publisher and PubMed indexed abstracts agree on 2,000 households, 75,200 and interval; correction notice recorded. DOI fetch itself returned a redirect stub.",
+    "limitations": "Accessible-area household sampling with displaced populations representing inaccessible governorates; raking uses official demographic frames. Separate from ministry death enumeration, not independent of every official input. Recall and missing or entirely lost households remain limitations."
+  },
+  "projection": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://doi.org/10.1016/S0140-6736(24)01169-3",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 2600,
+      "content_type": "text/html;charset=UTF-8",
+      "final_url": "https://linkinghub.elsevier.com/retrieve/pii/S0140673624011693",
+      "sha256": "e5d73bdbe8b7141df34db245092f51c204a8cc1641fbcd2c57c789ca1203eea6"
+    },
+    "verification_basis": "Original correspondence and PubMed record checked; DOI fetch itself returned a redirect stub.",
+    "limitations": ""
+  },
+  "siege": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/sites/default/files/case-related/192/192-20240126-ord-01-00-en.pdf",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "Announcement cross-checked in January-order record and the full Commission report, including the dated quotation.",
+    "limitations": ""
+  },
+  "water": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.hrw.org/report/2024/12/19/extermination-and-acts-genocide/israel-deliberately-depriving-palestinians-gaza",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 842040,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.hrw.org/report/2024/12/19/extermination-and-acts-genocide/israel-deliberately-depriving-palestinians-gaza",
+      "sha256": "45c15887dd30807ba8b3fd9dd7f56f5c00da0f69586309d73d8020051b6ef111"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Human Rights Watch investigation; legal conclusions attributed, not treated as court findings."
+  },
+  "health": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.who.int/news/item/19-01-2025-the-ceasefire-in-gaza-brings-hope--but-immense-challenges-lie-ahead-to-restore-the-health-system",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 96464,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.who.int/news/item/19-01-2025-the-ceasefire-in-gaza-brings-hope--but-immense-challenges-lie-ahead-to-restore-the-health-system",
+      "sha256": "4b1050f494ab6bfe7ca793522b503bb3d4069eb01c7dccc16bf17f411a1ef44c"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Operational and damage assessment; not an attack-by-attack attribution or legality audit."
+  },
+  "reproduction": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.un.org/unispal/wp-content/uploads/2025/03/Report-of-Independent-International-Commission-of-Inquiry-on-the-Occupied-Palestinian-Territory-13-March-2025.pdf",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 834711,
+      "content_type": "application/pdf",
+      "final_url": "https://www.un.org/unispal/wp-content/uploads/2025/03/Report-of-Independent-International-Commission-of-Inquiry-on-the-Occupied-Palestinian-Territory-13-March-2025.pdf",
+      "sha256": "f736f61ce306c8ca6fda23261f1581e53a970cbdd89a776c34f2d56a78e7068d"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Reported destruction and consequences do not themselves establish deliberate embryo targeting."
+  },
+  "structures": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://unosat.org/static/unosat_filesystem/4165/OCHA-OPT-027_UNOSAT_A3_Gaza_Strip_OPT_CDA_08072025.pdf",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 2670497,
+      "content_type": "application/pdf",
+      "final_url": "https://unosat.org/static/unosat_filesystem/4165/OCHA-OPT-027_UNOSAT_A3_Gaza_Strip_OPT_CDA_08072025.pdf",
+      "sha256": "82dd90c4115b301573b01296fadd452ed9ef6cd34a7cf3ef0fccc5f60102e6e1"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Satellite damage assessment cannot determine military use or intention at each structure."
+  },
+  "march_policy": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.gov.il/en/pages/spoke-parta020325",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "Primary announcement is quoted and linked in official hearing records and Commission paragraphs 116–119; operational corroboration in March mechanism record.",
+    "limitations": "Official rationale is evidence of a stated purpose, not proof that it was the sole purpose."
+  },
+  "march_delivery": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.un.org/unispal/document/monthly-overview-march-2025-un2720-mechanism-for-gaza-unops/",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 1605601,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.un.org/unispal/document/monthly-overview-march-2025-un2720-mechanism-for-gaza-unops/",
+      "sha256": "df8d560e8d4f0bf33c07c72d5063f525332f1a1f4bbc096f9bc8745d5f62627b"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "The UN mechanism does not enumerate every possible stock or non-mechanism transfer."
+  },
+  "famine": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ipcinfo.org/fileadmin/user_upload/ipcinfo/docs/IPC_Gaza_Strip_Acute_Food_Insecurity_Malnutrition_July_Sept2025_Special_Snapshot.pdf",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "IPC primary August snapshot and indexed assessment checked; direct snapshot fetch blocked.",
+    "limitations": "Technical classification, disputed by Israel; classification is not a genocide judgment."
+  },
+  "evacuation": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.hrw.org/report/2024/11/14/hopeless-starving-and-besieged/israels-forced-displacement-palestinians-gaza",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 668802,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.hrw.org/report/2024/11/14/hopeless-starving-and-besieged/israels-forced-displacement-palestinians-gaza",
+      "sha256": "eba2648b834805f350fca2c8c5c7f7175904707bcc2976db161a9e495497c383"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Selected investigated cases; not an audit of every evacuation order."
+  },
+  "detention": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ohchr.org/en/press-releases/2024/07/un-report-palestinian-detainees-held-arbitrarily-and-secretly-subjected",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "OHCHR press-release text checked via the official UNISPAL reproduction and indexed original.",
+    "limitations": "Reports concern detainees from Gaza and the West Bank, including East Jerusalem; do not generalize to all detainees or infer genocidal purpose automatically."
+  },
+  "aims": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.gov.il/en/pages/statement-by-pm-netanyahu-6-jan-2023",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "Dated statement and URL checked against existing bank; official source corroborated by contemporaneous reporting. URL year is misleading, as noted.",
+    "limitations": "Source URL contains 2023 but the statement is dated 6 January 2024; declared aims do not settle actual intent."
+  },
+  "shifa": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://2021-2025.state.gov/briefings/department-press-briefing-december-18-2023/",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 206145,
+      "content_type": "text/html",
+      "final_url": "https://2021-2025.state.gov/briefings/department-press-briefing-december-18-2023/",
+      "sha256": "6f0fed140ea1752336f3fa3c2c34e9cd6a3352afb7e5e6ff5613473a92ba379d"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Underlying intelligence not fully public; neither a neutral court finding nor validation of every Israeli claim about hospitals."
+  },
+  "tunnel": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://apnews.com/article/israel-palestinians-gaza-cemetery-mosque-tunnel-idf-fb609916b0d5251ea6f7c0ea2a2c2b3f",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "Full canonical Associated Press article and captions read through web retrieval.",
+    "limitations": "Access was military-controlled; observing a tunnel does not prove every claimed connection or justify the entire surrounding destruction."
+  },
+  "resettlement": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://2021-2025.state.gov/briefings/department-press-briefing-january-3-2024/",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 195889,
+      "content_type": "text/html",
+      "final_url": "https://2021-2025.state.gov/briefings/department-press-briefing-january-3-2024/",
+      "sha256": "3c239e16fc0d821731fa5fe717af58a8b06ea7c43794e1a50ed2a3f78f9f2c77"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "US account of represented policy and ministerial statements; not proof of implementation."
+  },
+  "coi": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session60/advance-version/a-hrc-60-crp-3.pdf",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 1083566,
+      "content_type": "application/pdf",
+      "final_url": "https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session60/advance-version/a-hrc-60-crp-3.pdf",
+      "sha256": "4561b1257835fca8f60f6b2d1aa79aa29e9c3622c269dd398993c7b47e5efef5"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Commission applies reasonable grounds; no court verdict. Access constraints, overlapping underlying reports and contested inferences remain material."
+  },
+  "amnesty": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 129537,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.amnesty.org/en/latest/news/2024/12/amnesty-international-concludes-israel-is-committing-genocide-against-palestinians-in-gaza/",
+      "sha256": "e51062238c94e735686c08216ec0e866372e48c49e926a36eb54402dcc34f70c"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Not a court verdict; its treatment of disregard as evidence of intent must not be presented as a binding legal rule."
+  },
+  "polio": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.who.int/news/item/06-11-2024-second-round-of-polio-campaign-in-gaza-completed-amid-ongoing-conflict-and-attacks--unicef-and-who",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 100232,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.who.int/news/item/06-11-2024-second-round-of-polio-campaign-in-gaza-completed-amid-ongoing-conflict-and-attacks--unicef-and-who",
+      "sha256": "723300489982d66b06815a5759aa1e0e0ad1aca14eb2558fe0be5574c8f97996"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "relief_routes": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.wfp.org/stories/gaza-updates-wfp-responds-hunger-crisis-rafah-incursion-cuts-access-warehouse",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 73983,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.wfp.org/stories/gaza-updates-wfp-responds-hunger-crisis-rafah-incursion-cuts-access-warehouse",
+      "sha256": "2eb75e133e205ae6d90b301165f5d80c252df7acc70baacf72aa99c8ea987fde"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": ""
+  },
+  "looting": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ochaopt.org/content/humanitarian-situation-update-239-gaza-strip",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 53690,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.ochaopt.org/content/humanitarian-situation-update-239-gaza-strip",
+      "sha256": "0a68e47f0b76fcab7ef98f1f27d9f7d07c748a9cdd7a4064d9b7392c69fd5e30"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Other updates report 98 trucks; do not quiz the disputed last digit or assume a specific armed group was responsible."
+  },
+  "december": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ipcinfo.org/ipcinfo-website/countries-in-focus-archive/issue-142/en/",
+    "raw_fetch": {
+      "error": "HTTP Error 403: Forbidden"
+    },
+    "verification_basis": "IPC primary page read through web retrieval.",
+    "limitations": "Improvement after ceasefire does not retrospectively disprove earlier famine; ongoing needs and access conditions remain."
+  },
+  "warning": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icj-cij.org/node/203847",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 99861,
+      "content_type": "text/html; charset=utf-8",
+      "final_url": "https://www.icj-cij.org/node/203847",
+      "sha256": "f7f13130a737e7d42509b1a34a742ba6d8161cb27121ac787e5ae98fbb7f09a2"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Interim decision, not a finding of genocidal intent; famine observation differs from a later technical classification."
+  },
+  "ceasefire": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ochaopt.org/content/report-humanitarian-response-un-and-humanitarian-partners-during-phase-one-ceasefire",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 561140,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.ochaopt.org/content/report-humanitarian-response-un-and-humanitarian-partners-during-phase-one-ceasefire",
+      "sha256": "d85f08eaafda682352a822243a792f313f712f91bc1a5641e08fb2387927089c"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Observed improvement does not establish adequacy everywhere or explain every decision."
+  },
+  "kitchen": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.idf.il/en/mini-sites/israel-at-war/all-articles/conclusion-of-the-investigation-into-the-incident-in-which-wck-employees-were-killed-during-a-humanitarian-operation-in-gaza",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 212,
+      "content_type": "text/html",
+      "final_url": "https://www.idf.il/en/mini-sites/israel-at-war/all-articles/conclusion-of-the-investigation-into-the-incident-in-which-wck-employees-were-killed-during-a-humanitarian-operation-in-gaza",
+      "sha256": "d02032286070b4dd9d8fbd985a7bdca8af8edf52b89ff177db3bfcb2c8a9c43d"
+    },
+    "verification_basis": "Full IDF primary release read through web retrieval; raw HTTP response was an anti-bot shell.",
+    "limitations": "Military account of intent and discipline is not independent criminal adjudication."
+  },
+  "medics": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://news.sky.com/video/new-video-contradicts-israeli-account-of-gaza-aid-convoy-attack-13342389",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 1083566,
+      "content_type": "application/pdf",
+      "final_url": "https://www.ohchr.org/sites/default/files/documents/hrbodies/hrcouncil/sessions-regular/session60/advance-version/a-hrc-60-crp-3.pdf",
+      "sha256": "4561b1257835fca8f60f6b2d1aa79aa29e9c3622c269dd398993c7b47e5efef5"
+    },
+    "verification_basis": "Publisher-verified footage report plus the official military investigation and Commission paragraph 185.",
+    "limitations": "Shows the signals and vehicles; does not itself settle all surrounding circumstances or wider intent."
+  },
+  "power": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ochaopt.org/content/gaza-humanitarian-response-update-2-15-march-2025",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 76000,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.ochaopt.org/content/gaza-humanitarian-response-update-2-15-march-2025",
+      "sha256": "f8894b3b49f9c677b89e0c5142db677dce0ff4adcaf986d469e2a9bdb6343009"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "The line supplied a desalination plant; do not call it the only source of all drinking water in Gaza."
+  },
+  "may_access": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.ochaopt.org/content/humanitarian-situation-update-292-gaza-strip",
+    "raw_fetch": {
+      "status": 200,
+      "bytes": 62122,
+      "content_type": "text/html; charset=UTF-8",
+      "final_url": "https://www.ochaopt.org/content/humanitarian-situation-update-292-gaza-strip",
+      "sha256": "08292a02eb70547464e049772f7ee5b64bb11e5474381c1649d6348d1ca421b7"
+    },
+    "verification_basis": "Primary document downloaded; relevant passage located and compared with the tested factual proposition.",
+    "limitations": "Counts refer to different stages, not three independent measures of household consumption."
+  },
+  "warrants": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.icc-cpi.int/news/situation-state-palestine-icc-pre-trial-chamber-i-rejects-state-israels-challenges",
+    "raw_fetch": {
+      "error": "HTTP Error 502: Bad Gateway"
+    },
+    "verification_basis": "ICC primary press-release text checked through indexed retrieval, including the dated reasonable-grounds wording.",
+    "limitations": "Arrest warrants are not convictions or genocide findings; question is historical and does not assert their current procedural status."
+  },
+  "rockets": {
+    "checked_on": "2026-10-17",
+    "source_url": "https://www.pbs.org/newshour/amp/world/rocket-fire-by-hamas-from-gaza-sets-off-air-raid-sirens-in-tel-aviv-for-first-time-in-months",
+    "verification_basis": "Associated Press syndicated report checked through indexed text; May 2024 United Nations monthly bulletin independently records the 26 May barrage. Direct syndicated-page access was restricted.",
+    "limitations": "Establishes a continuing armed capability, not military necessity for every Israeli action or absence of additional intent."
+  }
+}
