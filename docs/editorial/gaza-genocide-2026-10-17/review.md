@@ -66,3 +66,15 @@ editorial review represented by the research and source records.
 See [the complete question bank](questions.md), [audit results](audit.json),
 [the shorter-bank comparison](forty-item-comparison.json), and
 [research sequences and candidate decisions](research.json).
+
+## Saved result
+
+The moderator API applied all forty substantive revisions and ten additions.
+A fresh read verified every saved editorial field, the sequence and the
+revised proposition. There are fifty active questions, none withdrawn;
+`live` is false and `published_at` is null. Fifty fingerprint-matched
+calibration proposals were submitted and await supervisory review. No
+publication or application deployment was performed.
+
+The [application record](applied.json) identifies the saved questions and
+calibration records. The working branch remains `main`.
