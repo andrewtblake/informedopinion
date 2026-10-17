@@ -50,6 +50,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      resources :glossary_entries, only: %i[index show create update destroy]
       resources :opinion_questions, only: %i[index show create update destroy] do
         resources :fact_questions, only: %i[index show create update destroy], shallow: true
         post "fact_questions/bulk", to: "fact_questions#bulk_create", on: :member
