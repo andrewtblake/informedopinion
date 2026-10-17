@@ -42,6 +42,22 @@ module InformedOpinionMcp
     private
 
     def define_tools(server, client)
+      tool(server, "list_glossary_entries", "Read registered initialisms and tooltip definitions before drafting; optionally search by term or definition.",
+        { q: { type: "string" } }, read_only: true) do |args|
+        client.request("get", "glossary_entries?#{URI.encode_www_form(args.compact)}")
+      end
+      tool(server, "create_glossary_entry", "Add an initialism and its plain-text tooltip definition. Requires an explicit instruction to save.",
+        { term: { type: "string" }, definition: { type: "string" } }, required: %w[term definition]) do |args|
+        client.request("post", "glossary_entries", glossary_entry: args)
+      end
+      tool(server, "update_glossary_entry", "Correct a registered initialism or its tooltip definition. Changes apply on subsequent page requests.",
+        { id: { type: "integer" }, term: { type: "string" }, definition: { type: "string" } }, required: %w[id]) do |args|
+        client.request("patch", "glossary_entries/#{args.delete(:id)}", glossary_entry: args)
+      end
+      tool(server, "delete_glossary_entry", "Delete an initialism definition only when explicitly instructed; occurrences then render as ordinary text.",
+        { id: { type: "integer" } }, required: %w[id]) do |args|
+        client.request("delete", "glossary_entries/#{args[:id]}")
+      end
       tool(server, "list_moderation_issues", "List issues needing moderator attention. Returns anonymous editorial records.",
         { status: { type: "string", enum: %w[pending approved declined resolved dismissed all], default: "pending" },
           type: { type: "string", enum: %w[fact_report opinion_proposal fact_proposal opinion_reaction] } }, read_only: true) do |args|
