@@ -130,6 +130,25 @@ The initial plan could overcorrect in the following ways:
 
 ## Revised plan after both critiques
 
+### Evidence determines the balance
+
+Apply the same standards of scrutiny without imposing a 50:50 division of
+questions, importance weights, sources or conclusions. The evidence may
+strongly favour one interpretation. Accurately representing that asymmetry
+is part of impartiality, not a defect to correct.
+
+Use the legal definition and the verified evidence to select material facts.
+Assign valence after selection; never recruit weaker facts to fill a missing
+direction or counterweight a stronger finding. A material counterargument
+deserves examination in proportion to its evidential support and relevance,
+not an automatic matching question. Explain why a prominent claim fails when
+that failure is itself consequential and reliably established.
+
+The two perspective reviews test omissions, accuracy and inference. Neither
+side has a veto over well-supported facts, and neither is entitled to equal
+space or a favourable conclusion. Defensible disagreement is possible; its
+existence must not be presumed or manufactured as a publication requirement.
+
 ### Build a common evidence record first
 
 For every candidate, record:
@@ -181,7 +200,7 @@ correct. The integration happens in the reader's opinion, not a scored answer.
   effects, alternatives, official explanations and subsequent decisions.
 - Treat 798, 819, 829 and 830 as review candidates, not automatic deletions.
   Retain distinct evidence of prohibited acts while reducing duplication.
-- Review 823, 824, 826 and 834 together for balanced examination of relief,
+- Review 823, 824, 826 and 834 together for evidence-led examination of relief,
   evacuation safety and actual reach. Each item remains self-contained.
 - Use 825 to examine documented errors, corrective action and recurrence.
   Do not preassign either exculpatory or incriminating significance.
