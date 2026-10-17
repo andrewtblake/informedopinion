@@ -1,3 +1,13 @@
+# Schema-loaded databases need the same initial glossary as migrated databases.
+# Existing editorial changes must never be overwritten by ordinary seeding.
+unless GlossaryEntry.exists?
+  definitions = JSON.parse(Rails.root.join("db/glossary/20261017_initial_entries.json").read)
+  now = Time.current
+  GlossaryEntry.insert_all!(definitions.map do |term, definition|
+    { term: term, definition: definition, created_at: now, updated_at: now }
+  end)
+end
+
 require_relative "seeds/climate"
 require_relative "seeds/gun_control"
 require_relative "seeds/brexit"

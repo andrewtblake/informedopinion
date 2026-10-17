@@ -96,4 +96,23 @@ class ApplicationHelperTest < ActionView::TestCase
 
     assert_equal [ "ICC" ], fragment.css("abbr.glossary-term").map(&:text)
   end
+
+  test "overlapping database terms use complete matches and preserve safe tooltip text" do
+    GlossaryEntry.find_by!(term: "UNRWA").update!(definition: '<script>alert("not markup")</script>')
+    rendered = glossary_text("UN UNRWA NGO NGOs UNRWAX COVID-19")
+    fragment = Nokogiri::HTML.fragment(rendered)
+
+    assert_equal %w[UN UNRWA NGO NGOs COVID-19], fragment.css("abbr").map(&:text)
+    assert_empty fragment.css("script")
+    assert_equal '<script>alert("not markup")</script>', fragment.css("abbr")[1]["data-definition"]
+    assert_equal "0", fragment.css("abbr")[1]["tabindex"]
+  end
+
+  test "an empty glossary still escapes content" do
+    GlossaryEntry.delete_all
+    rendered = glossary_text("<script>alert('x')</script> TEST")
+
+    assert_not_includes rendered, "<script>"
+    assert_includes rendered, "&lt;script&gt;"
+  end
 end

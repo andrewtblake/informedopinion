@@ -1,73 +1,4 @@
 module ApplicationHelper
-  ORGANISATION_GLOSSARY = {
-    "ATF" => "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "APA" => "American Psychological Association",
-    "BLS" => "Bureau of Labor Statistics",
-    "BMC" => "BioMed Central",
-    "BMJ" => "British Medical Journal",
-    "BRICS" => "Intergovernmental group originally named for Brazil, Russia, India, China and South Africa",
-    "CBO" => "Congressional Budget Office",
-    "CDC" => "Centers for Disease Control and Prevention",
-    "COVID-19" => "Coronavirus Disease 2019",
-    "CPS" => "Crown Prosecution Service",
-    "DESNZ" => "Department for Energy Security and Net Zero",
-    "EPA" => "Environmental Protection Agency",
-    "EPIC" => "European Prospective Investigation into Cancer and Nutrition",
-    "ECHR" => "European Convention on Human Rights",
-    "ERISA" => "Employee Retirement Income Security Act",
-    "ESOP" => "Employee Stock Ownership Plan",
-    "FBI" => "Federal Bureau of Investigation",
-    "FPTP" => "First Past the Post",
-    "GAO" => "Government Accountability Office",
-    "GDP" => "Gross Domestic Product",
-    "HMRC" => "His Majesty's Revenue and Customs",
-    "ICC" => "International Criminal Court",
-    "ICJ" => "International Court of Justice",
-    "ICRC" => "International Committee of the Red Cross",
-    "IDEA" => "International Institute for Democracy and Electoral Assistance",
-    "IDF" => "Israel Defense Forces",
-    "IFS" => "Institute for Fiscal Studies",
-    "IMF" => "International Monetary Fund",
-    "IPC" => "Integrated Food Security Phase Classification",
-    "IPCC" => "Intergovernmental Panel on Climate Change",
-    "MMP" => "Mixed-Member Proportional",
-    "MP" => "Member of Parliament",
-    "MPs" => "Members of Parliament",
-    "NASA" => "National Aeronautics and Space Administration",
-    "NDA" => "Nuclear Decommissioning Authority",
-    "NBER" => "National Bureau of Economic Research",
-    "NICS" => "National Instant Criminal Background Check System",
-    "NIJ" => "National Institute of Justice",
-    "NIST" => "National Institute of Standards and Technology",
-    "NHS" => "National Health Service",
-    "NPPF" => "National Planning Policy Framework",
-    "NOAA" => "National Oceanic and Atmospheric Administration",
-    "OBR" => "Office for Budget Responsibility",
-    "OCHA" => "United Nations Office for the Coordination of Humanitarian Affairs",
-    "OECD" => "Organisation for Economic Co-operation and Development",
-    "OHCHR" => "Office of the United Nations High Commissioner for Human Rights",
-    "ONR" => "Office for Nuclear Regulation",
-    "ONS" => "Office for National Statistics",
-    "POST" => "Parliamentary Office of Science and Technology",
-    "PR" => "Proportional Representation",
-    "RAND" => "RAND Corporation",
-    "RCOG" => "Royal College of Obstetricians and Gynaecologists",
-    "SOE" => "State-Owned Enterprise",
-    "STV" => "Single Transferable Vote",
-    "TVA" => "Tennessee Valley Authority",
-    "UK" => "United Kingdom",
-    "UN" => "United Nations",
-    "UNFPA" => "United Nations Population Fund",
-    "US" => "United States",
-    "VARSS" => "Veterinary Antimicrobial Resistance and Sales Surveillance",
-    "WHO" => "World Health Organization",
-    "USGS" => "United States Geological Survey"
-  }.freeze
-
-  GLOSSARY_PATTERN = Regexp.new(
-    "(?<![[:alnum:]_])(#{Regexp.union(ORGANISATION_GLOSSARY.keys.sort_by { -_1.length })})(?![[:alnum:]_])"
-  )
-
   def site_page_title(title = nil)
     decoded_title = CGI.unescapeHTML(title.to_s).presence
     decoded_title&.sub("Informed Opinion", current_site.name) || current_site.name
@@ -142,8 +73,11 @@ module ApplicationHelper
   end
 
   def glossary_text(text)
-    safe_join(text.to_s.split(GLOSSARY_PATTERN).map do |segment|
-      definition = ORGANISATION_GLOSSARY[segment]
+    definitions, pattern = glossary_index
+    return safe_join([ text.to_s ]) unless pattern
+
+    safe_join(text.to_s.split(pattern).map do |segment|
+      definition = definitions[segment]
       next segment unless definition
 
       content_tag(
@@ -160,5 +94,17 @@ module ApplicationHelper
         }
       )
     end)
+  end
+
+  private
+
+  def glossary_index
+    @glossary_index ||= begin
+      definitions = GlossaryEntry.order(:term).pluck(:term, :definition).to_h
+      pattern = if definitions.any?
+        Regexp.new("(?<![[:alnum:]_])(#{Regexp.union(definitions.keys.sort_by { -_1.length })})(?![[:alnum:]_])")
+      end
+      [ definitions, pattern ]
+    end
   end
 end

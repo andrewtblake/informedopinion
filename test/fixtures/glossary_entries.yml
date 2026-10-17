@@ -1,0 +1,5 @@
+<% JSON.parse(Rails.root.join("db/glossary/20261017_initial_entries.json").read).each_with_index do |(term, definition), index| %>
+entry_<%= index %>:
+  term: <%= term.to_json %>
+  definition: <%= definition.to_json %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_17_190000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_17_140000) do
   create_table "api_audit_events", force: :cascade do |t|
     t.string "action", null: false
     t.integer "actor_id"
@@ -167,6 +167,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_17_190000) do
     t.index ["user_id", "fact_question_id"], name: "index_fact_responses_on_user_id_and_fact_question_id", unique: true
     t.index ["user_id"], name: "index_fact_responses_on_user_id"
     t.check_constraint "attempt_count >= 0", name: "fact_responses_attempt_count_nonnegative"
+  end
+
+  create_table "glossary_entries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.text "definition", null: false
+    t.string "term", null: false
+    t.datetime "updated_at", null: false
+    t.index ["term"], name: "index_glossary_entries_on_term", unique: true
   end
 
   create_table "moderation_item_views", force: :cascade do |t|
