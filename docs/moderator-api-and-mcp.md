@@ -1,38 +1,60 @@
 # Moderator API and MCP
 
-The versioned moderator API is the authoritative interface for agent-assisted editorial work. The included MCP server is a local adapter: it gives an AI agent concise tools and the editorial standard, while every read and write still passes through Rails authentication and validation.
+The versioned moderator API is the authoritative interface for agent-assisted
+editorial work. The included MCP server is a local adapter: it gives an AI agent
+concise tools and the editorial standard, while every read and write still
+passes through Rails authentication and validation.
 
 ## Safety model
 
 - Only a moderator account can own an API token.
-- Tokens are random, revocable, and stored in the database only as SHA-256 digests. The plaintext is shown once.
-- Every API write creates an append-only `ApiAuditEvent` with actor, token, request ID, action, target, and changed values.
+- Tokens are random, revocable, and stored in the database only as SHA-256
+  digests. The plaintext is shown once.
+- Every API write creates an append-only `ApiAuditEvent` with actor, token,
+  request ID, action, target, and changed values.
 - User identities are deliberately omitted from moderation-issue responses.
-- Saving an amended candidate does not approve it. Approval and decline are separate, explicit operations.
-- Creating a batch of fact questions is transactional. A request may contain up to 100 questions as an operational safeguard, and either all pass validation or none are retained. This is a transport limit, not an editorial target or a limit on the size of a fact bank.
-- A question with participation cannot be deleted. Withdraw or unpublish it instead; answered fact questions likewise cannot be deleted.
+- Saving an amended candidate does not approve it. Approval and decline are
+  separate, explicit operations.
+- Creating a batch of fact questions is transactional. A request may contain up
+  to 100 questions as an operational safeguard, and either all pass validation
+  or none are retained. This is a transport limit, not an editorial target or a
+  limit on the size of a fact bank.
+- A question with participation cannot be deleted. Withdraw or unpublish it
+  instead; answered fact questions likewise cannot be deleted.
 
 ## Issue IDs and workflow
 
-Moderation issue IDs are composite and stable, for example `opinion_proposal:12`, `fact_proposal:7`, and `fact_report:31`.
-Anonymous dislike reasons appear as `opinion_reaction:9`. They can be resolved as `reviewed` when they identify useful editorial work or `dismissed` when no action is warranted; likes are aggregate-only and are not moderation issues.
+Moderation issue IDs are composite and stable, for example
+`opinion_proposal:12`, `fact_proposal:7`, and `fact_report:31`. Anonymous
+dislike reasons appear as `opinion_reaction:9`. They can be resolved as
+`reviewed` when they identify useful editorial work or `dismissed` when no
+action is warranted; likes are aggregate-only and are not moderation issues.
 
 For an opinion proposal:
 
 1. List pending issues and read the proposal.
 2. Read `informed-opinion://editorial-standard`.
-3. Draft wording in conversation. No write is needed for a draft that the moderator has not accepted.
-4. After instruction, save the agreed candidate with `save_opinion_proposal_edit`.
-5. Only after a separate instruction, call `decide_moderation_issue` with `action: approve`.
-6. Read the approved, initially non-live opinion question and create its fact bank with `create_fact_questions`.
-7. Review the complete bank against the editorial standard. Only after the moderator is satisfied, publish it with `publish_opinion_question`.
+3. Draft wording in conversation. No write is needed for a draft that the
+   moderator has not accepted.
+4. After instruction, save the agreed candidate with
+   `save_opinion_proposal_edit`.
+5. Only after a separate instruction, call `decide_moderation_issue` with
+   `action: approve`.
+6. Read the approved, initially non-live opinion question and create its fact
+   bank with `create_fact_questions`.
+7. Review the complete bank against the editorial standard. Only after the
+   moderator is satisfied, publish it with `publish_opinion_question`.
 
-An approved opinion remains non-live after the configured minimum is reached. The threshold establishes eligibility; explicit moderator publication makes it public.
+An approved opinion remains non-live after the configured minimum is reached.
+The threshold establishes eligibility; explicit moderator publication makes it
+public.
 
 ## HTTP API
 
 All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 
+- `GET/POST /glossary_entries`
+- `GET/PATCH/DELETE /glossary_entries/:id`
 - `GET/POST /opinion_questions`
 - `GET/PATCH/DELETE /opinion_questions/:id`
 - `POST/DELETE /opinion_questions/:opinion_question_id/publication`
@@ -48,17 +70,31 @@ All endpoints are below `/api/v1` and require `Authorization: Bearer TOKEN`.
 - `POST /moderation_issues/:composite_id/resolve`
 - `GET /editorial_standard`
 
-Fact-question payloads use zero-based `correct_option`, exactly four `options`, `importance_weight` 1–3, `evidence_direction` -1, 0, or 1, `specialist_knowledge` 1–6, and `answerability` 1–5. New questions must have passing ratings. An `answerability` of 0 may be assigned when updating an existing item during an audit to record that it is unfit and cannot be published; it is not the difficult end of the passing scale. See [editorial-standard.md](editorial-standard.md) for the fields' independent editorial meanings.
+Fact-question payloads use zero-based `correct_option`, exactly four `options`,
+`importance_weight` 1–3, `evidence_direction` -1, 0, or 1,
+`specialist_knowledge` 1–6, and `answerability` 1–5. New questions must have
+passing ratings. An `answerability` of 0 may be assigned when updating an
+existing item during an audit to record that it is unfit and cannot be
+published; it is not the difficult end of the passing scale. See
+[editorial-standard.md](editorial-standard.md) for the fields' independent
+editorial meanings.
 
-Updates that change a prompt or choices default to `response_handling: substantive_reset`. An editor may instead send `cosmetic_preserve` or `clarification_preserve` with a specific `revision_rationale` only when every score-preservation condition in the editorial standard is met. The handling and rationale are written to the API audit event. A correct-key-only change recalculates correctness from the retained selected option; a changed key cannot be combined with response preservation.
+Updates that change a prompt or choices default to `response_handling:
+substantive_reset`. An editor may instead send `cosmetic_preserve` or
+`clarification_preserve` with a specific `revision_rationale` only when every
+score-preservation condition in the editorial standard is met. The handling and
+rationale are written to the API audit event. A correct-key-only change
+recalculates correctness from the retained selected option; a changed key cannot
+be combined with response preservation.
 
-An AI calibration submission is atomic at bank level and must contain exactly one
-fingerprinted assessment for every fact question in the bank. Each assessment
-includes both ratings, concise rationales, confidence values from 1 to 5, and—when
-answerability is 0—a failure category and proposed remediation. The API preserves
-the assessment as awaiting supervisory review, copies its proposed ratings to the
-fact question, and records audited provenance through `assessor_name` and
-`run_identifier`. A stale fingerprint rejects the entire batch.
+An AI calibration submission is atomic at bank level and must contain exactly
+one fingerprinted assessment for every fact question in the bank. Each
+assessment includes both ratings, concise rationales, confidence values from 1
+to 5, and—when answerability is 0—a failure category and proposed remediation.
+The API preserves the assessment as awaiting supervisory review, copies its
+proposed ratings to the fact question, and records audited provenance through
+`assessor_name` and `run_identifier`. A stale fingerprint rejects the entire
+batch.
 
 ## Issue a token
 
@@ -89,4 +125,33 @@ Then add the local server to Codex:
 codex mcp add informed-opinion -- /absolute/path/to/bin/informed-opinion-mcp
 ```
 
-Do not place the token in this repository or pass it as a command-line argument. Restart the Codex session after adding the server so its tools and resources are discovered.
+Do not place the token in this repository or pass it as a command-line argument.
+Restart the Codex session after adding the server so its tools and resources are
+discovered.
+
+## Glossary editing
+
+The glossary is editorial data. Use `list_glossary_entries` before spelling out
+long organization names in a fact. Add or correct definitions with
+`create_glossary_entry` and `update_glossary_entry`; use `delete_glossary_entry`
+only when explicitly requested. These tools use the same moderator token and
+append-only audit records as other editorial work.
+
+A write accepts a `glossary_entry` object containing `term` and `definition`.
+Updates can supply either field. List requests accept `q` to search both fields,
+and return IDs for subsequent edits. Definitions are plain text. Terms are
+case-sensitive literal spellings, not regular expressions; plural forms such as
+`NGOs` have their own entries. A unique index rejects duplicate terms. Invalid
+records return HTTP 422; unknown IDs return HTTP 404.
+
+The quiz and moderator views use a consistent glossary snapshot for each page
+request. A saved addition, edit or deletion appears on the next page request
+without a deploy, application restart or cache-expiry delay. Deleting an entry
+leaves its occurrences as ordinary text. Hover, keyboard focus and tap continue
+to expose the full definition, with arbitrary HTML escaped.
+
+The initial release requires the glossary migration and matching application
+code. The migration imports the 81 current definitions, including the 19 recent
+additions. The dated JSON file is an immutable bootstrap snapshot, not the
+source for future editorial updates. Database backups must include the glossary.
+See [the implementation notes](glossary-database.md).
