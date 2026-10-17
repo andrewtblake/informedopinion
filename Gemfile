@@ -10,7 +10,7 @@ group :development, :test do
 end
 
 group :production do
-  gem "pg", "~> 1.6"
+  gem "pg", "~> 1.7"
 end
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
