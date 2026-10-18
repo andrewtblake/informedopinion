@@ -1,0 +1,137 @@
+{
+  "review_date": "2026-10-17",
+  "method": "Read-only moderator API; active records only. Length measured in characters; tied shortest options count as correct. All thirty correct shortest choices in topic 26 are uniquely shortest; selecting the first shortest also scores thirty. Ratings are stored proposals/ratings, not newly validated assessments.",
+  "comparators": [
+    {
+      "topic_id": 26,
+      "title": "Genocide in Gaza",
+      "active_questions": 50,
+      "mean_prompt_words": 17.3,
+      "mean_explanation_words": 39.7,
+      "shortest_option_correct": 30,
+      "shortest_option_weighted_score": 0.6210526315789474,
+      "knowledge": {
+        "3": 31,
+        "2": 6,
+        "4": 13
+      },
+      "answerability": {
+        "3": 42,
+        "4": 7,
+        "2": 1
+      }
+    },
+    {
+      "topic_id": 10,
+      "title": "Gaza war",
+      "active_questions": 30,
+      "mean_prompt_words": 15.6,
+      "mean_explanation_words": 25.8,
+      "shortest_option_correct": 7,
+      "shortest_option_weighted_score": 0.24193548387096775,
+      "knowledge": {
+        "3": 30
+      },
+      "answerability": {
+        "2": 4,
+        "4": 8,
+        "3": 11,
+        "0": 7
+      }
+    },
+    {
+      "topic_id": 1,
+      "title": "Global warming",
+      "active_questions": 30,
+      "mean_prompt_words": 13.6,
+      "mean_explanation_words": 17.2,
+      "shortest_option_correct": 9,
+      "shortest_option_weighted_score": 0.2833333333333333,
+      "knowledge": {
+        "2": 2,
+        "3": 28
+      },
+      "answerability": {
+        "3": 18,
+        "2": 6,
+        "0": 2,
+        "4": 4
+      }
+    },
+    {
+      "topic_id": 9,
+      "title": "Death penalty",
+      "active_questions": 30,
+      "mean_prompt_words": 10.4,
+      "mean_explanation_words": 14.8,
+      "shortest_option_correct": 10,
+      "shortest_option_weighted_score": 0.3246753246753247,
+      "knowledge": {
+        "3": 30
+      },
+      "answerability": {
+        "4": 4,
+        "3": 17,
+        "0": 9
+      }
+    },
+    {
+      "topic_id": 21,
+      "title": "Veganism",
+      "active_questions": 32,
+      "mean_prompt_words": 20.1,
+      "mean_explanation_words": 26.0,
+      "shortest_option_correct": 9,
+      "shortest_option_weighted_score": 0.24615384615384617,
+      "knowledge": {
+        "1": 7,
+        "2": 13,
+        "3": 11,
+        "4": 1
+      },
+      "answerability": {
+        "4": 11,
+        "5": 3,
+        "3": 13,
+        "2": 5
+      }
+    },
+    {
+      "topic_id": 24,
+      "title": "Nature of ME/CFS",
+      "active_questions": 30,
+      "mean_prompt_words": 16.7,
+      "mean_explanation_words": 20.8,
+      "shortest_option_correct": 1,
+      "shortest_option_weighted_score": 0.04838709677419355,
+      "knowledge": {
+        "1": 6,
+        "2": 11,
+        "3": 9,
+        "4": 4
+      },
+      "answerability": {
+        "5": 8,
+        "4": 16,
+        "3": 6
+      }
+    },
+    {
+      "topic_id": 22,
+      "title": "Has America gained power?",
+      "active_questions": 31,
+      "mean_prompt_words": 20.9,
+      "mean_explanation_words": 40.9,
+      "shortest_option_correct": 13,
+      "shortest_option_weighted_score": 0.46875,
+      "knowledge": {
+        "2": 17,
+        "3": 14
+      },
+      "answerability": {
+        "4": 14,
+        "3": 17
+      }
+    }
+  ]
+}
