@@ -1,0 +1,402 @@
+[
+  {
+    "fact_question_id": 795,
+    "before_fingerprint": "26888e2aed7e237885eaec13f6b2f9e48d90b302469c88ff19901ad0de9040cd",
+    "before_prompt": "Under the Genocide Convention, what must be established for conduct to constitute genocide?",
+    "replacement_key": "L01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 796,
+    "before_fingerprint": "e2068b3fb98386fa165d1a59231d962e6137973bddcee242555fd75a128ad5e9",
+    "before_prompt": "What did Defence Minister Yoav Gallant announce for Gaza on 9 October 2023, as recorded by the ICJ?",
+    "replacement_key": "B01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 797,
+    "before_fingerprint": "d09a51172835b93bd17941b1257a49773dcec518f59bb068094897d5f745ae6c",
+    "before_prompt": "What objectives did Netanyahu publicly state for the Gaza war on 6 January 2024?",
+    "replacement_key": "P01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 798,
+    "before_fingerprint": "7fff9d759e350c4cc758d0b407e808f83e6f2bb535658449a03ef5dffa9c1be0",
+    "before_prompt": "What does Gaza’s Health Ministry’s headline war-death total measure?",
+    "replacement_key": "D01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 799,
+    "before_fingerprint": "dbe87da6e21bc73069dcdb8dbb04b0de857ff32f6c8e22e6cb719b4d200d3b0f",
+    "before_prompt": "Which method of destruction is expressly included in Article II of the Genocide Convention?",
+    "replacement_key": "M01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 800,
+    "before_fingerprint": "bf8f973c1a700e48f8369a68c97117d8fd8d67c4ab7ce9774d243618d31729a1",
+    "before_prompt": "What did WHO report about the second round of Gaza’s polio campaign completed in November 2024?",
+    "replacement_key": "B05",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 801,
+    "before_fingerprint": "8c222db927be4aef4c6469091fea138750970affd24875eb3cde26bf08c4d22e",
+    "before_prompt": "When genocidal intent is inferred from a pattern of conduct, what merits test did the ICJ apply in Croatia v. Serbia?",
+    "replacement_key": "B04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 802,
+    "before_fingerprint": "4e2eacdfde6cec3ba2516ced71b3b440474c1afa9f81ecd9f0de9b327229b5e7",
+    "before_prompt": "What did the ICJ require in its 28 March 2024 Gaza order after warning that famine was setting in?",
+    "replacement_key": "R01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 803,
+    "before_fingerprint": "ba9390c6de23896160bf486559e9a99dc5351425dcd3f473454a2ef44cbe5512",
+    "before_prompt": "What assessment of al-Shifa Hospital did the US State Department publicly maintain in December 2023?",
+    "replacement_key": "L04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 804,
+    "before_fingerprint": "473e4dc3d5f7c8b4b41d4f28374c76ed574b42e4561e4b4b8b7f1be9ecbef822",
+    "before_prompt": "Under the ICRC’s explanation of targeting law, how is anticipated civilian harm assessed in an attack on a military objective?",
+    "replacement_key": "L08",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 805,
+    "before_fingerprint": "44b735275ef5e4d8d76f867e4d8f83ca2353640da14102cdcb4c9ff9567bf1d5",
+    "before_prompt": "How did Associated Press qualify Israel’s claim of around 20,000 militants killed in Gaza in its 3 April 2025 report?",
+    "replacement_key": "B02",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 806,
+    "before_fingerprint": "94bcd8c3191bded2ca153a1bde47bb05f765572c31e889808715ac39694b0d50",
+    "before_prompt": "What policy did Israel’s Prime Minister’s Office announce on 2 March 2025 amid the ceasefire-extension dispute?",
+    "replacement_key": "L02",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 807,
+    "before_fingerprint": "6e1cb84f006689770e89eb8c7447ae61cddd4271462b6b0a7058380f7dfd2ab3",
+    "before_prompt": "According to the ICJ’s genocide case law, how does forced displacement relate to destruction of a protected group?",
+    "replacement_key": "L03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 808,
+    "before_fingerprint": "c15bed4449681cb67b24be665667c33774e747e11807a907712aa73cb791f9bf",
+    "before_prompt": "What did OCHA report about the reach of food-parcel distributions during the first phase of the January–March 2025 ceasefire?",
+    "replacement_key": "C01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 809,
+    "before_fingerprint": "302ac608e53a6084432aaa877198b9cc4ec892005822d5e38389fc458219ed1b",
+    "before_prompt": "What did the UN’s Gaza aid mechanism report about deliveries during March 2025 after Israel’s suspension?",
+    "replacement_key": "D02",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 810,
+    "before_fingerprint": "7b9347d17b9c68654f37c2cc84f40ed711db4daf939917d5c1c75364317bd563",
+    "before_prompt": "Why did the ICJ reject Croatia’s genocide claim against Serbia in 2015 despite finding killings and serious harm?",
+    "replacement_key": "B03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 811,
+    "before_fingerprint": "dda062ae40b03f91d7b1b58687c47f45114f2b89aa672f247a5af29d12cc3ca5",
+    "before_prompt": "What distinction did the Jelisić Appeals Chamber draw between a perpetrator’s motive and genocidal intent?",
+    "replacement_key": "L06",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 812,
+    "before_fingerprint": "7f92d5b17d6b691067c8fbcdecad2d0f662fc157cc3afbd30ebbc1b2602d41f7",
+    "before_prompt": "What evidence did Human Rights Watch cite for the deliberate demolition of a water reservoir serving Rafah in July 2024?",
+    "replacement_key": "P02",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 813,
+    "before_fingerprint": "2be7c7ed4ddd0db28563c560362a1c1c09ef4ed9cc8b7c72703db7114bbd7e5a",
+    "before_prompt": "What did the World Food Programme report about new routes, Erez and Ashdod in its account of April 2024 aid to northern Gaza?",
+    "replacement_key": "C02",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 814,
+    "before_fingerprint": "8925c6c385a6e275a03162a2ec0af96ab78d3c17dc5c68ccdb6d21b8b75af508",
+    "before_prompt": "What new evidence did the Gaza Mortality Survey, published in February 2026, use to estimate deaths through early January 2025?",
+    "replacement_key": "M05",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 815,
+    "before_fingerprint": "52ffbaad9af6c916d26313b65ef5f312a2e7fa7b4e9f4f50e70f97203453e214",
+    "before_prompt": "What qualification did the UN Commission record when discussing Herzog’s October 2023 collective-responsibility statement?",
+    "replacement_key": "D05",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 816,
+    "before_fingerprint": "792a167df0ed047eaddf3889eae28b0f51fea55df26a51c81a8aec43ed7b049a",
+    "before_prompt": "Under the international rules of state responsibility, how is conduct by military units acting as state organs generally treated?",
+    "replacement_key": "L07",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 817,
+    "before_fingerprint": "0d234d0c1c2d95582ed07b3d54630e2b173a078f7eb07b33f8d65bae7b6b8e54",
+    "before_prompt": "How did WHO describe Gaza’s hospital system at the start of the January 2025 ceasefire?",
+    "replacement_key": "P03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 818,
+    "before_fingerprint": "d7174f48f014803d2fdb690a34fff782a355f367dffcbd7957d534ed5c8254e2",
+    "before_prompt": "What did Associated Press journalists visit during an Israeli-organized tour in Khan Younis in January 2024?",
+    "replacement_key": "D03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 819,
+    "before_fingerprint": "00917e8d8ef22ee4033a5ffc9a544b436d2a3b00eb13d64da9c3a3a32deb4cec",
+    "before_prompt": "If Hamas unlawfully uses civilians to shield military operations, what happens to Israel’s obligations toward those civilians?",
+    "replacement_key": "L09",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 820,
+    "before_fingerprint": "eea3748307a06804b767ede85f9718137bd00ef91999c93f26fb4e4b55435c84",
+    "before_prompt": "What did Human Rights Watch’s November 2024 displacement investigation find about evacuation routes and designated safe areas?",
+    "replacement_key": "P09",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 821,
+    "before_fingerprint": "fc554ae5dc978746496aec7e58d3bbddf4604b485759f5786e2aa6dc888b4d84",
+    "before_prompt": "Why was the Srebrenica massacre recognized as genocide although the executions mainly targeted men and boys and women and children were expelled?",
+    "replacement_key": "H01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 822,
+    "before_fingerprint": "2a56c02d9843f8151e604dd9575d12ca7dfd1ae539e0f4984819644ca2aa484b",
+    "before_prompt": "What did OCHA report happened to the electricity feeder serving the Southern Gaza Desalination Plant on 9 March 2025?",
+    "replacement_key": "C05",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 823,
+    "before_fingerprint": "0669bd97cbc7f2ff2173157ff4d911584601a768343ae65029e3c1d55eed6d72",
+    "before_prompt": "Why did OCHA’s 19–27 May 2025 figures distinguish approved truckloads, offloaded cargo and aid collected inside Gaza?",
+    "replacement_key": "C06",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 824,
+    "before_fingerprint": "47224493e88d9aaed3eaa6e2f8aa57aa0db0bb3f78225ad74ca183ad4ee04c65",
+    "before_prompt": "What did the 2025 capture–recapture study estimate for traumatic-injury deaths in Gaza up to 30 June 2024?",
+    "replacement_key": "M06",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 825,
+    "before_fingerprint": "80c5197f621b9c70f60fd713294cea3647f56057511d3dc04f8e1dcf60c5a4a5",
+    "before_prompt": "What did the IDF’s April 2024 investigation acknowledge about the strikes killing seven World Central Kitchen aid workers?",
+    "replacement_key": "C03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 826,
+    "before_fingerprint": "7adbe34064e75caf8665371f6fcbd9a082fe6e11d449e0a06749b3ef4cfccaa5",
+    "before_prompt": "In the Jelisić appeal judgment, did proving genocidal intent require proof of an explicit plan or policy?",
+    "replacement_key": "K01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 827,
+    "before_fingerprint": "599c96f938fbc16025cf825ba37fc5a2ca5945563961ee0bd7ef2af048a24a37",
+    "before_prompt": "What did the IPC classify in August 2025 concerning famine in Gaza?",
+    "replacement_key": "P08",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 828,
+    "before_fingerprint": "90e0be2082e51ebbc2448fbdb2c41c67a971e18acbb10764b3821dc654f27c3e",
+    "before_prompt": "How did the IPC’s December 2025 assessment describe conditions following the October ceasefire?",
+    "replacement_key": "R04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 829,
+    "before_fingerprint": "9369b5e01ba78146d809fd75b5cf76442129617b00e8e35d9ac936b224d574e7",
+    "before_prompt": "What significance did the UN Commission’s September 2025 siege analysis attach to continuing restrictions despite warnings about civilian survival?",
+    "replacement_key": "B06",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 830,
+    "before_fingerprint": "adf0b59524ad95520cd3ea88e3a1ef2da9a17fed2c3ab7f4bfdd49992b68d3dc",
+    "before_prompt": "What common purpose did the international tribunal find behind the 1999 Kosovo campaign in the Šainović case?",
+    "replacement_key": "H04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 831,
+    "before_fingerprint": "f9d72cb6bc660b75fced672e0fdb9bd0a1642b4f180904cefc41577175749c65",
+    "before_prompt": "What was the figure of 186,000 Gaza deaths discussed in a July 2024 Lancet correspondence?",
+    "replacement_key": "P04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 832,
+    "before_fingerprint": "5513f0f74044e9818c689446c15b0956c9622f4581601295529f1f6096cb4783",
+    "before_prompt": "What did the UN Commission’s March 2025 report record at Gaza’s Al-Basma fertility centre?",
+    "replacement_key": "D04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 833,
+    "before_fingerprint": "9b09c701604828fca60c8c3d15acd0a9a8e9b48b507e1043cafa9aec25da98d7",
+    "before_prompt": "What disagreement about Gaza’s population did the US State Department describe in January 2024?",
+    "replacement_key": "L11",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 834,
+    "before_fingerprint": "1261620e30c8d86c672226c29b09fa605d99161794ed1f1ffadc62a818866e4d",
+    "before_prompt": "In its January 2024 Gaza order, how did the ICJ address Palestinians in Gaza under the protected-group requirement?",
+    "replacement_key": "C04",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 835,
+    "before_fingerprint": "9a77e36729a32cc38b1ea6ceaa02bbd06a7a681825e798fcf130f85733a56e4b",
+    "before_prompt": "What evidence contradicted the initial Israeli account that rescue vehicles approached without emergency signals in the March 2025 Rafah killings?",
+    "replacement_key": "R03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 836,
+    "before_fingerprint": "1d9ce51e40401add05d97fc948bd392e71654db33d36d41640e57ded7110fbfb",
+    "before_prompt": "What happened to the large UN food convoy of 16 November 2024 after it crossed into Gaza, according to OCHA?",
+    "replacement_key": "P10",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 837,
+    "before_fingerprint": "5eb2732bd82d49aba3c7d0ef6016693478969633d78bbd5406323ea8bf43a63d",
+    "before_prompt": "What kinds of treatment did OHCHR’s July 2024 detention report describe from accounts of Palestinian detainees, including people taken from Gaza?",
+    "replacement_key": "L10",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 838,
+    "before_fingerprint": "51402f74b8858679b15521dd7b6ed133a935fa82dbee8fa3a137a85e6ecb4b95",
+    "before_prompt": "What did the 8,119 deaths individually verified in OHCHR’s November 2024 Gaza report represent?",
+    "replacement_key": "S01",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 839,
+    "before_fingerprint": "cd910565efb80370419b161a4c745b27c3f5d0cbb87a065d3a85f28176370b88",
+    "before_prompt": "What did the ICJ’s 26 January 2024 Gaza order decide about whether Israel had committed genocide?",
+    "replacement_key": "C07",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 840,
+    "before_fingerprint": "c6bef86dcef0fe8758c456b8838ae2ce0337de72e0ea1379aa9ae908dfaeb535",
+    "before_prompt": "How did Amnesty’s December 2024 explanation treat the alternative that Israel sought to destroy Hamas while disregarding Palestinian lives?",
+    "replacement_key": "C08",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 841,
+    "before_fingerprint": "1c85f9eb16024dff93b669aa6d0787f9659931f4323ac3737d92be925a9fac1f",
+    "before_prompt": "In the fifteen strikes investigated for its December 2024 Gaza report, what did Amnesty say it found about military objectives?",
+    "replacement_key": "H02",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 842,
+    "before_fingerprint": "defd62ea2aeccc92b8f2ff4525d2a362d8b66b606a501659b5d22c123100acd1",
+    "before_prompt": "What did ICC judges find reasonable grounds to believe about deprivation when issuing the November 2024 Netanyahu and Gallant warrants?",
+    "replacement_key": "D08",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 843,
+    "before_fingerprint": "6d36aafcc037b03d266546eeb2bef9e7ebb8a53339006b92947238fb186fd1a1",
+    "before_prompt": "How did the 1994 genocide against Tutsi civilians in Rwanda relate to the government’s war against the Tutsi-led rebel movement?",
+    "replacement_key": "P06",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  },
+  {
+    "fact_question_id": 844,
+    "before_fingerprint": "a65db3f5585db59478f16009682b453b551a9e6fff971532b24b8cdc3f0b740e",
+    "before_prompt": "What armed capability did Hamas demonstrate from Gaza in late May 2024, after more than seven months of war?",
+    "replacement_key": "H03",
+    "response_handling": "substantive_reset",
+    "reason": "Implement authorized broader editorial revision: remove cues, improve self-containment, replace redundant coverage, and recalibrate. No participant answers per user."
+  }
+]
