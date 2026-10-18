@@ -105,3 +105,16 @@ calibration proposals require supervisory review. Publication is not requested.
 
 See [all revised questions](questions.md), [the replacement map](replacement-map.json)
 and [the source ledger](sources.json).
+
+## Verified saved result
+
+All fifty existing records were updated through the moderator API. No records
+were added or withdrawn. Fresh reads before and after the calibration
+submission verified every saved editorial field, record identity, order and
+unchanged proposition. The topic remains `live: false` with no publication
+timestamp. Fifty new fingerprint-matched calibration proposals await
+supervisory review; earlier assessments remain in their audit history.
+
+The [application record](applied.json) identifies each current question and
+its content fingerprint. Development remains on `main`; no deployment was
+needed for the editorial changes.

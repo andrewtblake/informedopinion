@@ -1,15 +1,17 @@
 # Gaza genocide fact-bank review plan
 
-Status: implemented on 17 October 2026 following the user's instruction to
-apply the plan. Topic 26 now contains 50 active questions and remains
-unpublished. Forty existing records were substantively revised and ten were
-added. The user confirmed that there were no participant answers to preserve.
-Calibration proposals await supervisory review.
+Status: implemented on 17 October 2026 and substantively revised on
+18 October following the broader editorial review. Topic 26 contains fifty
+active questions and remains unpublished. The user confirmed that there were
+no participant answers to preserve. New calibration proposals await
+supervisory review.
 
-The [implementation review](../docs/editorial/gaza-genocide-2026-10-17/review.md)
-records the scope, candidate comparison, source limitations and checks. The
-[application record](../docs/editorial/gaza-genocide-2026-10-17/applied.json)
-records the saved question IDs and fingerprints.
+The [current implementation review](../docs/editorial/gaza-genocide-2026-10-17/revision-2/review.md)
+records consolidation, new baseline evidence, readability and answer-cue
+repairs, source limitations and checks. The
+[current application record](../docs/editorial/gaza-genocide-2026-10-17/revision-2/applied.json)
+records the saved question IDs and fingerprints. The original implementation
+artifacts remain available in the parent directory as editorial history.
 
 ## Objective and legal framing
 

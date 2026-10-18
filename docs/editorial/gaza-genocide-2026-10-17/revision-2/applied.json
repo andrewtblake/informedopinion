@@ -1,0 +1,317 @@
+{
+  "applied_at": "2026-10-18T06:26:57Z",
+  "topic_id": 26,
+  "revision": "broader-editorial-revision-2",
+  "live": false,
+  "published_at": null,
+  "active_questions": 50,
+  "updated_questions": 50,
+  "created_questions": 0,
+  "withdrawn_questions": 0,
+  "calibration_run_identifier": "gaza-genocide-2026-10-18-broader-editorial-revision",
+  "calibration_status": "awaiting_supervisory_review",
+  "questions": [
+    {
+      "key": "L01",
+      "fact_question_id": 795,
+      "content_fingerprint": "c46cf7b3ad0cfbc1c544f4a69d9cfa877533d3a02697c1f73e05b9de48a64eed"
+    },
+    {
+      "key": "B01",
+      "fact_question_id": 796,
+      "content_fingerprint": "fcb9e3f3f912ae8d37a99cf4151dde21d633b8e3621b9d26debac385af7e544f"
+    },
+    {
+      "key": "P01",
+      "fact_question_id": 797,
+      "content_fingerprint": "12a14aa460b0e1a209996158b43429d5eaf667fa774dd3ab2d56805fc3174b5e"
+    },
+    {
+      "key": "D01",
+      "fact_question_id": 798,
+      "content_fingerprint": "6608336a9bbdf74769f703b2f947123e214bcb856ebc02105d5ab881fdcf362a"
+    },
+    {
+      "key": "M01",
+      "fact_question_id": 799,
+      "content_fingerprint": "17ac49114f2d79f814dee24d90ac774fd8162a87fccceb66cd16bad178cde6f1"
+    },
+    {
+      "key": "B05",
+      "fact_question_id": 800,
+      "content_fingerprint": "732e7a66c24493d810eb041ffdc0c302ce9564c1c28d21c2dec1ce68f1be8572"
+    },
+    {
+      "key": "B04",
+      "fact_question_id": 801,
+      "content_fingerprint": "2c71e7c69e6dfd7349c33ab3b7ce9d245f7e4cd83aef332035e82e6d6983bf12"
+    },
+    {
+      "key": "R01",
+      "fact_question_id": 802,
+      "content_fingerprint": "137413735682aa48092972b944bc395f9181ed84aa5ce2f6ef1ec5325058088b"
+    },
+    {
+      "key": "L04",
+      "fact_question_id": 803,
+      "content_fingerprint": "a0faf38ad4aeb2a792f0df8f16eef2c5c5340007c6d93b4a1e7b108d0d459fa0"
+    },
+    {
+      "key": "L08",
+      "fact_question_id": 804,
+      "content_fingerprint": "4c503ba449afcebf6b1834a66adc9888617194242594fa69af690b9d43b22089"
+    },
+    {
+      "key": "B02",
+      "fact_question_id": 805,
+      "content_fingerprint": "50108021cb28178e68068fba00e1b76f85c4006937a6ae3b8e4953b27b470931"
+    },
+    {
+      "key": "L02",
+      "fact_question_id": 806,
+      "content_fingerprint": "b0721126dcc309389c05114afc8640e1e491ecf69ca4e0308a60b8b31efd4d61"
+    },
+    {
+      "key": "L03",
+      "fact_question_id": 807,
+      "content_fingerprint": "c9e70732b1cf9a4366fcffa1d9aab83fc8cfc6da4d26bdad28bde5ed60b58ba6"
+    },
+    {
+      "key": "C01",
+      "fact_question_id": 808,
+      "content_fingerprint": "d5b91fe84099449cb056d389ef2d5689df235e7f4bff1338e8f8859216f3d4d4"
+    },
+    {
+      "key": "D02",
+      "fact_question_id": 809,
+      "content_fingerprint": "ffdb7d0b35b6da910cdf0d790a6558ee1b1a63397672b5bd4dbe82d368223462"
+    },
+    {
+      "key": "B03",
+      "fact_question_id": 810,
+      "content_fingerprint": "628737ee0064fedd3080220c0d54527217ee095d0c40d64a9291074abe0e98e3"
+    },
+    {
+      "key": "L06",
+      "fact_question_id": 811,
+      "content_fingerprint": "8e9f3b330431aab0bc656ed2c271774ccd00b03c0647568c51306c3c2ea7ac6c"
+    },
+    {
+      "key": "P02",
+      "fact_question_id": 812,
+      "content_fingerprint": "f6e50ed61bcdca2db83eb54b27a383fc045dca4401bb21d8ff1882520761dc67"
+    },
+    {
+      "key": "C02",
+      "fact_question_id": 813,
+      "content_fingerprint": "6ccb05a51641f6f4030df6f5ff0fb6fadbcba59188d6fa74565d635ea8afb523"
+    },
+    {
+      "key": "M05",
+      "fact_question_id": 814,
+      "content_fingerprint": "f4f20a3d47648bb57cf7fce0cfdbe55ef2aa5abe21a94bfa64362688b1aad41e"
+    },
+    {
+      "key": "D05",
+      "fact_question_id": 815,
+      "content_fingerprint": "f9090c9b9bc961a16e3c1ff55140b7714212785069cad07cf6454d6dffa6b3ec"
+    },
+    {
+      "key": "L07",
+      "fact_question_id": 816,
+      "content_fingerprint": "07561713fa9277d28e3a14f59f48824a59e7f8fe88d99d8bf90e4de85854caca"
+    },
+    {
+      "key": "P03",
+      "fact_question_id": 817,
+      "content_fingerprint": "3b5110669acd9e426313233bb40e9b9208c40fe54b2521ba8598cc9c7ac4afb5"
+    },
+    {
+      "key": "D03",
+      "fact_question_id": 818,
+      "content_fingerprint": "2c42dc49c558a5d8812ca76c4c73d97c0e311ae20581f72bf25a5535a3a059c9"
+    },
+    {
+      "key": "L09",
+      "fact_question_id": 819,
+      "content_fingerprint": "b558a57c72074494d372a89ea0748af230ece5652591f4c84a14a8cf6b5b9126"
+    },
+    {
+      "key": "P09",
+      "fact_question_id": 820,
+      "content_fingerprint": "a7176809694d9867c64aee16cc6c11be3704c7de5c9192bea1758585579206bc"
+    },
+    {
+      "key": "H01",
+      "fact_question_id": 821,
+      "content_fingerprint": "eb4bce9fa0357e85df00fe4da92ec92cc93d7917797b1a0ab42bb98b7b545ef9"
+    },
+    {
+      "key": "C05",
+      "fact_question_id": 822,
+      "content_fingerprint": "b15289c3b25b138c4cb457cc071b390ebf7edf845d9ada54911a53bb34d6edaf"
+    },
+    {
+      "key": "C06",
+      "fact_question_id": 823,
+      "content_fingerprint": "0b1b9c8fe85b5d28f19ad3cc1f1456f7105cce5175fce8e663f2131f06fb8bca"
+    },
+    {
+      "key": "M06",
+      "fact_question_id": 824,
+      "content_fingerprint": "2ec5ee1df752532236dd1dc9d965ad0a6aa252620f163744dc7af94cb77b9775"
+    },
+    {
+      "key": "C03",
+      "fact_question_id": 825,
+      "content_fingerprint": "62db7167c536b3de209c2c025b60388aec9d08b05a55f6ee3efc0a1e708f0341"
+    },
+    {
+      "key": "K01",
+      "fact_question_id": 826,
+      "content_fingerprint": "8b2d0b5c68c07cc770f1d4bbf30939d40dca71cb166545216961286370982a7e"
+    },
+    {
+      "key": "P08",
+      "fact_question_id": 827,
+      "content_fingerprint": "1a5a33c959375e779eaf440c07f4d14b06bbfd4a35fb7b6e81127696bff4530c"
+    },
+    {
+      "key": "R04",
+      "fact_question_id": 828,
+      "content_fingerprint": "e3de8330ca2cbb4777ea6870b7a997309ee92ff181a711ab4f004ea80c8eb206"
+    },
+    {
+      "key": "B06",
+      "fact_question_id": 829,
+      "content_fingerprint": "194270448082808bd2098d7f5fe040806f2823ed426ea08b7147fc9aa99a45a4"
+    },
+    {
+      "key": "H04",
+      "fact_question_id": 830,
+      "content_fingerprint": "0a821fd9b2d728e32eb848348fe7abf78c4a0967e8aa92f5cd6e5b554b749738"
+    },
+    {
+      "key": "P04",
+      "fact_question_id": 831,
+      "content_fingerprint": "f0f81fb976e18b78df8b4f0719d088413d4fbb5c763185bbef477fbc11176203"
+    },
+    {
+      "key": "D04",
+      "fact_question_id": 832,
+      "content_fingerprint": "d84cb4a5e63334629d1b289d2ce8ef3c8b2e95fbabd08b5b96f5b1938315e129"
+    },
+    {
+      "key": "L11",
+      "fact_question_id": 833,
+      "content_fingerprint": "8845291674de3ecf7cb1cee5763ac45aca3670848230b51a76261b97104dd114"
+    },
+    {
+      "key": "C04",
+      "fact_question_id": 834,
+      "content_fingerprint": "5404e8bccc32e6f98c96fb3769c9c92df7ea9c8030c2510d6617d85785f15e93"
+    },
+    {
+      "key": "R03",
+      "fact_question_id": 835,
+      "content_fingerprint": "ef17ac6bd21094720c75efec9ba20b5b264f3b0388e1afd809d83a94aacbdcd7"
+    },
+    {
+      "key": "P10",
+      "fact_question_id": 836,
+      "content_fingerprint": "41cb3fa63db67ed1dea8c092104ce648e1731e544511d0b16ce5b8d8bc2d7527"
+    },
+    {
+      "key": "L10",
+      "fact_question_id": 837,
+      "content_fingerprint": "b2642509597dc67c7380530ef6004a4b385f1814911554167cb0f2a1f67cec27"
+    },
+    {
+      "key": "S01",
+      "fact_question_id": 838,
+      "content_fingerprint": "c31fd62d57c7efcce7f0fdf460c32e0b4ec429fb0dce2a893d82fe555aea4477"
+    },
+    {
+      "key": "C07",
+      "fact_question_id": 839,
+      "content_fingerprint": "74569c4e52e58ea4af721f71266992abb5813ad5488b32643f7dd5b20dbfd113"
+    },
+    {
+      "key": "C08",
+      "fact_question_id": 840,
+      "content_fingerprint": "cb8e62807d3328f92cfeb021cf4caab67543ede9e2f263b41348b3b7ac85fe76"
+    },
+    {
+      "key": "H02",
+      "fact_question_id": 841,
+      "content_fingerprint": "8655247d69e2704c987b6842f192ac66d701139d7ab49bcfe2902d50968a8451"
+    },
+    {
+      "key": "D08",
+      "fact_question_id": 842,
+      "content_fingerprint": "302ceab4d5f92f377c5327e8393746ee71df51d0001d15b3cde6e79f781f5611"
+    },
+    {
+      "key": "P06",
+      "fact_question_id": 843,
+      "content_fingerprint": "8b2b7a001ae630ea0692356a8bb4db11dad9c013db825a97cf1a6afde7f24f23"
+    },
+    {
+      "key": "H03",
+      "fact_question_id": 844,
+      "content_fingerprint": "8d61d8222e6e2afe0099475df041dbcaba5d703fffcc259ae8ad9b0e6191414c"
+    }
+  ],
+  "calibration_assessment_ids": [
+    591,
+    592,
+    593,
+    594,
+    595,
+    596,
+    597,
+    598,
+    599,
+    600,
+    601,
+    602,
+    603,
+    604,
+    605,
+    606,
+    607,
+    608,
+    609,
+    610,
+    611,
+    612,
+    613,
+    614,
+    615,
+    616,
+    617,
+    618,
+    619,
+    620,
+    621,
+    622,
+    623,
+    624,
+    625,
+    626,
+    627,
+    628,
+    629,
+    630,
+    631,
+    632,
+    633,
+    634,
+    635,
+    636,
+    637,
+    638,
+    639,
+    640
+  ]
+}
